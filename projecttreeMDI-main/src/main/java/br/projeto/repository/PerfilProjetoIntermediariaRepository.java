@@ -13,10 +13,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PerfilProjetoIntermediariaRepositoryJDBC implements IPerfilProjetoIntermediariaRepository {
+public class PerfilProjetoIntermediariaRepository implements IPerfilProjetoIntermediariaRepository {
     private Connection conn;
 
-    public PerfilProjetoIntermediariaRepositoryJDBC(Connection conn){
+    public PerfilProjetoIntermediariaRepository(Connection conn){
         this.conn = conn;
     }
     @Override

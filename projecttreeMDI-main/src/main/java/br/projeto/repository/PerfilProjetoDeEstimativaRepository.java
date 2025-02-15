@@ -15,10 +15,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PerfilProjetoDeEstimativaRepositoryJDBC implements IPerfilProjetoDeEstimativaRepository {
+public class PerfilProjetoDeEstimativaRepository implements IPerfilProjetoDeEstimativaRepository {
     private Connection conn;
 
-    public PerfilProjetoDeEstimativaRepositoryJDBC(Connection conn) {
+    public PerfilProjetoDeEstimativaRepository(Connection conn) {
         this.conn = conn;
     }
 

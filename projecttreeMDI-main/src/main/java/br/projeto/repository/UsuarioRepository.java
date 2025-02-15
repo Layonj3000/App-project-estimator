@@ -12,10 +12,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioRepositoryJDBC implements IUsuarioRepository {
+public class UsuarioRepository implements IUsuarioRepository {
     private Connection conn;
 
-    public UsuarioRepositoryJDBC(Connection conn){
+    public UsuarioRepository(Connection conn){
         this.conn = conn;
     }
     //VERIFICAR A POSSIVEL CRIACAO DE UMA CLASSE DE INSTANCIACAO OBJETOS DO TIPO UuarioModel
