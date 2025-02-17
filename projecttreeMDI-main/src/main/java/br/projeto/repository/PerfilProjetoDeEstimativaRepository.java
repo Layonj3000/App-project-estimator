@@ -411,7 +411,10 @@ public class PerfilProjetoDeEstimativaRepository implements Subject {
     
     public void deleteById(Integer id) {
         PreparedStatement ps = null;
+        PreparedStatement stfkON = null;
         try {
+            stfkON = conn.prepareStatement("PRAGMA foreign_keys = ON;");
+            stfkON.execute();
             ps = conn.prepareStatement("DELETE FROM perfil_projeto_estimativa WHERE id=?");
             ps.setInt(1, id);
             ps.executeUpdate();
@@ -419,6 +422,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject {
             throw new DbException(e.getMessage());
         } finally {
             DB.closeStatement(ps);
+            DB.closeStatement(stfkON);            
         }
     }
 

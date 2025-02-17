@@ -9,7 +9,6 @@ import javax.swing.*;
 public class ExcluirProjetoProjetoCommand implements ProjetoCommand {
     private /*final*/ ProjetoRepositoryMock repository;//FINAL COMENTADO SOMENTE PARA NAO PRECISAR INICIALIZAR NO NOVO CONTRUTOR CRIADO
     private ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
-    private PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
     private Integer projetoId;
     private String projetoNome;//ATRIBUTO ANTIGO
 
@@ -22,9 +21,8 @@ public class ExcluirProjetoProjetoCommand implements ProjetoCommand {
         this.projetoNome = projetoNome;
     }
     
-    public ExcluirProjetoProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository){//CONSTRUTOR NOVO 1
+    public ExcluirProjetoProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository){//CONSTRUTOR NOVO 1
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
-        this.perfilProjetoIntermediariaRepository = perfilProjetoIntermediariaRepository;
     }
     
     public ExcluirProjetoProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, Integer projetoId){//CONSTRUTOR NOVO 2 PARA METODO adicionarMenuContextual() DE PrincipalPresenter
@@ -79,8 +77,8 @@ public class ExcluirProjetoProjetoCommand implements ProjetoCommand {
         );
 
         if (confirmacao == JOptionPane.YES_OPTION) {
-            boolean removido = projetoDeEstimativaRepository.deleteById(projetoId) && perfilProjetoIntermediariaRepository.deleteByProjectId(projetoId);
-            
+            boolean removido = projetoDeEstimativaRepository.deleteById(projetoId);
+            //perfilProjetoIntermediariaRepository.deleteByProjectId(projetoId);
             if (removido) {
                 new MostrarMensagemProjetoCommand("Projeto \"" + projetoNome + "\" removido com sucesso!").execute();
             } else {

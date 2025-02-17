@@ -24,12 +24,12 @@ public final class PrincipalPresenter implements Observer {
     private final ProjetoRepositoryMock repository;
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO
-    private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;//NOVO    
+    //private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;//NOVO    
     private final ConstrutorDeArvoreNavegacaoService construtorDeArvoreNavegacaoService;
     private final Map<String, ProjetoCommand> comandos;
     private final List<WindowCommand> windowCommands = new ArrayList<>();
 
-    public PrincipalPresenter(ProjetoRepositoryMock repository, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository) {
+    public PrincipalPresenter(ProjetoRepositoryMock repository, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository) {
         this.view = new PrincipalView();
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;//NOVO
         this.projetoDeEstimativaRepository.addObserver(this);//NOVO
@@ -37,7 +37,7 @@ public final class PrincipalPresenter implements Observer {
         this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;//NOVO
         this.perfilProjetoDeEstimativaRepository.addObserver(this);//NOVO
         
-        this.perfilProjetoIntermediariaRepository = perfilProjetoIntermediariaRepository;
+        //this.perfilProjetoIntermediariaRepository = perfilProjetoIntermediariaRepository;
 //        this.perfilProjetoIntermediariaRepository.addObserver(this);
         
         this.repository = repository;
@@ -72,7 +72,7 @@ public final class PrincipalPresenter implements Observer {
         comandos.put("Compartilhar projeto de estimativa", new MostrarMensagemProjetoCommand("Compartilhar ainda não implementado"));
         comandos.put("Exportar projeto de estimativa", new MostrarMensagemProjetoCommand("Exportar ainda não implementado"));
         comandos.put("Novo projeto", new CriarProjetoProjetoCommand(repository, view.getDesktop()));
-        comandos.put("Excluir projeto", new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository, perfilProjetoIntermediariaRepository));
+        comandos.put("Excluir projeto", new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository));
         comandos.put("Abrir detalhes", new AbrirDetalhesProjetoProjetoCommand(repository,projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository, view.getDesktop()));
         return comandos;
     }

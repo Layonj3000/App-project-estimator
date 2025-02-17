@@ -110,27 +110,27 @@ public class PerfilProjetoIntermediariaRepository{
         }
     }
 
-    public boolean deleteByProjectId(Integer idProjeto) {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        try {
-            ps = conn.prepareStatement("DELETE FROM perfil_projeto_intermediaria "
-                    + "WHERE projeto_id = ? ");
-            ps.setInt(1, idProjeto);
-
-            int rowsAffected = ps.executeUpdate();
-
-            if (rowsAffected > 0) {
-                return true;
-            } else {
-                throw new DbException("Unexpected error! No rows affected!");
-            }
-        } catch (SQLException e) {
-            throw new DbException(e.getMessage());
-        }
-
-    }
+//    public boolean deleteByProjectId(Integer idProjeto) {
+//        PreparedStatement ps = null;
+//        ResultSet rs = null;
+//
+//        try {
+//            ps = conn.prepareStatement("DELETE FROM perfil_projeto_intermediaria "
+//                    + "WHERE projeto_id = ? ");
+//            ps.setInt(1, idProjeto);
+//
+//            int rowsAffected = ps.executeUpdate();
+//
+//            if (rowsAffected > 0) {
+//                return true;
+//            } else {
+//                throw new DbException("Unexpected error! No rows affected!");
+//            }
+//        } catch (SQLException e) {
+//            throw new DbException(e.getMessage());
+//        }
+//
+//    }
 
     private PerfilProjetoIntermediariaModel instantiatePerfilProjetoIntermediariaModel(ResultSet rs) throws SQLException {
         PerfilProjetoIntermediariaModel perfilProjetoIntermediariaModel = new PerfilProjetoIntermediariaModel(rs.getInt("projeto_id"), rs.getInt("perfil_id"));

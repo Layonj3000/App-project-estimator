@@ -31,26 +31,27 @@ public class Main {
 //        System.out.println(usuarioRepository.findAll());
 
 //        ProjetoDeEstimativaModel projetoDeEstimativaModel = new ProjetoDeEstimativaModel(1, usuarioModel, 0, null, new Date(System.currentTimeMillis()), "Projeto Teste UM", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0);
-//        ProjetoDeEstimativaModel projetoDeEstimativaModel2 = new ProjetoDeEstimativaModel(2, usuarioModel2, 0, null, new Date(System.currentTimeMillis()), "Projeto Teste DOIS", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0);
+        ProjetoDeEstimativaModel projetoDeEstimativaModel2 = new ProjetoDeEstimativaModel(2, usuarioModel2, 0, null, new Date(System.currentTimeMillis()), "Projeto Teste QUATRO", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0);
 //        projetoDeEstimativaRepository.insert(projetoDeEstimativaModel);
-//        projetoDeEstimativaRepository.insert(projetoDeEstimativaModel2);
-//        System.out.println(projetoDeEstimativaRepository.findAll());
+        //projetoDeEstimativaRepository.insert(projetoDeEstimativaModel2);
+//        projetoDeEstimativaRepository.deleteById(3);
+        System.out.println(projetoDeEstimativaRepository.findAll());
 //
 //
         RepositoryFactory factory2 = RepositoryFactory.escolherClasseFabricada(PerfilProjetoDeEstimativaRepository.class);
         PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository = factory2.createRepository();
 //
-//        PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = new PerfilProjetoDeEstimativaModel(
-//            1, usuarioModel, "Perfil Padrão",
-//            10, 20, 30, 5, 15, 25, // Pequeno, Médio, Grande, MVP, Básico, Profissional
-//            10, 40, 15, 20, 50, 20, 10, 10, 10, 10,  // Cadastro por redes sociais
-//            10, 40, 15, 20, 50, 20, 10, 10, 10, 10,  // Painel, Feed, Uploads, Perfis de Usuário...
-//            10, 40, 15, 20, 50, 20, 10, 10, 10, 10,  // Pesquisas, Mapa, Reservas, Mensagens...
-//            10, 40, 15, 20, 50, 20, 10, 10, 10, 10,  // Integrações, Notificações, Pagamentos...
-//            10, 40, 15, 20, 50, 20, 10, 10, 10, 10,  // Moderação, Monitoramento, Segurança...
-//            10, 40, 15, 20, 50, 20, 10, 10, 10, 10,        // Funcionalidades Avançadas
-//            500.00, 800.00, 1200.00        // Taxas diárias (Design, Gestão, Desenvolvimento)
-//        );
+        PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = new PerfilProjetoDeEstimativaModel(
+            1, usuarioModel, "Perfil Padrão",
+            10, 20, 30, 5, 15, 25, // Pequeno, Médio, Grande, MVP, Básico, Profissional
+            10, 40, 15, 20, 50, 20, 10, 10, 10, 10,  // Cadastro por redes sociais
+            10, 40, 15, 20, 50, 20, 10, 10, 10, 10,  // Painel, Feed, Uploads, Perfis de Usuário...
+            10, 40, 15, 20, 50, 20, 10, 10, 10, 10,  // Pesquisas, Mapa, Reservas, Mensagens...
+            10, 40, 15, 20, 50, 20, 10, 10, 10, 10,  // Integrações, Notificações, Pagamentos...
+            10, 40, 15, 20, 50, 20, 10, 10, 10, 10,  // Moderação, Monitoramento, Segurança...
+            10, 40, 15, 20, 50, 20, 10, 10, 10, 10,        // Funcionalidades Avançadas
+            500.00, 800.00, 1200.00        // Taxas diárias (Design, Gestão, Desenvolvimento)
+        );
 //        perfilProjetoDeEstimativaModel.setId(2);
 //        perfilProjetoDeEstimativaModel.setUsuarioModel(usuarioModel);
 //        perfilProjetoDeEstimativaModel.setNomePerfil("IOS");
@@ -66,11 +67,11 @@ public class Main {
 //        perfilProjetoIntermediariaRepository.insert(projetoDeEstimativaModel, perfilProjetoDeEstimativaModel);
 //        perfilProjetoIntermediariaRepository.insert(projetoDeEstimativaModel2, perfilProjetoDeEstimativaModel);
 //
-//        System.out.println(perfilProjetoIntermediariaRepository.findAll());
+        System.out.println(perfilProjetoIntermediariaRepository.findAll());
 
 //TESTAR MUDANÇA RELACIONADAS A TABELA INTERMEDIARIA
             SwingUtilities.invokeLater(() -> {
-            PrincipalPresenter presenter = new PrincipalPresenter(new ProjetoRepositoryMock(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, perfilProjetoIntermediariaRepository);
+            PrincipalPresenter presenter = new PrincipalPresenter(new ProjetoRepositoryMock(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository);
             WindowManager.getInstance().initialize(presenter);
         });
     }
