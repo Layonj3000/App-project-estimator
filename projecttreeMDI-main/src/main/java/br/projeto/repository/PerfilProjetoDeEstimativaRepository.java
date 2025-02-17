@@ -3,8 +3,11 @@ package br.projeto.repository;
 import br.projeto.db.DB;
 import br.projeto.db.DbException;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
+import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
+import br.projeto.model.Subject;
 import br.projeto.model.UsuarioModel;
+import br.projeto.presenter.Observer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,14 +18,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PerfilProjetoDeEstimativaRepository implements IPerfilProjetoDeEstimativaRepository {
+public class PerfilProjetoDeEstimativaRepository implements Subject {
     private Connection conn;
+    private List<Projeto> projetos;
+    private List<Observer> observers;
+    private List<PerfilProjetoDeEstimativaModel> perfisProjetoDeEstimativaModel;
 
     public PerfilProjetoDeEstimativaRepository(Connection conn) {
         this.conn = conn;
+        observers = new ArrayList<>();
+        projetos = new ArrayList<>();
+        perfisProjetoDeEstimativaModel = new ArrayList<>();
     }
 
-    @Override
+    
     public List<PerfilProjetoDeEstimativaModel> findAll() {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -55,7 +64,7 @@ public class PerfilProjetoDeEstimativaRepository implements IPerfilProjetoDeEsti
         }
     }
 
-    @Override
+    
     public List<PerfilProjetoDeEstimativaModel> findByUser(UsuarioModel usuarioModel) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -89,7 +98,7 @@ public class PerfilProjetoDeEstimativaRepository implements IPerfilProjetoDeEsti
         }
     }
 
-    @Override
+    
     public List<PerfilProjetoDeEstimativaModel> findByProjetoEstimativa(ProjetoDeEstimativaModel projetoDeEstimativaModel) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -114,13 +123,15 @@ public class PerfilProjetoDeEstimativaRepository implements IPerfilProjetoDeEsti
                 PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = instantiatePerfilProjetoDeEstimativaModel(rs, usuario);
                 perfilProjetoDeEstimativaModelList.add(perfilProjetoDeEstimativaModel);
             }
+            //perfisProjetoDeEstimativaModel.addAll(perfisProjetoDeEstimativaModel);
+            //notifyObservers();//VERIFICAR SE FUNCIONA SEM
             return perfilProjetoDeEstimativaModelList;
         }catch(SQLException e){
             throw new DbException(e.getMessage());
         }
     }
 
-    @Override
+    
     public PerfilProjetoDeEstimativaModel findById(Integer id) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -146,7 +157,7 @@ public class PerfilProjetoDeEstimativaRepository implements IPerfilProjetoDeEsti
         return null;
     }
 
-    @Override
+    
     public void insert(PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -174,20 +185,18 @@ public class PerfilProjetoDeEstimativaRepository implements IPerfilProjetoDeEsti
                     "protecao_contra_dos, autenticacao_duas_etapas, desenvolvimento_especifico_app, " +
                     "design_icone_app, sincronizacao_nuvem, dados_sensores_dispositivo, " +
                     "codigo_barra_qr_code, dados_saude, apple_watch, gerente_de_projetos, " +
-                    "taxa_diaria_design, taxa_diaria_gerencia_projeto, taxa_diaria_desenvolvimento, " +
-                    "custo_hardware, custo_software, custo_riscos, custo_garantia, " +
-                    "fundo_de_reserva, outros_custos) " +
+                    "taxa_diaria_design, taxa_diaria_gerencia_projeto, taxa_diaria_desenvolvimento) " +
                     "VALUES( ?, ?, ?, ?, ?, " +
                     "?, ?, ?, ?, " +
                     "?, ?, ?, ?, " +
                     "?, ?, ?, ?, ?, " +
                     "?, ?, ?, ?, ?, " +
-                    "?, ?, ?, ?, ?, " +
-                    "?, ?, ?, ?, ?, " +
-                    "?, ?, ?, ?, ?, " +
-                    "?, ?, ?, ?, ?, " +
-                    "?, ?, ?, ?, ?, " +
-                    "?, ?, ?, ?, ?, " +
+                    "?, ?, ?, ?, " +
+                    "?, ?, ?, ?, " +
+                    "?, ?, ?, ?, " +
+                    "?, ?, ?, ?, " +
+                    "?, ?, ?, ?, " +
+                    "?, ?, ?, ?,  " +
                     "?, ?, ?, ?, " +
                     "?, ?, ?, ?, " +
                     "?, ?, ?, ?, " +
@@ -265,12 +274,6 @@ public class PerfilProjetoDeEstimativaRepository implements IPerfilProjetoDeEsti
             ps.setDouble(69, perfilProjetoDeEstimativaModel.getTaxaDiariaDesign());
             ps.setDouble(70, perfilProjetoDeEstimativaModel.getTaxaDiariaGerenciaProjeto());
             ps.setDouble(71, perfilProjetoDeEstimativaModel.getTaxaDiariaDesenvolvimento());
-            ps.setDouble(72, perfilProjetoDeEstimativaModel.getCustoHardware());
-            ps.setDouble(73, perfilProjetoDeEstimativaModel.getCustoSoftware());
-            ps.setDouble(74, perfilProjetoDeEstimativaModel.getCustoRiscos());
-            ps.setDouble(75, perfilProjetoDeEstimativaModel.getCustoGarantia());
-            ps.setDouble(76, perfilProjetoDeEstimativaModel.getFundoDeReserva());
-            ps.setDouble(77, perfilProjetoDeEstimativaModel.getOutrosCustos());
 
 
             int rowsAffected = ps.executeUpdate();
@@ -279,6 +282,7 @@ public class PerfilProjetoDeEstimativaRepository implements IPerfilProjetoDeEsti
                 rs = ps.getGeneratedKeys();
                 if (rs.next()) {
                     perfilProjetoDeEstimativaModel.setId(rs.getInt(1));
+                    perfisProjetoDeEstimativaModel.add(perfilProjetoDeEstimativaModel);
                 } else {
                     throw new DbException("Unexpected error! No rows affected!");
                 }
@@ -291,7 +295,7 @@ public class PerfilProjetoDeEstimativaRepository implements IPerfilProjetoDeEsti
         }
     }
 
-    @Override
+    
     public void update(PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -319,9 +323,7 @@ public class PerfilProjetoDeEstimativaRepository implements IPerfilProjetoDeEsti
                             "protecao_contra_dos = ?, autenticacao_duas_etapas = ?, desenvolvimento_especifico_app = ?, " +
                             "design_icone_app = ?, sincronizacao_nuvem = ?, dados_sensores_dispositivo = ?, " +
                             "codigo_barra_qr_code = ?, dados_saude = ?, apple_watch = ?, gerente_de_projetos = ?, " +
-                            "taxa_diaria_design = ?, taxa_diaria_gerencia_projeto = ?, taxa_diaria_desenvolvimento = ?, " +
-                            "custo_hardware = ?, custo_software = ?, custo_riscos = ?, custo_garantia = ?, " +
-                            "fundo_de_reserva = ?, outros_custos = ? " +
+                            "taxa_diaria_design = ?, taxa_diaria_gerencia_projeto = ?, taxa_diaria_desenvolvimento = ? " +
                             "WHERE id = ?"
                     , PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setInt(1, perfilProjetoDeEstimativaModel.getUsuarioModel().getId());
@@ -395,15 +397,10 @@ public class PerfilProjetoDeEstimativaRepository implements IPerfilProjetoDeEsti
             ps.setDouble(69, perfilProjetoDeEstimativaModel.getTaxaDiariaDesign());
             ps.setDouble(70, perfilProjetoDeEstimativaModel.getTaxaDiariaGerenciaProjeto());
             ps.setDouble(71, perfilProjetoDeEstimativaModel.getTaxaDiariaDesenvolvimento());
-            ps.setDouble(72, perfilProjetoDeEstimativaModel.getCustoHardware());
-            ps.setDouble(73, perfilProjetoDeEstimativaModel.getCustoSoftware());
-            ps.setDouble(74, perfilProjetoDeEstimativaModel.getCustoRiscos());
-            ps.setDouble(75, perfilProjetoDeEstimativaModel.getCustoGarantia());
-            ps.setDouble(76, perfilProjetoDeEstimativaModel.getFundoDeReserva());
-            ps.setDouble(77, perfilProjetoDeEstimativaModel.getOutrosCustos());
-            ps.setInt(78, perfilProjetoDeEstimativaModel.getId());
+            ps.setInt(72, perfilProjetoDeEstimativaModel.getId());
 
             ps.executeUpdate();
+            perfisProjetoDeEstimativaModel.add(perfilProjetoDeEstimativaModel);
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
@@ -411,7 +408,7 @@ public class PerfilProjetoDeEstimativaRepository implements IPerfilProjetoDeEsti
         }
     }
 
-    @Override
+    
     public void deleteById(Integer id) {
         PreparedStatement ps = null;
         try {
@@ -504,14 +501,26 @@ public class PerfilProjetoDeEstimativaRepository implements IPerfilProjetoDeEsti
         perfilProjetoDeEstimativaModel.setTaxaDiariaDesign(rs.getDouble("taxa_diaria_design"));
         perfilProjetoDeEstimativaModel.setTaxaDiariaGerenciaProjeto(rs.getDouble("taxa_diaria_gerencia_projeto"));
         perfilProjetoDeEstimativaModel.setTaxaDiariaDesenvolvimento(rs.getDouble("taxa_diaria_desenvolvimento"));
-        perfilProjetoDeEstimativaModel.setCustoHardware(rs.getDouble("custo_hardware"));
-        perfilProjetoDeEstimativaModel.setCustoSoftware(rs.getDouble("custo_software"));
-        perfilProjetoDeEstimativaModel.setCustoRiscos(rs.getDouble("custo_riscos"));
-        perfilProjetoDeEstimativaModel.setCustoGarantia(rs.getDouble("custo_garantia"));
-        perfilProjetoDeEstimativaModel.setFundoDeReserva(rs.getDouble("fundo_de_reserva"));
-        perfilProjetoDeEstimativaModel.setOutrosCustos(rs.getDouble("outros_custos"));
 
         return perfilProjetoDeEstimativaModel;
 
+    }
+
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            //observer.update(projetos);
+            observer.updatePerfilModel(perfisProjetoDeEstimativaModel);
+        }
     }
 }

@@ -1,6 +1,8 @@
 package br.projeto.command;
 
 import br.projeto.model.Projeto;
+import br.projeto.model.ProjetoDeEstimativaModel;
+import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoRepositoryMock;
 import br.projeto.service.CriarProjetoMock;
 
@@ -38,4 +40,8 @@ public class CriarProjetoProjetoCommand implements ProjetoCommand {
                 },
                 () -> new MostrarMensagemProjetoCommand("Falha ao criar o projeto.").execute());
     }
+    
+    /*public void executeTeste(){
+        Optional<ProjetoDeEstimativaModel> = projetoDeEstimativaRepository.findAll();
+    }*/
 }

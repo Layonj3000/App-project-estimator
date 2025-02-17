@@ -6,7 +6,7 @@ import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 public class PerfilProjetoIntermediariaRepositoryFactory extends RepositoryFactory {
 
     @Override
-    public <T> T createRepositoryJDBC() {
+    public <T> T createRepository() {
         return (T) new PerfilProjetoIntermediariaRepository(DB.getConnection());
     }
 }

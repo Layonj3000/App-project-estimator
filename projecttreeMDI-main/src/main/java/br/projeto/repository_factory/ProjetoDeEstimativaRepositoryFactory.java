@@ -5,7 +5,7 @@ import br.projeto.repository.ProjetoDeEstimativaRepository;
 
 public class ProjetoDeEstimativaRepositoryFactory extends RepositoryFactory {
     @Override
-    public <T> T createRepositoryJDBC() {
+    public <T> T createRepository() {
         return (T) new ProjetoDeEstimativaRepository(DB.getConnection());
     }
 }

@@ -20,6 +20,6 @@ public abstract class RepositoryFactory {
             throw new IllegalArgumentException();
         }
     }
-     public abstract <T> T createRepositoryJDBC();
+     public abstract <T> T createRepository();
 
 }

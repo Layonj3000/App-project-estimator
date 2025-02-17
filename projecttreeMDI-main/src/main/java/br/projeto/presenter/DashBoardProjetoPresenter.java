@@ -1,6 +1,8 @@
 package br.projeto.presenter;
 
+import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.Projeto;
+import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.repository.ProjetoRepositoryMock;
 import br.projeto.service.EstimaProjetoService;
 import br.projeto.view.DashBoardProjetoView;
@@ -67,5 +69,15 @@ public class DashBoardProjetoPresenter implements Observer {
     @Override
     public void update(List<Projeto> projetos) {
         carregarDashboard();
+    }
+
+    @Override
+    public void updatePerfilModel(List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModel) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void updateProjetoModel(List<ProjetoDeEstimativaModel> projetoDeEstimativaModel) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

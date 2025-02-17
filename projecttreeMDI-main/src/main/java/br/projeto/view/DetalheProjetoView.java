@@ -1,8 +1,10 @@
 package br.projeto.view;
 
+import br.projeto.enums.Status;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.sql.Date;
 import java.text.DecimalFormat;
 
 public class DetalheProjetoView extends JInternalFrame {
@@ -63,8 +65,8 @@ public class DetalheProjetoView extends JInternalFrame {
         painelPrincipal.add(painelTabela, BorderLayout.CENTER);
     }
 
-    public void atualizarCabecalho(String nome, String criador, String data, String tipoProjeto, String status) {
-        lblNome.setText("Nome: " + nome);
+    public void atualizarCabecalho(String nome, String criador, Date data, String tipoProjeto, Status status) {//ANTIGO TIPO DE DATA ERA STRING
+        lblNome.setText("Nome: " + nome);                                                                      //ANTIGO TIPO DE STATUS ERA STRING 
         lblCriador.setText("Criador: " + criador);
         lblData.setText("Data de Criação: " + data);
         lblTipoProjeto.setText("Tipo de Projeto: " + tipoProjeto);

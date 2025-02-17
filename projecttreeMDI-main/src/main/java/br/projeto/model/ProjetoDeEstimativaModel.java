@@ -4,6 +4,8 @@ import br.projeto.enums.SimNao;
 import br.projeto.enums.Status;
 
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProjetoDeEstimativaModel {
     //VERIFICAR ALGUMAS MUDANÇAS DE TIPO DEPOIS!!!!!!!!!!!
@@ -11,9 +13,10 @@ public class ProjetoDeEstimativaModel {
     private Integer id;
     private UsuarioModel usuarioModel;
     private SimNao compartilhado;
+    private Integer compartilhadoPor;
     private Date dataCriacao;
-    private String nomeProjetoDeEstimativa; //ADICIONAR NO BANCO DE DADOS
-    private Status status; //ADICIONAR NO BANCO DE DADOS
+    private String nomeProjetoDeEstimativa; 
+    private Status status; 
     private SimNao pequeno;
     private SimNao medio;
     private SimNao grande;
@@ -80,12 +83,12 @@ public class ProjetoDeEstimativaModel {
     private SimNao dadosSaude;
     private SimNao appleWatch;
     private SimNao gerenteDeProjetos;
-    private SimNao custoHardware;
-    private SimNao custoSoftware;
-    private SimNao custoRiscos;
-    private SimNao custoGarantia;
-    private SimNao fundoDeReserva;
-    private SimNao outrosCustos;
+    private Double custoHardware;
+    private Double custoSoftware;
+    private Double custoRiscos;
+    private Double custoGarantia;
+    private Double fundoDeReserva;
+    private Double outrosCustos;
     private Double subTotal;
     private Double percentualComImpostos;
     private Double totalComImposto;
@@ -95,12 +98,16 @@ public class ProjetoDeEstimativaModel {
     private Double meses;
     private Double precoFinalCliente;
     private Double mediaPorMes;
+    private final Map<String, SimNao> funcionalidadesDisponiveis;
 
-    public ProjetoDeEstimativaModel(){}
-    public ProjetoDeEstimativaModel(Integer id, UsuarioModel usuarioModel, int compartilhado,Date dataCriacao,String nomeProjetoDeEstimativa,int status, int pequeno, int medio, int grande, int mvp, int basico, int profissional, int cadastroPorEmailSenha, int cadastroPorFacebook, int cadastroPorTwitter, int cadastroPorGoogle, int cadastroPorLinkedin, int cadastroPorGithub, int cadastroPorConviteUsuario, int cadastroPorContasMultitenant, int cadastroPorSubdominios, int cadastroPorDominiosPersonalizados, int painel, int feedDeAtividades, int uploadDeArquivos, int uploadDeMidia, int perfisDeUsuario, int emailsTransacionais, int tags, int avaliacoesOuComentarios, int processamentoAudioVideo, int pesquisaTextoLivre, int pesquisa, int calendario, int exibicaoDadosMapaGeolocalizacao, int exibicaoMarcadoresRegioesMapaPersonalizados, int reservas, int mensagens, int forunsOuComentarios, int compartilhamentoSocial, int integracaoFacebookOpenGraph, int notificacaoPush, int planosDeAssinatura, int processamentoDePagamento, int carrinhoDeCompras, int marketplaceDeUsuarios, int gerenciamentoDeProdutos, int comprasDentroDoAplicativo, int coletaInformacaoPagamento, int integracaoCms, int paginasAdministracaoUsuarios, int moderacaoAprovacaoConteudo, int intercom, int analisesUso, int relatoriosErro, int monitoramentoPerformance, int suporteMultilingue, int conectarServicosDeTerceiros, int apiParaTerceiros, int envioSms, int mascaramentoNumeroTelefone, int segurancaBaseadaCertificadoSsl, int protecaoContraDos, int autenticacaoDuasEtapas, int desenvolvimentoEspecificoApp, int designIconeApp, int sincronizacaoNuvem, int dados_sensoresDispositivo, int codigoBarraQrCode, int dadosSaude, int appleWatch, int gerenteDeProjetos, int custoHardware, int custoSoftware, int custoRiscos, int custoGarantia, int fundoDeReserva, int outrosCustos, Double subTotal, Double percentualComImpostos, Double totalComImposto, Double percentualLucroDesejado, Double lucroCalculado, Integer dias, Double meses, Double precoFinalCliente, Double mediaPorMes){
+    public ProjetoDeEstimativaModel(){
+            funcionalidadesDisponiveis = new HashMap<>();
+    }
+    public ProjetoDeEstimativaModel(Integer id, UsuarioModel usuarioModel, int compartilhado,Integer compartilhadorPor,Date dataCriacao,String nomeProjetoDeEstimativa,int status, int pequeno, int medio, int grande, int mvp, int basico, int profissional, int cadastroPorEmailSenha, int cadastroPorFacebook, int cadastroPorTwitter, int cadastroPorGoogle, int cadastroPorLinkedin, int cadastroPorGithub, int cadastroPorConviteUsuario, int cadastroPorContasMultitenant, int cadastroPorSubdominios, int cadastroPorDominiosPersonalizados, int painel, int feedDeAtividades, int uploadDeArquivos, int uploadDeMidia, int perfisDeUsuario, int emailsTransacionais, int tags, int avaliacoesOuComentarios, int processamentoAudioVideo, int pesquisaTextoLivre, int pesquisa, int calendario, int exibicaoDadosMapaGeolocalizacao, int exibicaoMarcadoresRegioesMapaPersonalizados, int reservas, int mensagens, int forunsOuComentarios, int compartilhamentoSocial, int integracaoFacebookOpenGraph, int notificacaoPush, int planosDeAssinatura, int processamentoDePagamento, int carrinhoDeCompras, int marketplaceDeUsuarios, int gerenciamentoDeProdutos, int comprasDentroDoAplicativo, int coletaInformacaoPagamento, int integracaoCms, int paginasAdministracaoUsuarios, int moderacaoAprovacaoConteudo, int intercom, int analisesUso, int relatoriosErro, int monitoramentoPerformance, int suporteMultilingue, int conectarServicosDeTerceiros, int apiParaTerceiros, int envioSms, int mascaramentoNumeroTelefone, int segurancaBaseadaCertificadoSsl, int protecaoContraDos, int autenticacaoDuasEtapas, int desenvolvimentoEspecificoApp, int designIconeApp, int sincronizacaoNuvem, int dados_sensoresDispositivo, int codigoBarraQrCode, int dadosSaude, int appleWatch, int gerenteDeProjetos, Double custoHardware, Double custoSoftware, Double custoRiscos, Double custoGarantia, Double fundoDeReserva, Double outrosCustos, Double subTotal, Double percentualComImpostos, Double totalComImposto, Double percentualLucroDesejado, Double lucroCalculado, Integer dias, Double meses, Double precoFinalCliente, Double mediaPorMes){
         this.id = id;
         this.usuarioModel = usuarioModel;
         this.compartilhado = SimNao.fromValue(compartilhado);
+        this.compartilhadoPor = compartilhadorPor;
         this.dataCriacao = dataCriacao;
         this.nomeProjetoDeEstimativa = nomeProjetoDeEstimativa;
         this.status = Status.fromValue(status);
@@ -170,12 +177,12 @@ public class ProjetoDeEstimativaModel {
         this.dadosSaude = SimNao.fromValue(dadosSaude);
         this.appleWatch = SimNao.fromValue(appleWatch);
         this.gerenteDeProjetos = SimNao.fromValue(gerenteDeProjetos);
-        this.custoHardware = SimNao.fromValue(custoHardware);
-        this.custoSoftware = SimNao.fromValue(custoSoftware);
-        this.custoRiscos = SimNao.fromValue(custoRiscos);
-        this.custoGarantia = SimNao.fromValue(custoGarantia);
-        this.fundoDeReserva = SimNao.fromValue(fundoDeReserva);
-        this.outrosCustos = SimNao.fromValue(outrosCustos);
+        this.custoHardware = custoHardware;
+        this.custoSoftware = custoSoftware;
+        this.custoRiscos = custoRiscos;
+        this.custoGarantia = custoGarantia;
+        this.fundoDeReserva = fundoDeReserva;
+        this.outrosCustos = outrosCustos;
         this.subTotal = subTotal;
         this.percentualComImpostos = percentualComImpostos;
         this.totalComImposto = totalComImposto;
@@ -185,6 +192,7 @@ public class ProjetoDeEstimativaModel {
         this.meses = meses;
         this.precoFinalCliente = precoFinalCliente;
         this.mediaPorMes = mediaPorMes;
+        funcionalidadesDisponiveis = new HashMap<>();
     }
 
     public Integer getId() {
@@ -197,6 +205,10 @@ public class ProjetoDeEstimativaModel {
 
     public UsuarioModel getUsuarioModel() {
         return usuarioModel;
+    }
+    
+    public String getNomeUsuario(){
+        return usuarioModel.getNome();
     }
 
     public void setUsuarioModel(UsuarioModel usuarioModel) {
@@ -211,6 +223,14 @@ public class ProjetoDeEstimativaModel {
         this.compartilhado = compartilhado != null ? SimNao.fromValue(compartilhado) : SimNao.NAO;
     }
 
+    public Integer getCompartilhadoPor() {
+        return compartilhadoPor;
+    }
+
+    public void setCompartilhadoPor(Integer compartilhadoPor) {
+        this.compartilhadoPor = compartilhadoPor;
+    }
+    
     public Date getDataCriacao() {
         return dataCriacao;
     }
@@ -228,6 +248,11 @@ public class ProjetoDeEstimativaModel {
     }
 
     public Integer getStatusValor(){return status != null ? status.getValor() : 0;}
+
+    public Status getStatus() {
+        return status;
+    }
+    
     public void setStatus(Integer status){
         this.status = status != null ? Status.fromValue(status):Status.ESTIMADO;
     }
@@ -757,56 +782,62 @@ public class ProjetoDeEstimativaModel {
         return gerenteDeProjetos != null ? gerenteDeProjetos.getValor() : 0;
     }
 
+    public SimNao getGerenteDeProjetos() {
+        return gerenteDeProjetos;
+    }
+    
     public void setGerenteDeProjetos(Integer gerenteDeProjetos) {
         this.gerenteDeProjetos = (this.gerenteDeProjetos != null) ? SimNao.fromValue(gerenteDeProjetos) : SimNao.NAO;
     }
 
-    public Integer getCustoHardwareValor() {
-        return custoHardware != null ? custoHardware.getValor() : 0;
+    public Double getCustoHardware() {
+        return custoHardware;
     }
 
-    public void setCustoHardware(Integer custoHardware) {
-        this.custoHardware = (this.custoHardware != null) ? SimNao.fromValue(custoHardware) : SimNao.NAO;
+    public void setCustoHardware(Double custoHardware) {
+        this.custoHardware = custoHardware;
     }
 
-    public Integer getCustoSoftwareValor() {
-        return custoSoftware != null ? custoSoftware.getValor() : 0;
+    public Double getCustoSoftware() {
+        return custoSoftware;
     }
 
-    public void setCustoSoftware(Integer custoSoftware) {
-        this.custoSoftware = (this.custoSoftware != null) ? SimNao.fromValue(custoSoftware) : SimNao.NAO;
+    public void setCustoSoftware(Double custoSoftware) {
+        this.custoSoftware = custoSoftware;
     }
 
-    public Integer getCustoRiscosValor() {
-        return custoRiscos != null ? custoRiscos.getValor() : 0;
+    public Double getCustoRiscos() {
+        return custoRiscos;
     }
 
-    public void setCustoRiscos(Integer custoRiscos) {
-        this.custoRiscos = (this.custoRiscos != null) ? SimNao.fromValue(custoRiscos) : SimNao.NAO;
+    public void setCustoRiscos(Double custoRiscos) {
+        this.custoRiscos = custoRiscos;
     }
 
-    public Integer getCustoGarantiaValor() {
-        return custoGarantia != null ? custoGarantia.getValor() : 0;
+    public Double getCustoGarantia() {
+        return custoGarantia;
     }
 
-    public void setCustoGarantia(Integer custoGarantia) {
-        this.custoGarantia = (this.custoGarantia != null) ? SimNao.fromValue(custoGarantia) : SimNao.NAO;
+    public void setCustoGarantia(Double custoGarantia) {
+        this.custoGarantia = custoGarantia;
     }
 
-    public Integer getFundoDeReservaValor() {
-        return fundoDeReserva != null ? fundoDeReserva.getValor() : 0;
+    public Double getFundoDeReserva() {
+        return fundoDeReserva;
     }
 
-    public void setFundoDeReserva(Integer fundoDeReserva) {
-        this.fundoDeReserva = (this.fundoDeReserva != null) ? SimNao.fromValue(fundoDeReserva) : SimNao.NAO;
+    public void setFundoDeReserva(Double fundoDeReserva) {
+        this.fundoDeReserva = fundoDeReserva;
+    }
+    
+    
+
+    public Double getOutrosCustos() {
+        return outrosCustos;
     }
 
-    public Integer getOutrosCustosValor() {
-        return outrosCustos != null ? outrosCustos.getValor() : 0;
-    }
-
-    public void setOutrosCustos(Integer outrosCustos) {
-        this.outrosCustos = (this.outrosCustos != null) ? SimNao.fromValue(outrosCustos) : SimNao.NAO;
+    public void setOutrosCustos(Double outrosCustos) {
+        this.outrosCustos = outrosCustos;
     }
 
     public Double getSubTotal() {
@@ -881,13 +912,86 @@ public class ProjetoDeEstimativaModel {
         this.mediaPorMes = mediaPorMes;
     }
 
+public Map<String, SimNao> getFuncionalidadesDisponiveis() {
+    funcionalidadesDisponiveis.put("Compartilhado", compartilhado);
+    funcionalidadesDisponiveis.put("Pequeno", pequeno);
+    funcionalidadesDisponiveis.put("Médio", medio);
+    funcionalidadesDisponiveis.put("Grande", grande);
+    funcionalidadesDisponiveis.put("MVP", mvp);
+    funcionalidadesDisponiveis.put("Básico", basico);
+    funcionalidadesDisponiveis.put("Profissional", profissional);
+    funcionalidadesDisponiveis.put("Cadastro por Email/Senha", cadastroPorEmailSenha);
+    funcionalidadesDisponiveis.put("Cadastro por Facebook", cadastroPorFacebook);
+    funcionalidadesDisponiveis.put("Cadastro por Twitter", cadastroPorTwitter);
+    funcionalidadesDisponiveis.put("Cadastro por Google", cadastroPorGoogle);
+    funcionalidadesDisponiveis.put("Cadastro por LinkedIn", cadastroPorLinkedin);
+    funcionalidadesDisponiveis.put("Cadastro por GitHub", cadastroPorGithub);
+    funcionalidadesDisponiveis.put("Cadastro por Convite de Usuário", cadastroPorConviteUsuario);
+    funcionalidadesDisponiveis.put("Cadastro por Contas Multi-tenant", cadastroPorContasMultitenant);
+    funcionalidadesDisponiveis.put("Cadastro por Subdomínios", cadastroPorSubdominios);
+    funcionalidadesDisponiveis.put("Cadastro por Domínios Personalizados", cadastroPorDominiosPersonalizados);
+    funcionalidadesDisponiveis.put("Painel", painel);
+    funcionalidadesDisponiveis.put("Feed de Atividades", feedDeAtividades);
+    funcionalidadesDisponiveis.put("Upload de Arquivos", uploadDeArquivos);
+    funcionalidadesDisponiveis.put("Upload de Mídia", uploadDeMidia);
+    funcionalidadesDisponiveis.put("Perfis de Usuário", perfisDeUsuario);
+    funcionalidadesDisponiveis.put("Emails Transacionais", emailsTransacionais);
+    funcionalidadesDisponiveis.put("Tags", tags);
+    funcionalidadesDisponiveis.put("Avaliações ou Comentários", avaliacoesOuComentarios);
+    funcionalidadesDisponiveis.put("Processamento de Áudio e Vídeo", processamentoAudioVideo);
+    funcionalidadesDisponiveis.put("Pesquisa Texto Livre", pesquisaTextoLivre);
+    funcionalidadesDisponiveis.put("Pesquisa", pesquisa);
+    funcionalidadesDisponiveis.put("Calendário", calendario);
+    funcionalidadesDisponiveis.put("Exibição de Dados no Mapa", exibicaoDadosMapaGeolocalizacao);
+    funcionalidadesDisponiveis.put("Exibição de Marcadores no Mapa", exibicaoMarcadoresRegioesMapaPersonalizados);
+    funcionalidadesDisponiveis.put("Reservas", reservas);
+    funcionalidadesDisponiveis.put("Mensagens", mensagens);
+    funcionalidadesDisponiveis.put("Fóruns ou Comentários", forunsOuComentarios);
+    funcionalidadesDisponiveis.put("Compartilhamento Social", compartilhamentoSocial);
+    funcionalidadesDisponiveis.put("Integração com Facebook Open Graph", integracaoFacebookOpenGraph);
+    funcionalidadesDisponiveis.put("Notificação Push", notificacaoPush);
+    funcionalidadesDisponiveis.put("Planos de Assinatura", planosDeAssinatura);
+    funcionalidadesDisponiveis.put("Processamento de Pagamento", processamentoDePagamento);
+    funcionalidadesDisponiveis.put("Carrinho de Compras", carrinhoDeCompras);
+    funcionalidadesDisponiveis.put("Marketplace de Usuários", marketplaceDeUsuarios);
+    funcionalidadesDisponiveis.put("Gerenciamento de Produtos", gerenciamentoDeProdutos);
+    funcionalidadesDisponiveis.put("Compras dentro do Aplicativo", comprasDentroDoAplicativo);
+    funcionalidadesDisponiveis.put("Coleta de Informação de Pagamento", coletaInformacaoPagamento);
+    funcionalidadesDisponiveis.put("Integração com CMS", integracaoCms);
+    funcionalidadesDisponiveis.put("Páginas de Administração de Usuários", paginasAdministracaoUsuarios);
+    funcionalidadesDisponiveis.put("Moderação e Aprovação de Conteúdo", moderacaoAprovacaoConteudo);
+    funcionalidadesDisponiveis.put("Intercom", intercom);
+    funcionalidadesDisponiveis.put("Análises de Uso", analisesUso);
+    funcionalidadesDisponiveis.put("Relatórios de Erro", relatoriosErro);
+    funcionalidadesDisponiveis.put("Monitoramento de Performance", monitoramentoPerformance);
+    funcionalidadesDisponiveis.put("Suporte Multilíngue", suporteMultilingue);
+    funcionalidadesDisponiveis.put("Conectar com Serviços de Terceiros", conectarServicosDeTerceiros);
+    funcionalidadesDisponiveis.put("API para Terceiros", apiParaTerceiros);
+    funcionalidadesDisponiveis.put("Envio de SMS", envioSms);
+    funcionalidadesDisponiveis.put("Mascaramento de Número de Telefone", mascaramentoNumeroTelefone);
+    funcionalidadesDisponiveis.put("Segurança Baseada em Certificado SSL", segurancaBaseadaCertificadoSsl);
+    funcionalidadesDisponiveis.put("Proteção Contra DoS", protecaoContraDos);
+    funcionalidadesDisponiveis.put("Autenticação em Duas Etapas", autenticacaoDuasEtapas);
+    funcionalidadesDisponiveis.put("Desenvolvimento Específico de App", desenvolvimentoEspecificoApp);
+    funcionalidadesDisponiveis.put("Design de Ícone para App", designIconeApp);
+    funcionalidadesDisponiveis.put("Sincronização com a Nuvem", sincronizacaoNuvem);
+    funcionalidadesDisponiveis.put("Dados de Sensores do Dispositivo", dadosSensoresDispositivo);
+    funcionalidadesDisponiveis.put("Código de Barras ou QR Code", codigoBarraQrCode);
+    funcionalidadesDisponiveis.put("Dados de Saúde", dadosSaude);
+    funcionalidadesDisponiveis.put("Apple Watch", appleWatch);
+    funcionalidadesDisponiveis.put("Gerente de Projetos", gerenteDeProjetos);
 
+    return funcionalidadesDisponiveis;
+}
+
+    
     @Override
     public String toString() {
         return "ProjetoDeEstimativaModel{" +
                 "id=" + id +
                 ", usuarioModel=" + usuarioModel +
                 ", compartilhado=" + compartilhado +
+                ", compartilhadoPor=" + compartilhadoPor +
                 ", dataCriacao=" + dataCriacao +
                 ", nomeProjetoDeEstimativa='" + nomeProjetoDeEstimativa + '\'' +
                 ", status=" + status +

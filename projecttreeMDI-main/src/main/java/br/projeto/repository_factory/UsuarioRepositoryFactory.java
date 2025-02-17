@@ -5,7 +5,7 @@ import br.projeto.repository.UsuarioRepository;
 
 public class UsuarioRepositoryFactory extends RepositoryFactory {
     @Override
-    public <T> T createRepositoryJDBC() {
+    public <T> T createRepository() {
         return (T) new UsuarioRepository(DB.getConnection());
     }
 }

@@ -2,6 +2,7 @@ package br.projeto.presenter.window_command;
 
 import br.projeto.command.ProjetoCommand;
 import br.projeto.model.Projeto;
+import br.projeto.model.ProjetoDeEstimativaModel;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -9,18 +10,22 @@ import java.util.List;
 
 public class FecharJanelasRelacionadasCommand implements WindowCommand {
     private final JDesktopPane desktop;
-    private final List<Projeto> listaProjetos;
+    // final List<Projeto> listaProjetos;//ANTIGO
+    private final List<ProjetoDeEstimativaModel> listaProjetoDeEstimativaModel;//NOVO
 
-    public FecharJanelasRelacionadasCommand(JDesktopPane desktop, List<Projeto> listaProjetos) {
+    public FecharJanelasRelacionadasCommand(JDesktopPane desktop, List<ProjetoDeEstimativaModel> listaProjetoDeEstimativaModel /*List<Projeto> listaProjetos*//*ANTIGO*/) {
         this.desktop = desktop;
-        this.listaProjetos = listaProjetos;
+        //this.listaProjetos = listaProjetos;//ANTIGO
+        this.listaProjetoDeEstimativaModel = listaProjetoDeEstimativaModel;
     }
 
     @Override
     public void execute() {
         List<String> nomesProjetos = new ArrayList<>();
-        for (Projeto projeto : listaProjetos) {
-            nomesProjetos.add(projeto.getNome());
+        //for (Projeto projeto : listaProjetos) {//ANTIGO
+        for (ProjetoDeEstimativaModel projetoDeEstimativaModel:listaProjetoDeEstimativaModel){
+            //nomesProjetos.add(projeto.getNome());//ANTIGO
+            nomesProjetos.add(projetoDeEstimativaModel.getNomeProjetoDeEstimativa());
         }
 
         JInternalFrame[] quadrosInternos = desktop.getAllFrames();

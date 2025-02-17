@@ -1,10 +1,15 @@
 package br.projeto.service;
 
+import br.projeto.enums.SimNao;
+import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.Projeto;
+import br.projeto.model.ProjetoDeEstimativaModel;
+import java.util.List;
 
 import java.util.Map;
 
 public class EstimaProjetoService {
+
     private static final double VALOR_DIARIA_DESENVOLVIMENTO = 450.0;
     private static final double VALOR_DIARIA_GERENCIA = 300.0;
     private static final double VALOR_DIARIA_UI_UX = 550.0;
@@ -27,6 +32,35 @@ public class EstimaProjetoService {
                 return dias * VALOR_DIARIA_UI_UX;
             default:
                 throw new IllegalArgumentException("Tipo de projeto desconhecido: " + tipoProjeto);
+        }
+    }
+
+    public double calcularValorUnitario(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList, int dias) {//LEMBRAR DE ADICIONAR A LOGICA PARA O TAMANHO DO PROJETO(MVP, Básico, Profissional)
+        double ValorUnitarioDesenvolvimento = 0;
+        for (PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel : perfilProjetoDeEstimativaModelList) {
+            if (verificaGerenteProjeto(projeto.getGerenteDeProjetos())) {
+                ValorUnitarioDesenvolvimento =+ perfilProjetoDeEstimativaModel.getGerenteDeProjetos();
+            }
+            switch (perfilProjetoDeEstimativaModel.getNomePerfil()) {
+                case "Web/Back-end":
+                    ValorUnitarioDesenvolvimento =+ perfilProjetoDeEstimativaModel.getTaxaDiariaDesenvolvimento();
+                    break;
+                case "Android"://PODIA DEIXAR SOMENTE O DEFAULT, MAS OPTEI POR DEIXAR O ANDROID E IOS PARA MELHOR ENTENDIMENTO
+                case "iOS":
+                default:    
+                    ValorUnitarioDesenvolvimento =+ perfilProjetoDeEstimativaModel.getTaxaDiariaDesenvolvimento();
+                    ValorUnitarioDesenvolvimento =+ perfilProjetoDeEstimativaModel.getTaxaDiariaDesign();
+                    break;
+            }
+        }
+        return ValorUnitarioDesenvolvimento * dias;
+    }
+
+    private boolean verificaGerenteProjeto(SimNao gerenteProjeto) {
+        if (gerenteProjeto == SimNao.SIM) {
+            return true;
+        } else {
+            return false;
         }
     }
 

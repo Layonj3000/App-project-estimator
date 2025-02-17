@@ -1,9 +1,14 @@
 package br.projeto.presenter;
 
 import br.projeto.command.*;
+import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.Projeto;
+import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.presenter.helpers.WindowManager;
 import br.projeto.presenter.window_command.*;
+import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
+import br.projeto.repository.PerfilProjetoIntermediariaRepository;
+import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoRepositoryMock;
 import br.projeto.service.ConstrutorDeArvoreNavegacaoService;
 import br.projeto.service.NoArvoreComposite;
@@ -17,12 +22,24 @@ import java.util.*;
 public final class PrincipalPresenter implements Observer {
     private final PrincipalView view;
     private final ProjetoRepositoryMock repository;
+    private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
+    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO
+    private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;//NOVO    
     private final ConstrutorDeArvoreNavegacaoService construtorDeArvoreNavegacaoService;
     private final Map<String, ProjetoCommand> comandos;
     private final List<WindowCommand> windowCommands = new ArrayList<>();
 
-    public PrincipalPresenter(ProjetoRepositoryMock repository) {
+    public PrincipalPresenter(ProjetoRepositoryMock repository, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository) {
         this.view = new PrincipalView();
+        this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;//NOVO
+        this.projetoDeEstimativaRepository.addObserver(this);//NOVO
+        
+        this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;//NOVO
+        this.perfilProjetoDeEstimativaRepository.addObserver(this);//NOVO
+        
+        this.perfilProjetoIntermediariaRepository = perfilProjetoIntermediariaRepository;
+//        this.perfilProjetoIntermediariaRepository.addObserver(this);
+        
         this.repository = repository;
         this.repository.addObserver(this);
 
@@ -55,8 +72,8 @@ public final class PrincipalPresenter implements Observer {
         comandos.put("Compartilhar projeto de estimativa", new MostrarMensagemProjetoCommand("Compartilhar ainda não implementado"));
         comandos.put("Exportar projeto de estimativa", new MostrarMensagemProjetoCommand("Exportar ainda não implementado"));
         comandos.put("Novo projeto", new CriarProjetoProjetoCommand(repository, view.getDesktop()));
-        comandos.put("Excluir projeto", new ExcluirProjetoProjetoCommand(repository));
-        comandos.put("Abrir detalhes", new AbrirDetalhesProjetoProjetoCommand(repository, view.getDesktop()));
+        comandos.put("Excluir projeto", new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository, perfilProjetoIntermediariaRepository));
+        comandos.put("Abrir detalhes", new AbrirDetalhesProjetoProjetoCommand(repository,projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository, view.getDesktop()));
         return comandos;
     }
 
@@ -83,12 +100,14 @@ public final class PrincipalPresenter implements Observer {
         raiz.adicionarFilho(noPerfis);
         raiz.adicionarFilho(noProjetos);
 
-        List<Projeto> listaProjetos = repository.getProjetos();
-        for (final Projeto projeto : listaProjetos) {
-            AbrirDetalhesProjetoProjetoCommand cmdDetalhes = new AbrirDetalhesProjetoProjetoCommand(repository, view.getDesktop()) {
+        //List<Projeto> listaProjetos = repository.getProjetos();//ANTIGO
+        List<ProjetoDeEstimativaModel> listaProjetos = projetoDeEstimativaRepository.findAll();
+        //for (final Projeto projeto : listaProjetos) {//ANTIGO
+        for (ProjetoDeEstimativaModel projeto : listaProjetos) {
+            AbrirDetalhesProjetoProjetoCommand cmdDetalhes = new AbrirDetalhesProjetoProjetoCommand(repository,projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository, view.getDesktop()) {
                 @Override
                 public void execute() {
-                    String tituloJanela = "Detalhes do Projeto: " + projeto.getNome();
+                    String tituloJanela = "Detalhes do Projeto: " + projeto.getNomeProjetoDeEstimativa();
                     WindowManager windowManager = WindowManager.getInstance();
 
                     if (!windowManager.isFrameAberto(tituloJanela)) {
@@ -99,8 +118,9 @@ public final class PrincipalPresenter implements Observer {
                     }
                 }
             };
-            cmdDetalhes.setProjetoNome(projeto.getNome());
-            NoArvoreComposite noProjeto = construtorDeArvoreNavegacaoService.criarNo(projeto.getNome(), "projeto", cmdDetalhes);
+            cmdDetalhes.setProjetoId(projeto.getId());
+            cmdDetalhes.setProjetoNome(projeto.getNomeProjetoDeEstimativa());//VERIFICAR POSSIBLIDADE DE EXCLUSAO DA LINHA
+            NoArvoreComposite noProjeto = construtorDeArvoreNavegacaoService.criarNo(projeto.getNomeProjetoDeEstimativa(), "projeto", cmdDetalhes);
 
             adicionarMenuContextual(projeto, noProjeto);
 
@@ -116,28 +136,41 @@ public final class PrincipalPresenter implements Observer {
         view.setTree(arvore);
     }
 
-    private void adicionarMenuContextual(Projeto projeto, NoArvoreComposite noProjeto) {
+//    private void adicionarMenuContextual(Projeto projeto, NoArvoreComposite noProjeto) { //ANTIGO
+//        noProjeto.setMenuContextual(() -> {
+//            JPopupMenu menu = new JPopupMenu();
+//            JMenuItem excluirProjetoItem = new JMenuItem("Excluir Projeto");
+//            excluirProjetoItem.addActionListener(e -> {
+//                ProjetoCommand cmdExcluir = new ExcluirProjetoProjetoCommand(repository, projeto.getNome());
+//                cmdExcluir.execute();
+//            });
+//            menu.add(excluirProjetoItem);
+//            return menu;
+//        });
+//    }
+    
+        private void adicionarMenuContextual(ProjetoDeEstimativaModel projeto, NoArvoreComposite noProjeto) {//NOVO
         noProjeto.setMenuContextual(() -> {
             JPopupMenu menu = new JPopupMenu();
             JMenuItem excluirProjetoItem = new JMenuItem("Excluir Projeto");
             excluirProjetoItem.addActionListener(e -> {
-                ProjetoCommand cmdExcluir = new ExcluirProjetoProjetoCommand(repository, projeto.getNome());
+                ProjetoCommand cmdExcluir = new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository, projeto.getId());
                 cmdExcluir.execute();
             });
             menu.add(excluirProjetoItem);
             return menu;
         });
-    }
+      }
 
 
-    @Override
+/*    @Override
     public void update(final List<Projeto> listaProjetos) {
         SwingUtilities.invokeLater(() -> {
             WindowCommand fecharJanelasCommand = new FecharJanelasRelacionadasCommand(view.getDesktop(), listaProjetos);
             fecharJanelasCommand.execute();
             configurarArvore();
         });
-    }
+    }*/
 
     private void bloquearMinimizacao(String titulo) {
         JInternalFrame[] frames = view.getDesktop().getAllFrames();
@@ -170,5 +203,24 @@ public final class PrincipalPresenter implements Observer {
 
     public PrincipalView getView() {
         return view;
+    }
+
+    @Override
+    public void updatePerfilModel(List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModel) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void updateProjetoModel(List<ProjetoDeEstimativaModel> listaProjetoDeEstimativaModel) {
+            SwingUtilities.invokeLater(() -> {
+            WindowCommand fecharJanelasCommand = new FecharJanelasRelacionadasCommand(view.getDesktop(), listaProjetoDeEstimativaModel);
+            fecharJanelasCommand.execute();
+            configurarArvore();
+        });
+    }
+
+    @Override
+    public void update(List<Projeto> projetos) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

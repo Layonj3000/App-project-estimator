@@ -1,5 +1,9 @@
 package br.projeto.model;
 
+import br.projeto.enums.SimNao;
+import java.util.HashMap;
+import java.util.Map;
+
 public class PerfilProjetoDeEstimativaModel {
     private Integer id;
     private UsuarioModel usuarioModel;
@@ -73,15 +77,12 @@ public class PerfilProjetoDeEstimativaModel {
     private double taxaDiariaDesign;
     private double taxaDiariaGerenciaProjeto;
     private double taxaDiariaDesenvolvimento;
-    private double custoHardware;
-    private double custoSoftware;
-    private double custoRiscos;
-    private double custoGarantia;
-    private double fundoDeReserva;
-    private double outrosCustos;
+    private final Map<String, Integer> funcionalidadesDisponiveis;
 
-    public PerfilProjetoDeEstimativaModel(){}
-    public PerfilProjetoDeEstimativaModel(Integer id, UsuarioModel usuarioModel, String nomePerfil, int pequeno, int medio, int grande, int mvp, int basico, int profissional, int cadastroPorEmailSenha, int cadastroPorFacebook, int cadastroPorTwitter, int cadastroPorGoogle, int cadastroPorLinkedin, int cadastroPorGithub, int cadastroPorConviteUsuario, int cadastroPorContasMultitenant, int cadastroPorSubdominios, int cadastroPorDominiosPersonalizados, int painel, int feedDeAtividades, int uploadDeArquivos, int uploadDeMidia, int perfisDeUsuario, int emailsTransacionais, int tags, int avaliacoesOuComentarios, int processamentoAudioVideo, int pesquisaTextoLivre, int pesquisa, int calendario, int exibicaoDadosMapaGeolocalizacao, int exibicaoMarcadoresRegioesMapaPersonalizados, int reservas, int mensagens, int forunsOuComentarios, int compartilhamentoSocial, int integracaoFacebookOpenGraph, int notificacaoPush, int planosDeAssinatura, int processamentoDePagamento, int carrinhoDeCompras, int marketplaceDeUsuarios, int gerenciamentoDeProdutos, int comprasDentroDoAplicativo, int coletaInformacaoPagamento, int integracaoCms, int paginasAdministracaoUsuarios, int moderacaoAprovacaoConteudo, int intercom, int analisesUso, int relatoriosErro, int monitoramentoPerformance, int suporteMultilingue, int conectarServicosDeTerceiros, int apiParaTerceiros, int envioSms, int mascaramentoNumeroTelefone, int segurancaBaseadaCertificadoSsl, int protecaoContraDos, int autenticacaoDuasEtapas, int desenvolvimentoEspecificoApp, int designIconeApp, int sincronizacaoNuvem, int dadosSensoresDispositivo, int codigoBarraQrCode, int dadosSaude, int appleWatch, int gerenteDeProjetos, double taxaDiariaDesign, double taxaDiariaGerenciaProjeto, double taxaDiariaDesenvolvimento, double custoHardware, double custoSoftware, double custoRiscos, double custoGarantia, double fundoDeReserva, double outrosCustos) {
+    public PerfilProjetoDeEstimativaModel(){
+            funcionalidadesDisponiveis = new HashMap<>();
+    }
+    public PerfilProjetoDeEstimativaModel(Integer id, UsuarioModel usuarioModel, String nomePerfil, int pequeno, int medio, int grande, int mvp, int basico, int profissional, int cadastroPorEmailSenha, int cadastroPorFacebook, int cadastroPorTwitter, int cadastroPorGoogle, int cadastroPorLinkedin, int cadastroPorGithub, int cadastroPorConviteUsuario, int cadastroPorContasMultitenant, int cadastroPorSubdominios, int cadastroPorDominiosPersonalizados, int painel, int feedDeAtividades, int uploadDeArquivos, int uploadDeMidia, int perfisDeUsuario, int emailsTransacionais, int tags, int avaliacoesOuComentarios, int processamentoAudioVideo, int pesquisaTextoLivre, int pesquisa, int calendario, int exibicaoDadosMapaGeolocalizacao, int exibicaoMarcadoresRegioesMapaPersonalizados, int reservas, int mensagens, int forunsOuComentarios, int compartilhamentoSocial, int integracaoFacebookOpenGraph, int notificacaoPush, int planosDeAssinatura, int processamentoDePagamento, int carrinhoDeCompras, int marketplaceDeUsuarios, int gerenciamentoDeProdutos, int comprasDentroDoAplicativo, int coletaInformacaoPagamento, int integracaoCms, int paginasAdministracaoUsuarios, int moderacaoAprovacaoConteudo, int intercom, int analisesUso, int relatoriosErro, int monitoramentoPerformance, int suporteMultilingue, int conectarServicosDeTerceiros, int apiParaTerceiros, int envioSms, int mascaramentoNumeroTelefone, int segurancaBaseadaCertificadoSsl, int protecaoContraDos, int autenticacaoDuasEtapas, int desenvolvimentoEspecificoApp, int designIconeApp, int sincronizacaoNuvem, int dadosSensoresDispositivo, int codigoBarraQrCode, int dadosSaude, int appleWatch, int gerenteDeProjetos, double taxaDiariaDesign, double taxaDiariaGerenciaProjeto, double taxaDiariaDesenvolvimento) {
         this.id = id;
         this.usuarioModel = usuarioModel;
         this.nomePerfil = nomePerfil;
@@ -154,12 +155,7 @@ public class PerfilProjetoDeEstimativaModel {
         this.taxaDiariaDesign = taxaDiariaDesign;
         this.taxaDiariaGerenciaProjeto = taxaDiariaGerenciaProjeto;
         this.taxaDiariaDesenvolvimento = taxaDiariaDesenvolvimento;
-        this.custoHardware = custoHardware;
-        this.custoSoftware = custoSoftware;
-        this.custoRiscos = custoRiscos;
-        this.custoGarantia = custoGarantia;
-        this.fundoDeReserva = fundoDeReserva;
-        this.outrosCustos = outrosCustos;
+        funcionalidadesDisponiveis = new HashMap<>();
     }
 
     public Integer getId() {
@@ -737,54 +733,78 @@ public class PerfilProjetoDeEstimativaModel {
     public void setTaxaDiariaDesenvolvimento(double taxaDiariaDesenvolvimento) {
         this.taxaDiariaDesenvolvimento = taxaDiariaDesenvolvimento;
     }
+    
+    public Map<String, Integer> getFuncionalidadesDisponiveis() {
+    
+    funcionalidadesDisponiveis.put("Pequeno", pequeno);
+    funcionalidadesDisponiveis.put("Médio", medio);
+    funcionalidadesDisponiveis.put("Grande", grande);
+    funcionalidadesDisponiveis.put("MVP", mvp);
+    funcionalidadesDisponiveis.put("Básico", basico);
+    funcionalidadesDisponiveis.put("Profissional", profissional);
+    funcionalidadesDisponiveis.put("Cadastro por Email/Senha", cadastroPorEmailSenha);
+    funcionalidadesDisponiveis.put("Cadastro por Facebook", cadastroPorFacebook);
+    funcionalidadesDisponiveis.put("Cadastro por Twitter", cadastroPorTwitter);
+    funcionalidadesDisponiveis.put("Cadastro por Google", cadastroPorGoogle);
+    funcionalidadesDisponiveis.put("Cadastro por LinkedIn", cadastroPorLinkedin);
+    funcionalidadesDisponiveis.put("Cadastro por GitHub", cadastroPorGithub);
+    funcionalidadesDisponiveis.put("Cadastro por Convite de Usuário", cadastroPorConviteUsuario);
+    funcionalidadesDisponiveis.put("Cadastro por Contas Multi-tenant", cadastroPorContasMultitenant);
+    funcionalidadesDisponiveis.put("Cadastro por Subdomínios", cadastroPorSubdominios);
+    funcionalidadesDisponiveis.put("Cadastro por Domínios Personalizados", cadastroPorDominiosPersonalizados);
+    funcionalidadesDisponiveis.put("Painel", painel);
+    funcionalidadesDisponiveis.put("Feed de Atividades", feedDeAtividades);
+    funcionalidadesDisponiveis.put("Upload de Arquivos", uploadDeArquivos);
+    funcionalidadesDisponiveis.put("Upload de Mídia", uploadDeMidia);
+    funcionalidadesDisponiveis.put("Perfis de Usuário", perfisDeUsuario);
+    funcionalidadesDisponiveis.put("Emails Transacionais", emailsTransacionais);
+    funcionalidadesDisponiveis.put("Tags", tags);
+    funcionalidadesDisponiveis.put("Avaliações ou Comentários", avaliacoesOuComentarios);
+    funcionalidadesDisponiveis.put("Processamento de Áudio e Vídeo", processamentoAudioVideo);
+    funcionalidadesDisponiveis.put("Pesquisa Texto Livre", pesquisaTextoLivre);
+    funcionalidadesDisponiveis.put("Pesquisa", pesquisa);
+    funcionalidadesDisponiveis.put("Calendário", calendario);
+    funcionalidadesDisponiveis.put("Exibição de Dados no Mapa", exibicaoDadosMapaGeolocalizacao);
+    funcionalidadesDisponiveis.put("Exibição de Marcadores no Mapa", exibicaoMarcadoresRegioesMapaPersonalizados);
+    funcionalidadesDisponiveis.put("Reservas", reservas);
+    funcionalidadesDisponiveis.put("Mensagens", mensagens);
+    funcionalidadesDisponiveis.put("Fóruns ou Comentários", forunsOuComentarios);
+    funcionalidadesDisponiveis.put("Compartilhamento Social", compartilhamentoSocial);
+    funcionalidadesDisponiveis.put("Integração com Facebook Open Graph", integracaoFacebookOpenGraph);
+    funcionalidadesDisponiveis.put("Notificação Push", notificacaoPush);
+    funcionalidadesDisponiveis.put("Planos de Assinatura", planosDeAssinatura);
+    funcionalidadesDisponiveis.put("Processamento de Pagamento", processamentoDePagamento);
+    funcionalidadesDisponiveis.put("Carrinho de Compras", carrinhoDeCompras);
+    funcionalidadesDisponiveis.put("Marketplace de Usuários", marketplaceDeUsuarios);
+    funcionalidadesDisponiveis.put("Gerenciamento de Produtos", gerenciamentoDeProdutos);
+    funcionalidadesDisponiveis.put("Compras dentro do Aplicativo", comprasDentroDoAplicativo);
+    funcionalidadesDisponiveis.put("Coleta de Informação de Pagamento", coletaInformacaoPagamento);
+    funcionalidadesDisponiveis.put("Integração com CMS", integracaoCms);
+    funcionalidadesDisponiveis.put("Páginas de Administração de Usuários", paginasAdministracaoUsuarios);
+    funcionalidadesDisponiveis.put("Moderação e Aprovação de Conteúdo", moderacaoAprovacaoConteudo);
+    funcionalidadesDisponiveis.put("Intercom", intercom);
+    funcionalidadesDisponiveis.put("Análises de Uso", analisesUso);
+    funcionalidadesDisponiveis.put("Relatórios de Erro", relatoriosErro);
+    funcionalidadesDisponiveis.put("Monitoramento de Performance", monitoramentoPerformance);
+    funcionalidadesDisponiveis.put("Suporte Multilíngue", suporteMultilingue);
+    funcionalidadesDisponiveis.put("Conectar com Serviços de Terceiros", conectarServicosDeTerceiros);
+    funcionalidadesDisponiveis.put("API para Terceiros", apiParaTerceiros);
+    funcionalidadesDisponiveis.put("Envio de SMS", envioSms);
+    funcionalidadesDisponiveis.put("Mascaramento de Número de Telefone", mascaramentoNumeroTelefone);
+    funcionalidadesDisponiveis.put("Segurança Baseada em Certificado SSL", segurancaBaseadaCertificadoSsl);
+    funcionalidadesDisponiveis.put("Proteção Contra DoS", protecaoContraDos);
+    funcionalidadesDisponiveis.put("Autenticação em Duas Etapas", autenticacaoDuasEtapas);
+    funcionalidadesDisponiveis.put("Desenvolvimento Específico de App", desenvolvimentoEspecificoApp);
+    funcionalidadesDisponiveis.put("Design de Ícone para App", designIconeApp);
+    funcionalidadesDisponiveis.put("Sincronização com a Nuvem", sincronizacaoNuvem);
+    funcionalidadesDisponiveis.put("Dados de Sensores do Dispositivo", dadosSensoresDispositivo);
+    funcionalidadesDisponiveis.put("Código de Barras ou QR Code", codigoBarraQrCode);
+    funcionalidadesDisponiveis.put("Dados de Saúde", dadosSaude);
+    funcionalidadesDisponiveis.put("Apple Watch", appleWatch);
+    funcionalidadesDisponiveis.put("Gerente de Projetos", gerenteDeProjetos);
 
-    public double getCustoHardware() {
-        return custoHardware;
-    }
-
-    public void setCustoHardware(double custoHardware) {
-        this.custoHardware = custoHardware;
-    }
-
-    public double getCustoSoftware() {
-        return custoSoftware;
-    }
-
-    public void setCustoSoftware(double custoSoftware) {
-        this.custoSoftware = custoSoftware;
-    }
-
-    public double getCustoRiscos() {
-        return custoRiscos;
-    }
-
-    public void setCustoRiscos(double custoRiscos) {
-        this.custoRiscos = custoRiscos;
-    }
-
-    public double getCustoGarantia() {
-        return custoGarantia;
-    }
-
-    public void setCustoGarantia(double custoGarantia) {
-        this.custoGarantia = custoGarantia;
-    }
-
-    public double getFundoDeReserva() {
-        return fundoDeReserva;
-    }
-
-    public void setFundoDeReserva(double fundoDeReserva) {
-        this.fundoDeReserva = fundoDeReserva;
-    }
-
-    public double getOutrosCustos() {
-        return outrosCustos;
-    }
-
-    public void setOutrosCustos(double outrosCustos) {
-        this.outrosCustos = outrosCustos;
-    }
+    return funcionalidadesDisponiveis;
+}
 
     @Override
     public String toString() {
@@ -861,12 +881,6 @@ public class PerfilProjetoDeEstimativaModel {
                 ", taxaDiariaDesign=" + taxaDiariaDesign +
                 ", taxaDiariaGerenciaProjeto=" + taxaDiariaGerenciaProjeto +
                 ", taxaDiariaDesenvolvimento=" + taxaDiariaDesenvolvimento +
-                ", custoHardware=" + custoHardware +
-                ", custoSoftware=" + custoSoftware +
-                ", custoRiscos=" + custoRiscos +
-                ", custoGarantia=" + custoGarantia +
-                ", fundoDeReserva=" + fundoDeReserva +
-                ", outrosCustos=" + outrosCustos +
                 '}'+"\n";
     }
 }
