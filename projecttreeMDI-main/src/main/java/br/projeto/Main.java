@@ -69,9 +69,9 @@ public class Main {
 //        System.out.println(perfilProjetoIntermediariaRepository.findAll());
 
 //TESTAR MUDANÇA RELACIONADAS A TABELA INTERMEDIARIA
-//            SwingUtilities.invokeLater(() -> {
-//            PrincipalPresenter presenter = new PrincipalPresenter(new ProjetoRepositoryMock(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, perfilProjetoIntermediariaRepository);
-//            WindowManager.getInstance().initialize(presenter);
-//        });
+            SwingUtilities.invokeLater(() -> {
+            PrincipalPresenter presenter = new PrincipalPresenter(new ProjetoRepositoryMock(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, perfilProjetoIntermediariaRepository);
+            WindowManager.getInstance().initialize(presenter);
+        });
     }
 }
