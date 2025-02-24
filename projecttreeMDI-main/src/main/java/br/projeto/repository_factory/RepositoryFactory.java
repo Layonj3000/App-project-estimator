@@ -1,8 +1,10 @@
 package br.projeto.repository_factory;
 
+import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
+import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.UsuarioRepository;
 
 public abstract class RepositoryFactory {
@@ -16,6 +18,10 @@ public abstract class RepositoryFactory {
             return (T) new PerfilProjetoIntermediariaRepositoryFactory();
         }else if(objDao == UsuarioRepository.class){
             return (T) new UsuarioRepositoryFactory();
+        }else if(objDao == ProjetoFuncionalidadesPersonalizadasRepository.class){
+            return (T) new ProjetoFuncionalidadesPersonalizadasRepositoryFactory();
+        }else if(objDao == PerfilFuncionalidadesPersonalizadasRepository.class){
+            return (T) new PerfilFuncionalidadesPersonalizadasRepositoryFactory();
         }else{
             throw new IllegalArgumentException();
         }

@@ -1,5 +1,6 @@
 package br.projeto.repository;
 
+import br.projeto.repository.abstr.IPerfilProjetoIntermediariaRepository;
 import br.projeto.db.DbException;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.PerfilProjetoIntermediariaModel;
@@ -16,7 +17,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PerfilProjetoIntermediariaRepository{
+public class PerfilProjetoIntermediariaRepository implements IPerfilProjetoIntermediariaRepository{
 
     private Connection conn;
 
@@ -24,6 +25,7 @@ public class PerfilProjetoIntermediariaRepository{
         this.conn = conn;       
     }
 
+    @Override
     public List<PerfilProjetoIntermediariaModel> findAll() {
         Statement st = null;
         ResultSet rs = null;
@@ -42,6 +44,7 @@ public class PerfilProjetoIntermediariaRepository{
         }
     }
 
+    @Override
     public PerfilProjetoIntermediariaModel findById(Integer idProjeto, Integer idPerfil) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -62,6 +65,7 @@ public class PerfilProjetoIntermediariaRepository{
         return null;
     }
 
+    @Override
     public void insert(ProjetoDeEstimativaModel projetoDeEstimativaModel, PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -76,6 +80,7 @@ public class PerfilProjetoIntermediariaRepository{
         }
     }
 
+    @Override
     public void insertMutiple(ProjetoDeEstimativaModel projetoDeEstimativaModel, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -93,6 +98,7 @@ public class PerfilProjetoIntermediariaRepository{
         }
     }
 
+    @Override
     public void deleteById(Integer idProjeto, Integer idPerfil) {//O proposito é excluir linhas individuais quando necessario. Caso algum registro seja excluido nas tabelas de projeto e perfil de projeto, todos os registro relacionados nesse tabela intermediaria serão excluidos automaticamente
         PreparedStatement ps = null;
         ResultSet rs = null;

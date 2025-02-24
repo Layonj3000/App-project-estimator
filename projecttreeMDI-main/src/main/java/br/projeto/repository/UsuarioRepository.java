@@ -1,5 +1,6 @@
 package br.projeto.repository;
 
+import br.projeto.repository.abstr.IUsuarioRepository;
 import br.projeto.db.DB;
 import br.projeto.db.DbException;
 import br.projeto.model.Subject;
@@ -14,7 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioRepository implements Subject {
+public class UsuarioRepository implements Subject, IUsuarioRepository {
     private Connection conn;
 
     public UsuarioRepository(Connection conn){
@@ -22,6 +23,7 @@ public class UsuarioRepository implements Subject {
     }
     //VERIFICAR A POSSIVEL CRIACAO DE UMA CLASSE DE INSTANCIACAO OBJETOS DO TIPO UuarioModel
     
+    @Override
     public List<UsuarioModel> findAll() {
         List<UsuarioModel> usuarioList = new ArrayList<>();
         Statement st = null;
@@ -43,6 +45,7 @@ public class UsuarioRepository implements Subject {
     }
 
     
+    @Override
     public UsuarioModel findById(Integer id) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -66,6 +69,7 @@ public class UsuarioRepository implements Subject {
     }
 
     
+    @Override
     public void insert(UsuarioModel usuario) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -97,6 +101,7 @@ public class UsuarioRepository implements Subject {
     }
 
     
+    @Override
     public void update(UsuarioModel usuario) {
         PreparedStatement ps = null;
 
@@ -119,6 +124,7 @@ public class UsuarioRepository implements Subject {
     }
 
     
+    @Override
     public void deleteById(Integer id) {
     //FICAR ATENTO NO COMPORTAMENTO DAS DEMAIS TABELAS COM LIGAÇÃO COM USUARIO AO REALIZAR O DELETE
         PreparedStatement ps = null;

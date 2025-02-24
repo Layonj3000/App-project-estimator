@@ -1,14 +1,17 @@
 package br.projeto.presenter;
 
 import br.projeto.command.*;
+import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
+import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
 import br.projeto.presenter.helpers.WindowManager;
 import br.projeto.presenter.window_command.*;
+import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
-import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
+import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.ProjetoRepositoryMock;
 import br.projeto.service.ConstrutorDeArvoreNavegacaoService;
 import br.projeto.service.NoArvoreComposite;
@@ -23,13 +26,14 @@ public final class PrincipalPresenter implements Observer {
     private final PrincipalView view;
     private final ProjetoRepositoryMock repository;
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
-    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO
-    //private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;//NOVO    
+    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 
+    private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
+    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
     private final ConstrutorDeArvoreNavegacaoService construtorDeArvoreNavegacaoService;
     private final Map<String, ProjetoCommand> comandos;
     private final List<WindowCommand> windowCommands = new ArrayList<>();
 
-    public PrincipalPresenter(ProjetoRepositoryMock repository, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository) {
+    public PrincipalPresenter(ProjetoRepositoryMock repository, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository) {
         this.view = new PrincipalView();
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;//NOVO
         this.projetoDeEstimativaRepository.addObserver(this);//NOVO
@@ -37,8 +41,11 @@ public final class PrincipalPresenter implements Observer {
         this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;//NOVO
         this.perfilProjetoDeEstimativaRepository.addObserver(this);//NOVO
         
-        //this.perfilProjetoIntermediariaRepository = perfilProjetoIntermediariaRepository;
-//        this.perfilProjetoIntermediariaRepository.addObserver(this);
+        this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;//NOVO
+        this.projetoFuncionalidadesPersonalizadasRepository.addObserver(this);//NOVO
+        
+        this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;//NOVO
+        this.perfilFuncionalidadesPersonalizadasRepository.addObserver(this);//NOVO
         
         this.repository = repository;
         this.repository.addObserver(this);
@@ -71,9 +78,9 @@ public final class PrincipalPresenter implements Observer {
         comandos.put("Visualizar estimativa", new MostrarMensagemProjetoCommand("Visualizar estimativa ainda não implementada"));
         comandos.put("Compartilhar projeto de estimativa", new MostrarMensagemProjetoCommand("Compartilhar ainda não implementado"));
         comandos.put("Exportar projeto de estimativa", new MostrarMensagemProjetoCommand("Exportar ainda não implementado"));
-        comandos.put("Novo projeto", new CriarProjetoProjetoCommand(repository, view.getDesktop()));
+        comandos.put("Novo projeto", new CriarProjetoProjetoCommand(repository, projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,view.getDesktop()));
         comandos.put("Excluir projeto", new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository));
-        comandos.put("Abrir detalhes", new AbrirDetalhesProjetoProjetoCommand(repository,projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository, view.getDesktop()));
+        comandos.put("Abrir detalhes", new AbrirDetalhesProjetoProjetoCommand(/*repository,*/projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository, view.getDesktop()));
         return comandos;
     }
 
@@ -104,7 +111,7 @@ public final class PrincipalPresenter implements Observer {
         List<ProjetoDeEstimativaModel> listaProjetos = projetoDeEstimativaRepository.findAll();
         //for (final Projeto projeto : listaProjetos) {//ANTIGO
         for (ProjetoDeEstimativaModel projeto : listaProjetos) {
-            AbrirDetalhesProjetoProjetoCommand cmdDetalhes = new AbrirDetalhesProjetoProjetoCommand(repository,projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository, view.getDesktop()) {
+            AbrirDetalhesProjetoProjetoCommand cmdDetalhes = new AbrirDetalhesProjetoProjetoCommand(/*repository,*/projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository, view.getDesktop()) {
                 @Override
                 public void execute() {
                     String tituloJanela = "Detalhes do Projeto: " + projeto.getNomeProjetoDeEstimativa();
@@ -221,6 +228,16 @@ public final class PrincipalPresenter implements Observer {
 
     @Override
     public void update(List<Projeto> projetos) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void updateProjetoFuncionalidadesPersonalizadasModel(List<ProjetosFuncionalidadesPersonalizadasModel> listaProjetosFuncionalidadesPersonalizadasModel) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void updatePerfilFuncionalidadesPersonalizadasModel(List<PerfilFuncionalidadesPersonalizadasModel> listaPerfilFuncionalidadesPersonalizadasModel) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

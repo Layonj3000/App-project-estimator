@@ -1,5 +1,6 @@
 package br.projeto.repository;
 
+import br.projeto.repository.abstr.IProjetoDeEstimativaRepository;
 import br.projeto.db.DB;
 import br.projeto.db.DbException;
 import br.projeto.model.Projeto;
@@ -18,19 +19,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProjetoDeEstimativaRepository implements Subject {//TESTAR MUDANÇA NA TIPAGEM DE OUTROS CUSTOS
+public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimativaRepository {//TESTAR MUDANÇA NA TIPAGEM DE OUTROS CUSTOS
+    //CONSIDERAR COLOCAR TODOS OS METODOS DE INSTANTIATE EM UMA SERVICE
     private Connection conn;
-    private List<Projeto> projetos;
+    private List<Projeto> projetos;//VERIFICAR RETIRADA
     private List<Observer> observers;
     private List<ProjetoDeEstimativaModel> projetosDeEstimativaModel;
     
     public ProjetoDeEstimativaRepository(Connection conn) {    
         this.conn = conn;
         observers = new ArrayList<>();
-        projetos = new ArrayList<>();
+        projetos = new ArrayList<>();//VERIFICAR RETIRADA
         projetosDeEstimativaModel = new ArrayList<>();
     }
 
+    @Override
     public List<ProjetoDeEstimativaModel> findAll() {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -64,6 +67,7 @@ public class ProjetoDeEstimativaRepository implements Subject {//TESTAR MUDANÇA
     }
 
     
+    @Override
     public List<ProjetoDeEstimativaModel> findByUser(UsuarioModel usuarioModel) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -97,12 +101,13 @@ public class ProjetoDeEstimativaRepository implements Subject {//TESTAR MUDANÇA
     }
 
     
+    @Override
     public ProjetoDeEstimativaModel findById(Integer id) {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
         try {
-            ps = conn.prepareStatement("SELECT * FROM projetos_estimativa " +
+            ps = conn.prepareStatement("SELECT projetos_estimativa.*, usuario.nome, usuario.senha, usuario.email FROM projetos_estimativa " +
                                            "INNER JOIN usuario ON projetos_estimativa.user_id = usuario.id " +
                                            "WHERE projetos_estimativa.id=?");
             ps.setInt(1, id);
@@ -125,6 +130,7 @@ public class ProjetoDeEstimativaRepository implements Subject {//TESTAR MUDANÇA
     }
 
     
+    @Override
     public void insert(ProjetoDeEstimativaModel projetoDeEstimativaModel) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -275,6 +281,7 @@ public class ProjetoDeEstimativaRepository implements Subject {//TESTAR MUDANÇA
                 if (rs.next()) {
                     projetoDeEstimativaModel.setId(rs.getInt(1));
                     projetosDeEstimativaModel.add(projetoDeEstimativaModel);
+                    notifyObservers();
                 } else {
                     throw new DbException("Unexpected error! No rows affected!");
                 }
@@ -287,7 +294,7 @@ public class ProjetoDeEstimativaRepository implements Subject {//TESTAR MUDANÇA
         }
     }
 
-    
+    @Override
     public void update(ProjetoDeEstimativaModel projetoDeEstimativaModel) {
         PreparedStatement ps = null;
         try {
@@ -417,14 +424,17 @@ public class ProjetoDeEstimativaRepository implements Subject {//TESTAR MUDANÇA
 
             ps.executeUpdate();
             projetosDeEstimativaModel.add(projetoDeEstimativaModel);
+            notifyObservers();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
             DB.closeStatement(ps);
         }
     }
+    
 
     
+    @Override
     public boolean deleteById(Integer id) {
         PreparedStatement stfkON = null;
         PreparedStatement ps = null;
@@ -435,7 +445,8 @@ public class ProjetoDeEstimativaRepository implements Subject {//TESTAR MUDANÇA
             ps.setInt(1, id);
             int rowsAffected = ps.executeUpdate();
             
-            if(rowsAffected > 0){
+            if(rowsAffected > 0){ 
+                projetosDeEstimativaModel.removeIf(item -> item.getId().equals(id));
                 notifyObservers();
                 return true;
             }else{

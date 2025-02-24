@@ -1,5 +1,6 @@
 package br.projeto.repository;
 
+import br.projeto.repository.abstr.IPerfilProjetoDeEstimativaRepository;
 import br.projeto.db.DB;
 import br.projeto.db.DbException;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
@@ -18,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PerfilProjetoDeEstimativaRepository implements Subject {
+public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProjetoDeEstimativaRepository{
     private Connection conn;
     private List<Projeto> projetos;
     private List<Observer> observers;
@@ -32,6 +33,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject {
     }
 
     
+    @Override
     public List<PerfilProjetoDeEstimativaModel> findAll() {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -65,6 +67,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject {
     }
 
     
+    @Override
     public List<PerfilProjetoDeEstimativaModel> findByUser(UsuarioModel usuarioModel) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -99,6 +102,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject {
     }
 
     
+    @Override
     public List<PerfilProjetoDeEstimativaModel> findByProjetoEstimativa(ProjetoDeEstimativaModel projetoDeEstimativaModel) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -132,12 +136,13 @@ public class PerfilProjetoDeEstimativaRepository implements Subject {
     }
 
     
+    @Override
     public PerfilProjetoDeEstimativaModel findById(Integer id) {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
         try {
-            ps = conn.prepareStatement("SELECT * FROM perfil_projeto_estimativa " +
+            ps = conn.prepareStatement("SELECT perfil_projeto_estimativa.*, usuario.nome, usuario.senha, usuario.email FROM perfil_projeto_estimativa " +
                     "INNER JOIN usuario ON perfil_projeto_estimativa.user_id = usuario.id " +
                     "WHERE perfil_projeto_estimativa.id=?");
             ps.setInt(1, id);
@@ -158,6 +163,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject {
     }
 
     
+    @Override
     public void insert(PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -296,6 +302,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject {
     }
 
     
+    @Override
     public void update(PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -409,7 +416,8 @@ public class PerfilProjetoDeEstimativaRepository implements Subject {
     }
 
     
-    public void deleteById(Integer id) {
+    @Override
+    public boolean deleteById(Integer id) {
         PreparedStatement ps = null;
         PreparedStatement stfkON = null;
         try {
@@ -417,7 +425,15 @@ public class PerfilProjetoDeEstimativaRepository implements Subject {
             stfkON.execute();
             ps = conn.prepareStatement("DELETE FROM perfil_projeto_estimativa WHERE id=?");
             ps.setInt(1, id);
-            ps.executeUpdate();
+            int rowsAffected = ps.executeUpdate();
+            
+            if(rowsAffected > 0){ 
+                perfisProjetoDeEstimativaModel.removeIf(item -> item.getId().equals(id));
+                notifyObservers();
+                return true;
+            }else{
+                throw new DbException("Unexpected error! No rows affected!");
+            }
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {

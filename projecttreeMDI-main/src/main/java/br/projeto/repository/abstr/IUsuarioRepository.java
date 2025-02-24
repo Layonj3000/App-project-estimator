@@ -1,4 +1,4 @@
-package br.projeto.repository;
+package br.projeto.repository.abstr;
 
 import br.projeto.model.UsuarioModel;
 

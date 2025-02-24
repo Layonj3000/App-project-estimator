@@ -8,72 +8,72 @@ public class PerfilProjetoDeEstimativaModel {
     private Integer id;
     private UsuarioModel usuarioModel;
     private String nomePerfil;
-    private int pequeno;
-    private int medio;
-    private int grande;
-    private int mvp;
-    private int basico;
-    private int profissional;
-    private int cadastroPorEmailSenha;
-    private int cadastroPorFacebook;
-    private int cadastroPorTwitter;
-    private int cadastroPorGoogle;
-    private int cadastroPorLinkedin;
-    private int cadastroPorGithub;
-    private int cadastroPorConviteUsuario;
-    private int cadastroPorContasMultitenant;
-    private int cadastroPorSubdominios;
-    private int cadastroPorDominiosPersonalizados;
-    private int painel;
-    private int feedDeAtividades;
-    private int uploadDeArquivos;
-    private int uploadDeMidia;
-    private int perfisDeUsuario;
-    private int emailsTransacionais;
-    private int tags;
-    private int avaliacoesOuComentarios;
-    private int processamentoAudioVideo;
-    private int pesquisaTextoLivre;
-    private int pesquisa;
-    private int calendario;
-    private int exibicaoDadosMapaGeolocalizacao;
-    private int exibicaoMarcadoresRegioesMapaPersonalizados;
-    private int reservas;
-    private int mensagens;
-    private int forunsOuComentarios;
-    private int compartilhamentoSocial;
-    private int integracaoFacebookOpenGraph;
-    private int notificacaoPush;
-    private int planosDeAssinatura;
-    private int processamentoDePagamento;
-    private int carrinhoDeCompras;
-    private int marketplaceDeUsuarios;
-    private int gerenciamentoDeProdutos;
-    private int comprasDentroDoAplicativo;
-    private int coletaInformacaoPagamento;
-    private int integracaoCms;
-    private int paginasAdministracaoUsuarios;
-    private int moderacaoAprovacaoConteudo;
-    private int intercom;
-    private int analisesUso;
-    private int relatoriosErro;
-    private int monitoramentoPerformance;
-    private int suporteMultilingue;
-    private int conectarServicosDeTerceiros;
-    private int apiParaTerceiros;
-    private int envioSms;
-    private int mascaramentoNumeroTelefone;
-    private int segurancaBaseadaCertificadoSsl;
-    private int protecaoContraDos;
-    private int autenticacaoDuasEtapas;
-    private int desenvolvimentoEspecificoApp;
-    private int designIconeApp;
-    private int sincronizacaoNuvem;
-    private int dadosSensoresDispositivo;
-    private int codigoBarraQrCode;
-    private int dadosSaude;
-    private int appleWatch;
-    private int gerenteDeProjetos;
+    private Integer pequeno;
+    private Integer medio;
+    private Integer grande;
+    private Integer mvp;
+    private Integer basico;
+    private Integer profissional;
+    private Integer cadastroPorEmailSenha;
+    private Integer cadastroPorFacebook;
+    private Integer cadastroPorTwitter;
+    private Integer cadastroPorGoogle;
+    private Integer cadastroPorLinkedin;
+    private Integer cadastroPorGithub;
+    private Integer cadastroPorConviteUsuario;
+    private Integer cadastroPorContasMultitenant;
+    private Integer cadastroPorSubdominios;
+    private Integer cadastroPorDominiosPersonalizados;
+    private Integer painel;
+    private Integer feedDeAtividades;
+    private Integer uploadDeArquivos;
+    private Integer uploadDeMidia;
+    private Integer perfisDeUsuario;
+    private Integer emailsTransacionais;
+    private Integer tags;
+    private Integer avaliacoesOuComentarios;
+    private Integer processamentoAudioVideo;
+    private Integer pesquisaTextoLivre;
+    private Integer pesquisa;
+    private Integer calendario;
+    private Integer exibicaoDadosMapaGeolocalizacao;
+    private Integer exibicaoMarcadoresRegioesMapaPersonalizados;
+    private Integer reservas;
+    private Integer mensagens;
+    private Integer forunsOuComentarios;
+    private Integer compartilhamentoSocial;
+    private Integer IntegeregracaoFacebookOpenGraph;
+    private Integer notificacaoPush;
+    private Integer planosDeAssinatura;
+    private Integer processamentoDePagamento;
+    private Integer carrinhoDeCompras;
+    private Integer marketplaceDeUsuarios;
+    private Integer gerenciamentoDeProdutos;
+    private Integer comprasDentroDoAplicativo;
+    private Integer coletaInformacaoPagamento;
+    private Integer IntegeregracaoCms;
+    private Integer paginasAdministracaoUsuarios;
+    private Integer moderacaoAprovacaoConteudo;
+    private Integer Integerercom;
+    private Integer analisesUso;
+    private Integer relatoriosErro;
+    private Integer monitoramentoPerformance;
+    private Integer suporteMultilingue;
+    private Integer conectarServicosDeTerceiros;
+    private Integer apiParaTerceiros;
+    private Integer envioSms;
+    private Integer mascaramentoNumeroTelefone;
+    private Integer segurancaBaseadaCertificadoSsl;
+    private Integer protecaoContraDos;
+    private Integer autenticacaoDuasEtapas;
+    private Integer desenvolvimentoEspecificoApp;
+    private Integer designIconeApp;
+    private Integer sincronizacaoNuvem;
+    private Integer dadosSensoresDispositivo;
+    private Integer codigoBarraQrCode;
+    private Integer dadosSaude;
+    private Integer appleWatch;
+    private Integer gerenteDeProjetos;
     private double taxaDiariaDesign;
     private double taxaDiariaGerenciaProjeto;
     private double taxaDiariaDesenvolvimento;
@@ -82,7 +82,7 @@ public class PerfilProjetoDeEstimativaModel {
     public PerfilProjetoDeEstimativaModel(){
             funcionalidadesDisponiveis = new HashMap<>();
     }
-    public PerfilProjetoDeEstimativaModel(Integer id, UsuarioModel usuarioModel, String nomePerfil, int pequeno, int medio, int grande, int mvp, int basico, int profissional, int cadastroPorEmailSenha, int cadastroPorFacebook, int cadastroPorTwitter, int cadastroPorGoogle, int cadastroPorLinkedin, int cadastroPorGithub, int cadastroPorConviteUsuario, int cadastroPorContasMultitenant, int cadastroPorSubdominios, int cadastroPorDominiosPersonalizados, int painel, int feedDeAtividades, int uploadDeArquivos, int uploadDeMidia, int perfisDeUsuario, int emailsTransacionais, int tags, int avaliacoesOuComentarios, int processamentoAudioVideo, int pesquisaTextoLivre, int pesquisa, int calendario, int exibicaoDadosMapaGeolocalizacao, int exibicaoMarcadoresRegioesMapaPersonalizados, int reservas, int mensagens, int forunsOuComentarios, int compartilhamentoSocial, int integracaoFacebookOpenGraph, int notificacaoPush, int planosDeAssinatura, int processamentoDePagamento, int carrinhoDeCompras, int marketplaceDeUsuarios, int gerenciamentoDeProdutos, int comprasDentroDoAplicativo, int coletaInformacaoPagamento, int integracaoCms, int paginasAdministracaoUsuarios, int moderacaoAprovacaoConteudo, int intercom, int analisesUso, int relatoriosErro, int monitoramentoPerformance, int suporteMultilingue, int conectarServicosDeTerceiros, int apiParaTerceiros, int envioSms, int mascaramentoNumeroTelefone, int segurancaBaseadaCertificadoSsl, int protecaoContraDos, int autenticacaoDuasEtapas, int desenvolvimentoEspecificoApp, int designIconeApp, int sincronizacaoNuvem, int dadosSensoresDispositivo, int codigoBarraQrCode, int dadosSaude, int appleWatch, int gerenteDeProjetos, double taxaDiariaDesign, double taxaDiariaGerenciaProjeto, double taxaDiariaDesenvolvimento) {
+    public PerfilProjetoDeEstimativaModel(Integer id, UsuarioModel usuarioModel, String nomePerfil, Integer pequeno, Integer medio, Integer grande, Integer mvp, Integer basico, Integer profissional, Integer cadastroPorEmailSenha, Integer cadastroPorFacebook, Integer cadastroPorTwitter, Integer cadastroPorGoogle, Integer cadastroPorLinkedin, Integer cadastroPorGithub, Integer cadastroPorConviteUsuario, Integer cadastroPorContasMultitenant, Integer cadastroPorSubdominios, Integer cadastroPorDominiosPersonalizados, Integer painel, Integer feedDeAtividades, Integer uploadDeArquivos, Integer uploadDeMidia, Integer perfisDeUsuario, Integer emailsTransacionais, Integer tags, Integer avaliacoesOuComentarios, Integer processamentoAudioVideo, Integer pesquisaTextoLivre, Integer pesquisa, Integer calendario, Integer exibicaoDadosMapaGeolocalizacao, Integer exibicaoMarcadoresRegioesMapaPersonalizados, Integer reservas, Integer mensagens, Integer forunsOuComentarios, Integer compartilhamentoSocial, Integer IntegeregracaoFacebookOpenGraph, Integer notificacaoPush, Integer planosDeAssinatura, Integer processamentoDePagamento, Integer carrinhoDeCompras, Integer marketplaceDeUsuarios, Integer gerenciamentoDeProdutos, Integer comprasDentroDoAplicativo, Integer coletaInformacaoPagamento, Integer IntegeregracaoCms, Integer paginasAdministracaoUsuarios, Integer moderacaoAprovacaoConteudo, Integer Integerercom, Integer analisesUso, Integer relatoriosErro, Integer monitoramentoPerformance, Integer suporteMultilingue, Integer conectarServicosDeTerceiros, Integer apiParaTerceiros, Integer envioSms, Integer mascaramentoNumeroTelefone, Integer segurancaBaseadaCertificadoSsl, Integer protecaoContraDos, Integer autenticacaoDuasEtapas, Integer desenvolvimentoEspecificoApp, Integer designIconeApp, Integer sincronizacaoNuvem, Integer dadosSensoresDispositivo, Integer codigoBarraQrCode, Integer dadosSaude, Integer appleWatch, Integer gerenteDeProjetos, double taxaDiariaDesign, double taxaDiariaGerenciaProjeto, double taxaDiariaDesenvolvimento) {
         this.id = id;
         this.usuarioModel = usuarioModel;
         this.nomePerfil = nomePerfil;
@@ -120,7 +120,7 @@ public class PerfilProjetoDeEstimativaModel {
         this.mensagens = mensagens;
         this.forunsOuComentarios = forunsOuComentarios;
         this.compartilhamentoSocial = compartilhamentoSocial;
-        this.integracaoFacebookOpenGraph = integracaoFacebookOpenGraph;
+        this.IntegeregracaoFacebookOpenGraph = IntegeregracaoFacebookOpenGraph;
         this.notificacaoPush = notificacaoPush;
         this.planosDeAssinatura = planosDeAssinatura;
         this.processamentoDePagamento = processamentoDePagamento;
@@ -129,10 +129,10 @@ public class PerfilProjetoDeEstimativaModel {
         this.gerenciamentoDeProdutos = gerenciamentoDeProdutos;
         this.comprasDentroDoAplicativo = comprasDentroDoAplicativo;
         this.coletaInformacaoPagamento = coletaInformacaoPagamento;
-        this.integracaoCms = integracaoCms;
+        this.IntegeregracaoCms = IntegeregracaoCms;
         this.paginasAdministracaoUsuarios = paginasAdministracaoUsuarios;
         this.moderacaoAprovacaoConteudo = moderacaoAprovacaoConteudo;
-        this.intercom = intercom;
+        this.Integerercom = Integerercom;
         this.analisesUso = analisesUso;
         this.relatoriosErro = relatoriosErro;
         this.monitoramentoPerformance = monitoramentoPerformance;
@@ -182,531 +182,531 @@ public class PerfilProjetoDeEstimativaModel {
         this.nomePerfil = nomePerfil;
     }
 
-    public int getPequeno() {
+    public Integer getPequeno() {
         return pequeno;
     }
 
-    public void setPequeno(int pequeno) {
+    public void setPequeno(Integer pequeno) {
         this.pequeno = pequeno;
     }
 
-    public int getMedio() {
+    public Integer getMedio() {
         return medio;
     }
 
-    public void setMedio(int medio) {
+    public void setMedio(Integer medio) {
         this.medio = medio;
     }
 
-    public int getGrande() {
+    public Integer getGrande() {
         return grande;
     }
 
-    public void setGrande(int grande) {
+    public void setGrande(Integer grande) {
         this.grande = grande;
     }
 
-    public int getMvp() {
+    public Integer getMvp() {
         return mvp;
     }
 
-    public void setMvp(int mvp) {
+    public void setMvp(Integer mvp) {
         this.mvp = mvp;
     }
 
-    public int getBasico() {
+    public Integer getBasico() {
         return basico;
     }
 
-    public void setBasico(int basico) {
+    public void setBasico(Integer basico) {
         this.basico = basico;
     }
 
-    public int getProfissional() {
+    public Integer getProfissional() {
         return profissional;
     }
 
-    public void setProfissional(int profissional) {
+    public void setProfissional(Integer profissional) {
         this.profissional = profissional;
     }
 
-    public int getCadastroPorEmailSenha() {
+    public Integer getCadastroPorEmailSenha() {
         return cadastroPorEmailSenha;
     }
 
-    public void setCadastroPorEmailSenha(int cadastroPorEmailSenha) {
+    public void setCadastroPorEmailSenha(Integer cadastroPorEmailSenha) {
         this.cadastroPorEmailSenha = cadastroPorEmailSenha;
     }
 
-    public int getCadastroPorFacebook() {
+    public Integer getCadastroPorFacebook() {
         return cadastroPorFacebook;
     }
 
-    public void setCadastroPorFacebook(int cadastroPorFacebook) {
+    public void setCadastroPorFacebook(Integer cadastroPorFacebook) {
         this.cadastroPorFacebook = cadastroPorFacebook;
     }
 
-    public int getCadastroPorTwitter() {
+    public Integer getCadastroPorTwitter() {
         return cadastroPorTwitter;
     }
 
-    public void setCadastroPorTwitter(int cadastroPorTwitter) {
+    public void setCadastroPorTwitter(Integer cadastroPorTwitter) {
         this.cadastroPorTwitter = cadastroPorTwitter;
     }
 
-    public int getCadastroPorGoogle() {
+    public Integer getCadastroPorGoogle() {
         return cadastroPorGoogle;
     }
 
-    public void setCadastroPorGoogle(int cadastroPorGoogle) {
+    public void setCadastroPorGoogle(Integer cadastroPorGoogle) {
         this.cadastroPorGoogle = cadastroPorGoogle;
     }
 
-    public int getCadastroPorLinkedin() {
+    public Integer getCadastroPorLinkedin() {
         return cadastroPorLinkedin;
     }
 
-    public void setCadastroPorLinkedin(int cadastroPorLinkedin) {
+    public void setCadastroPorLinkedin(Integer cadastroPorLinkedin) {
         this.cadastroPorLinkedin = cadastroPorLinkedin;
     }
 
-    public int getCadastroPorGithub() {
+    public Integer getCadastroPorGithub() {
         return cadastroPorGithub;
     }
 
-    public void setCadastroPorGithub(int cadastroPorGithub) {
+    public void setCadastroPorGithub(Integer cadastroPorGithub) {
         this.cadastroPorGithub = cadastroPorGithub;
     }
 
-    public int getCadastroPorConviteUsuario() {
+    public Integer getCadastroPorConviteUsuario() {
         return cadastroPorConviteUsuario;
     }
 
-    public void setCadastroPorConviteUsuario(int cadastroPorConviteUsuario) {
+    public void setCadastroPorConviteUsuario(Integer cadastroPorConviteUsuario) {
         this.cadastroPorConviteUsuario = cadastroPorConviteUsuario;
     }
 
-    public int getCadastroPorContasMultitenant() {
+    public Integer getCadastroPorContasMultitenant() {
         return cadastroPorContasMultitenant;
     }
 
-    public void setCadastroPorContasMultitenant(int cadastroPorContasMultitenant) {
+    public void setCadastroPorContasMultitenant(Integer cadastroPorContasMultitenant) {
         this.cadastroPorContasMultitenant = cadastroPorContasMultitenant;
     }
 
-    public int getCadastroPorSubdominios() {
+    public Integer getCadastroPorSubdominios() {
         return cadastroPorSubdominios;
     }
 
-    public void setCadastroPorSubdominios(int cadastroPorSubdominios) {
+    public void setCadastroPorSubdominios(Integer cadastroPorSubdominios) {
         this.cadastroPorSubdominios = cadastroPorSubdominios;
     }
 
-    public int getCadastroPorDominiosPersonalizados() {
+    public Integer getCadastroPorDominiosPersonalizados() {
         return cadastroPorDominiosPersonalizados;
     }
 
-    public void setCadastroPorDominiosPersonalizados(int cadastroPorDominiosPersonalizados) {
+    public void setCadastroPorDominiosPersonalizados(Integer cadastroPorDominiosPersonalizados) {
         this.cadastroPorDominiosPersonalizados = cadastroPorDominiosPersonalizados;
     }
 
-    public int getPainel() {
+    public Integer getPainel() {
         return painel;
     }
 
-    public void setPainel(int painel) {
+    public void setPainel(Integer painel) {
         this.painel = painel;
     }
 
-    public int getFeedDeAtividades() {
+    public Integer getFeedDeAtividades() {
         return feedDeAtividades;
     }
 
-    public void setFeedDeAtividades(int feedDeAtividades) {
+    public void setFeedDeAtividades(Integer feedDeAtividades) {
         this.feedDeAtividades = feedDeAtividades;
     }
 
-    public int getUploadDeArquivos() {
+    public Integer getUploadDeArquivos() {
         return uploadDeArquivos;
     }
 
-    public void setUploadDeArquivos(int uploadDeArquivos) {
+    public void setUploadDeArquivos(Integer uploadDeArquivos) {
         this.uploadDeArquivos = uploadDeArquivos;
     }
 
-    public int getUploadDeMidia() {
+    public Integer getUploadDeMidia() {
         return uploadDeMidia;
     }
 
-    public void setUploadDeMidia(int uploadDeMidia) {
+    public void setUploadDeMidia(Integer uploadDeMidia) {
         this.uploadDeMidia = uploadDeMidia;
     }
 
-    public int getPerfisDeUsuario() {
+    public Integer getPerfisDeUsuario() {
         return perfisDeUsuario;
     }
 
-    public void setPerfisDeUsuario(int perfisDeUsuario) {
+    public void setPerfisDeUsuario(Integer perfisDeUsuario) {
         this.perfisDeUsuario = perfisDeUsuario;
     }
 
-    public int getEmailsTransacionais() {
+    public Integer getEmailsTransacionais() {
         return emailsTransacionais;
     }
 
-    public void setEmailsTransacionais(int emailsTransacionais) {
+    public void setEmailsTransacionais(Integer emailsTransacionais) {
         this.emailsTransacionais = emailsTransacionais;
     }
 
-    public int getTags() {
+    public Integer getTags() {
         return tags;
     }
 
-    public void setTags(int tags) {
+    public void setTags(Integer tags) {
         this.tags = tags;
     }
 
-    public int getAvaliacoesOuComentarios() {
+    public Integer getAvaliacoesOuComentarios() {
         return avaliacoesOuComentarios;
     }
 
-    public void setAvaliacoesOuComentarios(int avaliacoesOuComentarios) {
+    public void setAvaliacoesOuComentarios(Integer avaliacoesOuComentarios) {
         this.avaliacoesOuComentarios = avaliacoesOuComentarios;
     }
 
-    public int getProcessamentoAudioVideo() {
+    public Integer getProcessamentoAudioVideo() {
         return processamentoAudioVideo;
     }
 
-    public void setProcessamentoAudioVideo(int processamentoAudioVideo) {
+    public void setProcessamentoAudioVideo(Integer processamentoAudioVideo) {
         this.processamentoAudioVideo = processamentoAudioVideo;
     }
 
-    public int getPesquisaTextoLivre() {
+    public Integer getPesquisaTextoLivre() {
         return pesquisaTextoLivre;
     }
 
-    public void setPesquisaTextoLivre(int pesquisaTextoLivre) {
+    public void setPesquisaTextoLivre(Integer pesquisaTextoLivre) {
         this.pesquisaTextoLivre = pesquisaTextoLivre;
     }
 
-    public int getPesquisa() {
+    public Integer getPesquisa() {
         return pesquisa;
     }
 
-    public void setPesquisa(int pesquisa) {
+    public void setPesquisa(Integer pesquisa) {
         this.pesquisa = pesquisa;
     }
 
-    public int getCalendario() {
+    public Integer getCalendario() {
         return calendario;
     }
 
-    public void setCalendario(int calendario) {
+    public void setCalendario(Integer calendario) {
         this.calendario = calendario;
     }
 
-    public int getExibicaoDadosMapaGeolocalizacao() {
+    public Integer getExibicaoDadosMapaGeolocalizacao() {
         return exibicaoDadosMapaGeolocalizacao;
     }
 
-    public void setExibicaoDadosMapaGeolocalizacao(int exibicaoDadosMapaGeolocalizacao) {
+    public void setExibicaoDadosMapaGeolocalizacao(Integer exibicaoDadosMapaGeolocalizacao) {
         this.exibicaoDadosMapaGeolocalizacao = exibicaoDadosMapaGeolocalizacao;
     }
 
-    public int getExibicaoMarcadoresRegioesMapaPersonalizados() {
+    public Integer getExibicaoMarcadoresRegioesMapaPersonalizados() {
         return exibicaoMarcadoresRegioesMapaPersonalizados;
     }
 
-    public void setExibicaoMarcadoresRegioesMapaPersonalizados(int exibicaoMarcadoresRegioesMapaPersonalizados) {
+    public void setExibicaoMarcadoresRegioesMapaPersonalizados(Integer exibicaoMarcadoresRegioesMapaPersonalizados) {
         this.exibicaoMarcadoresRegioesMapaPersonalizados = exibicaoMarcadoresRegioesMapaPersonalizados;
     }
 
-    public int getReservas() {
+    public Integer getReservas() {
         return reservas;
     }
 
-    public void setReservas(int reservas) {
+    public void setReservas(Integer reservas) {
         this.reservas = reservas;
     }
 
-    public int getMensagens() {
+    public Integer getMensagens() {
         return mensagens;
     }
 
-    public void setMensagens(int mensagens) {
+    public void setMensagens(Integer mensagens) {
         this.mensagens = mensagens;
     }
 
-    public int getForunsOuComentarios() {
+    public Integer getForunsOuComentarios() {
         return forunsOuComentarios;
     }
 
-    public void setForunsOuComentarios(int forunsOuComentarios) {
+    public void setForunsOuComentarios(Integer forunsOuComentarios) {
         this.forunsOuComentarios = forunsOuComentarios;
     }
 
-    public int getCompartilhamentoSocial() {
+    public Integer getCompartilhamentoSocial() {
         return compartilhamentoSocial;
     }
 
-    public void setCompartilhamentoSocial(int compartilhamentoSocial) {
+    public void setCompartilhamentoSocial(Integer compartilhamentoSocial) {
         this.compartilhamentoSocial = compartilhamentoSocial;
     }
 
-    public int getIntegracaoFacebookOpenGraph() {
-        return integracaoFacebookOpenGraph;
+    public Integer getIntegracaoFacebookOpenGraph() {
+        return IntegeregracaoFacebookOpenGraph;
     }
 
-    public void setIntegracaoFacebookOpenGraph(int integracaoFacebookOpenGraph) {
-        this.integracaoFacebookOpenGraph = integracaoFacebookOpenGraph;
+    public void setIntegracaoFacebookOpenGraph(Integer IntegeregracaoFacebookOpenGraph) {
+        this.IntegeregracaoFacebookOpenGraph = IntegeregracaoFacebookOpenGraph;
     }
 
-    public int getNotificacaoPush() {
+    public Integer getNotificacaoPush() {
         return notificacaoPush;
     }
 
-    public void setNotificacaoPush(int notificacaoPush) {
+    public void setNotificacaoPush(Integer notificacaoPush) {
         this.notificacaoPush = notificacaoPush;
     }
 
-    public int getPlanosDeAssinatura() {
+    public Integer getPlanosDeAssinatura() {
         return planosDeAssinatura;
     }
 
-    public void setPlanosDeAssinatura(int planosDeAssinatura) {
+    public void setPlanosDeAssinatura(Integer planosDeAssinatura) {
         this.planosDeAssinatura = planosDeAssinatura;
     }
 
-    public int getProcessamentoDePagamento() {
+    public Integer getProcessamentoDePagamento() {
         return processamentoDePagamento;
     }
 
-    public void setProcessamentoDePagamento(int processamentoDePagamento) {
+    public void setProcessamentoDePagamento(Integer processamentoDePagamento) {
         this.processamentoDePagamento = processamentoDePagamento;
     }
 
-    public int getCarrinhoDeCompras() {
+    public Integer getCarrinhoDeCompras() {
         return carrinhoDeCompras;
     }
 
-    public void setCarrinhoDeCompras(int carrinhoDeCompras) {
+    public void setCarrinhoDeCompras(Integer carrinhoDeCompras) {
         this.carrinhoDeCompras = carrinhoDeCompras;
     }
 
-    public int getMarketplaceDeUsuarios() {
+    public Integer getMarketplaceDeUsuarios() {
         return marketplaceDeUsuarios;
     }
 
-    public void setMarketplaceDeUsuarios(int marketplaceDeUsuarios) {
+    public void setMarketplaceDeUsuarios(Integer marketplaceDeUsuarios) {
         this.marketplaceDeUsuarios = marketplaceDeUsuarios;
     }
 
-    public int getGerenciamentoDeProdutos() {
+    public Integer getGerenciamentoDeProdutos() {
         return gerenciamentoDeProdutos;
     }
 
-    public void setGerenciamentoDeProdutos(int gerenciamentoDeProdutos) {
+    public void setGerenciamentoDeProdutos(Integer gerenciamentoDeProdutos) {
         this.gerenciamentoDeProdutos = gerenciamentoDeProdutos;
     }
 
-    public int getComprasDentroDoAplicativo() {
+    public Integer getComprasDentroDoAplicativo() {
         return comprasDentroDoAplicativo;
     }
 
-    public void setComprasDentroDoAplicativo(int comprasDentroDoAplicativo) {
+    public void setComprasDentroDoAplicativo(Integer comprasDentroDoAplicativo) {
         this.comprasDentroDoAplicativo = comprasDentroDoAplicativo;
     }
 
-    public int getColetaInformacaoPagamento() {
+    public Integer getColetaInformacaoPagamento() {
         return coletaInformacaoPagamento;
     }
 
-    public void setColetaInformacaoPagamento(int coletaInformacaoPagamento) {
+    public void setColetaInformacaoPagamento(Integer coletaInformacaoPagamento) {
         this.coletaInformacaoPagamento = coletaInformacaoPagamento;
     }
 
-    public int getIntegracaoCms() {
-        return integracaoCms;
+    public Integer getIntegracaoCms() {
+        return IntegeregracaoCms;
     }
 
-    public void setIntegracaoCms(int integracaoCms) {
-        this.integracaoCms = integracaoCms;
+    public void setIntegracaoCms(Integer IntegeregracaoCms) {
+        this.IntegeregracaoCms = IntegeregracaoCms;
     }
 
-    public int getPaginasAdministracaoUsuarios() {
+    public Integer getPaginasAdministracaoUsuarios() {
         return paginasAdministracaoUsuarios;
     }
 
-    public void setPaginasAdministracaoUsuarios(int paginasAdministracaoUsuarios) {
+    public void setPaginasAdministracaoUsuarios(Integer paginasAdministracaoUsuarios) {
         this.paginasAdministracaoUsuarios = paginasAdministracaoUsuarios;
     }
 
-    public int getModeracaoAprovacaoConteudo() {
+    public Integer getModeracaoAprovacaoConteudo() {
         return moderacaoAprovacaoConteudo;
     }
 
-    public void setModeracaoAprovacaoConteudo(int moderacaoAprovacaoConteudo) {
+    public void setModeracaoAprovacaoConteudo(Integer moderacaoAprovacaoConteudo) {
         this.moderacaoAprovacaoConteudo = moderacaoAprovacaoConteudo;
     }
 
-    public int getIntercom() {
-        return intercom;
+    public Integer getIntercom() {
+        return Integerercom;
     }
 
-    public void setIntercom(int intercom) {
-        this.intercom = intercom;
+    public void setIntercom(Integer Integerercom) {
+        this.Integerercom = Integerercom;
     }
 
-    public int getAnalisesUso() {
+    public Integer getAnalisesUso() {
         return analisesUso;
     }
 
-    public void setAnalisesUso(int analisesUso) {
+    public void setAnalisesUso(Integer analisesUso) {
         this.analisesUso = analisesUso;
     }
 
-    public int getRelatoriosErro() {
+    public Integer getRelatoriosErro() {
         return relatoriosErro;
     }
 
-    public void setRelatoriosErro(int relatoriosErro) {
+    public void setRelatoriosErro(Integer relatoriosErro) {
         this.relatoriosErro = relatoriosErro;
     }
 
-    public int getMonitoramentoPerformance() {
+    public Integer getMonitoramentoPerformance() {
         return monitoramentoPerformance;
     }
 
-    public void setMonitoramentoPerformance(int monitoramentoPerformance) {
+    public void setMonitoramentoPerformance(Integer monitoramentoPerformance) {
         this.monitoramentoPerformance = monitoramentoPerformance;
     }
 
-    public int getSuporteMultilingue() {
+    public Integer getSuporteMultilingue() {
         return suporteMultilingue;
     }
 
-    public void setSuporteMultilingue(int suporteMultilingue) {
+    public void setSuporteMultilingue(Integer suporteMultilingue) {
         this.suporteMultilingue = suporteMultilingue;
     }
 
-    public int getConectarServicosDeTerceiros() {
+    public Integer getConectarServicosDeTerceiros() {
         return conectarServicosDeTerceiros;
     }
 
-    public void setConectarServicosDeTerceiros(int conectarServicosDeTerceiros) {
+    public void setConectarServicosDeTerceiros(Integer conectarServicosDeTerceiros) {
         this.conectarServicosDeTerceiros = conectarServicosDeTerceiros;
     }
 
-    public int getApiParaTerceiros() {
+    public Integer getApiParaTerceiros() {
         return apiParaTerceiros;
     }
 
-    public void setApiParaTerceiros(int apiParaTerceiros) {
+    public void setApiParaTerceiros(Integer apiParaTerceiros) {
         this.apiParaTerceiros = apiParaTerceiros;
     }
 
-    public int getEnvioSms() {
+    public Integer getEnvioSms() {
         return envioSms;
     }
 
-    public void setEnvioSms(int envioSms) {
+    public void setEnvioSms(Integer envioSms) {
         this.envioSms = envioSms;
     }
 
-    public int getMascaramentoNumeroTelefone() {
+    public Integer getMascaramentoNumeroTelefone() {
         return mascaramentoNumeroTelefone;
     }
 
-    public void setMascaramentoNumeroTelefone(int mascaramentoNumeroTelefone) {
+    public void setMascaramentoNumeroTelefone(Integer mascaramentoNumeroTelefone) {
         this.mascaramentoNumeroTelefone = mascaramentoNumeroTelefone;
     }
 
-    public int getSegurancaBaseadaCertificadoSsl() {
+    public Integer getSegurancaBaseadaCertificadoSsl() {
         return segurancaBaseadaCertificadoSsl;
     }
 
-    public void setSegurancaBaseadaCertificadoSsl(int segurancaBaseadaCertificadoSsl) {
+    public void setSegurancaBaseadaCertificadoSsl(Integer segurancaBaseadaCertificadoSsl) {
         this.segurancaBaseadaCertificadoSsl = segurancaBaseadaCertificadoSsl;
     }
 
-    public int getProtecaoContraDos() {
+    public Integer getProtecaoContraDos() {
         return protecaoContraDos;
     }
 
-    public void setProtecaoContraDos(int protecaoContraDos) {
+    public void setProtecaoContraDos(Integer protecaoContraDos) {
         this.protecaoContraDos = protecaoContraDos;
     }
 
-    public int getAutenticacaoDuasEtapas() {
+    public Integer getAutenticacaoDuasEtapas() {
         return autenticacaoDuasEtapas;
     }
 
-    public void setAutenticacaoDuasEtapas(int autenticacaoDuasEtapas) {
+    public void setAutenticacaoDuasEtapas(Integer autenticacaoDuasEtapas) {
         this.autenticacaoDuasEtapas = autenticacaoDuasEtapas;
     }
 
-    public int getDesenvolvimentoEspecificoApp() {
+    public Integer getDesenvolvimentoEspecificoApp() {
         return desenvolvimentoEspecificoApp;
     }
 
-    public void setDesenvolvimentoEspecificoApp(int desenvolvimentoEspecificoApp) {
+    public void setDesenvolvimentoEspecificoApp(Integer desenvolvimentoEspecificoApp) {
         this.desenvolvimentoEspecificoApp = desenvolvimentoEspecificoApp;
     }
 
-    public int getDesignIconeApp() {
+    public Integer getDesignIconeApp() {
         return designIconeApp;
     }
 
-    public void setDesignIconeApp(int designIconeApp) {
+    public void setDesignIconeApp(Integer designIconeApp) {
         this.designIconeApp = designIconeApp;
     }
 
-    public int getSincronizacaoNuvem() {
+    public Integer getSincronizacaoNuvem() {
         return sincronizacaoNuvem;
     }
 
-    public void setSincronizacaoNuvem(int sincronizacaoNuvem) {
+    public void setSincronizacaoNuvem(Integer sincronizacaoNuvem) {
         this.sincronizacaoNuvem = sincronizacaoNuvem;
     }
 
-    public int getDadosSensoresDispositivo() {
+    public Integer getDadosSensoresDispositivo() {
         return dadosSensoresDispositivo;
     }
 
-    public void setDadosSensoresDispositivo(int dadosSensoresDispositivo) {
+    public void setDadosSensoresDispositivo(Integer dadosSensoresDispositivo) {
         this.dadosSensoresDispositivo = dadosSensoresDispositivo;
     }
 
-    public int getCodigoBarraQrCode() {
+    public Integer getCodigoBarraQrCode() {
         return codigoBarraQrCode;
     }
 
-    public void setCodigoBarraQrCode(int codigoBarraQrCode) {
+    public void setCodigoBarraQrCode(Integer codigoBarraQrCode) {
         this.codigoBarraQrCode = codigoBarraQrCode;
     }
 
-    public int getDadosSaude() {
+    public Integer getDadosSaude() {
         return dadosSaude;
     }
 
-    public void setDadosSaude(int dadosSaude) {
+    public void setDadosSaude(Integer dadosSaude) {
         this.dadosSaude = dadosSaude;
     }
 
-    public int getAppleWatch() {
+    public Integer getAppleWatch() {
         return appleWatch;
     }
 
-    public void setAppleWatch(int appleWatch) {
+    public void setAppleWatch(Integer appleWatch) {
         this.appleWatch = appleWatch;
     }
 
-    public int getGerenteDeProjetos() {
+    public Integer getGerenteDeProjetos() {
         return gerenteDeProjetos;
     }
 
-    public void setGerenteDeProjetos(int gerenteDeProjetos) {
+    public void setGerenteDeProjetos(Integer gerenteDeProjetos) {
         this.gerenteDeProjetos = gerenteDeProjetos;
     }
 
@@ -734,8 +734,9 @@ public class PerfilProjetoDeEstimativaModel {
         this.taxaDiariaDesenvolvimento = taxaDiariaDesenvolvimento;
     }
     
-    public Map<String, Integer> getFuncionalidadesDisponiveis() {
+
     
+    public Map<String, Integer> getFuncionalidadesDisponiveis() { 
     funcionalidadesDisponiveis.put("Pequeno", pequeno);
     funcionalidadesDisponiveis.put("Médio", medio);
     funcionalidadesDisponiveis.put("Grande", grande);
@@ -770,7 +771,7 @@ public class PerfilProjetoDeEstimativaModel {
     funcionalidadesDisponiveis.put("Mensagens", mensagens);
     funcionalidadesDisponiveis.put("Fóruns ou Comentários", forunsOuComentarios);
     funcionalidadesDisponiveis.put("Compartilhamento Social", compartilhamentoSocial);
-    funcionalidadesDisponiveis.put("Integração com Facebook Open Graph", integracaoFacebookOpenGraph);
+    funcionalidadesDisponiveis.put("Integração com Facebook Open Graph", IntegeregracaoFacebookOpenGraph);
     funcionalidadesDisponiveis.put("Notificação Push", notificacaoPush);
     funcionalidadesDisponiveis.put("Planos de Assinatura", planosDeAssinatura);
     funcionalidadesDisponiveis.put("Processamento de Pagamento", processamentoDePagamento);
@@ -779,10 +780,10 @@ public class PerfilProjetoDeEstimativaModel {
     funcionalidadesDisponiveis.put("Gerenciamento de Produtos", gerenciamentoDeProdutos);
     funcionalidadesDisponiveis.put("Compras dentro do Aplicativo", comprasDentroDoAplicativo);
     funcionalidadesDisponiveis.put("Coleta de Informação de Pagamento", coletaInformacaoPagamento);
-    funcionalidadesDisponiveis.put("Integração com CMS", integracaoCms);
+    funcionalidadesDisponiveis.put("Integração com CMS", IntegeregracaoCms);
     funcionalidadesDisponiveis.put("Páginas de Administração de Usuários", paginasAdministracaoUsuarios);
     funcionalidadesDisponiveis.put("Moderação e Aprovação de Conteúdo", moderacaoAprovacaoConteudo);
-    funcionalidadesDisponiveis.put("Intercom", intercom);
+    funcionalidadesDisponiveis.put("Intercom", Integerercom);
     funcionalidadesDisponiveis.put("Análises de Uso", analisesUso);
     funcionalidadesDisponiveis.put("Relatórios de Erro", relatoriosErro);
     funcionalidadesDisponiveis.put("Monitoramento de Performance", monitoramentoPerformance);
@@ -846,7 +847,7 @@ public class PerfilProjetoDeEstimativaModel {
                 ", mensagens=" + mensagens +
                 ", forunsOuComentarios=" + forunsOuComentarios +
                 ", compartilhamentoSocial=" + compartilhamentoSocial +
-                ", integracaoFacebookOpenGraph=" + integracaoFacebookOpenGraph +
+                ", IntegeregracaoFacebookOpenGraph=" + IntegeregracaoFacebookOpenGraph +
                 ", notificacaoPush=" + notificacaoPush +
                 ", planosDeAssinatura=" + planosDeAssinatura +
                 ", processamentoDePagamento=" + processamentoDePagamento +
@@ -855,10 +856,10 @@ public class PerfilProjetoDeEstimativaModel {
                 ", gerenciamentoDeProdutos=" + gerenciamentoDeProdutos +
                 ", comprasDentroDoAplicativo=" + comprasDentroDoAplicativo +
                 ", coletaInformacaoPagamento=" + coletaInformacaoPagamento +
-                ", integracaoCms=" + integracaoCms +
+                ", IntegeregracaoCms=" + IntegeregracaoCms +
                 ", paginasAdministracaoUsuarios=" + paginasAdministracaoUsuarios +
                 ", moderacaoAprovacaoConteudo=" + moderacaoAprovacaoConteudo +
-                ", intercom=" + intercom +
+                ", Integerercom=" + Integerercom +
                 ", analisesUso=" + analisesUso +
                 ", relatoriosErro=" + relatoriosErro +
                 ", monitoramentoPerformance=" + monitoramentoPerformance +

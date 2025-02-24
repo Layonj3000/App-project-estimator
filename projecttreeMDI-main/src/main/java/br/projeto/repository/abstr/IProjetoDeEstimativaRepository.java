@@ -1,4 +1,4 @@
-package br.projeto.repository;
+package br.projeto.repository.abstr;
 
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.ProjetoDeEstimativaModel;
@@ -12,6 +12,6 @@ public interface IProjetoDeEstimativaRepository {
     ProjetoDeEstimativaModel findById(Integer id);
     void insert(ProjetoDeEstimativaModel projetoDeEstimativaModel);
     void update(ProjetoDeEstimativaModel projetoDeEstimativaModel);
-    void deleteById(Integer id);
+    boolean deleteById(Integer id);
 
 }

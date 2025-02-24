@@ -78,7 +78,6 @@ public class ExcluirProjetoProjetoCommand implements ProjetoCommand {
 
         if (confirmacao == JOptionPane.YES_OPTION) {
             boolean removido = projetoDeEstimativaRepository.deleteById(projetoId);
-            //perfilProjetoIntermediariaRepository.deleteByProjectId(projetoId);
             if (removido) {
                 new MostrarMensagemProjetoCommand("Projeto \"" + projetoNome + "\" removido com sucesso!").execute();
             } else {
