@@ -2,11 +2,11 @@ package br.projeto.presenter.window_command;
 
 
 import br.projeto.command.MostrarMensagemProjetoCommand;
-import br.projeto.command.ProjetoCommand;
 import br.projeto.presenter.PrincipalPresenter;
 import br.projeto.service.CriarBarraBotaoService;
 
 import javax.swing.*;
+import br.projeto.command.Command;
 
 public class ConfigurarViewCommand implements WindowCommand {
     private final PrincipalPresenter presenter;
@@ -22,7 +22,7 @@ public class ConfigurarViewCommand implements WindowCommand {
         presenter.getView().setMainComponents(barraDeBotoes);
 
         SwingUtilities.invokeLater(() -> {
-            ProjetoCommand comandoPrincipal = presenter.getComandos().get("Principal");
+            Command comandoPrincipal = presenter.getComandos().get("Principal");
             if (comandoPrincipal != null) {
                 comandoPrincipal.execute();
             } else {

@@ -182,6 +182,7 @@ public class DetalheProjetoPresenter implements Observer {
         return funcionalidadesEscolhidasPerfil;
     }
 
+    //verificar lançamento de excessoes em updates nao utilizados
     @Override
     public void update(List<Projeto> projetos) {
         carregarDetalhesProjeto();

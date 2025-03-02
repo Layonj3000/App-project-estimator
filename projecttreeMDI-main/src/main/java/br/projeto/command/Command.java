@@ -1,5 +1,5 @@
 package br.projeto.command;
 
-public interface ProjetoCommand {
+public interface Command {
     void execute();
 }

@@ -11,7 +11,7 @@ import br.projeto.view.DetalheProjetoView;
 
 import javax.swing.*;
 
-public class AbrirDetalhesProjetoProjetoCommand implements ProjetoCommand {
+public class AbrirDetalhesProjetoProjetoCommand implements Command {
    // private final ProjetoRepositoryMock repository;//ANTIGO
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO

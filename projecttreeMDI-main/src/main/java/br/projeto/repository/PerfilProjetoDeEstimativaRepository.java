@@ -11,6 +11,7 @@ import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.Observer;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -191,13 +192,13 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
                     "protecao_contra_dos, autenticacao_duas_etapas, desenvolvimento_especifico_app, " +
                     "design_icone_app, sincronizacao_nuvem, dados_sensores_dispositivo, " +
                     "codigo_barra_qr_code, dados_saude, apple_watch, gerente_de_projetos, " +
-                    "taxa_diaria_design, taxa_diaria_gerencia_projeto, taxa_diaria_desenvolvimento) " +
+                    "taxa_diaria_design, taxa_diaria_gerencia_projeto, taxa_diaria_desenvolvimento, data_criacao) " +
                     "VALUES( ?, ?, ?, ?, ?, " +
                     "?, ?, ?, ?, " +
                     "?, ?, ?, ?, " +
                     "?, ?, ?, ?, ?, " +
                     "?, ?, ?, ?, ?, " +
-                    "?, ?, ?, ?, " +
+                    "?, ?, ?, ?, ?, " +
                     "?, ?, ?, ?, " +
                     "?, ?, ?, ?, " +
                     "?, ?, ?, ?, " +
@@ -280,7 +281,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
             ps.setDouble(69, perfilProjetoDeEstimativaModel.getTaxaDiariaDesign());
             ps.setDouble(70, perfilProjetoDeEstimativaModel.getTaxaDiariaGerenciaProjeto());
             ps.setDouble(71, perfilProjetoDeEstimativaModel.getTaxaDiariaDesenvolvimento());
-
+            ps.setDate(72, perfilProjetoDeEstimativaModel.getDataCriacao());
 
             int rowsAffected = ps.executeUpdate();
 
@@ -330,7 +331,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
                             "protecao_contra_dos = ?, autenticacao_duas_etapas = ?, desenvolvimento_especifico_app = ?, " +
                             "design_icone_app = ?, sincronizacao_nuvem = ?, dados_sensores_dispositivo = ?, " +
                             "codigo_barra_qr_code = ?, dados_saude = ?, apple_watch = ?, gerente_de_projetos = ?, " +
-                            "taxa_diaria_design = ?, taxa_diaria_gerencia_projeto = ?, taxa_diaria_desenvolvimento = ? " +
+                            "taxa_diaria_design = ?, taxa_diaria_gerencia_projeto = ?, taxa_diaria_desenvolvimento = ?, data_criacao = ? " +
                             "WHERE id = ?"
                     , PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setInt(1, perfilProjetoDeEstimativaModel.getUsuarioModel().getId());
@@ -405,6 +406,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
             ps.setDouble(70, perfilProjetoDeEstimativaModel.getTaxaDiariaGerenciaProjeto());
             ps.setDouble(71, perfilProjetoDeEstimativaModel.getTaxaDiariaDesenvolvimento());
             ps.setInt(72, perfilProjetoDeEstimativaModel.getId());
+            ps.setDate(73, perfilProjetoDeEstimativaModel.getDataCriacao());
 
             ps.executeUpdate();
             perfisProjetoDeEstimativaModel.add(perfilProjetoDeEstimativaModel);
@@ -521,6 +523,9 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
         perfilProjetoDeEstimativaModel.setTaxaDiariaDesign(rs.getDouble("taxa_diaria_design"));
         perfilProjetoDeEstimativaModel.setTaxaDiariaGerenciaProjeto(rs.getDouble("taxa_diaria_gerencia_projeto"));
         perfilProjetoDeEstimativaModel.setTaxaDiariaDesenvolvimento(rs.getDouble("taxa_diaria_desenvolvimento"));
+        long timestamp = rs.getLong("data_criacao");
+        Date data = new Date(timestamp);
+        perfilProjetoDeEstimativaModel.setDataCriacao(data);
 
         return perfilProjetoDeEstimativaModel;
 

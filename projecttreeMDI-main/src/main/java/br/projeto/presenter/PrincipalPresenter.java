@@ -30,7 +30,7 @@ public final class PrincipalPresenter implements Observer {
     private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
     private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
     private final ConstrutorDeArvoreNavegacaoService construtorDeArvoreNavegacaoService;
-    private final Map<String, ProjetoCommand> comandos;
+    private final Map<String, Command> comandos;
     private final List<WindowCommand> windowCommands = new ArrayList<>();
 
     public PrincipalPresenter(ProjetoRepositoryMock repository, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository) {
@@ -69,8 +69,8 @@ public final class PrincipalPresenter implements Observer {
     }
 
 
-    private Map<String, ProjetoCommand> inicializarComandos() {
-        Map<String, ProjetoCommand> comandos = new HashMap<>();
+    private Map<String, Command> inicializarComandos() {
+        Map<String, Command> comandos = new HashMap<>();
         comandos.put("Principal", new AbrirDashboardProjetoCommand(view.getDesktop(), repository));
         comandos.put("Usuário", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Usuário"));
         comandos.put("Ver perfis de projeto", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Ver Perfis de Projetos"));
@@ -79,22 +79,26 @@ public final class PrincipalPresenter implements Observer {
         comandos.put("Compartilhar projeto de estimativa", new MostrarMensagemProjetoCommand("Compartilhar ainda não implementado"));
         comandos.put("Exportar projeto de estimativa", new MostrarMensagemProjetoCommand("Exportar ainda não implementado"));
         comandos.put("Novo projeto", new CriarProjetoProjetoCommand(repository, projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,view.getDesktop()));
+        /*novo comando "Novo Perfil"*/
+        comandos.put("Novo perfil", new CriarPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, view.getDesktop()));
+        /*novo comando "Novo Perfil"*/
         comandos.put("Excluir projeto", new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository));
         comandos.put("Abrir detalhes", new AbrirDetalhesProjetoProjetoCommand(/*repository,*/projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository, view.getDesktop()));
         return comandos;
     }
-
-    public void configurarArvore() {
+    
+        public void configurarArvore() {
         NoArvoreComposite raiz = construtorDeArvoreNavegacaoService.criarNo("Principal", "principal", comandos.get("Principal"));
         NoArvoreComposite noUsuario = construtorDeArvoreNavegacaoService.criarNo("Usuário", "usuario", comandos.get("Usuário"));
-        NoArvoreComposite noPerfis = construtorDeArvoreNavegacaoService.criarNo("Ver perfis de projeto", "perfil", comandos.get("Ver perfis de projeto"));
+        NoArvoreComposite noPerfis = construtorDeArvoreNavegacaoService.criarNo("Ver perfis de projeto", "perfil", null);
         NoArvoreComposite noProjetos = construtorDeArvoreNavegacaoService.criarNo("Projetos", "projeto", null);
-
+        
+        //PROJETO PARTE 1(ADICIONANDO MENU "Novo Projeto" ao clicar com botao direto)
         noProjetos.setMenuContextual(() -> {
             JPopupMenu menu = new JPopupMenu();
             JMenuItem novoProjetoItem = new JMenuItem("Novo Projeto");
             novoProjetoItem.addActionListener(e -> {
-                ProjetoCommand cmd = comandos.get("Novo projeto");
+                Command cmd = comandos.get("Novo projeto");
                 if (cmd != null) {
                     cmd.execute();
                 }
@@ -102,11 +106,31 @@ public final class PrincipalPresenter implements Observer {
             menu.add(novoProjetoItem);
             return menu;
         });
-
+        //PROJETO PARTE 1
+        
+        //PERFIL PARTE 1
+        noPerfis.setMenuContextual(()-> {
+            JPopupMenu menu = new JPopupMenu();
+            JMenuItem novoPerfilItem = new JMenuItem("Novo Perfil");
+            novoPerfilItem.addActionListener(e -> {
+                Command cmd = comandos.get("Novo perfil");
+                if(cmd != null){
+                    cmd.execute();
+                }
+            });
+            menu.add(novoPerfilItem);
+            return menu;
+        });
+        //PERFIL PARTE 1 
+        
+        /*CONSTRUINDO ESTRUTURA HIERARQUICA*/
         raiz.adicionarFilho(noUsuario);
         raiz.adicionarFilho(noPerfis);
         raiz.adicionarFilho(noProjetos);
+        /*CONSTRUINDO ARVORE HIERARQUICA*/
 
+        
+        /*PROJETO PARTE 2*/
         //List<Projeto> listaProjetos = repository.getProjetos();//ANTIGO
         List<ProjetoDeEstimativaModel> listaProjetos = projetoDeEstimativaRepository.findAll();
         //for (final Projeto projeto : listaProjetos) {//ANTIGO
@@ -137,11 +161,102 @@ public final class PrincipalPresenter implements Observer {
             noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Exportar projeto de estimativa", "action", comandos.get("Exportar projeto de estimativa")));
             noProjetos.adicionarFilho(noProjeto);
         }
+        /*PROJETO PARTE 2*/
+        
+        /*PERFIL PARTE 2*/
+        List<PerfilProjetoDeEstimativaModel> listaPerfis = perfilProjetoDeEstimativaRepository.findAll();
+        for(PerfilProjetoDeEstimativaModel perfil: listaPerfis){
+            AbrirDetalhesPerfilCommand cmdDetalhes = new AbrirDetalhesPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, view.getDesktop()){
+                @Override
+                public void execute(){
+                    String tituloJanela = "Detalhes do Perfil: " + perfil.getNomePerfil();
+                    WindowManager windowManager = WindowManager.getInstance();
+
+                    if (!windowManager.isFrameAberto(tituloJanela)) {
+                        super.execute();
+                        bloquearMinimizacao(tituloJanela);
+                    } else {
+                        windowManager.bringToFront(tituloJanela);
+                    }
+                }
+            };
+            cmdDetalhes.setPerfilId(perfil.getId());
+            cmdDetalhes.setPerfilNome(perfil.getNomePerfil());//VERIFICAR POSSIBLIDADE DE EXCLUSAO DA LINHA
+            NoArvoreComposite noPerfil = construtorDeArvoreNavegacaoService.criarNo(perfil.getNomePerfil(), "perfil", cmdDetalhes);
+
+            adicionarMenuContextual(perfil, noPerfil);
+
+//            noPerfil.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Elaborar estimativa", "action", comandos.get("Elaborar estimativa")));
+//            noPerfil.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Visualizar estimativa", "action", comandos.get("Visualizar estimativa")));
+//            noPerfil.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Compartilhar projeto de estimativa", "action", comandos.get("Compartilhar projeto de estimativa")));
+//            noPerfil.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Exportar projeto de estimativa", "action", comandos.get("Exportar projeto de estimativa")));;
+            noPerfis.adicionarFilho(noPerfil);
+        }
+        /*PERFIL PARTE 2*/
 
         DefaultMutableTreeNode modeloArvore = construtorDeArvoreNavegacaoService.converterParaNoMutavel(raiz);
         JTree arvore = construtorDeArvoreNavegacaoService.criarJTreeDoModelo(modeloArvore);
         view.setTree(arvore);
     }
+
+    /*public void configurarArvore() {
+        NoArvoreComposite raiz = construtorDeArvoreNavegacaoService.criarNo("Principal", "principal", comandos.get("Principal"));
+        NoArvoreComposite noUsuario = construtorDeArvoreNavegacaoService.criarNo("Usuário", "usuario", comandos.get("Usuário"));
+        NoArvoreComposite noPerfis = construtorDeArvoreNavegacaoService.criarNo("Ver perfis de projeto", "perfil", comandos.get("Ver perfis de projeto"));
+        NoArvoreComposite noProjetos = construtorDeArvoreNavegacaoService.criarNo("Projetos", "projeto", null);
+
+        noProjetos.setMenuContextual(() -> {
+            JPopupMenu menu = new JPopupMenu();
+            JMenuItem novoProjetoItem = new JMenuItem("Novo Projeto");
+            novoProjetoItem.addActionListener(e -> {
+                Command cmd = comandos.get("Novo projeto");
+                if (cmd != null) {
+                    cmd.execute();
+                }
+            });
+            menu.add(novoProjetoItem);
+            return menu;
+        });
+
+        raiz.adicionarFilho(noUsuario);
+        raiz.adicionarFilho(noPerfis);
+        raiz.adicionarFilho(noProjetos);
+
+        //List<Projeto> listaProjetos = repository.getProjetos();//ANTIGO
+        List<ProjetoDeEstimativaModel> listaProjetos = projetoDeEstimativaRepository.findAll();
+        //for (final Projeto projeto : listaProjetos) {//ANTIGO
+        for (ProjetoDeEstimativaModel projeto : listaProjetos) {
+            AbrirDetalhesProjetoProjetoCommand cmdDetalhes = new AbrirDetalhesProjetoProjetoCommand(/*repository,*//*projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository, view.getDesktop()) {
+                @Override
+                public void execute() {
+                    String tituloJanela = "Detalhes do Projeto: " + projeto.getNomeProjetoDeEstimativa();
+                    WindowManager windowManager = WindowManager.getInstance();
+
+                    if (!windowManager.isFrameAberto(tituloJanela)) {
+                        super.execute();
+                        bloquearMinimizacao(tituloJanela);
+                    } else {
+                        windowManager.bringToFront(tituloJanela);
+                    }
+                }
+            };
+            cmdDetalhes.setProjetoId(projeto.getId());
+            cmdDetalhes.setProjetoNome(projeto.getNomeProjetoDeEstimativa());//VERIFICAR POSSIBLIDADE DE EXCLUSAO DA LINHA
+            NoArvoreComposite noProjeto = construtorDeArvoreNavegacaoService.criarNo(projeto.getNomeProjetoDeEstimativa(), "projeto", cmdDetalhes);
+
+            adicionarMenuContextual(projeto, noProjeto);
+
+            noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Elaborar estimativa", "action", comandos.get("Elaborar estimativa")));
+            noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Visualizar estimativa", "action", comandos.get("Visualizar estimativa")));
+            noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Compartilhar projeto de estimativa", "action", comandos.get("Compartilhar projeto de estimativa")));
+            noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Exportar projeto de estimativa", "action", comandos.get("Exportar projeto de estimativa")));
+            noProjetos.adicionarFilho(noProjeto);
+        }
+
+        DefaultMutableTreeNode modeloArvore = construtorDeArvoreNavegacaoService.converterParaNoMutavel(raiz);
+        JTree arvore = construtorDeArvoreNavegacaoService.criarJTreeDoModelo(modeloArvore);
+        view.setTree(arvore);
+    }*/
 
 //    private void adicionarMenuContextual(Projeto projeto, NoArvoreComposite noProjeto) { //ANTIGO
 //        noProjeto.setMenuContextual(() -> {
@@ -155,16 +270,31 @@ public final class PrincipalPresenter implements Observer {
 //            return menu;
 //        });
 //    }
-    
+        
+        //PROJETO DE ESTIMATIVA
         private void adicionarMenuContextual(ProjetoDeEstimativaModel projeto, NoArvoreComposite noProjeto) {//NOVO
         noProjeto.setMenuContextual(() -> {
             JPopupMenu menu = new JPopupMenu();
             JMenuItem excluirProjetoItem = new JMenuItem("Excluir Projeto");
             excluirProjetoItem.addActionListener(e -> {
-                ProjetoCommand cmdExcluir = new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository, projeto.getId());
+                Command cmdExcluir = new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository, projeto.getId());
                 cmdExcluir.execute();
             });
             menu.add(excluirProjetoItem);
+            return menu;
+        });
+      }
+        
+      //PERFIL DE ESTIMATIVA
+        private void adicionarMenuContextual(PerfilProjetoDeEstimativaModel perfil, NoArvoreComposite noPerfil) {//NOVO
+        noPerfil.setMenuContextual(() -> {
+            JPopupMenu menu = new JPopupMenu();
+            JMenuItem excluirPerfilItem = new JMenuItem("Excluir Perfil");
+            excluirPerfilItem.addActionListener(e -> {
+                Command cmdExcluir = new ExcluirPerfilCommand(perfilProjetoDeEstimativaRepository, perfil.getId());
+                cmdExcluir.execute();
+            });
+            menu.add(excluirPerfilItem);
             return menu;
         });
       }
@@ -200,7 +330,7 @@ public final class PrincipalPresenter implements Observer {
     }
 
 
-    public Map<String, ProjetoCommand> getComandos() {
+    public Map<String, Command> getComandos() {
         return comandos;
     }
 

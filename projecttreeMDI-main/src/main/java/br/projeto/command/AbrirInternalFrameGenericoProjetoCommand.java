@@ -4,7 +4,7 @@ import br.projeto.presenter.helpers.WindowManager;
 
 import javax.swing.*;
 
-public class AbrirInternalFrameGenericoProjetoCommand implements ProjetoCommand {
+public class AbrirInternalFrameGenericoProjetoCommand implements Command {
     private final JDesktopPane desktop;
     private final String titulo;
 

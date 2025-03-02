@@ -7,7 +7,7 @@ import br.projeto.view.DashBoardProjetoView;
 
 import javax.swing.*;
 
-public class AbrirDashboardProjetoCommand implements ProjetoCommand {
+public class AbrirDashboardProjetoCommand implements Command {
     private final JDesktopPane desktop;
     private final ProjetoRepositoryMock repository;
 

@@ -6,7 +6,7 @@ import br.projeto.repository.ProjetoRepositoryMock;
 
 import javax.swing.*;
 
-public class ExcluirProjetoProjetoCommand implements ProjetoCommand {
+public class ExcluirProjetoProjetoCommand implements Command {
     private /*final*/ ProjetoRepositoryMock repository;//FINAL COMENTADO SOMENTE PARA NAO PRECISAR INICIALIZAR NO NOVO CONTRUTOR CRIADO
     private ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
     private Integer projetoId;
@@ -30,6 +30,7 @@ public class ExcluirProjetoProjetoCommand implements ProjetoCommand {
         this.projetoId = projetoId;
     }
 
+    
     public void setProjetoNome(String projetoNome) {
         this.projetoNome = projetoNome;
     }
@@ -62,6 +63,8 @@ public class ExcluirProjetoProjetoCommand implements ProjetoCommand {
 //        }
 //    }
     
+    
+    //OBS: AS TABELAS INTERMEDIARIA E DE FUNCIONALIDADES EXTRAS EXCLUEM AUTOMATICAMENTE APOS EXCLUIR O PERFIL
     @Override
     public void execute(){
          if (projetoId == null) {

@@ -5,19 +5,21 @@
 package br.projeto.view;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JTable;
 
 /**
  *
  * @author layon
  */
-public class EscolhaPlataformaView extends javax.swing.JFrame {
+public class EscolhaPlataformaView extends javax.swing.JFrame implements IProjetoDeEstimativaView{
 
     /**
      * Creates new form TelaPlataforma
      */
     public EscolhaPlataformaView() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -85,13 +87,13 @@ public class EscolhaPlataformaView extends javax.swing.JFrame {
 
         tblPlataformas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Plataformas do Usuário"
+
             }
         ));
         jScrollPane3.setViewportView(tblPlataformas);
@@ -195,15 +197,24 @@ public class EscolhaPlataformaView extends javax.swing.JFrame {
         });
     }
 
+    
+    @Override
     public JButton getBtnConfirmar() {
         return btnConfirmar;
     }
 
+    @Override
     public JButton getBtnVoltar() {
         return btnVoltar;
     }
+    
+    @Override
+    public JFrame getFrame(){
+        return this;
+    }
 
-    public JTable getTblPlataformas() {
+    @Override
+    public JTable getTable() {
         return tblPlataformas;
     }
 

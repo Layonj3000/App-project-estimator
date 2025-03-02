@@ -4,35 +4,42 @@
  */
 package br.projeto.state;
 
-import br.projeto.command.ObterPerfisSelecionadosCommand;
-import br.projeto.command.PreencherTabelaEscolhaDePlataformaCommand;
+import br.projeto.command.PreencherTabelaFuncionalidadesProjetoCommand;
+import br.projeto.command.SalvarProjetoDeEstimativaCommand;
 import br.projeto.presenter.ProjetoDeEstimativaPresenter;
+import br.projeto.view.ManterProjetoDeEstimativaView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import br.projeto.command.Command;
+import java.util.List;
+
 /**
  *
- * @author USER
+ * @author David Potentini
  */
-public class EscolherPlataformaState extends ProjetoDeEstimativaPresenterState{
-    //private EscolhaPlataformaView view;
+public class ManterProjetoDeEstimativaState extends ProjetoDeEstimativaPresenterState{
+    private ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter;
+    private List<Integer> idPerfisSelecionados;
     
-    public EscolherPlataformaState(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter) {
+    public ManterProjetoDeEstimativaState(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter,  List<Integer> idPerfisSelecionados){
         super(projetoDeEstimativaPresenter);
-        //view = projetoDeEstimativaPresenter.getView();
+        
+        this.projetoDeEstimativaPresenter = projetoDeEstimativaPresenter;
+        this.idPerfisSelecionados = idPerfisSelecionados;
+        
+        
+        projetoDeEstimativaPresenter.setView(new ManterProjetoDeEstimativaView());
+        
         configuraTela();
-        new PreencherTabelaEscolhaDePlataformaCommand(projetoDeEstimativaPresenter).execute();
+        
+        new PreencherTabelaFuncionalidadesProjetoCommand(projetoDeEstimativaPresenter, idPerfisSelecionados).execute();
+        
     }
     
     @Override
-    public void escolherPlataforma(){
-        ObterPerfisSelecionadosCommand command  = new ObterPerfisSelecionadosCommand(projetoDeEstimativaPresenter);
-        command.execute();
-        projetoDeEstimativaPresenter.setState(new ManterProjetoDeEstimativaState(projetoDeEstimativaPresenter, command.getIdPerfisSelecionados()));
+    public void salvar(){
+        new SalvarProjetoDeEstimativaCommand(projetoDeEstimativaPresenter).execute();
+        //CODIGO PARA APARECER MENSAGEM DE SALVO COM SUCESSO
+        projetoDeEstimativaPresenter.getView().getFrame().dispose();
     }
     
     @Override
@@ -43,11 +50,10 @@ public class EscolherPlataformaState extends ProjetoDeEstimativaPresenterState{
     //VERIFICAR DEMETER
     private void configuraTela() {
         projetoDeEstimativaPresenter.getView().getFrame().setVisible(false);
-        
         projetoDeEstimativaPresenter.getView().getBtnConfirmar().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                escolherPlataforma();
+               salvar();
             }
         });
         
@@ -56,9 +62,7 @@ public class EscolherPlataformaState extends ProjetoDeEstimativaPresenterState{
             public void actionPerformed(ActionEvent e){
                 voltar();
             }
-        });
-        
+        });    
         projetoDeEstimativaPresenter.getView().getFrame().setVisible(true);
     }
-    
 }

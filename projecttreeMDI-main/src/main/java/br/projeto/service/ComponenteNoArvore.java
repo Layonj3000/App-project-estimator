@@ -1,15 +1,15 @@
 package br.projeto.service;
 
-import br.projeto.command.ProjetoCommand;
 
 import java.util.List;
+import br.projeto.command.Command;
 
 public interface ComponenteNoArvore {
     String obterTexto();
 
     String obterChaveIcone();
 
-    ProjetoCommand obterComando();
+    Command obterComando();
 
     List<ComponenteNoArvore> obterFilhos();
 }

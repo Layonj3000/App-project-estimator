@@ -1,14 +1,14 @@
 package br.projeto.service;
 
-import br.projeto.command.ProjetoCommand;
 
 import javax.swing.*;
 import java.util.Map;
+import br.projeto.command.Command;
 
 public class CriarBarraBotaoService {
-    private final Map<String, ProjetoCommand> comandos;
+    private final Map<String, Command> comandos;
 
-    public CriarBarraBotaoService(Map<String, ProjetoCommand> comandos) {
+    public CriarBarraBotaoService(Map<String, Command> comandos) {
         this.comandos = comandos;
     }
 
@@ -18,6 +18,7 @@ public class CriarBarraBotaoService {
 
         adicionarBotao(toolBar, "Dashboard", "principal", "Principal");
         adicionarBotao(toolBar, "Novo Projeto", "projeto", "Novo projeto");
+        adicionarBotao(toolBar, "Novo Perfil", "projeto", "Novo projeto");//mudar ícone
         adicionarBotao(toolBar, "Usuário", "usuario", "Usuário");
 
         return toolBar;
@@ -27,7 +28,7 @@ public class CriarBarraBotaoService {
         JButton botao = new JButton(texto);
         botao.setIcon(IconService.getIcon(iconeKey));
         botao.addActionListener(e -> {
-            ProjetoCommand comando = comandos.get(comandoChave);
+            Command comando = comandos.get(comandoChave);
             if (comando == null) {
                 throw new IllegalArgumentException("Comando não encontrado: " + comandoChave);
             }

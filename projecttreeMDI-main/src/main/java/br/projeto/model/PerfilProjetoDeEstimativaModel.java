@@ -1,6 +1,7 @@
 package br.projeto.model;
 
 import br.projeto.enums.SimNao;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -77,12 +78,15 @@ public class PerfilProjetoDeEstimativaModel {
     private double taxaDiariaDesign;
     private double taxaDiariaGerenciaProjeto;
     private double taxaDiariaDesenvolvimento;
+    private Date dataCriacao;
     private final Map<String, Integer> funcionalidadesDisponiveis;
+    //private final Map<String, String> relacaoBancoNomeReal;
 
     public PerfilProjetoDeEstimativaModel(){
-            funcionalidadesDisponiveis = new HashMap<>();
+            this.funcionalidadesDisponiveis = new HashMap<>();
+            //this.relacaoBancoNomeReal = new HashMap<>();
     }
-    public PerfilProjetoDeEstimativaModel(Integer id, UsuarioModel usuarioModel, String nomePerfil, Integer pequeno, Integer medio, Integer grande, Integer mvp, Integer basico, Integer profissional, Integer cadastroPorEmailSenha, Integer cadastroPorFacebook, Integer cadastroPorTwitter, Integer cadastroPorGoogle, Integer cadastroPorLinkedin, Integer cadastroPorGithub, Integer cadastroPorConviteUsuario, Integer cadastroPorContasMultitenant, Integer cadastroPorSubdominios, Integer cadastroPorDominiosPersonalizados, Integer painel, Integer feedDeAtividades, Integer uploadDeArquivos, Integer uploadDeMidia, Integer perfisDeUsuario, Integer emailsTransacionais, Integer tags, Integer avaliacoesOuComentarios, Integer processamentoAudioVideo, Integer pesquisaTextoLivre, Integer pesquisa, Integer calendario, Integer exibicaoDadosMapaGeolocalizacao, Integer exibicaoMarcadoresRegioesMapaPersonalizados, Integer reservas, Integer mensagens, Integer forunsOuComentarios, Integer compartilhamentoSocial, Integer IntegeregracaoFacebookOpenGraph, Integer notificacaoPush, Integer planosDeAssinatura, Integer processamentoDePagamento, Integer carrinhoDeCompras, Integer marketplaceDeUsuarios, Integer gerenciamentoDeProdutos, Integer comprasDentroDoAplicativo, Integer coletaInformacaoPagamento, Integer IntegeregracaoCms, Integer paginasAdministracaoUsuarios, Integer moderacaoAprovacaoConteudo, Integer Integerercom, Integer analisesUso, Integer relatoriosErro, Integer monitoramentoPerformance, Integer suporteMultilingue, Integer conectarServicosDeTerceiros, Integer apiParaTerceiros, Integer envioSms, Integer mascaramentoNumeroTelefone, Integer segurancaBaseadaCertificadoSsl, Integer protecaoContraDos, Integer autenticacaoDuasEtapas, Integer desenvolvimentoEspecificoApp, Integer designIconeApp, Integer sincronizacaoNuvem, Integer dadosSensoresDispositivo, Integer codigoBarraQrCode, Integer dadosSaude, Integer appleWatch, Integer gerenteDeProjetos, double taxaDiariaDesign, double taxaDiariaGerenciaProjeto, double taxaDiariaDesenvolvimento) {
+    public PerfilProjetoDeEstimativaModel(Integer id, UsuarioModel usuarioModel, String nomePerfil, Integer pequeno, Integer medio, Integer grande, Integer mvp, Integer basico, Integer profissional, Integer cadastroPorEmailSenha, Integer cadastroPorFacebook, Integer cadastroPorTwitter, Integer cadastroPorGoogle, Integer cadastroPorLinkedin, Integer cadastroPorGithub, Integer cadastroPorConviteUsuario, Integer cadastroPorContasMultitenant, Integer cadastroPorSubdominios, Integer cadastroPorDominiosPersonalizados, Integer painel, Integer feedDeAtividades, Integer uploadDeArquivos, Integer uploadDeMidia, Integer perfisDeUsuario, Integer emailsTransacionais, Integer tags, Integer avaliacoesOuComentarios, Integer processamentoAudioVideo, Integer pesquisaTextoLivre, Integer pesquisa, Integer calendario, Integer exibicaoDadosMapaGeolocalizacao, Integer exibicaoMarcadoresRegioesMapaPersonalizados, Integer reservas, Integer mensagens, Integer forunsOuComentarios, Integer compartilhamentoSocial, Integer IntegeregracaoFacebookOpenGraph, Integer notificacaoPush, Integer planosDeAssinatura, Integer processamentoDePagamento, Integer carrinhoDeCompras, Integer marketplaceDeUsuarios, Integer gerenciamentoDeProdutos, Integer comprasDentroDoAplicativo, Integer coletaInformacaoPagamento, Integer IntegeregracaoCms, Integer paginasAdministracaoUsuarios, Integer moderacaoAprovacaoConteudo, Integer Integerercom, Integer analisesUso, Integer relatoriosErro, Integer monitoramentoPerformance, Integer suporteMultilingue, Integer conectarServicosDeTerceiros, Integer apiParaTerceiros, Integer envioSms, Integer mascaramentoNumeroTelefone, Integer segurancaBaseadaCertificadoSsl, Integer protecaoContraDos, Integer autenticacaoDuasEtapas, Integer desenvolvimentoEspecificoApp, Integer designIconeApp, Integer sincronizacaoNuvem, Integer dadosSensoresDispositivo, Integer codigoBarraQrCode, Integer dadosSaude, Integer appleWatch, Integer gerenteDeProjetos, double taxaDiariaDesign, double taxaDiariaGerenciaProjeto, double taxaDiariaDesenvolvimento, Date dataCriacao) {
         this.id = id;
         this.usuarioModel = usuarioModel;
         this.nomePerfil = nomePerfil;
@@ -155,7 +159,9 @@ public class PerfilProjetoDeEstimativaModel {
         this.taxaDiariaDesign = taxaDiariaDesign;
         this.taxaDiariaGerenciaProjeto = taxaDiariaGerenciaProjeto;
         this.taxaDiariaDesenvolvimento = taxaDiariaDesenvolvimento;
-        funcionalidadesDisponiveis = new HashMap<>();
+        this.dataCriacao = dataCriacao;
+        this.funcionalidadesDisponiveis = new HashMap<>();
+        //this.relacaoBancoNomeReal = new HashMap<>();
     }
 
     public Integer getId() {
@@ -172,6 +178,10 @@ public class PerfilProjetoDeEstimativaModel {
 
     public void setUsuarioModel(UsuarioModel usuarioModel) {
         this.usuarioModel = usuarioModel;
+    }
+    
+    public String getNomeUsuario(){
+        return usuarioModel.getNome();
     }
 
     public String getNomePerfil() {
@@ -734,7 +744,13 @@ public class PerfilProjetoDeEstimativaModel {
         this.taxaDiariaDesenvolvimento = taxaDiariaDesenvolvimento;
     }
     
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
 
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
     
     public Map<String, Integer> getFuncionalidadesDisponiveis() { 
     funcionalidadesDisponiveis.put("Pequeno", pequeno);
@@ -806,6 +822,78 @@ public class PerfilProjetoDeEstimativaModel {
 
     return funcionalidadesDisponiveis;
 }
+
+    /*public Map<String, String> getRelacaoBancoNomeReal() {
+                relacaoBancoNomeReal.put("pequeno", "Pequeno");
+        relacaoBancoNomeReal.put("medio", "Médio");
+        relacaoBancoNomeReal.put("grande", "Grande");
+        relacaoBancoNomeReal.put("mvp", "MVP");
+        relacaoBancoNomeReal.put("basico", "Básico");
+        relacaoBancoNomeReal.put("profissional", "Profissional");
+        relacaoBancoNomeReal.put("cadastro_por_email_senha", "Cadastro por Email/Senha");
+        relacaoBancoNomeReal.put("cadastro_por_facebook", "Cadastro por Facebook");
+        relacaoBancoNomeReal.put("cadastro_por_twitter", "Cadastro por Twitter");
+        relacaoBancoNomeReal.put("cadastro_por_google", "Cadastro por Google");
+        relacaoBancoNomeReal.put("cadastro_por_linkedin", "Cadastro por LinkedIn");
+        relacaoBancoNomeReal.put("cadastro_por_github", "Cadastro por GitHub");
+        relacaoBancoNomeReal.put("cadastro_por_convite_usuario", "Cadastro por Convite de Usuário");
+        relacaoBancoNomeReal.put("cadastro_por_contas_multitenant", "Cadastro por Contas Multi-tenant");
+        relacaoBancoNomeReal.put("cadastro_por_subdominios", "Cadastro por Subdomínios");
+        relacaoBancoNomeReal.put("cadastro_por_dominios_personalizados", "Cadastro por Domínios Personalizados");
+        relacaoBancoNomeReal.put("painel", "Painel");
+        relacaoBancoNomeReal.put("feed_de_atividades", "Feed de Atividades");
+        relacaoBancoNomeReal.put("upload_de_arquivos", "Upload de Arquivos");
+        relacaoBancoNomeReal.put("upload_de_midia", "Upload de Mídia");
+        relacaoBancoNomeReal.put("perfis_de_usuario", "Perfis de Usuário");
+        relacaoBancoNomeReal.put("emails_transacionais", "Emails Transacionais");
+        relacaoBancoNomeReal.put("tags", "Tags");
+        relacaoBancoNomeReal.put("avaliacoes_ou_comentarios", "Avaliações ou Comentários");
+        relacaoBancoNomeReal.put("processamento_audio_video", "Processamento de Áudio e Vídeo");
+        relacaoBancoNomeReal.put("pesquisa_texto_livre", "Pesquisa Texto Livre");
+        relacaoBancoNomeReal.put("pesquisa", "Pesquisa");
+        relacaoBancoNomeReal.put("calendario", "Calendário");
+        relacaoBancoNomeReal.put("exibicao_dados_mapa_geolocalizacao", "Exibição de Dados no Mapa");
+        relacaoBancoNomeReal.put("exibicao_marcadores_regioes_mapa_personalizados", "Exibição de Marcadores no Mapa");
+        relacaoBancoNomeReal.put("reservas", "Reservas");
+        relacaoBancoNomeReal.put("mensagens", "Mensagens");
+        relacaoBancoNomeReal.put("foruns_ou_comentarios", "Fóruns ou Comentários");
+        relacaoBancoNomeReal.put("compartilhamento_social", "Compartilhamento Social");
+        relacaoBancoNomeReal.put("integracao_facebook_open_graph", "Integração com Facebook Open Graph");
+        relacaoBancoNomeReal.put("notificacao_push", "Notificação Push");
+        relacaoBancoNomeReal.put("planos_de_assinatura", "Planos de Assinatura");
+        relacaoBancoNomeReal.put("processamento_de_pagamento", "Processamento de Pagamento");
+        relacaoBancoNomeReal.put("carrinho_de_compras", "Carrinho de Compras");
+        relacaoBancoNomeReal.put("marketplace_de_usuarios", "Marketplace de Usuários");
+        relacaoBancoNomeReal.put("gerenciamento_de_produtos", "Gerenciamento de Produtos");
+        relacaoBancoNomeReal.put("compras_dentro_do_aplicativo", "Compras dentro do Aplicativo");
+        relacaoBancoNomeReal.put("coleta_informacao_pagamento", "Coleta de Informação de Pagamento");
+        relacaoBancoNomeReal.put("integracao_cms", "Integração com CMS");
+        relacaoBancoNomeReal.put("paginas_administracao_usuarios", "Páginas de Administração de Usuários");
+        relacaoBancoNomeReal.put("moderacao_aprovacao_conteudo", "Moderação e Aprovação de Conteúdo");
+        relacaoBancoNomeReal.put("intercom", "Intercom");
+        relacaoBancoNomeReal.put("analises_uso", "Análises de Uso");
+        relacaoBancoNomeReal.put("relatorios_erro", "Relatórios de Erro");
+        relacaoBancoNomeReal.put("monitoramento_performance", "Monitoramento de Performance");
+        relacaoBancoNomeReal.put("suporte_multilingue", "Suporte Multilíngue");
+        relacaoBancoNomeReal.put("conectar_servicos_de_terceiros", "Conectar com Serviços de Terceiros");
+        relacaoBancoNomeReal.put("api_para_terceiros", "API para Terceiros");
+        relacaoBancoNomeReal.put("envio_sms", "Envio de SMS");
+        relacaoBancoNomeReal.put("mascaramento_numero_telefone", "Mascaramento de Número de Telefone");
+        relacaoBancoNomeReal.put("seguranca_baseada_certificado_ssl", "Segurança Baseada em Certificado SSL");
+        relacaoBancoNomeReal.put("protecao_contra_dos", "Proteção Contra DoS");
+        relacaoBancoNomeReal.put("autenticacao_duas_etapas", "Autenticação em Duas Etapas");
+        relacaoBancoNomeReal.put("desenvolvimento_especifico_app", "Desenvolvimento Específico de App");
+        relacaoBancoNomeReal.put("design_icone_app", "Design de Ícone para App");
+        relacaoBancoNomeReal.put("sincronizacao_nuvem", "Sincronização com a Nuvem");
+        relacaoBancoNomeReal.put("dados_sensores_dispositivo", "Dados de Sensores do Dispositivo");
+        relacaoBancoNomeReal.put("codigo_barra_qr_code", "Código de Barras ou QR Code");
+        relacaoBancoNomeReal.put("dados_saude", "Dados de Saúde");
+        relacaoBancoNomeReal.put("apple_watch", "Apple Watch");
+        relacaoBancoNomeReal.put("gerente_de_projetos", "Gerente de Projetos");
+        
+        return relacaoBancoNomeReal;
+    }*/
+    
 
     @Override
     public String toString() {
