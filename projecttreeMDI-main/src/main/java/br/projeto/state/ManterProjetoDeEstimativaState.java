@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author David Potentini
  */
-public class ManterProjetoDeEstimativaState extends ProjetoDeEstimativaPresenterState{
+public class ManterProjetoDeEstimativaState extends AProjetoDeEstimativaPresenterState{
     private ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter;
     private List<Integer> idPerfisSelecionados;
     

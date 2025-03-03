@@ -10,11 +10,11 @@ import br.projeto.presenter.ProjetoDeEstimativaPresenter;
  *
  * @author USER
  */
-public class ProjetoDeEstimativaPresenterState {
+public abstract class AProjetoDeEstimativaPresenterState {
     protected ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter;
     
 
-    public ProjetoDeEstimativaPresenterState(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter) {
+    public AProjetoDeEstimativaPresenterState(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter) {
         this.projetoDeEstimativaPresenter = projetoDeEstimativaPresenter;
         //CRIAR UM METODO REMOVE LISTENERS E ADICIONAR A CHAMADA AQUI
     }

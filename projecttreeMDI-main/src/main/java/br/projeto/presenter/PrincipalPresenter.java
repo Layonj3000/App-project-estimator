@@ -6,6 +6,7 @@ import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
+import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.helpers.WindowManager;
 import br.projeto.presenter.window_command.*;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
@@ -29,11 +30,12 @@ public final class PrincipalPresenter implements Observer {
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 
     private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
     private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
+    private final UsuarioModel usuarioModel;
     private final ConstrutorDeArvoreNavegacaoService construtorDeArvoreNavegacaoService;
     private final Map<String, Command> comandos;
     private final List<WindowCommand> windowCommands = new ArrayList<>();
 
-    public PrincipalPresenter(ProjetoRepositoryMock repository, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository) {
+    public PrincipalPresenter(ProjetoRepositoryMock repository, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository, UsuarioModel usuarioModel) {
         this.view = new PrincipalView();
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;//NOVO
         this.projetoDeEstimativaRepository.addObserver(this);//NOVO
@@ -46,6 +48,8 @@ public final class PrincipalPresenter implements Observer {
         
         this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;//NOVO
         this.perfilFuncionalidadesPersonalizadasRepository.addObserver(this);//NOVO
+        
+        this.usuarioModel = usuarioModel;
         
         this.repository = repository;
         this.repository.addObserver(this);
@@ -78,9 +82,9 @@ public final class PrincipalPresenter implements Observer {
         comandos.put("Visualizar estimativa", new MostrarMensagemProjetoCommand("Visualizar estimativa ainda não implementada"));
         comandos.put("Compartilhar projeto de estimativa", new MostrarMensagemProjetoCommand("Compartilhar ainda não implementado"));
         comandos.put("Exportar projeto de estimativa", new MostrarMensagemProjetoCommand("Exportar ainda não implementado"));
-        comandos.put("Novo projeto", new CriarProjetoProjetoCommand(repository, projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,view.getDesktop()));
+        comandos.put("Novo projeto", new CriarProjetoProjetoCommand(repository, projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,view.getDesktop(), usuarioModel));
         /*novo comando "Novo Perfil"*/
-        comandos.put("Novo perfil", new CriarPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, view.getDesktop()));
+        comandos.put("Novo perfil", new CriarPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, view.getDesktop(), usuarioModel));
         /*novo comando "Novo Perfil"*/
         comandos.put("Excluir projeto", new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository));
         comandos.put("Abrir detalhes", new AbrirDetalhesProjetoProjetoCommand(/*repository,*/projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository, view.getDesktop()));
@@ -132,7 +136,7 @@ public final class PrincipalPresenter implements Observer {
         
         /*PROJETO PARTE 2*/
         //List<Projeto> listaProjetos = repository.getProjetos();//ANTIGO
-        List<ProjetoDeEstimativaModel> listaProjetos = projetoDeEstimativaRepository.findAll();
+        List<ProjetoDeEstimativaModel> listaProjetos = projetoDeEstimativaRepository.findByUser(usuarioModel);
         //for (final Projeto projeto : listaProjetos) {//ANTIGO
         for (ProjetoDeEstimativaModel projeto : listaProjetos) {
             AbrirDetalhesProjetoProjetoCommand cmdDetalhes = new AbrirDetalhesProjetoProjetoCommand(/*repository,*/projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository, view.getDesktop()) {
@@ -164,7 +168,7 @@ public final class PrincipalPresenter implements Observer {
         /*PROJETO PARTE 2*/
         
         /*PERFIL PARTE 2*/
-        List<PerfilProjetoDeEstimativaModel> listaPerfis = perfilProjetoDeEstimativaRepository.findAll();
+        List<PerfilProjetoDeEstimativaModel> listaPerfis = perfilProjetoDeEstimativaRepository.findByUser(usuarioModel);
         for(PerfilProjetoDeEstimativaModel perfil: listaPerfis){
             AbrirDetalhesPerfilCommand cmdDetalhes = new AbrirDetalhesPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, view.getDesktop()){
                 @Override
