@@ -2,6 +2,7 @@ package br.projeto.command;
 
 import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
+import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.ProjetoDeEstimativaPresenter;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
@@ -21,15 +22,17 @@ public class CriarProjetoProjetoCommand implements Command {
     private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
     private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
     private final JDesktopPane desktop;
+    private final UsuarioModel usuarioModel;
     //private final CriarProjetoMock criarProjetoMock;
 
-    public CriarProjetoProjetoCommand(ProjetoRepositoryMock repository,ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository,ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository, JDesktopPane desktop) {
+    public CriarProjetoProjetoCommand(ProjetoRepositoryMock repository,ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository,ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository, JDesktopPane desktop, UsuarioModel usuarioModel) {
         this.repository = repository;
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.perfilProjetoDeEstimativaRepository =perfilProjetoDeEstimativaRepository;
         this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;
         this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;
         this.desktop = desktop;
+        this.usuarioModel = usuarioModel;
         //this.criarProjetoMock = new CriarProjetoMock(repository);//LEMBRAR DE EXCLUIR CLASSE
     }
 
@@ -37,7 +40,7 @@ public class CriarProjetoProjetoCommand implements Command {
     @Override
     public void execute() {
         //IMPLEMENTAR NOVA LOGICA DE CRIACAO
-        new ProjetoDeEstimativaPresenter(new EscolhaPlataformaView(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository);
+        new ProjetoDeEstimativaPresenter(new EscolhaPlataformaView(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,usuarioModel);
     }
 /*    @Override
     public void execute() {

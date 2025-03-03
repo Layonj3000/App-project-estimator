@@ -18,7 +18,7 @@ import br.projeto.command.Command;
  *
  * @author USER
  */
-public class EscolherPlataformaState extends ProjetoDeEstimativaPresenterState{
+public class EscolherPlataformaState extends AProjetoDeEstimativaPresenterState{
     //private EscolhaPlataformaView view;
     
     public EscolherPlataformaState(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter) {

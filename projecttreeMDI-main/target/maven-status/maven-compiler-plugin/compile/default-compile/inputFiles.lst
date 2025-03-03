@@ -1,3 +1,4 @@
+C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\state\APerfilProjetoDeEstimativaState.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\view\DetalhePerfilView.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\repository\UsuarioRepository.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\command\CriarProjetoProjetoCommand.java
@@ -6,7 +7,6 @@ C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttre
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\repository\abstr\IProjetoDeEstimativaRepository.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\repository\abstr\IUsuarioRepository.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\command\ObterPerfisSelecionadosCommand.java
-C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\state\ProjetoDeEstimativaPresenterState.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\db\DB.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\repository_factory\PerfilProjetoDeEstimativaRepositoryFactory.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\presenter\Zelador.java
@@ -18,13 +18,17 @@ C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttre
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\service\CriarBarraBotaoService.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\service\IconService.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\presenter\helpers\WindowManager.java
+C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\command\AdicionarOpcaoPerfilCommand.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\service\NoArvoreComposite.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\view\GlobalWindowManager.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\model\ProjetosFuncionalidadesPersonalizadasModel.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\repository\ProjetoRepositoryMock.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\repository_factory\ProjetoDeEstimativaRepositoryFactory.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\service\ConstrutorDeArvoreNavegacaoService.java
+C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\service\RetornaPerfilModelService.java
+C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\state\ManterPerfilProjetoDeEstimativaState.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\db\DbException.java
+C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\view\ManterPerfilProjetoDeEstimativaViewTeste.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\view\ManterProjetoDeEstimativaView.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\repository_factory\PerfilFuncionalidadesPersonalizadasRepositoryFactory.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\command\PreencherTabelaEscolhaDePlataformaCommand.java
@@ -32,8 +36,10 @@ C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttre
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\presenter\DesktopMemento.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\repository\PerfilFuncionalidadesPersonalizadasRepository.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\service\CriarProjetoMock.java
+C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\view\ManterPerfilProjetoDeEstimativaView.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\command\CriarPerfilCommand.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\command\AbrirDashboardProjetoCommand.java
+C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\presenter\PerfilProjetoDeEstimativaPresenter.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\Main.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\command\MostrarMensagemProjetoCommand.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\repository\abstr\IPerfilProjetoIntermediariaRepository.java
@@ -45,6 +51,7 @@ C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttre
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\enums\SimNao.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\presenter\window_command\ConfigurarViewCommand.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\model\ProjetoDeEstimativaModel.java
+C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\state\AProjetoDeEstimativaPresenterState.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\state\ManterProjetoDeEstimativaState.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\presenter\window_command\OrganizarLadoALadoCommand.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\presenter\window_command\ConfigurarMenuJanelaCommand.java
@@ -65,14 +72,17 @@ C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttre
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\view\DetalheProjetoView.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\view\IProjetoDeEstimativaView.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\presenter\window_command\FecharJanelasRelacionadasCommand.java
+C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\command\SalvarPerfilProjetoDeEstimativaCommand.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\service\ProvedorMenuContextual.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\model\UsuarioModel.java
+C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\service\MapValoresPadraoPerfilService.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\command\Command.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\repository\abstr\IPerfilFuncionalidadesPersonalizadasRepository.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\presenter\window_command\SetLookAndFeelCommand.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\enums\Status.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\repository\PerfilProjetoIntermediariaRepository.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\command\AbrirInternalFrameGenericoProjetoCommand.java
+C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\command\PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\repository\ProjetoDeEstimativaRepository.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\command\ExcluirPerfilCommand.java
 C:\Users\USER\Desktop\trabalho-final-projetos\projecttreeMDI-main-git\projecttreeMDI-main\src\main\java\br\projeto\presenter\DashBoardProjetoPresenter.java
