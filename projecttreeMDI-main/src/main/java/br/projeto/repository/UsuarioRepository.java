@@ -90,6 +90,28 @@ public class UsuarioRepository implements Subject, IUsuarioRepository {
         }
         return false;
     }
+    public UsuarioModel findByEmailandPassword(String email, String senha) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try{
+            ps = conn.prepareStatement("SELECT * FROM usuario WHERE email = ? AND senha = ?");
+            ps.setString(1, email);
+            ps.setString(2, senha);
+            rs = ps.executeQuery();
+            
+            if(rs.next()){     
+                UsuarioModel usuarioModel = instantiateUsuarioModel(rs);
+                return usuarioModel;
+            }
+        }catch(SQLException e){
+            throw new DbException(e.getMessage());
+        }finally {
+            DB.closeStatement(ps);
+            DB.closeResultSet(rs);
+        }
+        return null;
+    }
     
     @Override
     public void insert(UsuarioModel usuario) {

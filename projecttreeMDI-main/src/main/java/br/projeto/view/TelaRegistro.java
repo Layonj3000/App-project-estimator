@@ -148,8 +148,9 @@ public class TelaRegistro extends javax.swing.JFrame {
         String email = txtEmail.getText();
         String senha = new String(pwSenha.getPassword());
 
-        Command registro = new RegistroCommand(usuario,email, senha);
+        Command registro = new RegistroCommand(this,usuario,email, senha);
         registro.execute();
+        pwSenha.setText("");
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed

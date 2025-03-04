@@ -15,5 +15,5 @@ public class RegistroState implements TelaState{
     @Override
     public void exibirTela() {
         telaRegistro.setVisible(true);
-    }
+    }  
 }

@@ -13,7 +13,12 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+    <repositories>
+	<repository>
+		<id>jitpack.io</id>
+		<url>https://jitpack.io</url>
+	</repository>
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.jfree</groupId>
@@ -31,7 +36,11 @@
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.48.0.0</version>
         </dependency>
-        
+	<dependency>
+	    <groupId>com.github.claytonfraga</groupId>
+	    <artifactId>validadorsenha</artifactId>
+	    <version>master</version>
+	</dependency>        
     </dependencies>
 
 </project>
