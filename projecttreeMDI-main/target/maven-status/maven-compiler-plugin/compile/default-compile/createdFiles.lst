@@ -44,6 +44,7 @@ br\projeto\command\CriarProjetoProjetoCommand.class
 br\projeto\repository_factory\PerfilFuncionalidadesPersonalizadasRepositoryFactory.class
 br\projeto\state\AProjetoDeEstimativaPresenterState.class
 br\projeto\repository\abstr\IPerfilFuncionalidadesPersonalizadasRepository.class
+br\projeto\service\LoginService.class
 br\projeto\state\LoginState.class
 br\projeto\presenter\PerfilProjetoDeEstimativaPresenter$1.class
 br\projeto\presenter\PerfilProjetoDeEstimativaPresenter.class
@@ -107,6 +108,7 @@ br\projeto\view\GlobalWindowManager.class
 br\projeto\presenter\DetalheProjetoPresenter.class
 br\projeto\repository_factory\ProjetoFuncionalidadesPersonalizadasRepositoryFactory.class
 br\projeto\view\TelaLogin$2.class
+br\projeto\proxy\ProxyRegistro.class
 br\projeto\service\ComponenteNoArvore.class
 br\projeto\service\IconService.class
 br\projeto\repository\ProjetoRepositoryMock.class

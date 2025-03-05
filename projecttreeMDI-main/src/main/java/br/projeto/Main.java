@@ -27,17 +27,17 @@ public class Main {
 
     public static void main(String[] args) {
         
-         TelaPresenter presenter = new TelaPresenter(new LoginState());     
+//         TelaPresenter presenter = new TelaPresenter(new LoginState());     
 //        RepositoryFactory factory = RepositoryFactory.escolherClasseFabricada(ProjetoDeEstimativaRepository.class);
 //        ProjetoDeEstimativaRepository projetoDeEstimativaRepository = factory.createRepository();
 //
-//        RepositoryFactory factory1 = RepositoryFactory.escolherClasseFabricada(UsuarioRepository.class);
-//        UsuarioRepository usuarioRepository = factory1.createRepository();
+        RepositoryFactory factory1 = RepositoryFactory.escolherClasseFabricada(UsuarioRepository.class);
+        UsuarioRepository usuarioRepository = factory1.createRepository();
 //       UsuarioModel usuarioModel = new UsuarioModel(1, "ana", "1234", "ana@gmail.com");
 //        UsuarioModel usuarioModel2 = new UsuarioModel(2, "david", "1234", "david@gmail.com");
 //        usuarioRepository.insert(usuarioModel);
 //        usuarioRepository.insert(usuarioModel2);
-//        System.out.println(usuarioRepository.findAll());
+          System.out.println(usuarioRepository.findAll());
 
 //        ProjetoDeEstimativaModel projetoDeEstimativaModel = new ProjetoDeEstimativaModel(1, usuarioModel, 0, null, new Date(System.currentTimeMillis()), "Projeto Teste UM", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0);
 //        ProjetoDeEstimativaModel projetoDeEstimativaModel2 = new ProjetoDeEstimativaModel(2, usuarioModel2, 0, null, new Date(System.currentTimeMillis()), "Projeto Teste DOIS", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0);

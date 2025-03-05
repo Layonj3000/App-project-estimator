@@ -7,14 +7,9 @@ package br.projeto.command;
 import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.PrincipalPresenter;
 import br.projeto.presenter.helpers.WindowManager;
-import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
-import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
-import br.projeto.repository.PerfilProjetoIntermediariaRepository;
-import br.projeto.repository.ProjetoDeEstimativaRepository;
-import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.ProjetoRepositoryMock;
-import br.projeto.repository.UsuarioRepository;
-import br.projeto.repository_factory.RepositoryFactory;
+import br.projeto.service.LoginService;
+import br.projeto.view.TelaLogin;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
@@ -22,35 +17,34 @@ import javax.swing.SwingUtilities;
  *
  * @author layon
  */
-public class LoginCommand implements Command{
+public class LoginCommand implements Command {
+
+    private TelaLogin telaLogin;
     private String email;
     private String senha;
+    private LoginService loginService;
 
-
-    public LoginCommand(String email, String senha) {
+    public LoginCommand(TelaLogin telaLogin, String email, String senha) {
+        this.telaLogin = telaLogin;
         this.email = email;
         this.senha = senha;
+        this.loginService = new LoginService(); 
     }
 
     @Override
     public void execute() {
-        RepositoryFactory factory = RepositoryFactory.escolherClasseFabricada(ProjetoDeEstimativaRepository.class);
-        ProjetoDeEstimativaRepository projetoDeEstimativaRepository = factory.createRepository();
-
-        RepositoryFactory factory1 = RepositoryFactory.escolherClasseFabricada(UsuarioRepository.class);
-        UsuarioRepository usuarioRepository = factory1.createRepository();
-        
-        RepositoryFactory factory2 = RepositoryFactory.escolherClasseFabricada(PerfilProjetoDeEstimativaRepository.class);
-        PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository = factory2.createRepository();
-        RepositoryFactory factory4 = RepositoryFactory.escolherClasseFabricada(ProjetoFuncionalidadesPersonalizadasRepository.class);
-        ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository = factory4.createRepository();
-        
-        RepositoryFactory factory5 = RepositoryFactory.escolherClasseFabricada(PerfilFuncionalidadesPersonalizadasRepository.class);
-        PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository = factory5.createRepository();
-        if (usuarioRepository.verificarLogin(email, senha) == true) {    
-            UsuarioModel usuarioModel = usuarioRepository.findByEmailandPassword(email,senha);
+        if (loginService.verificarLogin(email, senha)) {
+            UsuarioModel usuarioModel = loginService.obterUsuario(email, senha);
+            telaLogin.dispose();
             SwingUtilities.invokeLater(() -> {
-                PrincipalPresenter presenter = new PrincipalPresenter(new ProjetoRepositoryMock(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel);
+                PrincipalPresenter presenter = new PrincipalPresenter(
+                        new ProjetoRepositoryMock(),
+                        loginService.getProjetoDeEstimativaRepository(),
+                        loginService.getPerfilProjetoDeEstimativaRepository(),
+                        loginService.getProjetoFuncionalidadesPersonalizadasRepository(),
+                        loginService.getPerfilFuncionalidadesPersonalizadasRepository(),
+                        usuarioModel
+                );
                 WindowManager.getInstance().initialize(presenter);
             });
         } else {

@@ -165,7 +165,7 @@ public class TelaLogin extends javax.swing.JFrame {
         String email = TxtEmail.getText();
         String senha = new String(SenhaLogin.getPassword());
 
-        Command login = new LoginCommand(email, senha);
+        Command login = new LoginCommand(this, email, senha);
         login.execute();
     }//GEN-LAST:event_btnEntrarActionPerformed
 
