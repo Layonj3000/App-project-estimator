@@ -51,8 +51,8 @@ public class ProjetosFuncionalidadesPersonalizadasModel {
         return selecionado != null ? selecionado.getValor() : 0;
     }
 
-    public void setSelecionado(SimNao selecionado) {
-        this.selecionado = selecionado;
+    public void setSelecionado(Integer selecionado) {
+        this.selecionado = (selecionado != null? SimNao.fromValue(selecionado): SimNao.NAO);
     }
 
     public ProjetoDeEstimativaModel getProjetoDeEstimativaModel() {

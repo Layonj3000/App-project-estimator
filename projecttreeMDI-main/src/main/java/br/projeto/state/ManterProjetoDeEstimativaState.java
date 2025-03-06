@@ -4,7 +4,7 @@
  */
 package br.projeto.state;
 
-import br.projeto.command.PreencherTabelaFuncionalidadesProjetoCommand;
+import br.projeto.command.PreencherTabelaFuncionalidadesProjetoParaInsercaoCommand;
 import br.projeto.command.SalvarProjetoDeEstimativaCommand;
 import br.projeto.presenter.ProjetoDeEstimativaPresenter;
 import br.projeto.view.ManterProjetoDeEstimativaView;
@@ -19,27 +19,29 @@ import java.util.List;
 public class ManterProjetoDeEstimativaState extends AProjetoDeEstimativaPresenterState{
     private ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter;
     private List<Integer> idPerfisSelecionados;
+    private Integer projetoId;
     
-    public ManterProjetoDeEstimativaState(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter,  List<Integer> idPerfisSelecionados){
+    public ManterProjetoDeEstimativaState(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter,  List<Integer> idPerfisSelecionados, Integer projetoId){
         super(projetoDeEstimativaPresenter);
         
         this.projetoDeEstimativaPresenter = projetoDeEstimativaPresenter;
         this.idPerfisSelecionados = idPerfisSelecionados;
+        this.projetoId= projetoId;
         
         
         projetoDeEstimativaPresenter.setView(new ManterProjetoDeEstimativaView());
         
         configuraTela();
         
-        new PreencherTabelaFuncionalidadesProjetoCommand(projetoDeEstimativaPresenter, idPerfisSelecionados).execute();
+        new PreencherTabelaFuncionalidadesProjetoParaInsercaoCommand(projetoDeEstimativaPresenter, idPerfisSelecionados, projetoId).execute();
         
     }
     
     @Override
     public void salvar(){
-        new SalvarProjetoDeEstimativaCommand(projetoDeEstimativaPresenter).execute();
+        new SalvarProjetoDeEstimativaCommand(projetoDeEstimativaPresenter,idPerfisSelecionados, projetoId).execute();
         //CODIGO PARA APARECER MENSAGEM DE SALVO COM SUCESSO
-        projetoDeEstimativaPresenter.getView().getFrame().dispose();
+        //projetoDeEstimativaPresenter.getView().getFrame().dispose();
     }
     
     @Override

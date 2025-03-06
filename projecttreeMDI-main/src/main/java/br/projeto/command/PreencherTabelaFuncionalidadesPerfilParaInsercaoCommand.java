@@ -37,6 +37,14 @@ public class PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand implements 
             return column == 0 || column == 1;
             }
             
+            @Override
+            public Class<?> getColumnClass(int columnIndex){
+                if (columnIndex == 1) {
+                    return Integer.class; 
+                }
+              return String.class;  
+            }
+            
 //            @Override
 //            public void setValueAt(Object aValue, int row, int column) {
 //                if (column == 2) { 

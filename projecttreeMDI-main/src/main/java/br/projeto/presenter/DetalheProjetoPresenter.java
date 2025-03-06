@@ -15,6 +15,8 @@ import br.projeto.service.EstimaProjetoService;
 import br.projeto.view.DetalheProjetoView;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 
 import java.util.List;
 import java.util.Map;
@@ -44,8 +46,8 @@ public class DetalheProjetoPresenter implements Observer {
         
         this.perfilProjetoDeEstimativaRepository.addObserver(this);
         this.projetoDeEstimativaRepository.addObserver(this);
-        this.projetoFuncionalidadesPersonalizadasRepository.addObserver(this);
-        this.perfilFuncionalidadesPersonalizadasRepository.addObserver(this);
+        /*this.projetoFuncionalidadesPersonalizadasRepository.addObserver(this);*/
+        /*this.perfilFuncionalidadesPersonalizadasRepository.addObserver(this);*/
         
         this.projetoNome = projetoNome;
         this.estimaService = new EstimaProjetoService();
@@ -142,7 +144,7 @@ public class DetalheProjetoPresenter implements Observer {
 
     private Map<String, SimNao> funcionalidadesEscolhidasProjeto(ProjetoDeEstimativaModel projeto,  List<ProjetosFuncionalidadesPersonalizadasModel> projetoFuncionalidadesPersonalizadasList) {
         Map<String, SimNao> funcionalidadesDisponiveis = projeto.getFuncionalidadesDisponiveis();
-        Map<String, SimNao> funcionalidadesEscolhidas = new HashMap<>();
+        Map<String, SimNao> funcionalidadesEscolhidas = new LinkedHashMap<>();
 
         for (Map.Entry<String, SimNao> entrySet : funcionalidadesDisponiveis.entrySet()) {
             if (entrySet.getValue() == SimNao.SIM) {
@@ -161,22 +163,34 @@ public class DetalheProjetoPresenter implements Observer {
     }
 
     private Map<String, Integer> funcionalidadesEscolhidasPerfil(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList, List<ProjetosFuncionalidadesPersonalizadasModel> projetoFuncionalidadesPersonalizadasList,List<PerfilFuncionalidadesPersonalizadasModel> perfilFuncionalidadesPersonalizadasList) {
-        Map<String, Integer> funcionalidadesEscolhidasPerfil = new HashMap<>();
-        Map<String, Integer> funcionalidadesDisponiveis = new HashMap<>();
+        Map<String, Integer> funcionalidadesEscolhidasPerfil = new LinkedHashMap<>();
+        Map<String, Integer> funcionalidadesDisponiveis = new LinkedHashMap<>();
         for (Map.Entry<String, SimNao> entrySet : funcionalidadesEscolhidasProjeto(projeto, projetoFuncionalidadesPersonalizadasList).entrySet()) {
             for (PerfilProjetoDeEstimativaModel model : perfilProjetoDeEstimativaModelList) {
                 funcionalidadesDisponiveis = model.getFuncionalidadesDisponiveis();
-            }
+            //}
             if(funcionalidadesDisponiveis.containsKey(entrySet.getKey())){
                 Integer valor = funcionalidadesEscolhidasPerfil.getOrDefault(entrySet.getKey(), 0) + funcionalidadesDisponiveis.getOrDefault(entrySet.getKey(), 0);
                 funcionalidadesEscolhidasPerfil.put(entrySet.getKey(), valor);
             }else{
-                for(PerfilFuncionalidadesPersonalizadasModel perfilFuncionalidadesPersonalizadasModel: perfilFuncionalidadesPersonalizadasList){
+/*                for(PerfilFuncionalidadesPersonalizadasModel perfilFuncionalidadesPersonalizadasModel: perfilFuncionalidadesPersonalizadasList){
                     if(entrySet.getKey().equals(perfilFuncionalidadesPersonalizadasModel.getNome())){
                         Integer valor = funcionalidadesEscolhidasPerfil.getOrDefault(entrySet.getKey(), 0) + perfilFuncionalidadesPersonalizadasModel.getValor();
                         funcionalidadesEscolhidasPerfil.put(entrySet.getKey(), valor);
                     }
+                    perfilFuncionalidadesPersonalizadasList.remove(perfilFuncionalidadesPersonalizadasModel);
+                }*/
+                 Iterator<PerfilFuncionalidadesPersonalizadasModel> iterator = perfilFuncionalidadesPersonalizadasList.iterator();
+                 while (iterator.hasNext()) {
+                    PerfilFuncionalidadesPersonalizadasModel perfilFuncionalidadesPersonalizadasModel = iterator.next();
+                    if (entrySet.getKey().equals(perfilFuncionalidadesPersonalizadasModel.getNome())) {
+                        Integer valor = funcionalidadesEscolhidasPerfil.getOrDefault(entrySet.getKey(), 0) + perfilFuncionalidadesPersonalizadasModel.getValor();
+                        funcionalidadesEscolhidasPerfil.put(entrySet.getKey(), valor);
+                        iterator.remove(); // Remoção segura
+                    }
                 }
+   
+            }
             }
         }
         return funcionalidadesEscolhidasPerfil;
@@ -190,21 +204,29 @@ public class DetalheProjetoPresenter implements Observer {
 
     @Override
     public void updatePerfilModel(List<PerfilProjetoDeEstimativaModel> listaPerfilProjetoDeEstimativaModel) {
-        carregarDetalhesProjeto();
+        if(listaPerfilProjetoDeEstimativaModel != null && !listaPerfilProjetoDeEstimativaModel.isEmpty()){
+            carregarDetalhesProjeto();
+        }
     }
 
     @Override
     public void updateProjetoModel(List<ProjetoDeEstimativaModel> listaProjetoDeEstimativaModel) {
-        carregarDetalhesProjeto();
+        if(listaProjetoDeEstimativaModel!=null && !listaProjetoDeEstimativaModel.isEmpty()){
+            carregarDetalhesProjeto();
+        }
     }
 
-    @Override
+    /*@Override
     public void updateProjetoFuncionalidadesPersonalizadasModel(List<ProjetosFuncionalidadesPersonalizadasModel> listaProjetosFuncionalidadesPersonalizadasModel) {
-        carregarDetalhesProjeto();
-    }
+        if(listaProjetosFuncionalidadesPersonalizadasModel!=null && !listaProjetosFuncionalidadesPersonalizadasModel.isEmpty()){
+            carregarDetalhesProjeto();
+        }
+    }*/
 
-    @Override
+    /*@Override
     public void updatePerfilFuncionalidadesPersonalizadasModel(List<PerfilFuncionalidadesPersonalizadasModel> listaPerfilFuncionalidadesPersonalizadasModel) {
-        carregarDetalhesProjeto();
-    }
+        if(listaPerfilFuncionalidadesPersonalizadasModel != null && !listaPerfilFuncionalidadesPersonalizadasModel.isEmpty()){
+            carregarDetalhesProjeto();
+        }
+    }*/
 }

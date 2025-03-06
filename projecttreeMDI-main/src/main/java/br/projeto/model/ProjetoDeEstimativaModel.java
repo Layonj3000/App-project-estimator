@@ -5,6 +5,7 @@ import br.projeto.enums.Status;
 
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ProjetoDeEstimativaModel {
@@ -89,21 +90,21 @@ public class ProjetoDeEstimativaModel {
     private Double custoGarantia;
     private Double fundoDeReserva;
     private Double outrosCustos;
-    private Double subTotal;
+    /*private Double subTotal;*/
     private Double percentualComImpostos;
-    private Double totalComImposto;
+    /*private Double totalComImposto;*/
     private Double percentualLucroDesejado;
-    private Double lucroCalculado;
+    /*private Double lucroCalculado;
     private Integer dias;
     private Double meses;
     private Double precoFinalCliente;
-    private Double mediaPorMes;
+    private Double mediaPorMes;*/
     private final Map<String, SimNao> funcionalidadesDisponiveis;
 
     public ProjetoDeEstimativaModel(){
-            funcionalidadesDisponiveis = new HashMap<>();
+            funcionalidadesDisponiveis = new LinkedHashMap<>();
     }
-    public ProjetoDeEstimativaModel(Integer id, UsuarioModel usuarioModel, int compartilhado,Integer compartilhadorPor,Date dataCriacao,String nomeProjetoDeEstimativa,int status, int pequeno, int medio, int grande, int mvp, int basico, int profissional, int cadastroPorEmailSenha, int cadastroPorFacebook, int cadastroPorTwitter, int cadastroPorGoogle, int cadastroPorLinkedin, int cadastroPorGithub, int cadastroPorConviteUsuario, int cadastroPorContasMultitenant, int cadastroPorSubdominios, int cadastroPorDominiosPersonalizados, int painel, int feedDeAtividades, int uploadDeArquivos, int uploadDeMidia, int perfisDeUsuario, int emailsTransacionais, int tags, int avaliacoesOuComentarios, int processamentoAudioVideo, int pesquisaTextoLivre, int pesquisa, int calendario, int exibicaoDadosMapaGeolocalizacao, int exibicaoMarcadoresRegioesMapaPersonalizados, int reservas, int mensagens, int forunsOuComentarios, int compartilhamentoSocial, int integracaoFacebookOpenGraph, int notificacaoPush, int planosDeAssinatura, int processamentoDePagamento, int carrinhoDeCompras, int marketplaceDeUsuarios, int gerenciamentoDeProdutos, int comprasDentroDoAplicativo, int coletaInformacaoPagamento, int integracaoCms, int paginasAdministracaoUsuarios, int moderacaoAprovacaoConteudo, int intercom, int analisesUso, int relatoriosErro, int monitoramentoPerformance, int suporteMultilingue, int conectarServicosDeTerceiros, int apiParaTerceiros, int envioSms, int mascaramentoNumeroTelefone, int segurancaBaseadaCertificadoSsl, int protecaoContraDos, int autenticacaoDuasEtapas, int desenvolvimentoEspecificoApp, int designIconeApp, int sincronizacaoNuvem, int dados_sensoresDispositivo, int codigoBarraQrCode, int dadosSaude, int appleWatch, int gerenteDeProjetos, Double custoHardware, Double custoSoftware, Double custoRiscos, Double custoGarantia, Double fundoDeReserva, Double outrosCustos, Double subTotal, Double percentualComImpostos, Double totalComImposto, Double percentualLucroDesejado, Double lucroCalculado, Integer dias, Double meses, Double precoFinalCliente, Double mediaPorMes){
+    public ProjetoDeEstimativaModel(Integer id, UsuarioModel usuarioModel, int compartilhado,Integer compartilhadorPor,Date dataCriacao,String nomeProjetoDeEstimativa,int status, int pequeno, int medio, int grande, int mvp, int basico, int profissional, int cadastroPorEmailSenha, int cadastroPorFacebook, int cadastroPorTwitter, int cadastroPorGoogle, int cadastroPorLinkedin, int cadastroPorGithub, int cadastroPorConviteUsuario, int cadastroPorContasMultitenant, int cadastroPorSubdominios, int cadastroPorDominiosPersonalizados, int painel, int feedDeAtividades, int uploadDeArquivos, int uploadDeMidia, int perfisDeUsuario, int emailsTransacionais, int tags, int avaliacoesOuComentarios, int processamentoAudioVideo, int pesquisaTextoLivre, int pesquisa, int calendario, int exibicaoDadosMapaGeolocalizacao, int exibicaoMarcadoresRegioesMapaPersonalizados, int reservas, int mensagens, int forunsOuComentarios, int compartilhamentoSocial, int integracaoFacebookOpenGraph, int notificacaoPush, int planosDeAssinatura, int processamentoDePagamento, int carrinhoDeCompras, int marketplaceDeUsuarios, int gerenciamentoDeProdutos, int comprasDentroDoAplicativo, int coletaInformacaoPagamento, int integracaoCms, int paginasAdministracaoUsuarios, int moderacaoAprovacaoConteudo, int intercom, int analisesUso, int relatoriosErro, int monitoramentoPerformance, int suporteMultilingue, int conectarServicosDeTerceiros, int apiParaTerceiros, int envioSms, int mascaramentoNumeroTelefone, int segurancaBaseadaCertificadoSsl, int protecaoContraDos, int autenticacaoDuasEtapas, int desenvolvimentoEspecificoApp, int designIconeApp, int sincronizacaoNuvem, int dados_sensoresDispositivo, int codigoBarraQrCode, int dadosSaude, int appleWatch, int gerenteDeProjetos, Double custoHardware, Double custoSoftware, Double custoRiscos, Double custoGarantia, Double fundoDeReserva, Double outrosCustos, /*Double subTotal,*/ Double percentualComImpostos, /*Double totalComImposto,*/ Double percentualLucroDesejado/*, Double lucroCalculado, Integer dias, Double meses, Double precoFinalCliente, Double mediaPorMes*/){
         this.id = id;
         this.usuarioModel = usuarioModel;
         this.compartilhado = SimNao.fromValue(compartilhado);
@@ -183,16 +184,16 @@ public class ProjetoDeEstimativaModel {
         this.custoGarantia = custoGarantia;
         this.fundoDeReserva = fundoDeReserva;
         this.outrosCustos = outrosCustos;
-        this.subTotal = subTotal;
+        /*this.subTotal = subTotal;*/
         this.percentualComImpostos = percentualComImpostos;
-        this.totalComImposto = totalComImposto;
+        /*this.totalComImposto = totalComImposto;*/
         this.percentualLucroDesejado = percentualLucroDesejado;
-        this.lucroCalculado = lucroCalculado;
+        /*this.lucroCalculado = lucroCalculado;
         this.dias = dias;
         this.meses = meses;
         this.precoFinalCliente = precoFinalCliente;
-        this.mediaPorMes = mediaPorMes;
-        funcionalidadesDisponiveis = new HashMap<>();
+        this.mediaPorMes = mediaPorMes;*/
+        funcionalidadesDisponiveis = new LinkedHashMap<>();
     }
 
     public Integer getId() {
@@ -559,7 +560,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setProcessamentoDePagamento(Integer processamentoDePagamento) {
-        this.processamentoDePagamento = (this.processamentoDePagamento != null) ? SimNao.fromValue(processamentoDePagamento) : SimNao.NAO;
+        this.processamentoDePagamento = processamentoDePagamento != null ? SimNao.fromValue(processamentoDePagamento) : SimNao.NAO;
     }
 
     public Integer getCarrinhoDeComprasValor() {
@@ -567,7 +568,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setCarrinhoDeCompras(Integer carrinhoDeCompras) {
-        this.carrinhoDeCompras = (this.carrinhoDeCompras != null) ? SimNao.fromValue(carrinhoDeCompras) : SimNao.NAO;
+        this.carrinhoDeCompras = carrinhoDeCompras != null ? SimNao.fromValue(carrinhoDeCompras) : SimNao.NAO;
     }
 
     public Integer getMarketplaceDeUsuariosValor() {
@@ -575,7 +576,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setMarketplaceDeUsuarios(Integer marketplaceDeUsuarios) {
-        this.marketplaceDeUsuarios = (this.marketplaceDeUsuarios != null) ? SimNao.fromValue(marketplaceDeUsuarios) : SimNao.NAO;
+        this.marketplaceDeUsuarios = marketplaceDeUsuarios != null ? SimNao.fromValue(marketplaceDeUsuarios) : SimNao.NAO;
     }
 
     public Integer getGerenciamentoDeProdutosValor() {
@@ -583,7 +584,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setGerenciamentoDeProdutos(Integer gerenciamentoDeProdutos) {
-        this.gerenciamentoDeProdutos = (this.gerenciamentoDeProdutos != null) ? SimNao.fromValue(gerenciamentoDeProdutos) : SimNao.NAO;
+        this.gerenciamentoDeProdutos = gerenciamentoDeProdutos != null ? SimNao.fromValue(gerenciamentoDeProdutos) : SimNao.NAO;
     }
 
     public Integer getComprasDentroDoAplicativoValor() {
@@ -591,7 +592,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setComprasDentroDoAplicativo(Integer comprasDentroDoAplicativo) {
-        this.comprasDentroDoAplicativo = (this.comprasDentroDoAplicativo != null) ? SimNao.fromValue(comprasDentroDoAplicativo) : SimNao.NAO;
+        this.comprasDentroDoAplicativo = comprasDentroDoAplicativo != null ? SimNao.fromValue(comprasDentroDoAplicativo) : SimNao.NAO;
     }
 
     public Integer getColetaInformacaoPagamentoValor() {
@@ -599,7 +600,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setColetaInformacaoPagamento(Integer coletaInformacaoPagamento) {
-        this.coletaInformacaoPagamento = (this.coletaInformacaoPagamento != null) ? SimNao.fromValue(coletaInformacaoPagamento) : SimNao.NAO;
+        this.coletaInformacaoPagamento = coletaInformacaoPagamento != null ? SimNao.fromValue(coletaInformacaoPagamento) : SimNao.NAO;
     }
 
     public Integer getIntegracaoCmsValor() {
@@ -607,7 +608,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setIntegracaoCms(Integer integracaoCms) {
-        this.integracaoCms = (this.integracaoCms != null) ? SimNao.fromValue(integracaoCms) : SimNao.NAO;
+        this.integracaoCms = integracaoCms != null ? SimNao.fromValue(integracaoCms) : SimNao.NAO;
     }
 
     public Integer getPaginasAdministracaoUsuariosValor() {
@@ -615,7 +616,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setPaginasAdministracaoUsuarios(Integer paginasAdministracaoUsuarios) {
-        this.paginasAdministracaoUsuarios = (this.paginasAdministracaoUsuarios != null) ? SimNao.fromValue(paginasAdministracaoUsuarios) : SimNao.NAO;
+        this.paginasAdministracaoUsuarios = paginasAdministracaoUsuarios != null ? SimNao.fromValue(paginasAdministracaoUsuarios) : SimNao.NAO;
     }
 
     public Integer getModeracaoAprovacaoConteudoValor() {
@@ -623,7 +624,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setModeracaoAprovacaoConteudo(Integer moderacaoAprovacaoConteudo) {
-        this.moderacaoAprovacaoConteudo = (this.moderacaoAprovacaoConteudo != null) ? SimNao.fromValue(moderacaoAprovacaoConteudo) : SimNao.NAO;
+        this.moderacaoAprovacaoConteudo = moderacaoAprovacaoConteudo != null ? SimNao.fromValue(moderacaoAprovacaoConteudo) : SimNao.NAO;
     }
 
     public Integer getIntercomValor() {
@@ -631,7 +632,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setIntercom(Integer intercom) {
-        this.intercom = (this.intercom != null) ? SimNao.fromValue(intercom) : SimNao.NAO;
+        this.intercom = intercom != null ? SimNao.fromValue(intercom) : SimNao.NAO;
     }
 
     public Integer getAnalisesUsoValor() {
@@ -639,7 +640,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setAnalisesUso(Integer analisesUso) {
-        this.analisesUso = (this.analisesUso != null) ? SimNao.fromValue(analisesUso) : SimNao.NAO;
+        this.analisesUso = analisesUso != null ? SimNao.fromValue(analisesUso) : SimNao.NAO;
     }
 
     public Integer getRelatoriosErroValor() {
@@ -647,7 +648,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setRelatoriosErro(Integer relatoriosErro) {
-        this.relatoriosErro = (this.relatoriosErro != null) ? SimNao.fromValue(relatoriosErro) : SimNao.NAO;
+        this.relatoriosErro = relatoriosErro != null ? SimNao.fromValue(relatoriosErro) : SimNao.NAO;
     }
 
     public Integer getMonitoramentoPerformanceValor() {
@@ -655,7 +656,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setMonitoramentoPerformance(Integer monitoramentoPerformance) {
-        this.monitoramentoPerformance = (this.monitoramentoPerformance != null) ? SimNao.fromValue(monitoramentoPerformance) : SimNao.NAO;
+        this.monitoramentoPerformance = monitoramentoPerformance != null ? SimNao.fromValue(monitoramentoPerformance) : SimNao.NAO;
     }
 
     public Integer getSuporteMultilingueValor() {
@@ -663,7 +664,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setSuporteMultilingue(Integer suporteMultilingue) {
-        this.suporteMultilingue = (this.suporteMultilingue != null) ? SimNao.fromValue(suporteMultilingue) : SimNao.NAO;
+        this.suporteMultilingue = suporteMultilingue != null ? SimNao.fromValue(suporteMultilingue) : SimNao.NAO;
     }
 
     public Integer getConectarServicosDeTerceirosValor() {
@@ -671,7 +672,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setConectarServicosDeTerceiros(Integer conectarServicosDeTerceiros) {
-        this.conectarServicosDeTerceiros = (this.conectarServicosDeTerceiros != null) ? SimNao.fromValue(conectarServicosDeTerceiros) : SimNao.NAO;
+        this.conectarServicosDeTerceiros = conectarServicosDeTerceiros != null ? SimNao.fromValue(conectarServicosDeTerceiros) : SimNao.NAO;
     }
 
     public Integer getApiParaTerceirosValor() {
@@ -679,7 +680,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setApiParaTerceiros(Integer apiParaTerceiros) {
-        this.apiParaTerceiros = (this.apiParaTerceiros != null) ? SimNao.fromValue(apiParaTerceiros) : SimNao.NAO;
+        this.apiParaTerceiros = apiParaTerceiros != null ? SimNao.fromValue(apiParaTerceiros) : SimNao.NAO;
     }
 
     public Integer getEnvioSmsValor() {
@@ -687,7 +688,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setEnvioSms(Integer envioSms) {
-        this.envioSms = (this.envioSms != null) ? SimNao.fromValue(envioSms) : SimNao.NAO;
+        this.envioSms = envioSms != null ? SimNao.fromValue(envioSms) : SimNao.NAO;
     }
 
     public Integer getMascaramentoNumeroTelefoneValor() {
@@ -695,7 +696,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setMascaramentoNumeroTelefone(Integer mascaramentoNumeroTelefone) {
-        this.mascaramentoNumeroTelefone = (this.mascaramentoNumeroTelefone != null) ? SimNao.fromValue(mascaramentoNumeroTelefone) : SimNao.NAO;
+        this.mascaramentoNumeroTelefone = mascaramentoNumeroTelefone != null ? SimNao.fromValue(mascaramentoNumeroTelefone) : SimNao.NAO;
     }
 
     public Integer getSegurancaBaseadaCertificadoSslValor() {
@@ -703,7 +704,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setSegurancaBaseadaCertificadoSsl(Integer segurancaBaseadaCertificadoSsl) {
-        this.segurancaBaseadaCertificadoSsl = (this.segurancaBaseadaCertificadoSsl != null) ? SimNao.fromValue(segurancaBaseadaCertificadoSsl) : SimNao.NAO;
+        this.segurancaBaseadaCertificadoSsl = segurancaBaseadaCertificadoSsl != null ? SimNao.fromValue(segurancaBaseadaCertificadoSsl) : SimNao.NAO;
     }
 
     public Integer getProtecaoContraDosValor() {
@@ -711,7 +712,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setProtecaoContraDos(Integer protecaoContraDos) {
-        this.protecaoContraDos = (this.protecaoContraDos != null) ? SimNao.fromValue(protecaoContraDos) : SimNao.NAO;
+        this.protecaoContraDos = protecaoContraDos != null ? SimNao.fromValue(protecaoContraDos) : SimNao.NAO;
     }
 
     public Integer getAutenticacaoDuasEtapasValor() {
@@ -719,7 +720,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setAutenticacaoDuasEtapas(Integer autenticacaoDuasEtapas) {
-        this.autenticacaoDuasEtapas = (this.autenticacaoDuasEtapas != null) ? SimNao.fromValue(autenticacaoDuasEtapas) : SimNao.NAO;
+        this.autenticacaoDuasEtapas = autenticacaoDuasEtapas != null ? SimNao.fromValue(autenticacaoDuasEtapas) : SimNao.NAO;
     }
 
     public Integer getDesenvolvimentoEspecificoAppValor() {
@@ -727,7 +728,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setDesenvolvimentoEspecificoApp(Integer desenvolvimentoEspecificoApp) {
-        this.desenvolvimentoEspecificoApp = (this.desenvolvimentoEspecificoApp != null) ? SimNao.fromValue(desenvolvimentoEspecificoApp) : SimNao.NAO;
+        this.desenvolvimentoEspecificoApp = desenvolvimentoEspecificoApp != null ? SimNao.fromValue(desenvolvimentoEspecificoApp) : SimNao.NAO;
     }
 
     public Integer getDesignIconeAppValor() {
@@ -735,7 +736,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setDesignIconeApp(Integer designIconeApp) {
-        this.designIconeApp = (this.designIconeApp != null) ? SimNao.fromValue(designIconeApp) : SimNao.NAO;
+        this.designIconeApp = designIconeApp != null ? SimNao.fromValue(designIconeApp) : SimNao.NAO;
     }
 
     public Integer getSincronizacaoNuvemValor() {
@@ -743,7 +744,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setSincronizacaoNuvem(Integer sincronizacaoNuvem) {
-        this.sincronizacaoNuvem = (this.sincronizacaoNuvem != null) ? SimNao.fromValue(sincronizacaoNuvem) : SimNao.NAO;
+        this.sincronizacaoNuvem = sincronizacaoNuvem != null ? SimNao.fromValue(sincronizacaoNuvem) : SimNao.NAO;
     }
 
     public Integer getDadosSensoresDispositivoValor() {
@@ -751,7 +752,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setDadosSensoresDispositivo(Integer dadosSensoresDispositivo) {
-        this.dadosSensoresDispositivo = (this.dadosSensoresDispositivo != null) ? SimNao.fromValue(dadosSensoresDispositivo) : SimNao.NAO;
+        this.dadosSensoresDispositivo = dadosSensoresDispositivo != null ? SimNao.fromValue(dadosSensoresDispositivo) : SimNao.NAO;
     }
 
     public Integer getCodigoBarraQrCodeValor() {
@@ -759,7 +760,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setCodigoBarraQrCode(Integer codigoBarraQrCode) {
-        this.codigoBarraQrCode = (this.codigoBarraQrCode != null) ? SimNao.fromValue(codigoBarraQrCode) : SimNao.NAO;
+        this.codigoBarraQrCode = codigoBarraQrCode != null ? SimNao.fromValue(codigoBarraQrCode) : SimNao.NAO;
     }
 
     public Integer getDadosSaudeValor() {
@@ -767,7 +768,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setDadosSaude(Integer dadosSaude) {
-        this.dadosSaude = (this.dadosSaude != null) ? SimNao.fromValue(dadosSaude) : SimNao.NAO;
+        this.dadosSaude = dadosSaude != null ? SimNao.fromValue(dadosSaude) : SimNao.NAO;
     }
 
     public Integer getAppleWatchValor() {
@@ -775,7 +776,7 @@ public class ProjetoDeEstimativaModel {
     }
 
     public void setAppleWatch(Integer appleWatch) {
-        this.appleWatch = (this.appleWatch != null) ? SimNao.fromValue(appleWatch) : SimNao.NAO;
+        this.appleWatch = appleWatch != null ? SimNao.fromValue(appleWatch) : SimNao.NAO;
     }
 
     public Integer getGerenteDeProjetosValor() {
@@ -787,7 +788,7 @@ public class ProjetoDeEstimativaModel {
     }
     
     public void setGerenteDeProjetos(Integer gerenteDeProjetos) {
-        this.gerenteDeProjetos = (this.gerenteDeProjetos != null) ? SimNao.fromValue(gerenteDeProjetos) : SimNao.NAO;
+        this.gerenteDeProjetos = gerenteDeProjetos != null ? SimNao.fromValue(gerenteDeProjetos) : SimNao.NAO;
     }
 
     public Double getCustoHardware() {
@@ -840,13 +841,13 @@ public class ProjetoDeEstimativaModel {
         this.outrosCustos = outrosCustos;
     }
 
-    public Double getSubTotal() {
+    /*public Double getSubTotal() {
         return subTotal;
     }
 
     public void setSubTotal(Double subTotal) {
         this.subTotal = subTotal;
-    }
+    }*/
 
     public Double getPercentualComImpostos() {
         return percentualComImpostos;
@@ -856,13 +857,13 @@ public class ProjetoDeEstimativaModel {
         this.percentualComImpostos = percentualComImpostos;
     }
 
-    public Double getTotalComImposto() {
+    /*public Double getTotalComImposto() {
         return totalComImposto;
     }
 
     public void setTotalComImposto(Double totalComImposto) {
         this.totalComImposto = totalComImposto;
-    }
+    }*/
 
     public Double getPercentualLucroDesejado() {
         return percentualLucroDesejado;
@@ -872,7 +873,7 @@ public class ProjetoDeEstimativaModel {
         this.percentualLucroDesejado = percentualLucroDesejado;
     }
 
-    public Double getLucroCalculado() {
+    /*public Double getLucroCalculado() {
         return lucroCalculado;
     }
 
@@ -910,7 +911,7 @@ public class ProjetoDeEstimativaModel {
 
     public void setMediaPorMes(Double mediaPorMes) {
         this.mediaPorMes = mediaPorMes;
-    }
+    }*/
 
 public Map<String, SimNao> getFuncionalidadesDisponiveis() {
     funcionalidadesDisponiveis.put("Compartilhado", compartilhado);
@@ -1067,15 +1068,8 @@ public Map<String, SimNao> getFuncionalidadesDisponiveis() {
                 ", custoGarantia=" + custoGarantia +
                 ", fundoDeReserva=" + fundoDeReserva +
                 ", outrosCustos=" + outrosCustos +
-                ", subTotal=" + subTotal +
                 ", percentualComImpostos=" + percentualComImpostos +
-                ", totalComImposto=" + totalComImposto +
                 ", percentualLucroDesejado=" + percentualLucroDesejado +
-                ", lucroCalculado=" + lucroCalculado +
-                ", dias=" + dias +
-                ", meses=" + meses +
-                ", precoFinalCliente=" + precoFinalCliente +
-                ", mediaPorMes=" + mediaPorMes +
                 '}'+ "\n";
     }
 }

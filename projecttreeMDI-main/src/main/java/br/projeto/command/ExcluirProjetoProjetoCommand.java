@@ -80,11 +80,12 @@ public class ExcluirProjetoProjetoCommand implements Command {
         );
 
         if (confirmacao == JOptionPane.YES_OPTION) {
+            projetoNome = projetoDeEstimativaRepository.findById(projetoId).getNomeProjetoDeEstimativa();
             boolean removido = projetoDeEstimativaRepository.deleteById(projetoId);
             if (removido) {
                 new MostrarMensagemProjetoCommand("Projeto \"" + projetoNome + "\" removido com sucesso!").execute();
             } else {
-                new MostrarMensagemProjetoCommand("Erro ao remover o projeto \"" + projetoNome + "\".").execute();
+                new MostrarMensagemProjetoCommand("Erro ao remover o projeto \"" + projetoDeEstimativaRepository.findById(projetoId).getNomeProjetoDeEstimativa() + "\".").execute();
             }
         }   
     }

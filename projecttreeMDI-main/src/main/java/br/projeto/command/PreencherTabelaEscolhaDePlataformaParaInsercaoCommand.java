@@ -16,10 +16,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author USER
  */
-public class PreencherTabelaEscolhaDePlataformaCommand implements Command{
+public class PreencherTabelaEscolhaDePlataformaParaInsercaoCommand implements Command{
     private final ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter;
 
-    public PreencherTabelaEscolhaDePlataformaCommand(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter) {
+    public PreencherTabelaEscolhaDePlataformaParaInsercaoCommand(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter) {
         this.projetoDeEstimativaPresenter = projetoDeEstimativaPresenter;
     }
 
@@ -42,7 +42,7 @@ public class PreencherTabelaEscolhaDePlataformaCommand implements Command{
         //O PROXIMO PASSO É PERCORRER OS PERFIL E ADICIONÁ-LOS AO JTABLE DE ESCOLHA DE PLATAFORMAS
         //POSSIVELMENTE DEPOIS IRA MUDAR PARA UM FindByUser COMO EM OUTROS CONTEXTOS DA APLICAÇÃO
         
-        List<PerfilProjetoDeEstimativaModel> perfilList = projetoDeEstimativaPresenter.getPerfilProjetoDeEstimativaRepository().findAll();
+        List<PerfilProjetoDeEstimativaModel> perfilList = projetoDeEstimativaPresenter.getPerfilProjetoDeEstimativaRepository().findByUser(projetoDeEstimativaPresenter.getUsuarioModel());
                 
         for(PerfilProjetoDeEstimativaModel perfil: perfilList){
             String nomePlataforma = perfil.getNomePerfil();

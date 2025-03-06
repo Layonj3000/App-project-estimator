@@ -1,6 +1,7 @@
 package br.projeto.service;
 
 import br.projeto.enums.SimNao;
+import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
@@ -14,16 +15,16 @@ public class EstimaProjetoService {
     private static final double VALOR_DIARIA_GERENCIA = 300.0;
     private static final double VALOR_DIARIA_UI_UX = 550.0;
 
-    public int calcularDiasTotais(Projeto projeto) {
+    public int calcularDiasTotais(Projeto projeto) {//ANTIGO
         return calcularDiasFuncionalidades(projeto.getFuncionalidadesEscolhidas());
     }
 
-    public double calcularCusto(Projeto projeto) {
+    public double calcularCusto(Projeto projeto) {//ANTIGO
         int diasTotais = calcularDiasTotais(projeto);
         return diasTotais * VALOR_DIARIA_DESENVOLVIMENTO;
     }
 
-    public double calcularValorUnitario(String tipoProjeto, int dias) {
+    /*public double calcularValorUnitario(String tipoProjeto, int dias) {
         switch (tipoProjeto) {
             case "Web/Back-end":
             case "Android":
@@ -33,13 +34,13 @@ public class EstimaProjetoService {
             default:
                 throw new IllegalArgumentException("Tipo de projeto desconhecido: " + tipoProjeto);
         }
-    }
+    }*/
 
     public double calcularValorUnitario(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList, int dias) {//LEMBRAR DE ADICIONAR A LOGICA PARA O TAMANHO DO PROJETO(MVP, Básico, Profissional)
         double ValorUnitarioDesenvolvimento = 0;
         for (PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel : perfilProjetoDeEstimativaModelList) {
             if (verificaGerenteProjeto(projeto.getGerenteDeProjetos())) {
-                ValorUnitarioDesenvolvimento =+ perfilProjetoDeEstimativaModel.getGerenteDeProjetos();
+                ValorUnitarioDesenvolvimento += perfilProjetoDeEstimativaModel.getGerenteDeProjetos();
             }
             switch (perfilProjetoDeEstimativaModel.getNomePerfil()) {
                 case "Web/Back-end":
@@ -48,8 +49,8 @@ public class EstimaProjetoService {
                 case "Android"://PODIA DEIXAR SOMENTE O DEFAULT, MAS OPTEI POR DEIXAR O ANDROID E IOS PARA MELHOR ENTENDIMENTO
                 case "iOS":
                 default:    
-                    ValorUnitarioDesenvolvimento =+ perfilProjetoDeEstimativaModel.getTaxaDiariaDesenvolvimento();
-                    ValorUnitarioDesenvolvimento =+ perfilProjetoDeEstimativaModel.getTaxaDiariaDesign();
+                    ValorUnitarioDesenvolvimento += perfilProjetoDeEstimativaModel.getTaxaDiariaDesenvolvimento();
+                    ValorUnitarioDesenvolvimento += perfilProjetoDeEstimativaModel.getTaxaDiariaDesign();
                     break;
             }
         }
@@ -64,13 +65,25 @@ public class EstimaProjetoService {
         }
     }
 
-    public int calcularDiasFuncionalidades(Map<String, Integer> funcionalidadesEscolhidas) {
+   public int calcularDiasFuncionalidades(Map<String, Integer> funcionalidadesEscolhidas) {//ANTIGO
         int totalDias = 0;
         for (Integer dias : funcionalidadesEscolhidas.values()) {
             totalDias += dias;
         }
         return totalDias;
     }
+    
+    /*public int calcularDiasFuncionalidades(List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList,List<PerfilFuncionalidadesPersonalizadasModel> perfilFuncionalidadesPersonalizadasList, String nomeFuncionalidade, Integer valorFuncionalidade) {//NOVO
+        double dias = 0;
+        for(PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel:perfilProjetoDeEstimativaModelList){
+            if(perfilProjetoDeEstimativaModel.getFuncionalidadesDisponiveis().get(nomeFuncionalidade)!=null||perfilProjetoDeEstimativaModel.getFuncionalidadesDisponiveis().get(nomeFuncionalidade)!=0){
+                dias += perfilProjetoDeEstimativaModel.getFuncionalidadesDisponiveis().get(nomeFuncionalidade);
+            }else{
+                for
+            }
+        }
+        
+    }*/
 
     public double calcularCustosAdicionais(double custoHardware, double custoSoftware, double custoRiscos, double custoGarantia, double fundoReserva, double outrosCustos) {
         return custoHardware + custoSoftware + custoRiscos + custoGarantia + fundoReserva + outrosCustos;
@@ -91,4 +104,6 @@ public class EstimaProjetoService {
     public double calcularMediaPorMes(double precoFinal, double meses) {
         return precoFinal / meses;
     }
+
+
 }

@@ -5,6 +5,7 @@
 package br.projeto.presenter;
 
 import br.projeto.command.AdicionarOpcaoPerfilCommand;
+import br.projeto.command.RemoverOpcaoPerfilCommand;
 import br.projeto.model.UsuarioModel;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
@@ -25,7 +26,7 @@ public class PerfilProjetoDeEstimativaPresenter {
 
     private ManterPerfilProjetoDeEstimativaView view;
     private APerfilProjetoDeEstimativaState estado;
-
+    //ADICIONAR BOTAO PARA EXCLUIR LINHA
     public PerfilProjetoDeEstimativaPresenter(PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository, ManterPerfilProjetoDeEstimativaView view, UsuarioModel usuarioModel) {
         this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
         this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;
@@ -59,6 +60,15 @@ public class PerfilProjetoDeEstimativaPresenter {
             }
         }); 
         
+    }
+    
+    public void configurarRemocaoFuncionalidades(){
+        view.getBtnRemoverFuncionalidade().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                new RemoverOpcaoPerfilCommand(PerfilProjetoDeEstimativaPresenter.this).execute();
+            }
+        });
     }
     
     public void setState(APerfilProjetoDeEstimativaState estado){
