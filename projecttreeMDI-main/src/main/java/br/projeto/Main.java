@@ -27,12 +27,17 @@ public class Main {
 
     public static void main(String[] args) {
         
-          TelaPresenter presenter = new TelaPresenter(new LoginState());     
+          TelaPresenter presenter = new TelaPresenter(new LoginState());  
+          
+          
 //        RepositoryFactory factory = RepositoryFactory.escolherClasseFabricada(ProjetoDeEstimativaRepository.class);
 //        ProjetoDeEstimativaRepository projetoDeEstimativaRepository = factory.createRepository();
 //
-//        RepositoryFactory factory1 = RepositoryFactory.escolherClasseFabricada(UsuarioRepository.class);
-//        UsuarioRepository usuarioRepository = factory1.createRepository();
+        RepositoryFactory factory1 = RepositoryFactory.escolherClasseFabricada(UsuarioRepository.class);
+        UsuarioRepository usuarioRepository = factory1.createRepository();
+        
+        System.out.println(usuarioRepository.findAll());
+        
 //        UsuarioModel usuarioModel = new UsuarioModel(1, "ana", "1234", "ana@gmail.com");
 //        UsuarioModel usuarioModel2 = new UsuarioModel(2, "david", "1234", "david@gmail.com");
         //usuarioRepository.insert(usuarioModel);
@@ -47,8 +52,8 @@ public class Main {
 //       System.out.println(projetoDeEstimativaRepository.findAll());
 //
 //
-//        RepositoryFactory factory2 = RepositoryFactory.escolherClasseFabricada(PerfilProjetoDeEstimativaRepository.class);
-//        PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository = factory2.createRepository();
+/*        RepositoryFactory factory2 = RepositoryFactory.escolherClasseFabricada(PerfilProjetoDeEstimativaRepository.class);
+        PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository = factory2.createRepository();*/
 //
  //       PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = new PerfilProjetoDeEstimativaModel(
  //           1, usuarioModel, "Perfil Padrão",
@@ -80,26 +85,26 @@ public class Main {
 //
         //System.out.println(perfilProjetoIntermediariaRepository.findAll());
         
- //       RepositoryFactory factory4 = RepositoryFactory.escolherClasseFabricada(ProjetoFuncionalidadesPersonalizadasRepository.class);
- //       ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository = factory4.createRepository();
+        /*RepositoryFactory factory4 = RepositoryFactory.escolherClasseFabricada(ProjetoFuncionalidadesPersonalizadasRepository.class);
+        ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository = factory4.createRepository();*/
   //      ProjetosFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadasModel = new ProjetosFuncionalidadesPersonalizadasModel(1, "Funcionalidade EXTRA", SimNao.SIM, projetoDeEstimativaModel);
 //        projetoFuncionalidadesPersonalizadasRepository.insert(projetosFuncionalidadesPersonalizadasModel);
 
  //       System.out.println(projetoFuncionalidadesPersonalizadasRepository.findAll());    
         
         
-//        RepositoryFactory factory5 = RepositoryFactory.escolherClasseFabricada(PerfilFuncionalidadesPersonalizadasRepository.class);
- //       PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository = factory5.createRepository();
+        /*RepositoryFactory factory5 = RepositoryFactory.escolherClasseFabricada(PerfilFuncionalidadesPersonalizadasRepository.class);
+        PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository = factory5.createRepository();*/
  //       PerfilFuncionalidadesPersonalizadasModel perfilFuncionalidadesPersonalizadasModel = new PerfilFuncionalidadesPersonalizadasModel(1, "Funcionalidade EXTRA", 40, perfilProjetoDeEstimativaModel);
 //        perfilFuncionalidadesPersonalizadasRepository.deleteById(1);
 //        perfilFuncionalidadesPersonalizadasRepository.insert(perfilFuncionalidadesPersonalizadasModel);
   //      System.out.println(perfilFuncionalidadesPersonalizadasRepository.findAll());
         
- //       RepositoryFactory factory6 = RepositoryFactory.escolherClasseFabricada(PerfilProjetoIntermediariaRepository.class);
- //       PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository = factory6.createRepository();
+/*        RepositoryFactory factory6 = RepositoryFactory.escolherClasseFabricada(PerfilProjetoIntermediariaRepository.class);
+        PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository = factory6.createRepository();
         
- //       SwingUtilities.invokeLater(() -> {
- //           PrincipalPresenter presenter = new PrincipalPresenter(new ProjetoRepositoryMock(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel2);
-//        });
+        SwingUtilities.invokeLater(() -> {
+            PrincipalPresenter presenter = new PrincipalPresenter(new ProjetoRepositoryMock(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel2);
+        });*/
    }
 }

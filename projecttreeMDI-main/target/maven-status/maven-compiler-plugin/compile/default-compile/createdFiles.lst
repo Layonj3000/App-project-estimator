@@ -16,6 +16,7 @@ br\projeto\repository_factory\UsuarioRepositoryFactory.class
 br\projeto\service\CriarProjetoMock.class
 br\projeto\service\ConstrutorDeArvoreNavegacaoService.class
 br\projeto\command\PreencherTabelaFuncionalidadesProjetoParaInsercaoCommand$1.class
+br\projeto\state\TelaState.class
 br\projeto\service\RetornaProjetoModelService.class
 br\projeto\repository\UsuarioRepository.class
 br\projeto\repository\abstr\IProjetoFuncionalidadesPersonalizadasRepository.class
@@ -63,6 +64,7 @@ br\projeto\command\PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand$1.cla
 br\projeto\Main.class
 br\projeto\view\DashBoardProjetoView.class
 br\projeto\service\VerificacoesTelaProjetoService.class
+br\projeto\view\TelaRegistro.class
 br\projeto\presenter\helpers\WindowManager.class
 br\projeto\state\EscolherPlataformaState$2.class
 br\projeto\presenter\window_command\FecharJanelasProjetoRelacionadasCommand.class
@@ -76,6 +78,7 @@ br\projeto\model\ProjetosFuncionalidadesPersonalizadasModel.class
 br\projeto\repository\abstr\IPerfilProjetoDeEstimativaRepository.class
 br\projeto\command\AbrirDetalhesPerfilCommand.class
 br\projeto\model\PerfilProjetoDeEstimativaModel.class
+br\projeto\view\TelaRegistro$2.class
 br\projeto\view\ManterProjetoDeEstimativaViewBackup$1.class
 br\projeto\presenter\window_command\WindowCommand.class
 br\projeto\view\EscolhaPlataformaView.class
@@ -98,6 +101,7 @@ br\projeto\view\TelaLogin$4.class
 br\projeto\model\PerfilFuncionalidadesPersonalizadasModel.class
 br\projeto\command\AbrirInternalFrameGenericoProjetoCommand.class
 br\projeto\command\PreencherTabelaFuncionalidadesProjetoParaUpdateCommand.class
+br\projeto\view\TelaRegistro$3.class
 br\projeto\model\PerfilProjetoIntermediariaModel.class
 br\projeto\presenter\DashBoardProjetoPresenter.class
 br\projeto\service\ProvedorMenuContextual.class
@@ -105,6 +109,7 @@ br\projeto\command\CriarPerfilCommand.class
 br\projeto\presenter\window_command\ConfigurarMenuJanelaCommand.class
 br\projeto\command\AtualizarProjetoCommand.class
 br\projeto\view\ManterPerfilProjetoDeEstimativaView$4.class
+br\projeto\view\TelaLogin$1.class
 br\projeto\repository_factory\PerfilProjetoDeEstimativaRepositoryFactory.class
 br\projeto\state\APerfilProjetoDeEstimativaState.class
 br\projeto\repository\ProjetoDeEstimativaRepository.class

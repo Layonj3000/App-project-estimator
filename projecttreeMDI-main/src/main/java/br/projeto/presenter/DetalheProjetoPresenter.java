@@ -46,8 +46,8 @@ public class DetalheProjetoPresenter implements Observer {
         
         this.perfilProjetoDeEstimativaRepository.addObserver(this);
         this.projetoDeEstimativaRepository.addObserver(this);
-        /*this.projetoFuncionalidadesPersonalizadasRepository.addObserver(this);*/
-        /*this.perfilFuncionalidadesPersonalizadasRepository.addObserver(this);*/
+        this.projetoFuncionalidadesPersonalizadasRepository.addObserver(this);
+        this.perfilFuncionalidadesPersonalizadasRepository.addObserver(this);
         
         this.projetoNome = projetoNome;
         this.estimaService = new EstimaProjetoService();
@@ -216,17 +216,17 @@ public class DetalheProjetoPresenter implements Observer {
         }
     }
 
-    /*@Override
+    @Override
     public void updateProjetoFuncionalidadesPersonalizadasModel(List<ProjetosFuncionalidadesPersonalizadasModel> listaProjetosFuncionalidadesPersonalizadasModel) {
         if(listaProjetosFuncionalidadesPersonalizadasModel!=null && !listaProjetosFuncionalidadesPersonalizadasModel.isEmpty()){
             carregarDetalhesProjeto();
         }
-    }*/
+    }
 
-    /*@Override
+    @Override
     public void updatePerfilFuncionalidadesPersonalizadasModel(List<PerfilFuncionalidadesPersonalizadasModel> listaPerfilFuncionalidadesPersonalizadasModel) {
         if(listaPerfilFuncionalidadesPersonalizadasModel != null && !listaPerfilFuncionalidadesPersonalizadasModel.isEmpty()){
             carregarDetalhesProjeto();
         }
-    }*/
+    }
 }

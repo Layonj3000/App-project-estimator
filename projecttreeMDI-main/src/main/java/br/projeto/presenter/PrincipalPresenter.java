@@ -389,19 +389,11 @@ public final class PrincipalPresenter implements Observer {
             configurarArvore();
         });    }
 
-    /*@Override
+    @Override
     public void updateProjetoFuncionalidadesPersonalizadasModel(List<ProjetosFuncionalidadesPersonalizadasModel> listaProjetosFuncionalidadesPersonalizadasModel) {
-        SwingUtilities.invokeLater(() -> {
-            WindowCommand fecharJanelasCommand = new FecharJanelasRelacionadasCommand(view.getDesktop(), listaProjetoDeEstimativaModel);
-            fecharJanelasCommand.execute();
-            configurarArvore();
-        });    }*/
+           }
 
-    /*@Override
+    @Override
     public void updatePerfilFuncionalidadesPersonalizadasModel(List<PerfilFuncionalidadesPersonalizadasModel> listaPerfilFuncionalidadesPersonalizadasModel) {
-        SwingUtilities.invokeLater(() -> {
-            WindowCommand fecharJanelasCommand = new FecharJanelasRelacionadasCommand(view.getDesktop(), listaProjetoDeEstimativaModel);
-            fecharJanelasCommand.execute();
-            configurarArvore();
-        });    }*/
+          }
 }

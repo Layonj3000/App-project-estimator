@@ -114,8 +114,11 @@ public class SalvarProjetoDeEstimativaCommand implements Command{
         }
         /*LOGICA PARA UPDATE*/
 
-        // Inserindo o projeto no repositório
-        
+        // Inserindo relacao com os perfis selecionados
+        for (Integer idPerfil : idPerfisSelecionados) {
+            PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = projetoDeEstimativaPresenter.getPerfilProjetoDeEstimativaRepository().findById(idPerfil);
+            projetoDeEstimativaPresenter.getPerfilProjetoIntermediariaRepository().insert(projetoDeEstimativaModel, perfilProjetoDeEstimativaModel);
+        }
 
         // Inserindo as funcionalidades personalizadas
         List<ProjetosFuncionalidadesPersonalizadasModel> funcionalidadesPersonalizadasList = retornaProjetoModelService.getFuncionalidadesPersonalizadas();
@@ -125,11 +128,7 @@ public class SalvarProjetoDeEstimativaCommand implements Command{
             }
         }
 
-        // Inserindo relacao com os perfis selecionados
-        for (Integer idPerfil : idPerfisSelecionados) {
-            PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = projetoDeEstimativaPresenter.getPerfilProjetoDeEstimativaRepository().findById(idPerfil);
-            projetoDeEstimativaPresenter.getPerfilProjetoIntermediariaRepository().insert(projetoDeEstimativaModel, perfilProjetoDeEstimativaModel);
-        }
+
 
         // Exibindo a mensagem de sucesso
         if(projetoId == null){
