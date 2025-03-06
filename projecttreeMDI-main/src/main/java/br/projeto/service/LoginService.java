@@ -9,6 +9,7 @@ import br.projeto.presenter.PrincipalPresenter;
 import br.projeto.presenter.helpers.WindowManager;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
+import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.ProjetoRepositoryMock;
@@ -28,6 +29,7 @@ public class LoginService {
     private PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;
     private ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;
     private PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;
+    private PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
 
     public LoginService() {
         RepositoryFactory factory1 = RepositoryFactory.escolherClasseFabricada(ProjetoDeEstimativaRepository.class);
@@ -44,6 +46,9 @@ public class LoginService {
 
         RepositoryFactory factory5 = RepositoryFactory.escolherClasseFabricada(PerfilFuncionalidadesPersonalizadasRepository.class);
         perfilFuncionalidadesPersonalizadasRepository = factory5.createRepository();
+        
+        RepositoryFactory factory6 = RepositoryFactory.escolherClasseFabricada(PerfilProjetoIntermediariaRepository.class);
+        perfilProjetoIntermediariaRepository = factory6.createRepository();
     }
 
     public boolean verificarLogin(String email, String senha) {
@@ -68,5 +73,8 @@ public class LoginService {
 
     public PerfilFuncionalidadesPersonalizadasRepository getPerfilFuncionalidadesPersonalizadasRepository() {
         return perfilFuncionalidadesPersonalizadasRepository;
+    }
+    public PerfilProjetoIntermediariaRepository getPerfilPerfilProjetoIntermediariaRepository() {
+        return perfilProjetoIntermediariaRepository;
     }
 }

@@ -43,6 +43,7 @@ public class LoginCommand implements Command {
                         loginService.getPerfilProjetoDeEstimativaRepository(),
                         loginService.getProjetoFuncionalidadesPersonalizadasRepository(),
                         loginService.getPerfilFuncionalidadesPersonalizadasRepository(),
+                        loginService.getPerfilPerfilProjetoIntermediariaRepository(),
                         usuarioModel
                 );
                 WindowManager.getInstance().initialize(presenter);

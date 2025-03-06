@@ -27,24 +27,24 @@ public class Main {
 
     public static void main(String[] args) {
         
-//         TelaPresenter presenter = new TelaPresenter(new LoginState());     
+          TelaPresenter presenter = new TelaPresenter(new LoginState());     
 //        RepositoryFactory factory = RepositoryFactory.escolherClasseFabricada(ProjetoDeEstimativaRepository.class);
 //        ProjetoDeEstimativaRepository projetoDeEstimativaRepository = factory.createRepository();
 //
-        RepositoryFactory factory1 = RepositoryFactory.escolherClasseFabricada(UsuarioRepository.class);
-        UsuarioRepository usuarioRepository = factory1.createRepository();
-        UsuarioModel usuarioModel = new UsuarioModel(1, "ana", "1234", "ana@gmail.com");
-        UsuarioModel usuarioModel2 = new UsuarioModel(2, "david", "1234", "david@gmail.com");
+//        RepositoryFactory factory1 = RepositoryFactory.escolherClasseFabricada(UsuarioRepository.class);
+//        UsuarioRepository usuarioRepository = factory1.createRepository();
+//        UsuarioModel usuarioModel = new UsuarioModel(1, "ana", "1234", "ana@gmail.com");
+//        UsuarioModel usuarioModel2 = new UsuarioModel(2, "david", "1234", "david@gmail.com");
         //usuarioRepository.insert(usuarioModel);
         //usuarioRepository.insert(usuarioModel2);
-        System.out.println(usuarioRepository.findAll());
+//        System.out.println(usuarioRepository.findAll());
 
-        ProjetoDeEstimativaModel projetoDeEstimativaModel = new ProjetoDeEstimativaModel(1, usuarioModel, 0, null, new Date(System.currentTimeMillis()), "Projeto Teste UM", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-        ProjetoDeEstimativaModel projetoDeEstimativaModel2 = new ProjetoDeEstimativaModel(2, usuarioModel2, 0, null, new Date(System.currentTimeMillis()), "Projeto Teste DOIS", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0/*, 0.0, 0.0, 0.0, 0.0,*/, 0.0/*, 0.0, 0.0, 0.0*/);
+ //       ProjetoDeEstimativaModel projetoDeEstimativaModel = new ProjetoDeEstimativaModel(1, usuarioModel, 0, null, new Date(System.currentTimeMillis()), "Projeto Teste UM", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+//        ProjetoDeEstimativaModel projetoDeEstimativaModel2 = new ProjetoDeEstimativaModel(2, usuarioModel2, 0, null, new Date(System.currentTimeMillis()), "Projeto Teste DOIS", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0/*, 0.0, 0.0, 0.0, 0.0,*/, 0.0/*, 0.0, 0.0, 0.0*/);
 //        projetoDeEstimativaRepository.insert(projetoDeEstimativaModel);
 //        projetoDeEstimativaRepository.insert(projetoDeEstimativaModel2);
 //        projetoDeEstimativaRepository.deleteById(3);
-        System.out.println(projetoDeEstimativaRepository.findAll());
+//       System.out.println(projetoDeEstimativaRepository.findAll());
 //
 //
 //        RepositoryFactory factory2 = RepositoryFactory.escolherClasseFabricada(PerfilProjetoDeEstimativaRepository.class);
@@ -66,7 +66,7 @@ public class Main {
 //        perfilProjetoDeEstimativaModel.setNomePerfil("IOS");
 //        perfilProjetoDeEstimativaModel.setPequeno(70);
 //        perfilProjetoDeEstimativaRepository.insert(perfilProjetoDeEstimativaModel);
-        System.out.println(perfilProjetoDeEstimativaRepository.findAll());
+//        System.out.println(perfilProjetoDeEstimativaRepository.findAll());
 //        System.out.println(perfilProjetoDeEstimativaRepository.findByProjetoEstimativa(projetoDeEstimativaModel2));
 
         
@@ -85,7 +85,7 @@ public class Main {
   //      ProjetosFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadasModel = new ProjetosFuncionalidadesPersonalizadasModel(1, "Funcionalidade EXTRA", SimNao.SIM, projetoDeEstimativaModel);
 //        projetoFuncionalidadesPersonalizadasRepository.insert(projetosFuncionalidadesPersonalizadasModel);
 
-        System.out.println(projetoFuncionalidadesPersonalizadasRepository.findAll());    
+ //       System.out.println(projetoFuncionalidadesPersonalizadasRepository.findAll());    
         
         
 //        RepositoryFactory factory5 = RepositoryFactory.escolherClasseFabricada(PerfilFuncionalidadesPersonalizadasRepository.class);
@@ -93,14 +93,13 @@ public class Main {
  //       PerfilFuncionalidadesPersonalizadasModel perfilFuncionalidadesPersonalizadasModel = new PerfilFuncionalidadesPersonalizadasModel(1, "Funcionalidade EXTRA", 40, perfilProjetoDeEstimativaModel);
 //        perfilFuncionalidadesPersonalizadasRepository.deleteById(1);
 //        perfilFuncionalidadesPersonalizadasRepository.insert(perfilFuncionalidadesPersonalizadasModel);
-        System.out.println(perfilFuncionalidadesPersonalizadasRepository.findAll());
+  //      System.out.println(perfilFuncionalidadesPersonalizadasRepository.findAll());
         
-        RepositoryFactory factory6 = RepositoryFactory.escolherClasseFabricada(PerfilProjetoIntermediariaRepository.class);
-        PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository = factory6.createRepository();
+ //       RepositoryFactory factory6 = RepositoryFactory.escolherClasseFabricada(PerfilProjetoIntermediariaRepository.class);
+ //       PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository = factory6.createRepository();
         
-        SwingUtilities.invokeLater(() -> {
-            PrincipalPresenter presenter = new PrincipalPresenter(new ProjetoRepositoryMock(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel2);
-            WindowManager.getInstance().initialize(presenter);
-        });
-    }
+ //       SwingUtilities.invokeLater(() -> {
+ //           PrincipalPresenter presenter = new PrincipalPresenter(new ProjetoRepositoryMock(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel2);
+//        });
+   }
 }
