@@ -10,6 +10,7 @@ import br.projeto.command.SalvarPerfilProjetoDeEstimativaCommand;
 import br.projeto.presenter.PerfilProjetoDeEstimativaPresenter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,9 +28,9 @@ public class ManterPerfilProjetoDeEstimativaState extends APerfilProjetoDeEstima
     
     @Override
     public void salvar(){
-        new SalvarPerfilProjetoDeEstimativaCommand(perfilProjetoDeEstimativaPresenter);
+        new SalvarPerfilProjetoDeEstimativaCommand(perfilProjetoDeEstimativaPresenter).execute();
         
-        perfilProjetoDeEstimativaPresenter.getView().dispose();        
+        //perfilProjetoDeEstimativaPresenter.getView().dispose();        
     }
     
     @Override
@@ -56,6 +57,7 @@ public class ManterPerfilProjetoDeEstimativaState extends APerfilProjetoDeEstima
         });
         
        perfilProjetoDeEstimativaPresenter.configurarAdicaoFuncionalidades();
+       perfilProjetoDeEstimativaPresenter.configurarRemocaoFuncionalidades();
         
         perfilProjetoDeEstimativaPresenter.getView().setVisible(true);
     }

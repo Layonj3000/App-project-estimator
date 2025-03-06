@@ -7,6 +7,8 @@ package br.projeto.service;
 import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,22 +16,14 @@ import java.util.Map;
  * @author USER
  */
 public class RetornaPerfilModelService {
-    private static RetornaPerfilModelService retornaPerfilModelService = null;
-    private static Map<String, Integer> mapPerfil;
+    private Map<String, Integer> mapPerfil;
     private PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel;
-    private PerfilFuncionalidadesPersonalizadasModel perfilFuncionalidadesPersonalizadasModel;
+    //private PerfilFuncionalidadesPersonalizadasModel perfilFuncionalidadesPersonalizadasModel;
     
-    private RetornaPerfilModelService(Map<String, Integer> mapPerfil) {
+    public RetornaPerfilModelService(Map<String, Integer> mapPerfil) {
         this.mapPerfil = mapPerfil;
         perfilProjetoDeEstimativaModel = new PerfilProjetoDeEstimativaModel();
-        perfilFuncionalidadesPersonalizadasModel = new PerfilFuncionalidadesPersonalizadasModel();
-    }
-    
-    public static RetornaPerfilModelService getInstance(){
-        if(retornaPerfilModelService == null){
-            retornaPerfilModelService = new RetornaPerfilModelService(mapPerfil);
-        }
-        return retornaPerfilModelService;
+        //perfilFuncionalidadesPersonalizadasModel = new PerfilFuncionalidadesPersonalizadasModel();
     }
     
     public PerfilProjetoDeEstimativaModel getPerfil(){
@@ -112,16 +106,24 @@ public class RetornaPerfilModelService {
         return perfilProjetoDeEstimativaModel;
     }
     
-    public PerfilFuncionalidadesPersonalizadasModel getFuncionalizadasPersonalizadas(){
+    public List<PerfilFuncionalidadesPersonalizadasModel> getFuncionalidadesPersonalizadas(){
+        List<PerfilFuncionalidadesPersonalizadasModel> funconalidadesPersonalizadasList = new ArrayList<>();
+        int contador = 0;
         for(Map.Entry<String, Integer> entrySet: mapPerfil.entrySet()){
             if(!perfilProjetoDeEstimativaModel.getFuncionalidadesDisponiveis().containsKey(entrySet.getKey())){
+                contador++;
+                PerfilFuncionalidadesPersonalizadasModel perfilFuncionalidadesPersonalizadasModel = new PerfilFuncionalidadesPersonalizadasModel();
                 perfilFuncionalidadesPersonalizadasModel.setNome(entrySet.getKey());
                 perfilFuncionalidadesPersonalizadasModel.setPerfilProjetoDeEstimativaModel(perfilProjetoDeEstimativaModel);
                 perfilFuncionalidadesPersonalizadasModel.setValor(entrySet.getValue());
+                
+                funconalidadesPersonalizadasList.add(perfilFuncionalidadesPersonalizadasModel);
             }
         }
-        
-        return perfilFuncionalidadesPersonalizadasModel;
+        if(contador>0){
+            return funconalidadesPersonalizadasList;
+        }
+        return null;
     }
     
 }

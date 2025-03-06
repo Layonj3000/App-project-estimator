@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 public class ExcluirPerfilCommand implements Command{
     private PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;
     private Integer perfilId;
+    private String perfilNome;
     
     public ExcluirPerfilCommand(PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository){
         this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
@@ -27,6 +28,10 @@ public class ExcluirPerfilCommand implements Command{
 
     public void setPerfilId(Integer perfilId) {
         this.perfilId = perfilId;
+    }
+
+    public void setPerfilNome(String perfilNome) {
+        this.perfilNome = perfilNome;
     }
     
     //OBS: AS TABELAS INTERMEDIARIA E DE FUNCIONALIDADES EXTRAS EXCLUEM AUTOMATICAMENTE APOS EXCLUIR O PERFIL
@@ -45,10 +50,11 @@ public class ExcluirPerfilCommand implements Command{
         );
 
         if (confirmacao == JOptionPane.YES_OPTION) {
+            perfilNome = perfilProjetoDeEstimativaRepository.findById(perfilId).getNomePerfil();
             boolean removido = perfilProjetoDeEstimativaRepository.deleteById(perfilId);
             
             if (removido) {
-                new MostrarMensagemProjetoCommand("Perfil \"" + perfilProjetoDeEstimativaRepository.findById(perfilId).getNomePerfil() + "\" removido com sucesso!").execute();
+                new MostrarMensagemProjetoCommand("Perfil \"" + perfilNome + "\" removido com sucesso!").execute();
             } else {
                 new MostrarMensagemProjetoCommand("Erro ao remover o projeto \"" + perfilProjetoDeEstimativaRepository.findById(perfilId).getNomePerfil() + "\".").execute();
             }

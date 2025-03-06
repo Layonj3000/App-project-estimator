@@ -11,6 +11,7 @@ import br.projeto.presenter.helpers.WindowManager;
 import br.projeto.presenter.window_command.*;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
+import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.ProjetoRepositoryMock;
@@ -30,12 +31,17 @@ public final class PrincipalPresenter implements Observer {
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 
     private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
     private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
+    private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
     private final UsuarioModel usuarioModel;
     private final ConstrutorDeArvoreNavegacaoService construtorDeArvoreNavegacaoService;
     private final Map<String, Command> comandos;
     private final List<WindowCommand> windowCommands = new ArrayList<>();
-
-    public PrincipalPresenter(ProjetoRepositoryMock repository, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository, UsuarioModel usuarioModel) {
+    
+    /*ATUALIZAR*/
+    private AtualizarProjetoCommand atualizarProjetoCommand;
+    /*ATUALIZAR*/
+    
+    public PrincipalPresenter(ProjetoRepositoryMock repository, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel) {
         this.view = new PrincipalView();
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;//NOVO
         this.projetoDeEstimativaRepository.addObserver(this);//NOVO
@@ -44,10 +50,12 @@ public final class PrincipalPresenter implements Observer {
         this.perfilProjetoDeEstimativaRepository.addObserver(this);//NOVO
         
         this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;//NOVO
-        this.projetoFuncionalidadesPersonalizadasRepository.addObserver(this);//NOVO
+        //this.projetoFuncionalidadesPersonalizadasRepository.addObserver(this);//NOVO
         
         this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;//NOVO
-        this.perfilFuncionalidadesPersonalizadasRepository.addObserver(this);//NOVO
+        /*this.perfilFuncionalidadesPersonalizadasRepository.addObserver(this);//NOVO*/
+        
+        this.perfilProjetoIntermediariaRepository = perfilProjetoIntermediariaRepository;
         
         this.usuarioModel = usuarioModel;
         
@@ -58,6 +66,8 @@ public final class PrincipalPresenter implements Observer {
 
         GlobalWindowManager.initialize(view);
 
+        
+        
         this.comandos = inicializarComandos();
 
         inicializarEExecutarWindowCommands();
@@ -78,13 +88,16 @@ public final class PrincipalPresenter implements Observer {
         comandos.put("Principal", new AbrirDashboardProjetoCommand(view.getDesktop(), repository));
         comandos.put("Usuário", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Usuário"));
         comandos.put("Ver perfis de projeto", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Ver Perfis de Projetos"));
-        comandos.put("Elaborar estimativa", new MostrarMensagemProjetoCommand("Elaborar estimativa ainda não implementada"));
-        comandos.put("Visualizar estimativa", new MostrarMensagemProjetoCommand("Visualizar estimativa ainda não implementada"));
+        //comandos.put("Elaborar estimativa", new MostrarMensagemProjetoCommand("Elaborar estimativa ainda não implementada"));
+        //comandos.put("Visualizar estimativa", new MostrarMensagemProjetoCommand("Visualizar estimativa ainda não implementada"));
         comandos.put("Compartilhar projeto de estimativa", new MostrarMensagemProjetoCommand("Compartilhar ainda não implementado"));
         comandos.put("Exportar projeto de estimativa", new MostrarMensagemProjetoCommand("Exportar ainda não implementado"));
-        comandos.put("Novo projeto", new CriarProjetoProjetoCommand(repository, projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,view.getDesktop(), usuarioModel));
+        /*novo comando "Atualizar Projeto"*/
+        //comandos.put("Atualizar projeto",atualizarProjetoCommand);//new AtualizarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));//atualizarProjetoCommand /*new AtualizarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel)*/);
+        /*novo comando "Atualizar Projeto"*/
+        comandos.put("Novo projeto", new CriarProjetoProjetoCommand(/*repository,*/ projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository/*,view.getDesktop()*/,perfilProjetoIntermediariaRepository, usuarioModel));
         /*novo comando "Novo Perfil"*/
-        comandos.put("Novo perfil", new CriarPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, view.getDesktop(), usuarioModel));
+        comandos.put("Novo perfil", new CriarPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository/*, view.getDesktop()*/, usuarioModel));
         /*novo comando "Novo Perfil"*/
         comandos.put("Excluir projeto", new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository));
         comandos.put("Abrir detalhes", new AbrirDetalhesProjetoProjetoCommand(/*repository,*/projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository, view.getDesktop()));
@@ -158,11 +171,13 @@ public final class PrincipalPresenter implements Observer {
             NoArvoreComposite noProjeto = construtorDeArvoreNavegacaoService.criarNo(projeto.getNomeProjetoDeEstimativa(), "projeto", cmdDetalhes);
 
             adicionarMenuContextual(projeto, noProjeto);
-
-            noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Elaborar estimativa", "action", comandos.get("Elaborar estimativa")));
-            noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Visualizar estimativa", "action", comandos.get("Visualizar estimativa")));
+            //noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Elaborar estimativa", "action", comandos.get("Elaborar estimativa")));
+            //noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Visualizar estimativa", "action", comandos.get("Visualizar estimativa")));
+            noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Atualizar projeto de estimativa", "action", new AtualizarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel, cmdDetalhes)));
             noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Compartilhar projeto de estimativa", "action", comandos.get("Compartilhar projeto de estimativa")));
             noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Exportar projeto de estimativa", "action", comandos.get("Exportar projeto de estimativa")));
+            
+
             noProjetos.adicionarFilho(noProjeto);
         }
         /*PROJETO PARTE 2*/
@@ -193,7 +208,8 @@ public final class PrincipalPresenter implements Observer {
 //            noPerfil.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Elaborar estimativa", "action", comandos.get("Elaborar estimativa")));
 //            noPerfil.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Visualizar estimativa", "action", comandos.get("Visualizar estimativa")));
 //            noPerfil.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Compartilhar projeto de estimativa", "action", comandos.get("Compartilhar projeto de estimativa")));
-//            noPerfil.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Exportar projeto de estimativa", "action", comandos.get("Exportar projeto de estimativa")));;
+            noPerfil.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Atualizar perfil", "action", comandos.get("Atualizar perfil")));
+                
             noPerfis.adicionarFilho(noPerfil);
         }
         /*PERFIL PARTE 2*/
@@ -346,15 +362,20 @@ public final class PrincipalPresenter implements Observer {
         return view;
     }
 
+    
+    //VERIFICAR LOGICA DE ATUALIZAÇÃO 03/03/2025
     @Override
-    public void updatePerfilModel(List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    public void updatePerfilModel(List<PerfilProjetoDeEstimativaModel> listaPerfilProjetoDeEstimativaModel) {
+        SwingUtilities.invokeLater(() -> {
+            WindowCommand fecharJanelasCommand = new FecharJanelasPerfilRelacionadasCommand(view.getDesktop(), listaPerfilProjetoDeEstimativaModel);
+            fecharJanelasCommand.execute();
+            configurarArvore();
+        });    }
 
     @Override
     public void updateProjetoModel(List<ProjetoDeEstimativaModel> listaProjetoDeEstimativaModel) {
             SwingUtilities.invokeLater(() -> {
-            WindowCommand fecharJanelasCommand = new FecharJanelasRelacionadasCommand(view.getDesktop(), listaProjetoDeEstimativaModel);
+            WindowCommand fecharJanelasCommand = new FecharJanelasProjetoRelacionadasCommand(view.getDesktop(), listaProjetoDeEstimativaModel);
             fecharJanelasCommand.execute();
             configurarArvore();
         });
@@ -362,16 +383,25 @@ public final class PrincipalPresenter implements Observer {
 
     @Override
     public void update(List<Projeto> projetos) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        SwingUtilities.invokeLater(() -> {
+            /*WindowCommand fecharJanelasCommand = new FecharJanelasRelacionadasCommand(view.getDesktop(), listaProjetoDeEstimativaModel);
+            fecharJanelasCommand.execute();*/
+            configurarArvore();
+        });    }
 
-    @Override
+    /*@Override
     public void updateProjetoFuncionalidadesPersonalizadasModel(List<ProjetosFuncionalidadesPersonalizadasModel> listaProjetosFuncionalidadesPersonalizadasModel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        SwingUtilities.invokeLater(() -> {
+            WindowCommand fecharJanelasCommand = new FecharJanelasRelacionadasCommand(view.getDesktop(), listaProjetoDeEstimativaModel);
+            fecharJanelasCommand.execute();
+            configurarArvore();
+        });    }*/
 
-    @Override
+    /*@Override
     public void updatePerfilFuncionalidadesPersonalizadasModel(List<PerfilFuncionalidadesPersonalizadasModel> listaPerfilFuncionalidadesPersonalizadasModel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        SwingUtilities.invokeLater(() -> {
+            WindowCommand fecharJanelasCommand = new FecharJanelasRelacionadasCommand(view.getDesktop(), listaProjetoDeEstimativaModel);
+            fecharJanelasCommand.execute();
+            configurarArvore();
+        });    }*/
 }

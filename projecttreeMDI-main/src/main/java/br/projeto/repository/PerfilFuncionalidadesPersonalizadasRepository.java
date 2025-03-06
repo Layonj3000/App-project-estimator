@@ -25,16 +25,16 @@ import java.util.Map;
  *
  * @author USER
  */
-public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, IPerfilFuncionalidadesPersonalizadasRepository{
+public class PerfilFuncionalidadesPersonalizadasRepository implements /*Subject,*/ IPerfilFuncionalidadesPersonalizadasRepository{
 
     private Connection conn;
-    private List<Observer> observers;
-    private List<PerfilFuncionalidadesPersonalizadasModel> perfilFuncionalidadesPersonalizadasModelList;
+    //private List<Observer> observers;
+    //private List<PerfilFuncionalidadesPersonalizadasModel> perfilFuncionalidadesPersonalizadasModelList;
     
     public PerfilFuncionalidadesPersonalizadasRepository(Connection conn) {
         this.conn = conn;
-        observers = new ArrayList<>();
-        perfilFuncionalidadesPersonalizadasModelList = new ArrayList<>();    
+        //observers = new ArrayList<>();
+        //perfilFuncionalidadesPersonalizadasModelList = new ArrayList<>();    
     }
     
     
@@ -170,8 +170,8 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
                 rs = ps.getGeneratedKeys();
                 if (rs.next()) {
                     perfilFuncionalidadesPersonalizadasModel.setId(rs.getInt(1));
-                    perfilFuncionalidadesPersonalizadasModelList.add(perfilFuncionalidadesPersonalizadasModel);
-                    notifyObservers();
+                    //perfilFuncionalidadesPersonalizadasModelList.add(perfilFuncionalidadesPersonalizadasModel);
+                    //notifyObservers();
                 } else {
                     throw new DbException("Unexpected error! No rows affected!");
                 }
@@ -199,8 +199,8 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
             
             ps.executeUpdate();
             
-        perfilFuncionalidadesPersonalizadasModelList.add(perfilFuncionalidadesPersonalizadasModel);
-        notifyObservers();
+        //perfilFuncionalidadesPersonalizadasModelList.add(perfilFuncionalidadesPersonalizadasModel);
+        //notifyObservers();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
@@ -223,8 +223,8 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
             
             ps.executeUpdate();
             
-        perfilFuncionalidadesPersonalizadasModelList.add(perfilFuncionalidadesPersonalizadasModel);
-        notifyObservers();
+        //perfilFuncionalidadesPersonalizadasModelList.add(perfilFuncionalidadesPersonalizadasModel);
+        //notifyObservers();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
@@ -241,8 +241,8 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
             int rowsAffected = ps.executeUpdate();
             
             if(rowsAffected > 0){
-                perfilFuncionalidadesPersonalizadasModelList.removeIf(item -> item.getId().equals(id));
-                notifyObservers();
+                //perfilFuncionalidadesPersonalizadasModelList.removeIf(item -> item.getId().equals(id));
+                //notifyObservers();
                 return true;
             }else{
                 throw new DbException("Unexpected error! No rows affected!");
@@ -264,8 +264,8 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
             int rowsAffected = ps.executeUpdate();
             
             if(rowsAffected > 0){
-                perfilFuncionalidadesPersonalizadasModelList.removeIf(item -> item.getIdPerfilProjetoDeEstimativaModel().equals(perfilProjetoDeEstimativaModel.getId()));
-                notifyObservers();
+                //perfilFuncionalidadesPersonalizadasModelList.removeIf(item -> item.getIdPerfilProjetoDeEstimativaModel().equals(perfilProjetoDeEstimativaModel.getId()));
+                //notifyObservers();
                 return true;
             }else{
                 throw new DbException("Unexpected error! No rows affected!");
@@ -372,7 +372,7 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
         UsuarioModel usuarioModel = new UsuarioModel(rs.getInt("user_id"), rs.getString("nome"), rs.getString("senha"), rs.getString("email"));
         return usuarioModel;    }
 
-    @Override
+    /*@Override
     public void addObserver(Observer observer) {
         observers.add(observer);
     }
@@ -388,6 +388,6 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
             ///observer.update(projetos);
             observer.updatePerfilFuncionalidadesPersonalizadasModel(perfilFuncionalidadesPersonalizadasModelList);
         }    
-    }
+    }*/
     
 }

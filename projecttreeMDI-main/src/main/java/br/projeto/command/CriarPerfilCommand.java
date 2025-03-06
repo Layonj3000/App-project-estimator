@@ -16,13 +16,13 @@ import javax.swing.JDesktopPane;
 public class CriarPerfilCommand implements Command{
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;
     private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;
-    private final JDesktopPane desktop;
+    //private final JDesktopPane desktop;
     private final UsuarioModel usuarioModel;
     
-    public CriarPerfilCommand(PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository, JDesktopPane desktop, UsuarioModel usuarioModel){
+    public CriarPerfilCommand(PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository/*, JDesktopPane desktop*/, UsuarioModel usuarioModel){
     this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
     this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;
-    this.desktop = desktop;
+    //this.desktop = desktop;
     this.usuarioModel = usuarioModel;
     }
 

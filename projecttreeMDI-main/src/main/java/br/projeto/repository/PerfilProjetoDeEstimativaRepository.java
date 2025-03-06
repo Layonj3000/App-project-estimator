@@ -15,6 +15,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -212,74 +213,74 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
                     "?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setInt(1, perfilProjetoDeEstimativaModel.getUsuarioModel().getId());
             ps.setString(2, perfilProjetoDeEstimativaModel.getNomePerfil());
-            ps.setInt(3, perfilProjetoDeEstimativaModel.getPequeno());
-            ps.setInt(4, perfilProjetoDeEstimativaModel.getMedio());
-            ps.setInt(5, perfilProjetoDeEstimativaModel.getGrande());
-            ps.setInt(6, perfilProjetoDeEstimativaModel.getMvp());
-            ps.setInt(7, perfilProjetoDeEstimativaModel.getBasico());
-            ps.setInt(8, perfilProjetoDeEstimativaModel.getProfissional());
-            ps.setInt(9, perfilProjetoDeEstimativaModel.getCadastroPorEmailSenha());
-            ps.setInt(10, perfilProjetoDeEstimativaModel.getCadastroPorFacebook());
-            ps.setInt(11, perfilProjetoDeEstimativaModel.getCadastroPorTwitter());
-            ps.setInt(12, perfilProjetoDeEstimativaModel.getCadastroPorGoogle());
-            ps.setInt(13, perfilProjetoDeEstimativaModel.getCadastroPorLinkedin());
-            ps.setInt(14, perfilProjetoDeEstimativaModel.getCadastroPorGithub());
-            ps.setInt(15, perfilProjetoDeEstimativaModel.getCadastroPorConviteUsuario());
-            ps.setInt(16, perfilProjetoDeEstimativaModel.getCadastroPorContasMultitenant());
-            ps.setInt(17, perfilProjetoDeEstimativaModel.getCadastroPorSubdominios());
-            ps.setInt(18, perfilProjetoDeEstimativaModel.getCadastroPorDominiosPersonalizados());
-            ps.setInt(19, perfilProjetoDeEstimativaModel.getPainel());
-            ps.setInt(20, perfilProjetoDeEstimativaModel.getFeedDeAtividades());
-            ps.setInt(21, perfilProjetoDeEstimativaModel.getUploadDeArquivos());
-            ps.setInt(22, perfilProjetoDeEstimativaModel.getUploadDeMidia());
-            ps.setInt(23, perfilProjetoDeEstimativaModel.getPerfisDeUsuario());
-            ps.setInt(24, perfilProjetoDeEstimativaModel.getEmailsTransacionais());
-            ps.setInt(25, perfilProjetoDeEstimativaModel.getTags());
-            ps.setInt(26, perfilProjetoDeEstimativaModel.getAvaliacoesOuComentarios());
-            ps.setInt(27, perfilProjetoDeEstimativaModel.getProcessamentoAudioVideo());
-            ps.setInt(28, perfilProjetoDeEstimativaModel.getPesquisaTextoLivre());
-            ps.setInt(29, perfilProjetoDeEstimativaModel.getPesquisa());
-            ps.setInt(30, perfilProjetoDeEstimativaModel.getCalendario());
-            ps.setInt(31, perfilProjetoDeEstimativaModel.getExibicaoDadosMapaGeolocalizacao());
-            ps.setInt(32, perfilProjetoDeEstimativaModel.getExibicaoMarcadoresRegioesMapaPersonalizados());
-            ps.setInt(33, perfilProjetoDeEstimativaModel.getReservas());
-            ps.setInt(34, perfilProjetoDeEstimativaModel.getMensagens());
-            ps.setInt(35, perfilProjetoDeEstimativaModel.getForunsOuComentarios());
-            ps.setInt(36, perfilProjetoDeEstimativaModel.getCompartilhamentoSocial());
-            ps.setInt(37, perfilProjetoDeEstimativaModel.getIntegracaoFacebookOpenGraph());
-            ps.setInt(38, perfilProjetoDeEstimativaModel.getNotificacaoPush());
-            ps.setInt(39, perfilProjetoDeEstimativaModel.getPlanosDeAssinatura());
-            ps.setInt(40, perfilProjetoDeEstimativaModel.getProcessamentoDePagamento());
-            ps.setInt(41, perfilProjetoDeEstimativaModel.getCarrinhoDeCompras());
-            ps.setInt(42, perfilProjetoDeEstimativaModel.getMarketplaceDeUsuarios());
-            ps.setInt(43, perfilProjetoDeEstimativaModel.getGerenciamentoDeProdutos());
-            ps.setInt(44, perfilProjetoDeEstimativaModel.getComprasDentroDoAplicativo());
-            ps.setInt(45, perfilProjetoDeEstimativaModel.getColetaInformacaoPagamento());
-            ps.setInt(46, perfilProjetoDeEstimativaModel.getIntegracaoCms());
-            ps.setInt(47, perfilProjetoDeEstimativaModel.getPaginasAdministracaoUsuarios());
-            ps.setInt(48, perfilProjetoDeEstimativaModel.getModeracaoAprovacaoConteudo());
-            ps.setInt(49, perfilProjetoDeEstimativaModel.getIntercom());
-            ps.setInt(50, perfilProjetoDeEstimativaModel.getAnalisesUso());
-            ps.setInt(51, perfilProjetoDeEstimativaModel.getRelatoriosErro());
-            ps.setInt(52, perfilProjetoDeEstimativaModel.getMonitoramentoPerformance());
-            ps.setInt(53, perfilProjetoDeEstimativaModel.getSuporteMultilingue());
-            ps.setInt(54, perfilProjetoDeEstimativaModel.getConectarServicosDeTerceiros());
-            ps.setInt(55, perfilProjetoDeEstimativaModel.getApiParaTerceiros());
-            ps.setInt(56, perfilProjetoDeEstimativaModel.getEnvioSms());
-            ps.setInt(57, perfilProjetoDeEstimativaModel.getMascaramentoNumeroTelefone());
-            ps.setInt(58, perfilProjetoDeEstimativaModel.getSegurancaBaseadaCertificadoSsl());
-            ps.setInt(59, perfilProjetoDeEstimativaModel.getProtecaoContraDos());
-            ps.setInt(60, perfilProjetoDeEstimativaModel.getAutenticacaoDuasEtapas());
-            ps.setInt(61, perfilProjetoDeEstimativaModel.getDesenvolvimentoEspecificoApp());
-            ps.setInt(62, perfilProjetoDeEstimativaModel.getDesignIconeApp());
-            ps.setInt(63, perfilProjetoDeEstimativaModel.getSincronizacaoNuvem());
-            ps.setInt(64, perfilProjetoDeEstimativaModel.getDadosSensoresDispositivo());
-            ps.setInt(65, perfilProjetoDeEstimativaModel.getCodigoBarraQrCode());
-            ps.setInt(66, perfilProjetoDeEstimativaModel.getDadosSaude());
-            ps.setInt(67, perfilProjetoDeEstimativaModel.getAppleWatch());
-            ps.setInt(68, perfilProjetoDeEstimativaModel.getGerenteDeProjetos());
-            ps.setDouble(69, perfilProjetoDeEstimativaModel.getTaxaDiariaDesign());
-            ps.setDouble(70, perfilProjetoDeEstimativaModel.getTaxaDiariaGerenciaProjeto());
+            setIntOrNull(ps, 3, perfilProjetoDeEstimativaModel.getPequeno());
+            setIntOrNull(ps, 4, perfilProjetoDeEstimativaModel.getMedio());
+            setIntOrNull(ps, 5, perfilProjetoDeEstimativaModel.getGrande());
+            setIntOrNull(ps, 6, perfilProjetoDeEstimativaModel.getMvp());
+            setIntOrNull(ps, 7, perfilProjetoDeEstimativaModel.getBasico());
+            setIntOrNull(ps, 8, perfilProjetoDeEstimativaModel.getProfissional());
+            setIntOrNull(ps, 9, perfilProjetoDeEstimativaModel.getCadastroPorEmailSenha());
+            setIntOrNull(ps, 10, perfilProjetoDeEstimativaModel.getCadastroPorFacebook());
+            setIntOrNull(ps, 11, perfilProjetoDeEstimativaModel.getCadastroPorTwitter());
+            setIntOrNull(ps, 12, perfilProjetoDeEstimativaModel.getCadastroPorGoogle());
+            setIntOrNull(ps, 13, perfilProjetoDeEstimativaModel.getCadastroPorLinkedin());
+            setIntOrNull(ps, 14, perfilProjetoDeEstimativaModel.getCadastroPorGithub());
+            setIntOrNull(ps, 15, perfilProjetoDeEstimativaModel.getCadastroPorConviteUsuario());
+            setIntOrNull(ps, 16, perfilProjetoDeEstimativaModel.getCadastroPorContasMultitenant());
+            setIntOrNull(ps, 17, perfilProjetoDeEstimativaModel.getCadastroPorSubdominios());
+            setIntOrNull(ps, 18, perfilProjetoDeEstimativaModel.getCadastroPorDominiosPersonalizados());
+            setIntOrNull(ps, 19, perfilProjetoDeEstimativaModel.getPainel());
+            setIntOrNull(ps, 20, perfilProjetoDeEstimativaModel.getFeedDeAtividades());
+            setIntOrNull(ps, 21, perfilProjetoDeEstimativaModel.getUploadDeArquivos());
+            setIntOrNull(ps, 22, perfilProjetoDeEstimativaModel.getUploadDeMidia());
+            setIntOrNull(ps, 23, perfilProjetoDeEstimativaModel.getPerfisDeUsuario());
+            setIntOrNull(ps, 24, perfilProjetoDeEstimativaModel.getEmailsTransacionais());
+            setIntOrNull(ps, 25, perfilProjetoDeEstimativaModel.getTags());
+            setIntOrNull(ps, 26, perfilProjetoDeEstimativaModel.getAvaliacoesOuComentarios());
+            setIntOrNull(ps, 27, perfilProjetoDeEstimativaModel.getProcessamentoAudioVideo());
+            setIntOrNull(ps, 28, perfilProjetoDeEstimativaModel.getPesquisaTextoLivre());
+            setIntOrNull(ps, 29, perfilProjetoDeEstimativaModel.getPesquisa());
+            setIntOrNull(ps, 30, perfilProjetoDeEstimativaModel.getCalendario());
+            setIntOrNull(ps, 31, perfilProjetoDeEstimativaModel.getExibicaoDadosMapaGeolocalizacao());
+            setIntOrNull(ps, 32, perfilProjetoDeEstimativaModel.getExibicaoMarcadoresRegioesMapaPersonalizados());
+            setIntOrNull(ps, 33, perfilProjetoDeEstimativaModel.getReservas());
+            setIntOrNull(ps, 34, perfilProjetoDeEstimativaModel.getMensagens());
+            setIntOrNull(ps, 35, perfilProjetoDeEstimativaModel.getForunsOuComentarios());
+            setIntOrNull(ps, 36, perfilProjetoDeEstimativaModel.getCompartilhamentoSocial());
+            setIntOrNull(ps, 37, perfilProjetoDeEstimativaModel.getIntegracaoFacebookOpenGraph());
+            setIntOrNull(ps, 38, perfilProjetoDeEstimativaModel.getNotificacaoPush());
+            setIntOrNull(ps, 39, perfilProjetoDeEstimativaModel.getPlanosDeAssinatura());
+            setIntOrNull(ps, 40, perfilProjetoDeEstimativaModel.getProcessamentoDePagamento());
+            setIntOrNull(ps, 41, perfilProjetoDeEstimativaModel.getCarrinhoDeCompras());
+            setIntOrNull(ps, 42, perfilProjetoDeEstimativaModel.getMarketplaceDeUsuarios());
+            setIntOrNull(ps, 43, perfilProjetoDeEstimativaModel.getGerenciamentoDeProdutos());
+            setIntOrNull(ps, 44, perfilProjetoDeEstimativaModel.getComprasDentroDoAplicativo());
+            setIntOrNull(ps, 45, perfilProjetoDeEstimativaModel.getColetaInformacaoPagamento());
+            setIntOrNull(ps, 46, perfilProjetoDeEstimativaModel.getIntegracaoCms());
+            setIntOrNull(ps, 47, perfilProjetoDeEstimativaModel.getPaginasAdministracaoUsuarios());
+            setIntOrNull(ps, 48, perfilProjetoDeEstimativaModel.getModeracaoAprovacaoConteudo());
+            setIntOrNull(ps, 49, perfilProjetoDeEstimativaModel.getIntercom());
+            setIntOrNull(ps, 50, perfilProjetoDeEstimativaModel.getAnalisesUso());
+            setIntOrNull(ps, 51, perfilProjetoDeEstimativaModel.getRelatoriosErro());
+            setIntOrNull(ps, 52, perfilProjetoDeEstimativaModel.getMonitoramentoPerformance());
+            setIntOrNull(ps, 53, perfilProjetoDeEstimativaModel.getSuporteMultilingue());
+            setIntOrNull(ps, 54, perfilProjetoDeEstimativaModel.getConectarServicosDeTerceiros());
+            setIntOrNull(ps, 55, perfilProjetoDeEstimativaModel.getApiParaTerceiros());
+            setIntOrNull(ps, 56, perfilProjetoDeEstimativaModel.getEnvioSms());
+            setIntOrNull(ps, 57, perfilProjetoDeEstimativaModel.getMascaramentoNumeroTelefone());
+            setIntOrNull(ps, 58, perfilProjetoDeEstimativaModel.getSegurancaBaseadaCertificadoSsl());
+            setIntOrNull(ps, 59, perfilProjetoDeEstimativaModel.getProtecaoContraDos());
+            setIntOrNull(ps, 60, perfilProjetoDeEstimativaModel.getAutenticacaoDuasEtapas());
+            setIntOrNull(ps, 61, perfilProjetoDeEstimativaModel.getDesenvolvimentoEspecificoApp());
+            setIntOrNull(ps, 62, perfilProjetoDeEstimativaModel.getDesignIconeApp());
+            setIntOrNull(ps, 63, perfilProjetoDeEstimativaModel.getSincronizacaoNuvem());
+            setIntOrNull(ps, 64, perfilProjetoDeEstimativaModel.getDadosSensoresDispositivo());
+            setIntOrNull(ps, 65, perfilProjetoDeEstimativaModel.getCodigoBarraQrCode());
+            setIntOrNull(ps, 66, perfilProjetoDeEstimativaModel.getDadosSaude());
+            setIntOrNull(ps, 67, perfilProjetoDeEstimativaModel.getAppleWatch());
+            setIntOrNull(ps, 68, perfilProjetoDeEstimativaModel.getGerenteDeProjetos());
+            setDoubleOrNull(ps,69, perfilProjetoDeEstimativaModel.getTaxaDiariaDesign());
+            setDoubleOrNull(ps, 70, perfilProjetoDeEstimativaModel.getTaxaDiariaGerenciaProjeto());
             ps.setDouble(71, perfilProjetoDeEstimativaModel.getTaxaDiariaDesenvolvimento());
             ps.setDate(72, perfilProjetoDeEstimativaModel.getDataCriacao());
 
@@ -290,6 +291,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
                 if (rs.next()) {
                     perfilProjetoDeEstimativaModel.setId(rs.getInt(1));
                     perfisProjetoDeEstimativaModel.add(perfilProjetoDeEstimativaModel);
+                    notifyObservers();
                 } else {
                     throw new DbException("Unexpected error! No rows affected!");
                 }
@@ -410,6 +412,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
 
             ps.executeUpdate();
             perfisProjetoDeEstimativaModel.add(perfilProjetoDeEstimativaModel);
+            notifyObservers();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
@@ -529,6 +532,22 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
 
         return perfilProjetoDeEstimativaModel;
 
+    }
+    
+    private void setIntOrNull(PreparedStatement ps, int index, Integer value) throws SQLException{
+        if (value == null) {
+            ps.setNull(index, Types.INTEGER);
+        } else {
+            ps.setInt(index, value);
+        }
+    }
+    
+    private void setDoubleOrNull(PreparedStatement ps, int index, Double value) throws SQLException{
+        if (value == null) {
+            ps.setNull(index, Types.INTEGER);
+        } else {
+            ps.setDouble(index, value);
+        }
     }
 
     @Override

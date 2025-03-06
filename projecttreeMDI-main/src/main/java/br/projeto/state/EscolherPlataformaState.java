@@ -5,7 +5,7 @@
 package br.projeto.state;
 
 import br.projeto.command.ObterPerfisSelecionadosCommand;
-import br.projeto.command.PreencherTabelaEscolhaDePlataformaCommand;
+import br.projeto.command.PreencherTabelaEscolhaDePlataformaParaInsercaoCommand;
 import br.projeto.presenter.ProjetoDeEstimativaPresenter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,25 +14,38 @@ import java.awt.event.ComponentEvent;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import br.projeto.command.Command;
+import br.projeto.command.PreencherTabelaEscolhaDePlataformaParaUpdateCommand;
 /**
  *
  * @author USER
  */
 public class EscolherPlataformaState extends AProjetoDeEstimativaPresenterState{
     //private EscolhaPlataformaView view;
+    private Integer projetoId;
+    //CONSTRUTOR PARA UPDATE
+    public EscolherPlataformaState(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter, Integer projetoId) {
+        super(projetoDeEstimativaPresenter);
+        this.projetoId = projetoId;
+        //view = projetoDeEstimativaPresenter.getView();
+        configuraTela();
+        new PreencherTabelaEscolhaDePlataformaParaUpdateCommand(projetoDeEstimativaPresenter, projetoId).execute();
+    }
     
+    //CONSTRUTOR PARA INSERÇÃO
     public EscolherPlataformaState(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter) {
         super(projetoDeEstimativaPresenter);
         //view = projetoDeEstimativaPresenter.getView();
         configuraTela();
-        new PreencherTabelaEscolhaDePlataformaCommand(projetoDeEstimativaPresenter).execute();
+        new PreencherTabelaEscolhaDePlataformaParaInsercaoCommand(projetoDeEstimativaPresenter).execute();
     }
     
     @Override
     public void escolherPlataforma(){
         ObterPerfisSelecionadosCommand command  = new ObterPerfisSelecionadosCommand(projetoDeEstimativaPresenter);
         command.execute();
-        projetoDeEstimativaPresenter.setState(new ManterProjetoDeEstimativaState(projetoDeEstimativaPresenter, command.getIdPerfisSelecionados()));
+        projetoDeEstimativaPresenter.getView().getFrame().dispose();
+        projetoDeEstimativaPresenter.setState(new ManterProjetoDeEstimativaState(projetoDeEstimativaPresenter, command.getIdPerfisSelecionados(), projetoId));
+        
     }
     
     @Override

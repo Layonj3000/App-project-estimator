@@ -19,8 +19,12 @@ public class ManterPerfilProjetoDeEstimativaView extends javax.swing.JFrame {
      * Creates new form ManterPerfilView
      */
     public ManterPerfilProjetoDeEstimativaView() {
+        
         initComponents();
+        setSize(954, 954);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        //setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     public JButton getBtnAdicionarFuncionalidade() {
@@ -42,8 +46,22 @@ public class ManterPerfilProjetoDeEstimativaView extends javax.swing.JFrame {
     public JTextField getTxtNomePerfil() {
         return txtNomePerfil;
     }
-    
-    
+
+    public JTextField getTxtTaxaDiariaDesenvolvimento() {
+        return txtTaxaDiariaDesenvolvimento;
+    }
+
+    public JTextField getTxtTaxaDiariaDesign() {
+        return txtTaxaDiariaDesign;
+    }
+
+    public JTextField getTxtTaxaDiariaGerenciaProjeto() {
+        return txtTaxaDiariaGerenciaProjeto;
+    }
+
+    public JButton getBtnRemoverFuncionalidade() {
+        return btnRemoverFuncionalidade;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,6 +80,13 @@ public class ManterPerfilProjetoDeEstimativaView extends javax.swing.JFrame {
         btnVoltar = new javax.swing.JButton();
         btnConfirmar = new javax.swing.JButton();
         btnAdicionarFuncionalidade = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtTaxaDiariaDesign = new javax.swing.JTextField();
+        txtTaxaDiariaGerenciaProjeto = new javax.swing.JTextField();
+        txtTaxaDiariaDesenvolvimento = new javax.swing.JTextField();
+        btnRemoverFuncionalidade = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(954, 598));
@@ -102,6 +127,26 @@ public class ManterPerfilProjetoDeEstimativaView extends javax.swing.JFrame {
         btnAdicionarFuncionalidade.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnAdicionarFuncionalidade.setText("Adicionar Funcionalidade");
 
+        jLabel3.setText("Taxa Diaria Design:");
+
+        jLabel4.setText("Taxa Diaria Gerencia Projeto:");
+
+        jLabel5.setText("Taxa Diaria Desenvolvimento:");
+
+        txtTaxaDiariaGerenciaProjeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTaxaDiariaGerenciaProjetoActionPerformed(evt);
+            }
+        });
+
+        btnRemoverFuncionalidade.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnRemoverFuncionalidade.setText("Remover Funcionalidade");
+        btnRemoverFuncionalidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverFuncionalidadeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,19 +154,34 @@ public class ManterPerfilProjetoDeEstimativaView extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(btnVoltar)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnVoltar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 969, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTaxaDiariaDesenvolvimento, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtTaxaDiariaGerenciaProjeto, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtTaxaDiariaDesign)
+                                    .addComponent(txtNomePerfil, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addGap(87, 87, 87))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnRemoverFuncionalidade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAdicionarFuncionalidade)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnConfirmar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNomePerfil)))
-                .addContainerGap())
+                        .addComponent(btnConfirmar)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,17 +189,30 @@ public class ManterPerfilProjetoDeEstimativaView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNomePerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtNomePerfil)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTaxaDiariaDesign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTaxaDiariaGerenciaProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTaxaDiariaDesenvolvimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVoltar)
                     .addComponent(btnConfirmar)
-                    .addComponent(btnAdicionarFuncionalidade))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAdicionarFuncionalidade)
+                    .addComponent(btnRemoverFuncionalidade))
+                .addGap(63, 63, 63))
         );
 
         pack();
@@ -148,6 +221,14 @@ public class ManterPerfilProjetoDeEstimativaView extends javax.swing.JFrame {
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void txtTaxaDiariaGerenciaProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTaxaDiariaGerenciaProjetoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTaxaDiariaGerenciaProjetoActionPerformed
+
+    private void btnRemoverFuncionalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverFuncionalidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRemoverFuncionalidadeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,11 +269,18 @@ public class ManterPerfilProjetoDeEstimativaView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionarFuncionalidade;
     private javax.swing.JButton btnConfirmar;
+    private javax.swing.JButton btnRemoverFuncionalidade;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblFuncionalidades;
     private javax.swing.JTextField txtNomePerfil;
+    private javax.swing.JTextField txtTaxaDiariaDesenvolvimento;
+    private javax.swing.JTextField txtTaxaDiariaDesign;
+    private javax.swing.JTextField txtTaxaDiariaGerenciaProjeto;
     // End of variables declaration//GEN-END:variables
 }

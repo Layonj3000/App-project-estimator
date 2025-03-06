@@ -38,6 +38,10 @@ public class AbrirDetalhesProjetoProjetoCommand implements Command {
         this.projetoId = projetoId;
     }
 
+    public Integer getProjetoId() {
+        return projetoId;
+    }
+
     @Override
     public void execute() {
         if (projetoId == null) {

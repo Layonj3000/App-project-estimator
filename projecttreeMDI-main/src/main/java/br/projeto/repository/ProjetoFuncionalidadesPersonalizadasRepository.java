@@ -28,15 +28,15 @@ import java.util.Map;
  *
  * @author USER
  */
-public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, IProjetoFuncionalidadesPersonalizadasRepository{
+public class ProjetoFuncionalidadesPersonalizadasRepository implements /*Subject,*/ IProjetoFuncionalidadesPersonalizadasRepository{
     private Connection conn;
-    private List<Observer> observers;
-    private List<ProjetosFuncionalidadesPersonalizadasModel> projetosFuncionalidadesPersonalizadasModelList;
+    //private List<Observer> observers;
+    //private List<ProjetosFuncionalidadesPersonalizadasModel> projetosFuncionalidadesPersonalizadasModelList;
     
     public ProjetoFuncionalidadesPersonalizadasRepository(Connection conn) {
         this.conn = conn;
-        observers = new ArrayList<>();
-        projetosFuncionalidadesPersonalizadasModelList = new ArrayList<>();    
+        //observers = new ArrayList<>();
+        //projetosFuncionalidadesPersonalizadasModelList = new ArrayList<>();    
     }
     
     
@@ -171,8 +171,9 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
                 rs = ps.getGeneratedKeys();
                 if (rs.next()) {
                     projetosFuncionalidadesPersonalizadasModel.setId(rs.getInt(1));
-                    projetosFuncionalidadesPersonalizadasModelList.add(projetosFuncionalidadesPersonalizadasModel);
-                    notifyObservers();
+                    //projetosFuncionalidadesPersonalizadasModelList.add(projetosFuncionalidadesPersonalizadasModel);
+                    //notifyObservers();
+                    //return rs.getInt(1);
                 } else {
                     throw new DbException("Unexpected error! No rows affected!");
                 }
@@ -182,7 +183,9 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
         }finally {
             DB.closeStatement(ps);
             DB.closeResultSet(rs);
-        }    }
+        }
+        //return null;
+    }
 
     @Override
     public void update(ProjetosFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadasModel) {
@@ -199,8 +202,8 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
             
             ps.executeUpdate();
             
-        projetosFuncionalidadesPersonalizadasModelList.add(projetosFuncionalidadesPersonalizadasModel);
-        notifyObservers();
+        //projetosFuncionalidadesPersonalizadasModelList.add(projetosFuncionalidadesPersonalizadasModel);
+        //notifyObservers();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
@@ -223,8 +226,8 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
             
             ps.executeUpdate();
             
-        projetosFuncionalidadesPersonalizadasModelList.add(projetosFuncionalidadesPersonalizadasModel);
-        notifyObservers();
+        //projetosFuncionalidadesPersonalizadasModelList.add(projetosFuncionalidadesPersonalizadasModel);
+        //notifyObservers();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
@@ -241,8 +244,8 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
             int rowsAffected = ps.executeUpdate();
             
             if(rowsAffected > 0){
-                projetosFuncionalidadesPersonalizadasModelList.removeIf(item -> item.getId().equals(id));
-                notifyObservers();
+                //projetosFuncionalidadesPersonalizadasModelList.removeIf(item -> item.getId().equals(id));
+                //notifyObservers();
                 return true;
             }else{
                 throw new DbException("Unexpected error! No rows affected!");
@@ -264,8 +267,8 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
             int rowsAffected = ps.executeUpdate();
             
             if(rowsAffected > 0){
-                projetosFuncionalidadesPersonalizadasModelList.removeIf(item -> item.getIdProjetoDeEstimativa().equals(projetoDeEstimativaModel.getId()));
-                notifyObservers();
+                //projetosFuncionalidadesPersonalizadasModelList.removeIf(item -> item.getIdProjetoDeEstimativa().equals(projetoDeEstimativaModel.getId()));
+                //notifyObservers();
                 return true;
             }else{
                 throw new DbException("Unexpected error! No rows affected!");
@@ -284,7 +287,7 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
         ProjetosFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadasModel = new ProjetosFuncionalidadesPersonalizadasModel();
         projetosFuncionalidadesPersonalizadasModel.setId(rs.getInt("id"));
         projetosFuncionalidadesPersonalizadasModel.setNome(rs.getString("nome"));
-        projetosFuncionalidadesPersonalizadasModel.setSelecionado(SimNao.fromValue(rs.getInt("selecionado")));
+        projetosFuncionalidadesPersonalizadasModel.setSelecionado((rs.getInt("selecionado")));
         projetosFuncionalidadesPersonalizadasModel.setProjetoDeEstimativaModel(projetoDeEstimativaModel);
         
         return projetosFuncionalidadesPersonalizadasModel;
@@ -373,15 +376,15 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
         projetoDeEstimativaModel.setCustoGarantia(rs.getDouble("custo_garantia"));
         projetoDeEstimativaModel.setFundoDeReserva(rs.getDouble("fundo_de_reserva"));
         projetoDeEstimativaModel.setOutrosCustos(rs.getDouble("outros_custos"));
-        projetoDeEstimativaModel.setSubTotal(rs.getDouble("sub_total"));
+        /*projetoDeEstimativaModel.setSubTotal(rs.getDouble("sub_total"));*/
         projetoDeEstimativaModel.setPercentualComImpostos(rs.getDouble("percentual_com_impostos"));
-        projetoDeEstimativaModel.setTotalComImposto(rs.getDouble("total_com_imposto"));
+        /*projetoDeEstimativaModel.setTotalComImposto(rs.getDouble("total_com_imposto"));*/
         projetoDeEstimativaModel.setPercentualLucroDesejado(rs.getDouble("percentual_lucro_desejado"));
-        projetoDeEstimativaModel.setLucroCalculado(rs.getDouble("lucro_calculado"));
+        /*projetoDeEstimativaModel.setLucroCalculado(rs.getDouble("lucro_calculado"));
         projetoDeEstimativaModel.setDias(rs.getInt("dias"));
         projetoDeEstimativaModel.setMeses(rs.getDouble("meses"));
         projetoDeEstimativaModel.setPrecoFinalCliente(rs.getDouble("preco_final_cliente"));
-        projetoDeEstimativaModel.setMediaPorMes(rs.getDouble("media_por_mes"));
+        projetoDeEstimativaModel.setMediaPorMes(rs.getDouble("media_por_mes"));*/
 
         return projetoDeEstimativaModel;
     }
@@ -390,7 +393,7 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
         UsuarioModel usuarioModel = new UsuarioModel(rs.getInt("user_id"), rs.getString("nome"), rs.getString("senha"), rs.getString("email"));
         return usuarioModel;    }
 
-    @Override
+    /*@Override
     public void addObserver(Observer observer) {
         observers.add(observer);
     }
@@ -406,7 +409,7 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
             ///observer.update(projetos);
             observer.updateProjetoFuncionalidadesPersonalizadasModel(projetosFuncionalidadesPersonalizadasModelList);
         }    
-    }
+    }*/
 
 
     

@@ -41,7 +41,7 @@ public class DetalhePerfilPresenter implements Observer{
         this.perfilId = perfilId;
         
         this.perfilProjetoDeEstimativaRepository.addObserver(this);
-        this.perfilFuncionalidadesPersonalizadasRepository.addObserver(this);
+        /*this.perfilFuncionalidadesPersonalizadasRepository.addObserver(this);*/
         
         carregarDetalhesPerfil();
     }
@@ -83,7 +83,7 @@ public class DetalhePerfilPresenter implements Observer{
             Map<String, Integer> funcionalidadesEscolhidas = new LinkedHashMap<>();
             
             for(Map.Entry<String, Integer> entrySet: funcionalidadesPerfil.entrySet()){
-                if(entrySet.getValue() != null){
+                if(entrySet.getValue() != null && entrySet.getValue()!= 0){
                     funcionalidadesEscolhidas.put(entrySet.getKey(), entrySet.getValue());
                 }
             }
@@ -102,7 +102,9 @@ public class DetalhePerfilPresenter implements Observer{
 
     @Override
     public void updatePerfilModel(List<PerfilProjetoDeEstimativaModel> listaPerfilProjetoDeEstimativaModel) {
-        carregarDetalhesPerfil();
+        if(listaPerfilProjetoDeEstimativaModel!=null && !listaPerfilProjetoDeEstimativaModel.isEmpty()){
+            carregarDetalhesPerfil();
+        }
     }
 
     @Override
@@ -110,15 +112,17 @@ public class DetalhePerfilPresenter implements Observer{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
+    /*@Override
     public void updateProjetoFuncionalidadesPersonalizadasModel(List<ProjetosFuncionalidadesPersonalizadasModel> listaProjetosFuncionalidadesPersonalizadasModel) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void updatePerfilFuncionalidadesPersonalizadasModel(List<PerfilFuncionalidadesPersonalizadasModel> listaPerfilFuncionalidadesPersonalizadasModel) {
+        if(listaPerfilFuncionalidadesPersonalizadasModel!=null && !listaPerfilFuncionalidadesPersonalizadasModel.isEmpty()){
         carregarDetalhesPerfil();
-    }
+        }
+    }*/
 
 
 

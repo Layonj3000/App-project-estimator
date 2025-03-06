@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import br.projeto.command.Command;
 
-public class FecharJanelasRelacionadasCommand implements WindowCommand {
+public class FecharJanelasProjetoRelacionadasCommand implements WindowCommand {
     private final JDesktopPane desktop;
     // final List<Projeto> listaProjetos;//ANTIGO
     private final List<ProjetoDeEstimativaModel> listaProjetoDeEstimativaModel;//NOVO
 
-    public FecharJanelasRelacionadasCommand(JDesktopPane desktop, List<ProjetoDeEstimativaModel> listaProjetoDeEstimativaModel /*List<Projeto> listaProjetos*//*ANTIGO*/) {
+    public FecharJanelasProjetoRelacionadasCommand(JDesktopPane desktop, List<ProjetoDeEstimativaModel> listaProjetoDeEstimativaModel /*List<Projeto> listaProjetos*//*ANTIGO*/) {
         this.desktop = desktop;
         //this.listaProjetos = listaProjetos;//ANTIGO
         this.listaProjetoDeEstimativaModel = listaProjetoDeEstimativaModel;

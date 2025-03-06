@@ -37,6 +37,15 @@ public class NoArvoreComposite implements ComponenteNoArvore {
     public List<ComponenteNoArvore> obterFilhos() {
         return filhos;
     }
+    
+    public ComponenteNoArvore obterFilho(String nome){
+        for(ComponenteNoArvore filho: filhos){
+            if(filho.obterTexto().equals(nome)){
+                return filho;
+            }
+        }
+        return null;
+    }
 
     public void adicionarFilho(ComponenteNoArvore filho) {
         filhos.add(filho);
