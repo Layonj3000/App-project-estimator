@@ -411,6 +411,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
             ps.setDate(73, perfilProjetoDeEstimativaModel.getDataCriacao());
 
             ps.executeUpdate();
+            
             perfisProjetoDeEstimativaModel.add(perfilProjetoDeEstimativaModel);
             notifyObservers();
         } catch (SQLException e) {

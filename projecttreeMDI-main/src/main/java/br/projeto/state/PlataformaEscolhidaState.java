@@ -19,11 +19,11 @@ import br.projeto.command.PreencherTabelaEscolhaDePlataformaParaUpdateCommand;
  *
  * @author USER
  */
-public class EscolherPlataformaState extends AProjetoDeEstimativaPresenterState{
+public class PlataformaEscolhidaState extends AProjetoDeEstimativaPresenterState{
     //private EscolhaPlataformaView view;
     private Integer projetoId;
     //CONSTRUTOR PARA UPDATE
-    public EscolherPlataformaState(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter, Integer projetoId) {
+    public PlataformaEscolhidaState(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter, Integer projetoId) {
         super(projetoDeEstimativaPresenter);
         this.projetoId = projetoId;
         //view = projetoDeEstimativaPresenter.getView();
@@ -32,7 +32,7 @@ public class EscolherPlataformaState extends AProjetoDeEstimativaPresenterState{
     }
     
     //CONSTRUTOR PARA INSERÇÃO
-    public EscolherPlataformaState(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter) {
+    public PlataformaEscolhidaState(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter) {
         super(projetoDeEstimativaPresenter);
         //view = projetoDeEstimativaPresenter.getView();
         configuraTela();
@@ -44,7 +44,7 @@ public class EscolherPlataformaState extends AProjetoDeEstimativaPresenterState{
         ObterPerfisSelecionadosCommand command  = new ObterPerfisSelecionadosCommand(projetoDeEstimativaPresenter);
         command.execute();
         projetoDeEstimativaPresenter.getView().getFrame().dispose();
-        projetoDeEstimativaPresenter.setState(new ManterProjetoDeEstimativaState(projetoDeEstimativaPresenter, command.getIdPerfisSelecionados(), projetoId));
+        projetoDeEstimativaPresenter.setState(new ProjetoDeEstimativaMantidoState(projetoDeEstimativaPresenter, command.getIdPerfisSelecionados(), projetoId));
         
     }
     

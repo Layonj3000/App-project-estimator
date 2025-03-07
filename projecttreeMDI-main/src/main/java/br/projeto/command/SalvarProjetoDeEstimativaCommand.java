@@ -104,11 +104,14 @@ public class SalvarProjetoDeEstimativaCommand implements Command{
             projetoDeEstimativaModel.setId(projetoId);
         
             projetoDeEstimativaPresenter.getProjetoDeEstimativaRepository().update(projetoDeEstimativaModel);
-        
-            projetoDeEstimativaPresenter.getProjetoFuncionalidadesPersonalizadasRepository().deleteByProjetoDeEstimativa(projetoDeEstimativaModel);
-        
-            projetoDeEstimativaPresenter.getPerfilProjetoIntermediariaRepository().deleteByProjeto(projetoId);
-        
+            
+            if(!projetoDeEstimativaPresenter.getPerfilProjetoIntermediariaRepository().findByProjeto(projetoId).isEmpty()){
+                projetoDeEstimativaPresenter.getPerfilProjetoIntermediariaRepository().deleteByProjeto(projetoId);
+            }
+            
+            if(!projetoDeEstimativaPresenter.getProjetoFuncionalidadesPersonalizadasRepository().findByProjetoEstimativa(projetoDeEstimativaModel).isEmpty()){
+                projetoDeEstimativaPresenter.getProjetoFuncionalidadesPersonalizadasRepository().deleteByProjetoDeEstimativa(projetoDeEstimativaModel);
+            }
         }else{
             projetoDeEstimativaPresenter.getProjetoDeEstimativaRepository().insert(projetoDeEstimativaModel);
         }

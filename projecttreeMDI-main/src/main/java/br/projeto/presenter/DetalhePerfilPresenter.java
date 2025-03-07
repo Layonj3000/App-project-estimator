@@ -6,11 +6,13 @@ package br.projeto.presenter;
 
 import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
+import br.projeto.model.PerfilProjetoIntermediariaModel;
 import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
+import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.view.DetalhePerfilView;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +31,8 @@ public class DetalhePerfilPresenter implements Observer{
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO
     //private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
     private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
+    
+    
     private Integer perfilId;
     private String perfilNome;
     
@@ -122,6 +126,11 @@ public class DetalhePerfilPresenter implements Observer{
         if(listaPerfilFuncionalidadesPersonalizadasModel!=null && !listaPerfilFuncionalidadesPersonalizadasModel.isEmpty()){
         carregarDetalhesPerfil();
         }
+    }
+
+    @Override
+    public void updatePerfilProjetoIntermediariaModel(List<PerfilProjetoIntermediariaModel> listaPerfilProjetoIntermediariaModel) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 

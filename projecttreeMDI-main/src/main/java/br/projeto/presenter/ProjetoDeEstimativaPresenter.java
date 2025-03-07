@@ -12,7 +12,7 @@ import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
-import br.projeto.state.EscolherPlataformaState;
+import br.projeto.state.PlataformaEscolhidaState;
 import br.projeto.state.AProjetoDeEstimativaPresenterState;
 import br.projeto.view.EscolhaPlataformaView;
 import br.projeto.view.IProjetoDeEstimativaView;
@@ -53,7 +53,7 @@ public class ProjetoDeEstimativaPresenter {
         //this.perfisIds = new ArrayList<>();
         this.idProjeto = idProjeto;
         this.view = view;//new EscolhaPlataformaView();
-        this.estado = new EscolherPlataformaState(this, idProjeto);
+        this.estado = new PlataformaEscolhidaState(this, idProjeto);
     }
     
     
@@ -69,7 +69,7 @@ public class ProjetoDeEstimativaPresenter {
         //this.perfisIds = new ArrayList<>();
         
         this.view = view;//new EscolhaPlataformaView();
-        this.estado = new EscolherPlataformaState(this);
+        this.estado = new PlataformaEscolhidaState(this);
     }
 
     public PerfilProjetoIntermediariaRepository getPerfilProjetoIntermediariaRepository() {

@@ -18,16 +18,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PerfilProjetoIntermediariaRepository implements IPerfilProjetoIntermediariaRepository{
+public class PerfilProjetoIntermediariaRepository implements IPerfilProjetoIntermediariaRepository, Subject{
 
     private Connection conn;
-    //private List<Observer> observers;
-    //private List<PerfilProjetoDeEstimativaModel> perfilProjetoIntermediariaModel;
+    private List<Observer> observers;
+    private List<PerfilProjetoIntermediariaModel> perfilProjetoIntermediariaModelList;
 
     public PerfilProjetoIntermediariaRepository(Connection conn) {
         this.conn = conn;       
-        //observers = new ArrayList<>();
-        //perfilProjetoIntermediariaModel = new ArrayList<>();
+        observers = new ArrayList<>();
+        perfilProjetoIntermediariaModelList = new ArrayList<>();
     }
     
 
@@ -111,8 +111,9 @@ public class PerfilProjetoIntermediariaRepository implements IPerfilProjetoInter
             ps.setInt(2, perfilProjetoDeEstimativaModel.getId());
             ps.executeUpdate();
             
-            //perfilProjetoIntermediariaModel.add(perfilProjetoDeEstimativaModel);
-            //notifyObservers();
+            
+            perfilProjetoIntermediariaModelList.add(new PerfilProjetoIntermediariaModel(projetoDeEstimativaModel.getId(),perfilProjetoDeEstimativaModel.getId()));
+            notifyObservers();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
@@ -131,6 +132,9 @@ public class PerfilProjetoIntermediariaRepository implements IPerfilProjetoInter
                 ps.setInt(2, perfilProjetoDeEstimativaModel.getId());
 
                 ps.executeUpdate();
+                
+                perfilProjetoIntermediariaModelList.add(new PerfilProjetoIntermediariaModel(projetoDeEstimativaModel.getId(),perfilProjetoDeEstimativaModel.getId()));
+                notifyObservers();
             }
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
@@ -151,6 +155,9 @@ public class PerfilProjetoIntermediariaRepository implements IPerfilProjetoInter
             ps.setInt(2, idPerfil);
 
             ps.executeUpdate();
+            
+            perfilProjetoIntermediariaModelList.removeIf(item -> item.getIdProjetoDeEstimativaModel().equals(idPerfil) && item.getIdPerfilProjetoDeEstimativaModel().equals(idPerfil));
+            notifyObservers();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
@@ -167,6 +174,9 @@ public class PerfilProjetoIntermediariaRepository implements IPerfilProjetoInter
             ps.setInt(1, idProjeto);
 
             ps.executeUpdate();
+            
+            perfilProjetoIntermediariaModelList.removeIf(item -> item.getIdProjetoDeEstimativaModel().equals(idProjeto));
+            notifyObservers();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
@@ -201,19 +211,23 @@ public class PerfilProjetoIntermediariaRepository implements IPerfilProjetoInter
         return perfilProjetoIntermediariaModel;
     }
 
-    /*@Override
+    @Override
     public void addObserver(Observer observer) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        observers.add(observer);
     }
 
     @Override
     public void removeObserver(Observer observer) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        observers.remove(observer);
     }
 
     @Override
     public void notifyObservers() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }*/
+        for(Observer observer:observers){
+            observer.updatePerfilProjetoIntermediariaModel(perfilProjetoIntermediariaModelList);
+            }   
+        }
+    }
 
-}
+
+

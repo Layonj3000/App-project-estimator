@@ -3,11 +3,13 @@ package br.projeto.presenter;
 import br.projeto.enums.SimNao;
 import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
+import br.projeto.model.PerfilProjetoIntermediariaModel;
 import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
+import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.ProjetoRepositoryMock;
@@ -33,8 +35,9 @@ public class DetalheProjetoPresenter implements Observer {
     private final Integer projetoId;//NOVO
     private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
     private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
+    private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
 
-    public DetalheProjetoPresenter(DetalheProjetoView view/*/, ProjetoRepositoryMock repository*/, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository, Integer projetoId, String projetoNome) {//NOME E REPOSITORY SERÃO RETIRADOS
+    public DetalheProjetoPresenter(DetalheProjetoView view/*/, ProjetoRepositoryMock repository*/, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, Integer projetoId, String projetoNome) {//NOME E REPOSITORY SERÃO RETIRADOS
         this.view = view;
         //this.repository = repository;
         
@@ -42,12 +45,14 @@ public class DetalheProjetoPresenter implements Observer {
         this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;//NOVO
         this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;//NOVO
         this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;//NOVO  
+        this.perfilProjetoIntermediariaRepository= perfilProjetoIntermediariaRepository;//NOVO
         this.projetoId = projetoId;//NOVO
         
         this.perfilProjetoDeEstimativaRepository.addObserver(this);
         this.projetoDeEstimativaRepository.addObserver(this);
         this.projetoFuncionalidadesPersonalizadasRepository.addObserver(this);
         this.perfilFuncionalidadesPersonalizadasRepository.addObserver(this);
+        this.perfilProjetoIntermediariaRepository.addObserver(this);
         
         this.projetoNome = projetoNome;
         this.estimaService = new EstimaProjetoService();
@@ -228,5 +233,12 @@ public class DetalheProjetoPresenter implements Observer {
         if(listaPerfilFuncionalidadesPersonalizadasModel != null && !listaPerfilFuncionalidadesPersonalizadasModel.isEmpty()){
             carregarDetalhesProjeto();
         }
+    }
+
+    @Override
+    public void updatePerfilProjetoIntermediariaModel(List<PerfilProjetoIntermediariaModel> listaPerfilProjetoIntermediariaModel) {
+        //if(listaPerfilProjetoIntermediariaModel != null && !listaPerfilProjetoIntermediariaModel.isEmpty()){
+            carregarDetalhesProjeto();
+        //}
     }
 }

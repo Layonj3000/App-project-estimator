@@ -16,12 +16,12 @@ import java.util.List;
  *
  * @author David Potentini
  */
-public class ManterProjetoDeEstimativaState extends AProjetoDeEstimativaPresenterState{
+public class ProjetoDeEstimativaMantidoState extends AProjetoDeEstimativaPresenterState{
     private ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter;
     private List<Integer> idPerfisSelecionados;
     private Integer projetoId;
     
-    public ManterProjetoDeEstimativaState(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter,  List<Integer> idPerfisSelecionados, Integer projetoId){
+    public ProjetoDeEstimativaMantidoState(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter,  List<Integer> idPerfisSelecionados, Integer projetoId){
         super(projetoDeEstimativaPresenter);
         
         this.projetoDeEstimativaPresenter = projetoDeEstimativaPresenter;

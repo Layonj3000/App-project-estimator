@@ -22,10 +22,7 @@ public abstract class AProjetoDeEstimativaPresenterState {
     public void salvar(){
         throw new RuntimeException("Não foi possível salvar a partir desse estado.");//IDENTIFICAR O NOME DO ESTADO
     }
-    
-    public void update(){
-        throw new RuntimeException("Não foi possível realizar o update a partir desse estado");
-    }
+   
     
     public void voltar(){
         throw new RuntimeException("Não foi possível voltar a partir desse estado");

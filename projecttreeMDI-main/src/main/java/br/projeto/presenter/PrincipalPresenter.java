@@ -3,6 +3,7 @@ package br.projeto.presenter;
 import br.projeto.command.*;
 import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
+import br.projeto.model.PerfilProjetoIntermediariaModel;
 import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
@@ -100,7 +101,7 @@ public final class PrincipalPresenter implements Observer {
         comandos.put("Novo perfil", new CriarPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository/*, view.getDesktop()*/, usuarioModel));
         /*novo comando "Novo Perfil"*/
         comandos.put("Excluir projeto", new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository));
-        comandos.put("Abrir detalhes", new AbrirDetalhesProjetoProjetoCommand(/*repository,*/projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository, view.getDesktop()));
+        comandos.put("Abrir detalhes", new AbrirDetalhesProjetoProjetoCommand(/*repository,*/projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, view.getDesktop()));
         return comandos;
     }
     
@@ -152,7 +153,7 @@ public final class PrincipalPresenter implements Observer {
         List<ProjetoDeEstimativaModel> listaProjetos = projetoDeEstimativaRepository.findByUser(usuarioModel);
         //for (final Projeto projeto : listaProjetos) {//ANTIGO
         for (ProjetoDeEstimativaModel projeto : listaProjetos) {
-            AbrirDetalhesProjetoProjetoCommand cmdDetalhes = new AbrirDetalhesProjetoProjetoCommand(/*repository,*/projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository, view.getDesktop()) {
+            AbrirDetalhesProjetoProjetoCommand cmdDetalhes = new AbrirDetalhesProjetoProjetoCommand(/*repository,*/projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository, perfilProjetoIntermediariaRepository, view.getDesktop()) {
                 @Override
                 public void execute() {
                     String tituloJanela = "Detalhes do Projeto: " + projeto.getNomeProjetoDeEstimativa();
@@ -396,4 +397,9 @@ public final class PrincipalPresenter implements Observer {
     @Override
     public void updatePerfilFuncionalidadesPersonalizadasModel(List<PerfilFuncionalidadesPersonalizadasModel> listaPerfilFuncionalidadesPersonalizadasModel) {
           }
+
+    @Override
+    public void updatePerfilProjetoIntermediariaModel(List<PerfilProjetoIntermediariaModel> listaPerfilProjetoIntermediariaModel) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
