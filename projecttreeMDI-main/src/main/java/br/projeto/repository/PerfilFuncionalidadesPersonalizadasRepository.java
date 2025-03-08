@@ -43,7 +43,7 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
     public List<PerfilFuncionalidadesPersonalizadasModel> findAll() {
         PreparedStatement ps = null;
         ResultSet rs = null;
-
+            
         try {
             ps = conn.prepareStatement("SELECT perfil_funcionalidades_personalizadas.*, perfil_projeto_estimativa.* , usuario.nome, usuario.senha, usuario.email " +
                                         "FROM perfil_funcionalidades_personalizadas " +
@@ -292,7 +292,7 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
 
     private PerfilProjetoDeEstimativaModel instantiatePerfilProjetoDeEstimativaModel(ResultSet rs,  UsuarioModel usuarioModel) throws SQLException {
         PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = new PerfilProjetoDeEstimativaModel();
-        perfilProjetoDeEstimativaModel.setId(rs.getInt("id"));
+        perfilProjetoDeEstimativaModel.setId(rs.getInt("perfil_id"));
         perfilProjetoDeEstimativaModel.setNomePerfil(rs.getString("nome_perfil"));
         perfilProjetoDeEstimativaModel.setUsuarioModel(usuarioModel);
         perfilProjetoDeEstimativaModel.setPequeno(rs.getInt("pequeno"));

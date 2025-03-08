@@ -44,7 +44,9 @@ public class CriarProjetoProjetoCommand implements Command {
     @Override
     public void execute() {
         //IMPLEMENTAR NOVA LOGICA DE CRIACAO
-        new ProjetoDeEstimativaPresenter(new EscolhaPlataformaView(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository,usuarioModel);
+        ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter = new ProjetoDeEstimativaPresenter(new EscolhaPlataformaView(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository,usuarioModel);
+        projetoDeEstimativaPresenter.setIdProjeto(null);
+        projetoDeEstimativaPresenter.setEstadoInicial();
     }
 /*    @Override
     public void execute() {

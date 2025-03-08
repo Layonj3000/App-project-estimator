@@ -4,10 +4,10 @@
  */
 package br.projeto.command;
 import br.projeto.model.UsuarioModel;
-import br.projeto.presenter.PerfilProjetoDeEstimativaPresenter;
+import br.projeto.presenter.EscolhaFuncionalidadesPerfilPresenter;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
-import br.projeto.state.escolha_funcionalidades_perfil.InclusaoPerfilProjetoDeEstimativaState;
+import br.projeto.state.escolha_funcionalidades_perfil.InclusaoEscolhaFuncionalidadesPerfilState;
 import br.projeto.view.ManterPerfilProjetoDeEstimativaView;
 import javax.swing.JDesktopPane;
 /**
@@ -30,9 +30,9 @@ public class CriarPerfilCommand implements Command{
     @Override
     public void execute() {
         //INSTANCIAR PRESENTER DO PERFIL
-        PerfilProjetoDeEstimativaPresenter perfil = new PerfilProjetoDeEstimativaPresenter(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel);
+        EscolhaFuncionalidadesPerfilPresenter perfil = new EscolhaFuncionalidadesPerfilPresenter(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel);
         perfil.setPerfilId(null);
-        perfil.setState(new InclusaoPerfilProjetoDeEstimativaState(perfil));
+        perfil.setEstadoInicial();
     }
     
 }

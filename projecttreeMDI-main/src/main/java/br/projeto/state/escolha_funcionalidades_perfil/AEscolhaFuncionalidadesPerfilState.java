@@ -4,18 +4,18 @@
  */
 package br.projeto.state.escolha_funcionalidades_perfil;
 
-import br.projeto.presenter.PerfilProjetoDeEstimativaPresenter;
+import br.projeto.presenter.EscolhaFuncionalidadesPerfilPresenter;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author USER
  */
-public abstract class APerfilProjetoDeEstimativaState {
-    protected PerfilProjetoDeEstimativaPresenter perfilProjetoDeEstimativaPresenter;
+public abstract class AEscolhaFuncionalidadesPerfilState {
+    protected EscolhaFuncionalidadesPerfilPresenter escolhaFuncionalidadesPerfilPresenter;
 
-    public APerfilProjetoDeEstimativaState(PerfilProjetoDeEstimativaPresenter perfilProjetoDeEstimativaPresenter) {
-        this.perfilProjetoDeEstimativaPresenter = perfilProjetoDeEstimativaPresenter;
+    public AEscolhaFuncionalidadesPerfilState(EscolhaFuncionalidadesPerfilPresenter escolhaFuncionalidadesPerfilPresenter) {
+        this.escolhaFuncionalidadesPerfilPresenter = escolhaFuncionalidadesPerfilPresenter;
         //CRIAR UM METODO REMOVE LISTENERS E ADICIONAR A CHAMADA AQUI
     }
 

@@ -29,12 +29,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author David Potentini
  */
-public class PreencherTabelaFuncionalidadesProjetoParaInsercaoCommand implements Command{
+public class PreencherTabelaFuncionalidadesProjetoCommand implements Command{
     private ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter;
     private List<Integer> idPerfisSelecionados;
     private Integer projetoId;
     
-    public PreencherTabelaFuncionalidadesProjetoParaInsercaoCommand(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter, List<Integer> idPerfisSelecionados, Integer projetoId){
+    public PreencherTabelaFuncionalidadesProjetoCommand(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter, List<Integer> idPerfisSelecionados, Integer projetoId){
         this.projetoDeEstimativaPresenter = projetoDeEstimativaPresenter;
         this.idPerfisSelecionados = idPerfisSelecionados;
         this.projetoId = projetoId;

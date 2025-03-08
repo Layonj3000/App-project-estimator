@@ -11,7 +11,7 @@ public interface IPerfilProjetoDeEstimativaRepository {
     List<PerfilProjetoDeEstimativaModel>findByUser(UsuarioModel usuarioModel);
     List<PerfilProjetoDeEstimativaModel> findByProjetoEstimativa(ProjetoDeEstimativaModel projetoDeEstimativaModel);
     PerfilProjetoDeEstimativaModel findById(Integer id);
-    void insert(PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel);
+    Integer insert(PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel);
     void update(PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel);
     boolean deleteById(Integer id);
 }

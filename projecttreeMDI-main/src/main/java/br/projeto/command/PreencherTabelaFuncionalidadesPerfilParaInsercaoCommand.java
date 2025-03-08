@@ -6,7 +6,7 @@ package br.projeto.command;
 
 import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
-import br.projeto.presenter.PerfilProjetoDeEstimativaPresenter;
+import br.projeto.presenter.EscolhaFuncionalidadesPerfilPresenter;
 import br.projeto.service.MapValoresPadraoPerfilService;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,15 +20,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand implements Command{
     
-    private PerfilProjetoDeEstimativaPresenter perfilProjetoDeEstimativaPresenter;
+    private EscolhaFuncionalidadesPerfilPresenter escolhaFuncionalidadesPerfilPresenter;
 
-    public PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand(PerfilProjetoDeEstimativaPresenter perfilProjetoDeEstimativaPresenter) {
-        this.perfilProjetoDeEstimativaPresenter = perfilProjetoDeEstimativaPresenter;
+    public PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand(EscolhaFuncionalidadesPerfilPresenter escolhaFuncionalidadesPerfilPresenter) {
+        this.escolhaFuncionalidadesPerfilPresenter = escolhaFuncionalidadesPerfilPresenter;
     }
 
     @Override
     public void execute() {
-        JTable tabela = perfilProjetoDeEstimativaPresenter.getView().getTable();
+        JTable tabela = escolhaFuncionalidadesPerfilPresenter.getView().getTable();
         
         DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Funcionalidades", "Valores"},0){
             
@@ -64,6 +64,7 @@ public class PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand implements 
         //List<PerfilFuncionalidadesPersonalizadasModel> perfilFuncionalidadesPersonalizadasModelList = new ArrayList<>();
         
         Map<String, Integer> mapPerfilBase = MapValoresPadraoPerfilService.getInstance().getMap();
+        
         
         
         for(Map.Entry<String, Integer> entrySet: mapPerfilBase.entrySet()){

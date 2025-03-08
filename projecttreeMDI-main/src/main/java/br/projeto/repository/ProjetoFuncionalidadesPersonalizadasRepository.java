@@ -295,7 +295,7 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
 
     private ProjetoDeEstimativaModel instantiateProjetoDeEstimativaModel(ResultSet rs,  UsuarioModel usuarioModel) throws SQLException {
         ProjetoDeEstimativaModel projetoDeEstimativaModel = new ProjetoDeEstimativaModel();
-        projetoDeEstimativaModel.setId(rs.getInt("id"));
+        projetoDeEstimativaModel.setId(rs.getInt("projeto_id"));
         projetoDeEstimativaModel.setUsuarioModel(usuarioModel);
         projetoDeEstimativaModel.setCompartilhado(rs.getInt("compartilhado"));
         projetoDeEstimativaModel.setCompartilhadoPor(rs.getInt("compartilhado_por"));

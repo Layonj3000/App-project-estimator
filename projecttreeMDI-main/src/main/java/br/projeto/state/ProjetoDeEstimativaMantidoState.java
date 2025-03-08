@@ -4,7 +4,7 @@
  */
 package br.projeto.state;
 
-import br.projeto.command.PreencherTabelaFuncionalidadesProjetoParaInsercaoCommand;
+import br.projeto.command.PreencherTabelaFuncionalidadesProjetoCommand;
 import br.projeto.command.SalvarProjetoDeEstimativaCommand;
 import br.projeto.presenter.ProjetoDeEstimativaPresenter;
 import br.projeto.view.ManterProjetoDeEstimativaView;
@@ -33,7 +33,7 @@ public class ProjetoDeEstimativaMantidoState extends AProjetoDeEstimativaPresent
         
         configuraTela();
         
-        new PreencherTabelaFuncionalidadesProjetoParaInsercaoCommand(projetoDeEstimativaPresenter, idPerfisSelecionados, projetoId).execute();
+        new PreencherTabelaFuncionalidadesProjetoCommand(projetoDeEstimativaPresenter, idPerfisSelecionados, projetoId).execute();
         
     }
     

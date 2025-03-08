@@ -52,8 +52,8 @@ public class Main {
 //       System.out.println(projetoDeEstimativaRepository.findAll());
 //
 //
-/*        RepositoryFactory factory2 = RepositoryFactory.escolherClasseFabricada(PerfilProjetoDeEstimativaRepository.class);
-        PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository = factory2.createRepository();*/
+        RepositoryFactory factory2 = RepositoryFactory.escolherClasseFabricada(PerfilProjetoDeEstimativaRepository.class);
+        PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository = factory2.createRepository();
 //
  //       PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = new PerfilProjetoDeEstimativaModel(
  //           1, usuarioModel, "Perfil Padrão",
@@ -71,7 +71,7 @@ public class Main {
 //        perfilProjetoDeEstimativaModel.setNomePerfil("IOS");
 //        perfilProjetoDeEstimativaModel.setPequeno(70);
 //        perfilProjetoDeEstimativaRepository.insert(perfilProjetoDeEstimativaModel);
-//        System.out.println(perfilProjetoDeEstimativaRepository.findAll());
+        System.out.println(perfilProjetoDeEstimativaRepository.findAll());
 //        System.out.println(perfilProjetoDeEstimativaRepository.findByProjetoEstimativa(projetoDeEstimativaModel2));
 
         
@@ -93,12 +93,14 @@ public class Main {
  //       System.out.println(projetoFuncionalidadesPersonalizadasRepository.findAll());    
         
         
-        /*RepositoryFactory factory5 = RepositoryFactory.escolherClasseFabricada(PerfilFuncionalidadesPersonalizadasRepository.class);
-        PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository = factory5.createRepository();*/
+        RepositoryFactory factory5 = RepositoryFactory.escolherClasseFabricada(PerfilFuncionalidadesPersonalizadasRepository.class);
+        PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository = factory5.createRepository();
  //       PerfilFuncionalidadesPersonalizadasModel perfilFuncionalidadesPersonalizadasModel = new PerfilFuncionalidadesPersonalizadasModel(1, "Funcionalidade EXTRA", 40, perfilProjetoDeEstimativaModel);
 //        perfilFuncionalidadesPersonalizadasRepository.deleteById(1);
 //        perfilFuncionalidadesPersonalizadasRepository.insert(perfilFuncionalidadesPersonalizadasModel);
-  //      System.out.println(perfilFuncionalidadesPersonalizadasRepository.findAll());
+        System.out.println(perfilFuncionalidadesPersonalizadasRepository.findAll());
+        
+        //System.out.println(perfilFuncionalidadesPersonalizadasRepository.findById(7));
         
 /*        RepositoryFactory factory6 = RepositoryFactory.escolherClasseFabricada(PerfilProjetoIntermediariaRepository.class);
         PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository = factory6.createRepository();

@@ -4,7 +4,7 @@
  */
 package br.projeto.command;
 
-import br.projeto.presenter.PerfilProjetoDeEstimativaPresenter;
+import br.projeto.presenter.EscolhaFuncionalidadesPerfilPresenter;
 import java.awt.Rectangle;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -15,9 +15,9 @@ import javax.swing.table.DefaultTableModel;
  * @author USER
  */
 public class AdicionarOpcaoPerfilCommand implements Command{
-    private PerfilProjetoDeEstimativaPresenter perfilProjetoDeEstimativaPresenter;
+    private EscolhaFuncionalidadesPerfilPresenter perfilProjetoDeEstimativaPresenter;
 
-    public AdicionarOpcaoPerfilCommand(PerfilProjetoDeEstimativaPresenter perfilProjetoDeEstimativaPresenter) {
+    public AdicionarOpcaoPerfilCommand(EscolhaFuncionalidadesPerfilPresenter perfilProjetoDeEstimativaPresenter) {
         this.perfilProjetoDeEstimativaPresenter = perfilProjetoDeEstimativaPresenter;
     }
     

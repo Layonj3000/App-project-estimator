@@ -4,7 +4,7 @@
  */
 package br.projeto.command;
 
-import br.projeto.presenter.PerfilProjetoDeEstimativaPresenter;
+import br.projeto.presenter.EscolhaFuncionalidadesPerfilPresenter;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -15,9 +15,9 @@ import javax.swing.table.TableCellEditor;
  * @author USER
  */
 public class RemoverOpcaoPerfilCommand implements Command{
-    private PerfilProjetoDeEstimativaPresenter perfilProjetoDeEstimativaPresenter;
+    private EscolhaFuncionalidadesPerfilPresenter perfilProjetoDeEstimativaPresenter;
 
-    public RemoverOpcaoPerfilCommand(PerfilProjetoDeEstimativaPresenter perfilProjetoDeEstimativaPresenter) {
+    public RemoverOpcaoPerfilCommand(EscolhaFuncionalidadesPerfilPresenter perfilProjetoDeEstimativaPresenter) {
         this.perfilProjetoDeEstimativaPresenter = perfilProjetoDeEstimativaPresenter;
     }
 

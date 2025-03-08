@@ -6,9 +6,9 @@ package br.projeto.command;
 
 import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
-import br.projeto.presenter.PerfilProjetoDeEstimativaPresenter;
+import br.projeto.presenter.EscolhaFuncionalidadesPerfilPresenter;
 import br.projeto.service.RetornaPerfilModelService;
-import br.projeto.service.VerificacoesTelaPerfilService;
+import br.projeto.service.AuxiliarTelaPerfilService;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -23,111 +23,104 @@ import javax.swing.table.TableCellEditor;
  * @author USER
  */
 public class SalvarPerfilProjetoDeEstimativaCommand implements Command{
-    private final PerfilProjetoDeEstimativaPresenter perfilProjetoDeEstimativaPresenter;
-    private final VerificacoesTelaPerfilService verificacoesService;
+    private final EscolhaFuncionalidadesPerfilPresenter escolhaFuncionalidadesPerfilPresenter;
+    private final AuxiliarTelaPerfilService auxiliarService;
+    private final Integer idPerfil;
+    
     Double taxaDiariaDesenvolvimento = null;
     Double taxaDiariaGerenciaProjeto = null;
     Double taxaDiariaDesign = null;
 
-    public SalvarPerfilProjetoDeEstimativaCommand(PerfilProjetoDeEstimativaPresenter perfilProjetoDeEstimativaPresenter) {
-        this.perfilProjetoDeEstimativaPresenter = perfilProjetoDeEstimativaPresenter;
-        this.verificacoesService = VerificacoesTelaPerfilService.getInstance();
+    public SalvarPerfilProjetoDeEstimativaCommand(EscolhaFuncionalidadesPerfilPresenter escolhaFuncionalidadesPerfilPresenter, Integer idPerfil) {
+        this.escolhaFuncionalidadesPerfilPresenter = escolhaFuncionalidadesPerfilPresenter;
+        this.auxiliarService = AuxiliarTelaPerfilService.getInstance();
+        
+        this.idPerfil = idPerfil;
     }
-
-    
     
         @Override
         public void execute() {
-           JTable tabela = perfilProjetoDeEstimativaPresenter.getView().getTable();
-           String nomePerfil = perfilProjetoDeEstimativaPresenter.getView().getTxtNomePerfil().getText();
-           encerrarEdicaoCelula(tabela);
+           JTable tabela = escolhaFuncionalidadesPerfilPresenter.getView().getTable();
+           String nomePerfil = escolhaFuncionalidadesPerfilPresenter.getView().getTxtNomePerfil().getText();
+           auxiliarService.encerrarEdicaoCelula(tabela);
 
-           if (!verificarValoresInconsistentes(tabela)) {
+           if (!auxiliarService.verificarValoresInconsistentes(tabela)) {
                return;
            }
 
-           Map<String, Integer> mapPerfil = criarMapPerfil(tabela);
-          RetornaPerfilModelService retornaPerfilModelService = new RetornaPerfilModelService(mapPerfil);
+           Map<String, Integer> mapPerfil = auxiliarService.criarMapPerfil(tabela);
+           RetornaPerfilModelService retornaPerfilModelService = new RetornaPerfilModelService(mapPerfil);
            PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = retornaPerfilModelService.getPerfil();
 
-          Double taxaDiariaDesenvolvimento, taxaDiariaGerenciaProjeto, taxaDiariaDesign;
-           try {
-               taxaDiariaDesenvolvimento = obterTaxa(perfilProjetoDeEstimativaPresenter.getView().getTxtTaxaDiariaDesenvolvimento().getText());
-               taxaDiariaGerenciaProjeto = obterTaxa(perfilProjetoDeEstimativaPresenter.getView().getTxtTaxaDiariaGerenciaProjeto().getText());
-               taxaDiariaDesign = obterTaxa(perfilProjetoDeEstimativaPresenter.getView().getTxtTaxaDiariaDesign().getText());
-           } catch (NumberFormatException e) {
+        Double taxaDiariaDesenvolvimento, taxaDiariaGerenciaProjeto, taxaDiariaDesign;
+            try {
+               taxaDiariaDesenvolvimento = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getView().getTxtTaxaDiariaDesenvolvimento().getText());
+               taxaDiariaGerenciaProjeto = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getView().getTxtTaxaDiariaGerenciaProjeto().getText());
+               taxaDiariaDesign = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getView().getTxtTaxaDiariaDesign().getText());
+            } catch (NumberFormatException e) {
                JOptionPane.showMessageDialog(null, "Digite um número válido para as taxas diárias!", "Erro de entrada", JOptionPane.ERROR_MESSAGE);
                return;
-          }
+            }
 
-           salvarPerfil(perfilProjetoDeEstimativaModel, nomePerfil, taxaDiariaDesenvolvimento, taxaDiariaGerenciaProjeto, taxaDiariaDesign);
-           salvarFuncionalidadesPersonalizadas(retornaPerfilModelService);
+            setExtrasPerfil(perfilProjetoDeEstimativaModel, nomePerfil, taxaDiariaDesenvolvimento, taxaDiariaGerenciaProjeto, taxaDiariaDesign);
+            
+            if(idPerfil == null){
+                escolhaFuncionalidadesPerfilPresenter.getPerfilProjetoDeEstimativaRepository().insert(perfilProjetoDeEstimativaModel);
+            }else{
+            /*LOGICA PARA UPDATE*/
+                perfilProjetoDeEstimativaModel.setId(idPerfil);
+                if(!escolhaFuncionalidadesPerfilPresenter.getPerfilFuncionalidadesPersonalizadasRepository().findByPerfilProjetoEstimativa(perfilProjetoDeEstimativaModel).isEmpty()){
+                    escolhaFuncionalidadesPerfilPresenter.getPerfilFuncionalidadesPersonalizadasRepository().deleteByPerfilProjetoDeEstimativa(perfilProjetoDeEstimativaModel);
+                }
+                
+                escolhaFuncionalidadesPerfilPresenter.getPerfilProjetoDeEstimativaRepository().update(perfilProjetoDeEstimativaModel);
+            /*LOGICA PARA UPDATE*/
+            }
+            
+            salvarFuncionalidadesPersonalizadas(retornaPerfilModelService);
 
-           JOptionPane.showMessageDialog(null, "PERFIL CRIADO COM SUCESSO!!");
-           perfilProjetoDeEstimativaPresenter.getView().dispose();
+            
+            if(idPerfil == null){
+                JOptionPane.showMessageDialog(null, "PERFIL CRIADO COM SUCESSO!!");
+            }else{
+                JOptionPane.showMessageDialog(null, "PERFIL ATUALIZADO COM SUCESSO!!");
+            }
+            escolhaFuncionalidadesPerfilPresenter.getView().dispose();
         }
 
-        private void encerrarEdicaoCelula(JTable tabela) {
-           int linha = tabela.getSelectedRow();
-           int coluna = tabela.getSelectedColumn();
-          if (linha != -1) {
-               TableCellEditor editor = tabela.getCellEditor(linha, coluna);
-               editor.stopCellEditing();
-           }
-        }
-
-       private boolean verificarValoresInconsistentes(JTable tabela) {
-           int qtdLinhas = tabela.getRowCount();
-           for (int i = 0; i < qtdLinhas; i++) {
-               try {
-                   Object valor = tabela.getValueAt(i, 1);
-                   Integer.parseInt(valor.toString());
-               } catch (NumberFormatException | NullPointerException e) {
-                   JOptionPane.showMessageDialog(null, "O valor da linha " + i + " não é um número inteiro válido!", "Erro de tipo", JOptionPane.ERROR_MESSAGE);
-                   return false;
-              }
-           }
-           return true;
-       }
-        private Map<String, Integer> criarMapPerfil(JTable tabela) {
-           Map<String, Integer> mapPerfil = new LinkedHashMap<>();
-           int qtdLinhas = tabela.getRowCount();
-           for (int i = 0; i < qtdLinhas; i++) {
-               mapPerfil.put((String) tabela.getValueAt(i, 0), (Integer) tabela.getValueAt(i, 1));
-           }
-           return mapPerfil;
-       }
-
-        private Double obterTaxa(String taxaText) throws NumberFormatException {
-           return taxaText.trim().isEmpty() ? 0.0 : Double.parseDouble(taxaText);
-       }
-
-        private void salvarPerfil(PerfilProjetoDeEstimativaModel perfil, String nomePerfil, Double taxaDev, Double taxaGer, Double taxaDes) {
+        //Tudo o que não é funcionalidade
+        private void setExtrasPerfil(PerfilProjetoDeEstimativaModel perfil, String nomePerfil, Double taxaDev, Double taxaGer, Double taxaDes) {
            perfil.setTaxaDiariaDesenvolvimento(taxaDev);
            perfil.setTaxaDiariaDesign(taxaGer);
            perfil.setTaxaDiariaGerenciaProjeto(taxaDes);
            perfil.setNomePerfil(nomePerfil);
-           perfil.setUsuarioModel(perfilProjetoDeEstimativaPresenter.getUsuarioModel());
+           perfil.setUsuarioModel(escolhaFuncionalidadesPerfilPresenter.getUsuarioModel());
            perfil.setDataCriacao(new Date(System.currentTimeMillis()));
-           perfilProjetoDeEstimativaPresenter.getPerfilProjetoDeEstimativaRepository().insert(perfil);
-       }
+        }
 
         private void salvarFuncionalidadesPersonalizadas(RetornaPerfilModelService service) {
            List<PerfilFuncionalidadesPersonalizadasModel> lista = service.getFuncionalidadesPersonalizadas();
            if (lista != null) {
                for (PerfilFuncionalidadesPersonalizadasModel model : lista) {
-                  perfilProjetoDeEstimativaPresenter.getPerfilFuncionalidadesPersonalizadasRepository().insert(model);
+                  escolhaFuncionalidadesPerfilPresenter.getPerfilFuncionalidadesPersonalizadasRepository().insert(model);
                }
            }
-      }
+        }
+        
+        
+        
+        
+        
+        
+        
         
     /*@Override
     public void execute() {
 
         
-        JTable tabela = perfilProjetoDeEstimativaPresenter.getView().getTable();
+        JTable tabela = escolhaFuncionalidadesPerfilPresenter.getView().getTable();
         Map<String, Integer> mapPerfil = new LinkedHashMap<>();
-        String nomePerfil = perfilProjetoDeEstimativaPresenter.getView().getTxtNomePerfil().getText();
+        String nomePerfil = escolhaFuncionalidadesPerfilPresenter.getView().getTxtNomePerfil().getText();
         Double taxaDiariaDesenvolvimento = null;
         Double taxaDiariaGerenciaProjeto = null;
         Double taxaDiariaDesign = null;
@@ -172,9 +165,9 @@ public class SalvarPerfilProjetoDeEstimativaCommand implements Command{
         PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = retornaPerfilModelService.getPerfil();
         
         try {
-            String taxaDiariaDesenvolvimentoText = perfilProjetoDeEstimativaPresenter.getView().getTxtTaxaDiariaDesenvolvimento().getText();
-            String taxaDiariaGerenciaProjetoText = perfilProjetoDeEstimativaPresenter.getView().getTxtTaxaDiariaGerenciaProjeto().getText();
-            String taxaDiariaDesignText = perfilProjetoDeEstimativaPresenter.getView().getTxtTaxaDiariaDesign().getText();
+            String taxaDiariaDesenvolvimentoText = escolhaFuncionalidadesPerfilPresenter.getView().getTxtTaxaDiariaDesenvolvimento().getText();
+            String taxaDiariaGerenciaProjetoText = escolhaFuncionalidadesPerfilPresenter.getView().getTxtTaxaDiariaGerenciaProjeto().getText();
+            String taxaDiariaDesignText = escolhaFuncionalidadesPerfilPresenter.getView().getTxtTaxaDiariaDesign().getText();
 
             
         if (taxaDiariaDesenvolvimentoText.trim().isEmpty() ||
@@ -196,11 +189,11 @@ public class SalvarPerfilProjetoDeEstimativaCommand implements Command{
         perfilProjetoDeEstimativaModel.setTaxaDiariaDesign(taxaDiariaGerenciaProjeto);
         perfilProjetoDeEstimativaModel.setTaxaDiariaGerenciaProjeto(taxaDiariaDesign);
         perfilProjetoDeEstimativaModel.setNomePerfil(nomePerfil);
-        perfilProjetoDeEstimativaModel.setUsuarioModel(perfilProjetoDeEstimativaPresenter.getUsuarioModel());
+        perfilProjetoDeEstimativaModel.setUsuarioModel(escolhaFuncionalidadesPerfilPresenter.getUsuarioModel());
         perfilProjetoDeEstimativaModel.setDataCriacao(new Date(System.currentTimeMillis()));
         
         
-        perfilProjetoDeEstimativaPresenter.getPerfilProjetoDeEstimativaRepository().insert(perfilProjetoDeEstimativaModel);
+        escolhaFuncionalidadesPerfilPresenter.getPerfilProjetoDeEstimativaRepository().insert(perfilProjetoDeEstimativaModel);
         
         List<PerfilFuncionalidadesPersonalizadasModel> perfilFuncionalidadesPersonalizadasModelList = new ArrayList<>();
         perfilFuncionalidadesPersonalizadasModelList = retornaPerfilModelService.getFuncionalidadesPersonalizadas();
@@ -208,12 +201,12 @@ public class SalvarPerfilProjetoDeEstimativaCommand implements Command{
         if(perfilFuncionalidadesPersonalizadasModelList != null){
         for(PerfilFuncionalidadesPersonalizadasModel perfilFuncionalidadesPersonalizadasModel:perfilFuncionalidadesPersonalizadasModelList){
             
-                perfilProjetoDeEstimativaPresenter.getPerfilFuncionalidadesPersonalizadasRepository().insert(perfilFuncionalidadesPersonalizadasModel);
+                escolhaFuncionalidadesPerfilPresenter.getPerfilFuncionalidadesPersonalizadasRepository().insert(perfilFuncionalidadesPersonalizadasModel);
             }
         }
         
         JOptionPane.showMessageDialog(null, "PERFIL CRIADO COM SUCESSO!!");
-        perfilProjetoDeEstimativaPresenter.getView().dispose();*/
+        escolhaFuncionalidadesPerfilPresenter.getView().dispose();*/
     }
     
     
