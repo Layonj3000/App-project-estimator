@@ -25,7 +25,6 @@ public class AtualizarProjetoCommand implements Command{
     private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
     private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
     private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
-    private AbrirDetalhesProjetoProjetoCommand abrirDetalhesProjetoProjetoCommand;
     private final UsuarioModel usuarioModel;
     
     //private String nomeNo;
@@ -34,35 +33,29 @@ public class AtualizarProjetoCommand implements Command{
     private Integer projetoId;
     //private List<Integer> perfisIds;
     
-    public AtualizarProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository, PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel, AbrirDetalhesProjetoProjetoCommand abrirDetalhesProjetoProjetoCommand/*, String nomeNo*/) {
+    public AtualizarProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository, PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel/*, AbrirDetalhesProjetoProjetoCommand abrirDetalhesProjetoProjetoCommand, String nomeNo*/) {
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
         this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;
         this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;
         this.perfilProjetoIntermediariaRepository = perfilProjetoIntermediariaRepository;
         this.usuarioModel = usuarioModel;
-        
-        this.abrirDetalhesProjetoProjetoCommand = abrirDetalhesProjetoProjetoCommand;
-        
-        this.projetoId = abrirDetalhesProjetoProjetoCommand.getProjetoId();
-        //this.nomeNo = nomeNo;
-        
-        //this.perfisIds = new ArrayList<>();
     }
 
     private void getProjetoId() {
         this.projetoId = projetoId;
     }
-      
-   /*public void adicionarPerfilId(Integer perfilId){
-        perfisIds.add(perfilId);
-    }*/
+    
+    public void setProjetoId(Integer projetoId){
+        this.projetoId = projetoId;
+    }
 
     @Override
     public void execute() {
         
-        ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter = new ProjetoDeEstimativaPresenter(new EscolhaPlataformaView(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository,usuarioModel, projetoId);
+        ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter = new ProjetoDeEstimativaPresenter(new EscolhaPlataformaView(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository,usuarioModel);
         projetoDeEstimativaPresenter.setIdProjeto(projetoId);
+        projetoDeEstimativaPresenter.setEstadoInicial();
         /*for(Integer idPerfil: perfisIds){
             projetoDeEstimativaPresenter.addIdPerfil(idPerfil);
         }*/

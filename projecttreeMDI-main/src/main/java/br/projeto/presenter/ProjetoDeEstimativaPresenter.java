@@ -43,22 +43,6 @@ public class ProjetoDeEstimativaPresenter {
 
     
     //CONSTRUTOR PARA UUPDATE
-    public ProjetoDeEstimativaPresenter(IProjetoDeEstimativaView view, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel, Integer idProjeto) {
-        this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
-        this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
-        this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;
-        this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;
-        this.perfilProjetoIntermediariaRepository = perfilProjetoIntermediariaRepository;
-        this.usuarioModel = usuarioModel;
-        //this.perfisIds = new ArrayList<>();
-        this.idProjeto = idProjeto;
-        this.view = view;//new EscolhaPlataformaView();
-        this.estado = new PlataformaEscolhidaState(this, idProjeto);
-    }
-    
-    
-    //AVALIAR POSSÍVEIS RETIRADAS DE REPOSOTORYS DO CONSTRUTOR
-    //CONSTRUTOR PARA INSERCAO
     public ProjetoDeEstimativaPresenter(IProjetoDeEstimativaView view, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel) {
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
@@ -67,9 +51,17 @@ public class ProjetoDeEstimativaPresenter {
         this.perfilProjetoIntermediariaRepository = perfilProjetoIntermediariaRepository;
         this.usuarioModel = usuarioModel;
         //this.perfisIds = new ArrayList<>();
-        
         this.view = view;//new EscolhaPlataformaView();
-        this.estado = new PlataformaEscolhidaState(this);
+        
+
+    }
+    
+    public void setEstadoInicial(){
+        if(idProjeto != null){
+            this.estado = new PlataformaEscolhidaState(this, idProjeto);
+        }else{
+            this.estado = new PlataformaEscolhidaState(this);
+        }
     }
 
     public PerfilProjetoIntermediariaRepository getPerfilProjetoIntermediariaRepository() {

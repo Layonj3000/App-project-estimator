@@ -9,8 +9,9 @@ import br.projeto.command.RemoverOpcaoPerfilCommand;
 import br.projeto.model.UsuarioModel;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
-import br.projeto.state.APerfilProjetoDeEstimativaState;
-import br.projeto.state.ManterPerfilProjetoDeEstimativaState;
+import br.projeto.state.escolha_funcionalidades_perfil.APerfilProjetoDeEstimativaState;
+import br.projeto.state.escolha_funcionalidades_perfil.AtualizacaoProjetoDeEstimativaState;
+import br.projeto.state.escolha_funcionalidades_perfil.InclusaoPerfilProjetoDeEstimativaState;
 import br.projeto.view.ManterPerfilProjetoDeEstimativaView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,32 +21,46 @@ import java.awt.event.ActionListener;
  * @author USER
  */
 public class PerfilProjetoDeEstimativaPresenter {
-    private PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 
-    private PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
-    private UsuarioModel usuarioModel;
+    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 
+    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
+    private final UsuarioModel usuarioModel;
+    private Integer perfilId;
 
     private ManterPerfilProjetoDeEstimativaView view;
     private APerfilProjetoDeEstimativaState estado;
     //ADICIONAR BOTAO PARA EXCLUIR LINHA
-    public PerfilProjetoDeEstimativaPresenter(PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository, ManterPerfilProjetoDeEstimativaView view, UsuarioModel usuarioModel) {
+    public PerfilProjetoDeEstimativaPresenter(PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository, UsuarioModel usuarioModel) {
         this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
         this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;
-        this.view = view;
+        this.view = new ManterPerfilProjetoDeEstimativaView();
         this.usuarioModel = usuarioModel;
-        
-        this.estado = new ManterPerfilProjetoDeEstimativaState(this);
+
+    }
+    
+    public void setEstadoInicial(){
+        if(perfilId != null){
+            this.estado = new AtualizacaoProjetoDeEstimativaState(this, perfilId);
+        }else{
+            this.estado = new InclusaoPerfilProjetoDeEstimativaState(this); 
+        }
+    }
+    
+    public Integer getPerfilId() {
+        return perfilId;
     }
 
+    public void setPerfilId(Integer perfilId) {
+        this.perfilId = perfilId;
+    }
+
+    
+    
     public UsuarioModel getUsuarioModel() {
         return usuarioModel;
     }
     
     public void salvar(){
         estado.salvar();
-    }
-    
-    public void update(){
-        estado.update();
     }
     
     public void voltar(){

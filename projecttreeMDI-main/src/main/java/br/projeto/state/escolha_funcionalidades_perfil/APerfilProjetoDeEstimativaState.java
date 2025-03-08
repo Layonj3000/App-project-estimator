@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package br.projeto.state;
+package br.projeto.state.escolha_funcionalidades_perfil;
 
 import br.projeto.presenter.PerfilProjetoDeEstimativaPresenter;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,16 +20,13 @@ public abstract class APerfilProjetoDeEstimativaState {
     }
 
     public void salvar(){
-        throw new RuntimeException("Não foi possível salvar a partir desse estado.");//IDENTIFICAR O NOME DO ESTADO
-    }
-  
-    public void update(){
-        throw new RuntimeException("Não foi possível atualizar a partir desse estado.");//IDENTIFICAR O NOME DO ESTADO
+        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR A OPERAÇÃO NESSE ESTADO");//IDENTIFICAR O NOME DO ESTADO
+        throw new RuntimeException();
     }
     
     public void voltar(){
-        throw new RuntimeException("Não foi possível voltar a partir desse estado.");//IDENTIFICAR O NOME DO ESTADO
-    }
+        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR A OPERAÇÃO NESSE ESTADO");//IDENTIFICAR O NOME DO ESTADO
+        throw new RuntimeException();    }
     
     
 }

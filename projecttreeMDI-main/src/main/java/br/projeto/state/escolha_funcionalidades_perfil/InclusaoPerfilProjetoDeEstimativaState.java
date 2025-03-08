@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package br.projeto.state;
+package br.projeto.state.escolha_funcionalidades_perfil;
 
+import br.projeto.state.escolha_funcionalidades_perfil.APerfilProjetoDeEstimativaState;
 import br.projeto.command.AdicionarOpcaoPerfilCommand;
 import br.projeto.command.PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand;
 import br.projeto.command.SalvarPerfilProjetoDeEstimativaCommand;
@@ -16,9 +17,9 @@ import javax.swing.JOptionPane;
  *
  * @author USER
  */
-public class ManterPerfilProjetoDeEstimativaState extends APerfilProjetoDeEstimativaState{
+public class InclusaoPerfilProjetoDeEstimativaState extends APerfilProjetoDeEstimativaState{
     
-    public ManterPerfilProjetoDeEstimativaState(PerfilProjetoDeEstimativaPresenter perfilProjetoDeEstimativaPresenter) {
+    public InclusaoPerfilProjetoDeEstimativaState(PerfilProjetoDeEstimativaPresenter perfilProjetoDeEstimativaPresenter) {
         super(perfilProjetoDeEstimativaPresenter);
         
         configuraTela();

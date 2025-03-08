@@ -11,6 +11,7 @@ br\projeto\command\MostrarMensagemProjetoCommand.class
 br\projeto\repository_factory\RepositoryFactory.class
 br\projeto\view\TelaLogin$3.class
 br\projeto\view\DetalheProjetoView$1.class
+br\projeto\state\escolha_funcionalidades_perfil\AtualizarProjetoDeEstimativaState$2.class
 br\projeto\presenter\Observer.class
 br\projeto\repository_factory\UsuarioRepositoryFactory.class
 br\projeto\service\CriarProjetoMock.class
@@ -24,10 +25,10 @@ br\projeto\presenter\PerfilProjetoDeEstimativaPresenter$2.class
 br\projeto\command\RemoverOpcaoPerfilCommand.class
 br\projeto\service\RetornaPerfilModelService.class
 br\projeto\presenter\window_command\ConfigurarViewCommand.class
+br\projeto\state\escolha_perfis_projeto\EscolhaPerfilPresenter.class
 br\projeto\state\ProjetoDeEstimativaMantidoState.class
 br\projeto\view\ManterProjetoDeEstimativaView$3.class
 br\projeto\service\EstimaProjetoService.class
-br\projeto\state\ManterPerfilProjetoDeEstimativaState.class
 br\projeto\view\ManterProjetoDeEstimativaViewBackup$2.class
 br\projeto\command\ExcluirProjetoProjetoCommand.class
 br\projeto\model\UsuarioModel.class
@@ -37,9 +38,11 @@ br\projeto\repository\PerfilProjetoIntermediariaRepository.class
 br\projeto\view\TelaLogin.class
 br\projeto\command\Command.class
 br\projeto\repository\abstr\IProjetoDeEstimativaRepository.class
-br\projeto\state\ManterPerfilProjetoDeEstimativaState$1.class
+br\projeto\state\escolha_perfis_projeto\AtualizacaoEscolhaPerfilState.class
+br\projeto\command\AtualizarPerfilCommand.class
 br\projeto\state\PlataformaEscolhidaState$1.class
 br\projeto\command\RegistroCommand.class
+br\projeto\state\escolha_funcionalidades_perfil\AtualizarProjetoDeEstimativaState.class
 br\projeto\state\ProjetoDeEstimativaMantidoState$1.class
 br\projeto\command\AbrirDetalhesProjetoProjetoCommand.class
 br\projeto\view\EscolhaPlataformaView$1.class
@@ -50,6 +53,7 @@ br\projeto\presenter\PrincipalPresenter$1.class
 br\projeto\command\CriarProjetoProjetoCommand.class
 br\projeto\repository_factory\PerfilFuncionalidadesPersonalizadasRepositoryFactory.class
 br\projeto\state\AProjetoDeEstimativaPresenterState.class
+br\projeto\state\escolha_funcionalidades_perfil\IncluirPerfilProjetoDeEstimativaState.class
 br\projeto\repository\abstr\IPerfilFuncionalidadesPersonalizadasRepository.class
 br\projeto\service\LoginService.class
 br\projeto\state\ProjetoDeEstimativaMantidoState$2.class
@@ -58,6 +62,7 @@ br\projeto\presenter\PerfilProjetoDeEstimativaPresenter$1.class
 br\projeto\presenter\PerfilProjetoDeEstimativaPresenter.class
 br\projeto\view\DetalheProjetoView.class
 br\projeto\model\Projeto.class
+br\projeto\state\escolha_funcionalidades_perfil\IncluirPerfilProjetoDeEstimativaState$1.class
 br\projeto\command\SalvarPerfilProjetoDeEstimativaCommand.class
 br\projeto\presenter\DetalhePerfilPresenter.class
 br\projeto\view\ManterProjetoDeEstimativaView$2.class
@@ -77,9 +82,11 @@ br\projeto\service\ConstrutorDeArvoreNavegacaoService$1.class
 br\projeto\command\AbrirDashboardProjetoCommand.class
 br\projeto\presenter\Zelador.class
 br\projeto\model\ProjetosFuncionalidadesPersonalizadasModel.class
+br\projeto\state\escolha_funcionalidades_perfil\APerfilProjetoDeEstimativaState.class
 br\projeto\repository\abstr\IPerfilProjetoDeEstimativaRepository.class
 br\projeto\command\AbrirDetalhesPerfilCommand.class
 br\projeto\model\PerfilProjetoDeEstimativaModel.class
+br\projeto\state\escolha_funcionalidades_perfil\IncluirPerfilProjetoDeEstimativaState$2.class
 br\projeto\view\TelaRegistro$2.class
 br\projeto\view\ManterProjetoDeEstimativaViewBackup$1.class
 br\projeto\presenter\window_command\WindowCommand.class
@@ -87,15 +94,17 @@ br\projeto\view\EscolhaPlataformaView.class
 br\projeto\view\GlobalWindowManager$1.class
 br\projeto\enums\SimNao.class
 br\projeto\command\PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand.class
+br\projeto\state\escolha_perfis_projeto\AEscolhaPerfilState.class
 br\projeto\model\ProjetoDeEstimativaModel.class
 br\projeto\service\AdicionaListenerCheckBoxProjeto.class
-br\projeto\state\ManterPerfilProjetoDeEstimativaState$2.class
 br\projeto\service\CriarBarraBotaoService.class
 br\projeto\command\ExcluirPerfilCommand.class
 br\projeto\repository\ProjetoFuncionalidadesPersonalizadasRepository.class
+br\projeto\state\escolha_funcionalidades_perfil\AtualizarProjetoDeEstimativaState$1.class
 br\projeto\model\Subject.class
 br\projeto\command\PreencherTabelaEscolhaDePlataformaParaInsercaoCommand.class
 br\projeto\db\DbException.class
+br\projeto\state\escolha_perfis_projeto\InclusaoEscolhaPerfilState.class
 br\projeto\view\ManterPerfilProjetoDeEstimativaView$1.class
 br\projeto\view\TelaLogin$4.class
 br\projeto\model\PerfilFuncionalidadesPersonalizadasModel.class
@@ -111,7 +120,6 @@ br\projeto\command\AtualizarProjetoCommand.class
 br\projeto\view\ManterPerfilProjetoDeEstimativaView$4.class
 br\projeto\view\TelaLogin$1.class
 br\projeto\repository_factory\PerfilProjetoDeEstimativaRepositoryFactory.class
-br\projeto\state\APerfilProjetoDeEstimativaState.class
 br\projeto\repository\ProjetoDeEstimativaRepository.class
 br\projeto\repository\abstr\IUsuarioRepository.class
 br\projeto\presenter\ProjetoDeEstimativaPresenter.class
