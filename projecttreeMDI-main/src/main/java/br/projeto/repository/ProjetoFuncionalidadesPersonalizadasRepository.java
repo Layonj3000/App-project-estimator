@@ -47,7 +47,7 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
         ResultSet rs = null;
 
         try {
-            ps = conn.prepareStatement("SELECT projeto_funcionalidades_personalizadas.*, projetos_estimativa.* , usuario.nome, usuario.senha, usuario.email " +
+            ps = conn.prepareStatement("SELECT projeto_funcionalidades_personalizadas.*, projetos_estimativa.* , usuario.nome, usuario.senha, usuario.email, usuario.formato_log " +
                                         "FROM projeto_funcionalidades_personalizadas " +
                                         "INNER JOIN projetos_estimativa ON projeto_funcionalidades_personalizadas.projeto_id = projetos_estimativa.id "+
                                         "INNER JOIN usuario ON projetos_estimativa.user_id = usuario.id "    
@@ -87,7 +87,7 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
         ResultSet rs = null;
 
         try {
-            ps = conn.prepareStatement("SELECT projeto_funcionalidades_personalizadas.*, projetos_estimativa.* , usuario.nome, usuario.senha, usuario.email " +
+            ps = conn.prepareStatement("SELECT projeto_funcionalidades_personalizadas.*, projetos_estimativa.* , usuario.nome, usuario.senha, usuario.email, usuario.formato_log " +
                                        "FROM projeto_funcionalidades_personalizadas "+ 
                                         "INNER JOIN projetos_estimativa ON projeto_funcionalidades_personalizadas.projeto_id = projetos_estimativa.id "+
                                         "INNER JOIN usuario ON projetos_estimativa.user_id = usuario.id "+  
@@ -116,7 +116,7 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
         ResultSet rs = null;
 
         try {
-            ps = conn.prepareStatement("SELECT projeto_funcionalidades_personalizadas.*, projetos_estimativa.* , usuario.nome, usuario.senha, usuario.email " +
+            ps = conn.prepareStatement("SELECT projeto_funcionalidades_personalizadas.*, projetos_estimativa.* , usuario.nome, usuario.senha, usuario.email, usuario.formato_log " +
                                         "FROM projeto_funcionalidades_personalizadas " +
                                         "INNER JOIN projetos_estimativa ON projeto_funcionalidades_personalizadas.projeto_id = projetos_estimativa.id "+
                                         "INNER JOIN usuario ON projetos_estimativa.user_id = usuario.id "+
@@ -303,7 +303,6 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
         Date data = new Date(timestamp);
         projetoDeEstimativaModel.setDataCriacao(data);
         projetoDeEstimativaModel.setNomeProjetoDeEstimativa(rs.getString("nome_projeto_estimativa"));
-        projetoDeEstimativaModel.setStatus(rs.getInt("status"));
         projetoDeEstimativaModel.setPequeno(rs.getInt("pequeno"));
         projetoDeEstimativaModel.setMedio(rs.getInt("medio"));
         projetoDeEstimativaModel.setGrande(rs.getInt("grande"));
@@ -390,7 +389,7 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
     }
 
     private UsuarioModel instantiateUsuarioModel(ResultSet rs) throws SQLException {
-        UsuarioModel usuarioModel = new UsuarioModel(rs.getInt("user_id"), rs.getString("nome"), rs.getString("senha"), rs.getString("email"));
+        UsuarioModel usuarioModel = new UsuarioModel(rs.getInt("user_id"), rs.getString("nome"), rs.getString("senha"), rs.getString("email"), rs.getString("formato_log"));
         return usuarioModel;    }
 
     @Override

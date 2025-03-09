@@ -45,7 +45,7 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
         ResultSet rs = null;
             
         try {
-            ps = conn.prepareStatement("SELECT perfil_funcionalidades_personalizadas.*, perfil_projeto_estimativa.* , usuario.nome, usuario.senha, usuario.email " +
+            ps = conn.prepareStatement("SELECT perfil_funcionalidades_personalizadas.*, perfil_projeto_estimativa.* , usuario.nome, usuario.senha, usuario.email, usuario.formato_log " +
                                         "FROM perfil_funcionalidades_personalizadas " +
                                         "INNER JOIN perfil_projeto_estimativa ON perfil_funcionalidades_personalizadas.perfil_id = perfil_projeto_estimativa.id "+
                                         "INNER JOIN usuario ON perfil_projeto_estimativa.user_id = usuario.id "    
@@ -85,7 +85,7 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
         ResultSet rs = null;
 
         try {
-            ps = conn.prepareStatement("SELECT perfil_funcionalidades_personalizadas.*, perfil_projeto_estimativa.* , usuario.nome, usuario.senha, usuario.email " +
+            ps = conn.prepareStatement("SELECT perfil_funcionalidades_personalizadas.*, perfil_projeto_estimativa.* , usuario.nome, usuario.senha, usuario.email, usuario.formato_log " +
                                        "FROM perfil_funcionalidades_personalizadas "+ 
                                         "INNER JOIN perfil_projeto_estimativa ON perfil_funcionalidades_personalizadas.perfil_id = perfil_projeto_estimativa.id "+
                                         "INNER JOIN usuario ON perfil_projeto_estimativa.user_id = usuario.id "+  
@@ -114,7 +114,7 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
         ResultSet rs = null;
 
         try {
-            ps = conn.prepareStatement("SELECT perfil_funcionalidades_personalizadas.*, perfil_projeto_estimativa.* , usuario.nome, usuario.senha, usuario.email " +
+            ps = conn.prepareStatement("SELECT perfil_funcionalidades_personalizadas.*, perfil_projeto_estimativa.* , usuario.nome, usuario.senha, usuario.email, usuario.formato_log " +
                                         "FROM perfil_funcionalidades_personalizadas " +
                                         "INNER JOIN perfil_projeto_estimativa ON perfil_funcionalidades_personalizadas.perfil_id = perfil_projeto_estimativa.id "+
                                         "INNER JOIN usuario ON perfil_projeto_estimativa.user_id = usuario.id "+
@@ -369,7 +369,7 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
     }
 
     private UsuarioModel instantiateUsuarioModel(ResultSet rs) throws SQLException {
-        UsuarioModel usuarioModel = new UsuarioModel(rs.getInt("user_id"), rs.getString("nome"), rs.getString("senha"), rs.getString("email"));
+        UsuarioModel usuarioModel = new UsuarioModel(rs.getInt("user_id"), rs.getString("nome"), rs.getString("senha"), rs.getString("email"), rs.getString("formato_log"));
         return usuarioModel;    }
 
     @Override

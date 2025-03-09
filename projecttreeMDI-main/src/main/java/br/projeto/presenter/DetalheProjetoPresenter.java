@@ -86,8 +86,7 @@ public class DetalheProjetoPresenter extends Observer {
                 projeto.getNomeProjetoDeEstimativa(),
                 projeto.getNomeUsuario(),
                 projeto.getDataCriacao(),
-                tiposConcatenados,
-                projeto.getStatus()
+                tiposConcatenados
         );
     }
     

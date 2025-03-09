@@ -6,6 +6,7 @@ br\projeto\command\PreencherTabelaEscolhaDePlataformaParaInsercaoCommand$1.class
 br\projeto\presenter\window_command\SetLookAndFeelCommand.class
 br\projeto\command\PreencherTabelaEscolhaDePlataformaParaUpdateCommand.class
 br\projeto\presenter\EscolhaFuncionalidadesProjetoPresenter.class
+br\projeto\enums\FormatoLOG.class
 br\projeto\state\escolha_funcionalidades_perfil\AtualizacaoEscolhaFuncionalidadesPerfilState$1.class
 br\projeto\repository\PerfilFuncionalidadesPersonalizadasRepository.class
 br\projeto\command\LoginCommand.class

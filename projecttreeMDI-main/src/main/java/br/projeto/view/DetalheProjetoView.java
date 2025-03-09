@@ -8,7 +8,7 @@ import java.sql.Date;
 import java.text.DecimalFormat;
 
 public class DetalheProjetoView extends JInternalFrame {
-    private JLabel lblNome, lblCriador, lblData, lblTipoProjeto, lblStatus, lblValorTotal;
+    private JLabel lblNome, lblCriador, lblData, lblTipoProjeto, lblValorTotal;
     private JTable tabelaDetalhes;
     private DefaultTableModel modeloTabela;
 
@@ -31,13 +31,11 @@ public class DetalheProjetoView extends JInternalFrame {
         lblCriador = new JLabel("Criador: ");
         lblData = new JLabel("Data de Criação: ");
         lblTipoProjeto = new JLabel("Tipo de Projeto: ");
-        lblStatus = new JLabel("Status: ");
 
         painelCabecalho.add(lblNome);
         painelCabecalho.add(lblCriador);
         painelCabecalho.add(lblData);
         painelCabecalho.add(lblTipoProjeto);
-        painelCabecalho.add(lblStatus);
 
         painelPrincipal.add(painelCabecalho, BorderLayout.NORTH);
 
@@ -65,12 +63,11 @@ public class DetalheProjetoView extends JInternalFrame {
         painelPrincipal.add(painelTabela, BorderLayout.CENTER);
     }
 
-    public void atualizarCabecalho(String nome, String criador, Date data, String tipoProjeto, Status status) {//ANTIGO TIPO DE DATA ERA STRING
+    public void atualizarCabecalho(String nome, String criador, Date data, String tipoProjeto) {//ANTIGO TIPO DE DATA ERA STRING
         lblNome.setText("Nome: " + nome);                                                                      //ANTIGO TIPO DE STATUS ERA STRING 
         lblCriador.setText("Criador: " + criador);
         lblData.setText("Data de Criação: " + data);
         lblTipoProjeto.setText("Tipo de Projeto: " + tipoProjeto);
-        lblStatus.setText("Status: " + status);
     }
 
     public void atualizarTabela(Object[][] dados, double valorTotal) {

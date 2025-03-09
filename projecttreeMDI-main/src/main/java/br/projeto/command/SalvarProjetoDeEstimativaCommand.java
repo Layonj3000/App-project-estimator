@@ -97,7 +97,6 @@ public class SalvarProjetoDeEstimativaCommand implements Command{
         projetoDeEstimativaModel.setPercentualLucroDesejado(percentualDeLucroDesejado);
         projetoDeEstimativaModel.setUsuarioModel(escolhaFuncionalidadesProjetoPresenter.getUsuarioModel());
         projetoDeEstimativaModel.setDataCriacao(new Date(System.currentTimeMillis()));
-        projetoDeEstimativaModel.setStatus(0);
         
         /*LOGICA PARA UPDATE*/
         if(projetoId != null){

@@ -41,7 +41,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
         ResultSet rs = null;
 
         try {
-            ps = conn.prepareStatement("SELECT perfil_projeto_estimativa.*, usuario.nome, usuario.senha, usuario.email " +
+            ps = conn.prepareStatement("SELECT perfil_projeto_estimativa.*, usuario.nome, usuario.senha, usuario.email, usuario.formato_log " +
                     "FROM perfil_projeto_estimativa " +
                     "INNER JOIN usuario ON perfil_projeto_estimativa.user_id = usuario.id"
             );
@@ -75,7 +75,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
         ResultSet rs = null;
 
         try {
-            ps = conn.prepareStatement("SELECT perfil_projeto_estimativa.*, usuario.nome, usuario.senha, usuario.email " +
+            ps = conn.prepareStatement("SELECT perfil_projeto_estimativa.*, usuario.nome, usuario.senha, usuario.email, usuario.formato_log " +
                     "FROM perfil_projeto_estimativa " +
                     "INNER JOIN usuario ON perfil_projeto_estimativa.user_id = usuario.id " +
                     "WHERE usuario.id=?");
@@ -110,7 +110,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
         ResultSet rs = null;
 
         try{
-            ps = conn.prepareStatement("SELECT perfil_projeto_estimativa.*, usuario.nome, usuario.senha, usuario.email FROM perfil_projeto_estimativa "+
+            ps = conn.prepareStatement("SELECT perfil_projeto_estimativa.*, usuario.nome, usuario.senha, usuario.email, usuario.formato_log FROM perfil_projeto_estimativa "+
                     "INNER JOIN usuario ON perfil_projeto_estimativa.user_id = usuario.id "+
                     "INNER JOIN perfil_projeto_intermediaria ON perfil_projeto_estimativa.id = perfil_projeto_intermediaria.perfil_id "+
                     "WHERE perfil_projeto_intermediaria.projeto_id = ?");
@@ -144,7 +144,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
         ResultSet rs = null;
 
         try {
-            ps = conn.prepareStatement("SELECT perfil_projeto_estimativa.*, usuario.nome, usuario.senha, usuario.email FROM perfil_projeto_estimativa " +
+            ps = conn.prepareStatement("SELECT perfil_projeto_estimativa.*, usuario.nome, usuario.senha, usuario.email, usuario.formato_log FROM perfil_projeto_estimativa " +
                     "INNER JOIN usuario ON perfil_projeto_estimativa.user_id = usuario.id " +
                     "WHERE perfil_projeto_estimativa.id=?");
             ps.setInt(1, id);
@@ -451,7 +451,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
     }
 
     private UsuarioModel instantiateUsuarioModel(ResultSet rs) throws SQLException {
-        UsuarioModel usuarioModel = new UsuarioModel(rs.getInt("user_id"), rs.getString("nome"), rs.getString("senha"), rs.getString("email"));
+        UsuarioModel usuarioModel = new UsuarioModel(rs.getInt("user_id"), rs.getString("nome"), rs.getString("senha"), rs.getString("email"), rs.getString("formato_log"));
         return usuarioModel;
     }
 

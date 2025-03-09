@@ -17,7 +17,6 @@ public class ProjetoDeEstimativaModel {
     private Integer compartilhadoPor;
     private Date dataCriacao;
     private String nomeProjetoDeEstimativa; 
-    private Status status; 
     private SimNao pequeno;
     private SimNao medio;
     private SimNao grande;
@@ -104,14 +103,13 @@ public class ProjetoDeEstimativaModel {
     public ProjetoDeEstimativaModel(){
             funcionalidadesDisponiveis = new LinkedHashMap<>();
     }
-    public ProjetoDeEstimativaModel(Integer id, UsuarioModel usuarioModel, int compartilhado,Integer compartilhadorPor,Date dataCriacao,String nomeProjetoDeEstimativa,int status, int pequeno, int medio, int grande, int mvp, int basico, int profissional, int cadastroPorEmailSenha, int cadastroPorFacebook, int cadastroPorTwitter, int cadastroPorGoogle, int cadastroPorLinkedin, int cadastroPorGithub, int cadastroPorConviteUsuario, int cadastroPorContasMultitenant, int cadastroPorSubdominios, int cadastroPorDominiosPersonalizados, int painel, int feedDeAtividades, int uploadDeArquivos, int uploadDeMidia, int perfisDeUsuario, int emailsTransacionais, int tags, int avaliacoesOuComentarios, int processamentoAudioVideo, int pesquisaTextoLivre, int pesquisa, int calendario, int exibicaoDadosMapaGeolocalizacao, int exibicaoMarcadoresRegioesMapaPersonalizados, int reservas, int mensagens, int forunsOuComentarios, int compartilhamentoSocial, int integracaoFacebookOpenGraph, int notificacaoPush, int planosDeAssinatura, int processamentoDePagamento, int carrinhoDeCompras, int marketplaceDeUsuarios, int gerenciamentoDeProdutos, int comprasDentroDoAplicativo, int coletaInformacaoPagamento, int integracaoCms, int paginasAdministracaoUsuarios, int moderacaoAprovacaoConteudo, int intercom, int analisesUso, int relatoriosErro, int monitoramentoPerformance, int suporteMultilingue, int conectarServicosDeTerceiros, int apiParaTerceiros, int envioSms, int mascaramentoNumeroTelefone, int segurancaBaseadaCertificadoSsl, int protecaoContraDos, int autenticacaoDuasEtapas, int desenvolvimentoEspecificoApp, int designIconeApp, int sincronizacaoNuvem, int dados_sensoresDispositivo, int codigoBarraQrCode, int dadosSaude, int appleWatch, int gerenteDeProjetos, Double custoHardware, Double custoSoftware, Double custoRiscos, Double custoGarantia, Double fundoDeReserva, Double outrosCustos, /*Double subTotal,*/ Double percentualComImpostos, /*Double totalComImposto,*/ Double percentualLucroDesejado/*, Double lucroCalculado, Integer dias, Double meses, Double precoFinalCliente, Double mediaPorMes*/){
+    public ProjetoDeEstimativaModel(Integer id, UsuarioModel usuarioModel, int compartilhado,Integer compartilhadorPor,Date dataCriacao,String nomeProjetoDeEstimativa, int pequeno, int medio, int grande, int mvp, int basico, int profissional, int cadastroPorEmailSenha, int cadastroPorFacebook, int cadastroPorTwitter, int cadastroPorGoogle, int cadastroPorLinkedin, int cadastroPorGithub, int cadastroPorConviteUsuario, int cadastroPorContasMultitenant, int cadastroPorSubdominios, int cadastroPorDominiosPersonalizados, int painel, int feedDeAtividades, int uploadDeArquivos, int uploadDeMidia, int perfisDeUsuario, int emailsTransacionais, int tags, int avaliacoesOuComentarios, int processamentoAudioVideo, int pesquisaTextoLivre, int pesquisa, int calendario, int exibicaoDadosMapaGeolocalizacao, int exibicaoMarcadoresRegioesMapaPersonalizados, int reservas, int mensagens, int forunsOuComentarios, int compartilhamentoSocial, int integracaoFacebookOpenGraph, int notificacaoPush, int planosDeAssinatura, int processamentoDePagamento, int carrinhoDeCompras, int marketplaceDeUsuarios, int gerenciamentoDeProdutos, int comprasDentroDoAplicativo, int coletaInformacaoPagamento, int integracaoCms, int paginasAdministracaoUsuarios, int moderacaoAprovacaoConteudo, int intercom, int analisesUso, int relatoriosErro, int monitoramentoPerformance, int suporteMultilingue, int conectarServicosDeTerceiros, int apiParaTerceiros, int envioSms, int mascaramentoNumeroTelefone, int segurancaBaseadaCertificadoSsl, int protecaoContraDos, int autenticacaoDuasEtapas, int desenvolvimentoEspecificoApp, int designIconeApp, int sincronizacaoNuvem, int dados_sensoresDispositivo, int codigoBarraQrCode, int dadosSaude, int appleWatch, int gerenteDeProjetos, Double custoHardware, Double custoSoftware, Double custoRiscos, Double custoGarantia, Double fundoDeReserva, Double outrosCustos, /*Double subTotal,*/ Double percentualComImpostos, /*Double totalComImposto,*/ Double percentualLucroDesejado/*, Double lucroCalculado, Integer dias, Double meses, Double precoFinalCliente, Double mediaPorMes*/){
         this.id = id;
         this.usuarioModel = usuarioModel;
         this.compartilhado = SimNao.fromValue(compartilhado);
         this.compartilhadoPor = compartilhadorPor;
         this.dataCriacao = dataCriacao;
         this.nomeProjetoDeEstimativa = nomeProjetoDeEstimativa;
-        this.status = Status.fromValue(status);
         this.pequeno = SimNao.fromValue(pequeno);
         this.medio = SimNao.fromValue(medio);
         this.grande = SimNao.fromValue(grande);
@@ -246,16 +244,6 @@ public class ProjetoDeEstimativaModel {
 
     public void setNomeProjetoDeEstimativa(String nomeProjetoDeEstimativa) {
         this.nomeProjetoDeEstimativa = nomeProjetoDeEstimativa;
-    }
-
-    public Integer getStatusValor(){return status != null ? status.getValor() : 0;}
-
-    public Status getStatus() {
-        return status;
-    }
-    
-    public void setStatus(Integer status){
-        this.status = status != null ? Status.fromValue(status):Status.ESTIMADO;
     }
 
 
@@ -995,7 +983,6 @@ public Map<String, SimNao> getFuncionalidadesDisponiveis() {
                 ", compartilhadoPor=" + compartilhadoPor +
                 ", dataCriacao=" + dataCriacao +
                 ", nomeProjetoDeEstimativa='" + nomeProjetoDeEstimativa + '\'' +
-                ", status=" + status +
                 ", pequeno=" + pequeno +
                 ", medio=" + medio +
                 ", grande=" + grande +

@@ -40,7 +40,7 @@ public class RegistroCommand implements Command {
             RepositoryFactory factory1 = RepositoryFactory.escolherClasseFabricada(UsuarioRepository.class);
             UsuarioRepository usuarioRepository = factory1.createRepository();
 
-            UsuarioModel novoUsuario = new UsuarioModel(5, nome, senha, email);
+            UsuarioModel novoUsuario = new UsuarioModel(5, nome, senha, email, "CSV");
             usuarioRepository.insert(novoUsuario);
 
             JOptionPane.showMessageDialog(null, "Usuário registrado com sucesso!");

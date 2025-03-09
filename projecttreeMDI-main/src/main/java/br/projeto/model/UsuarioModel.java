@@ -1,16 +1,20 @@
 package br.projeto.model;
 
+import br.projeto.enums.FormatoLOG;
+
 public class UsuarioModel {
     private Integer id;
     private String nome;
     private String senha;
     private String email;
+    private String formatoLOG;
 
-    public UsuarioModel(Integer id, String nome, String senha, String email) {
+    public UsuarioModel(Integer id, String nome, String senha, String email, String formatoLOG) {
         this.id = id;
         this.nome = nome;
         this.senha = senha;
         this.email = email;
+        this.formatoLOG = formatoLOG;
     }
 
     public Integer getId() {
@@ -45,13 +49,18 @@ public class UsuarioModel {
         this.email = email;
     }
 
+    public String getFormatoLOG() {
+        return formatoLOG;
+    }
+
     @Override
     public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", senha='" + senha + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return "UsuarioModel{" + "id=" + id + 
+                ", nome=" + nome + 
+                ", senha=" + senha + 
+                ", email=" + email + 
+                ", formatoLOG=" + formatoLOG + '}';
     }
+
+
 }

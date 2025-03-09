@@ -15,7 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioRepository implements Subject, IUsuarioRepository {
+public class UsuarioRepository implements /*Subject,*/ IUsuarioRepository {
     private Connection conn;
 
     public UsuarioRepository(Connection conn){
@@ -119,13 +119,14 @@ public class UsuarioRepository implements Subject, IUsuarioRepository {
         ResultSet rs = null;
         try{
             ps = conn.prepareStatement("INSERT INTO usuario" +
-                                           "(nome, senha, email) "+
-                                           "VALUES(?,?,?)",
+                                           "(nome, senha, email, formato_log) "+
+                                           "VALUES(?,?,?,?)",
                                        Statement.RETURN_GENERATED_KEYS
                                       );
             ps.setString(1, usuario.getNome());
             ps.setString(2, usuario.getSenha());
             ps.setString(3, usuario.getEmail());
+            ps.setString(4, usuario.getFormatoLOG());
 
             int rowsAffected = ps.executeUpdate();
             if(rowsAffected > 0 ){
@@ -151,13 +152,14 @@ public class UsuarioRepository implements Subject, IUsuarioRepository {
 
         try{
             ps = conn.prepareStatement("UPDATE usuario "+
-                                           "SET nome=?, senha=?, email=? "+
+                                           "SET nome=?, senha=?, email=?, formato_log = ? "+
                                            "WHERE id=?"
                                       );
             ps.setString(1, usuario.getNome());
             ps.setString(2, usuario.getSenha());
             ps.setString(3, usuario.getEmail());
-            ps.setInt(4, usuario.getId());
+            ps.setString(4, usuario.getFormatoLOG());
+            ps.setInt(5, usuario.getId());
 
             ps.executeUpdate();
         }catch(SQLException e){
@@ -184,23 +186,9 @@ public class UsuarioRepository implements Subject, IUsuarioRepository {
     }
 
     private UsuarioModel instantiateUsuarioModel(ResultSet rs) throws SQLException {
-        UsuarioModel usuarioModel = new UsuarioModel(rs.getInt("id"), rs.getString("nome"), rs.getString("senha"), rs.getString("email"));
+        UsuarioModel usuarioModel = new UsuarioModel(rs.getInt("id"), rs.getString("nome"), rs.getString("senha"), rs.getString("email"), rs.getString("formato_log"));
         return usuarioModel;
     }
 
-    @Override
-    public void addObserver(Observer observer) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void removeObserver(Observer observer) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void notifyObservers() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
 }
