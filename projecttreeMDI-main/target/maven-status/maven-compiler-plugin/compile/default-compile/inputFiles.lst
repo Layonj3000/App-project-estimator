@@ -5,14 +5,15 @@ C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\m
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository\PerfilProjetoDeEstimativaRepository.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository\PerfilProjetoIntermediariaRepository.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\model\Projeto.java
+C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\InstanciaRepositoryService.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\MapValoresPadraoPerfilService.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\state\escolha_perfis_projeto\AtualizacaoEscolhaPerfilState.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\ManterProjetoDeEstimativaViewBackup.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\AdicionaListenerCheckBoxProjeto.java
+C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\LoginUsuarioPresenter.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\window_command\ConfigurarViewCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\db\DbException.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\model\ProjetoDeEstimativaModel.java
-C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\LoginService.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\state\escolha_perfis_projeto\AEscolhaPerfilState.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\DetalheProjetoView.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\model\UsuarioModel.java
@@ -34,7 +35,6 @@ C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\m
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\RemoverOpcaoPerfilCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\state\escolha_funcionalidades_perfil\AtualizacaoEscolhaFuncionalidadesPerfilState.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\IconService.java
-C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\proxy\ProxyRegistro.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\Zelador.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\IProjetoDeEstimativaView.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository\abstr\IPerfilFuncionalidadesPersonalizadasRepository.java
@@ -42,6 +42,7 @@ C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\m
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository_factory\ProjetoDeEstimativaRepositoryFactory.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\AbrirInternalFrameGenericoProjetoCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\TelaRegistro.java
+C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\registro_proxy\IRegistroProxy.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\AdicionarOpcaoPerfilCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository\abstr\IProjetoDeEstimativaRepository.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\state\RegistroState.java
@@ -85,6 +86,7 @@ C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\m
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\model\ProjetosFuncionalidadesPersonalizadasModel.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository_factory\PerfilProjetoDeEstimativaRepositoryFactory.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository_factory\UsuarioRepositoryFactory.java
+C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\RegistroUsuarioPresenter.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\model\PerfilProjetoIntermediariaModel.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\AuxiliarTelaPerfilService.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\window_command\SetLookAndFeelCommand.java
@@ -101,6 +103,7 @@ C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\m
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\enums\SimNao.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\AbrirDetalhesProjetoProjetoCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\window_command\FecharJanelasPerfilRelacionadasCommand.java
+C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\registro_proxy\RegistroProxy.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\DesktopMemento.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\CriarBarraBotaoService.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\RetornaProjetoModelService.java

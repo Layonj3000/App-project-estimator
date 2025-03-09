@@ -5,10 +5,12 @@
 package br.projeto.command;
 
 import br.projeto.model.UsuarioModel;
+import br.projeto.presenter.LoginUsuarioPresenter;
 import br.projeto.presenter.PrincipalPresenter;
 import br.projeto.presenter.helpers.WindowManager;
 import br.projeto.repository.ProjetoRepositoryMock;
-import br.projeto.service.LoginService;
+import br.projeto.repository.UsuarioRepository;
+import br.projeto.service.InstanciaRepositoryService;
 import br.projeto.view.TelaLogin;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -18,34 +20,20 @@ import javax.swing.SwingUtilities;
  * @author layon
  */
 public class LoginCommand implements Command {
-
-    private TelaLogin telaLogin;
-    private String email;
-    private String senha;
-    private LoginService loginService;
-
-    public LoginCommand(TelaLogin telaLogin, String email, String senha) {
-        this.telaLogin = telaLogin;
-        this.email = email;
-        this.senha = senha;
-        this.loginService = new LoginService(); 
+    private LoginUsuarioPresenter loginUsuarioPresenter;
+    private UsuarioRepository usuarioRepository = InstanciaRepositoryService.getInstancia().getUsuarioRepository();
+    
+    public LoginCommand(LoginUsuarioPresenter loginUsuarioPresenter) {
+        this.loginUsuarioPresenter = loginUsuarioPresenter;
     }
 
     @Override
     public void execute() {
-        if (loginService.verificarLogin(email, senha)) {
-            UsuarioModel usuarioModel = loginService.obterUsuario(email, senha);
-            telaLogin.dispose();
+        if (usuarioRepository.findByEmailandPassword(loginUsuarioPresenter.getEmail(), loginUsuarioPresenter.getSenha()) != null) {
+            UsuarioModel usuarioModel = usuarioRepository.findByEmailandPassword(loginUsuarioPresenter.getEmail(), loginUsuarioPresenter.getSenha());
+            loginUsuarioPresenter.getView().dispose();
             SwingUtilities.invokeLater(() -> {
-                PrincipalPresenter presenter = new PrincipalPresenter(
-                        new ProjetoRepositoryMock(),
-                        loginService.getProjetoDeEstimativaRepository(),
-                        loginService.getPerfilProjetoDeEstimativaRepository(),
-                        loginService.getProjetoFuncionalidadesPersonalizadasRepository(),
-                        loginService.getPerfilFuncionalidadesPersonalizadasRepository(),
-                        loginService.getPerfilPerfilProjetoIntermediariaRepository(),
-                        usuarioModel
-                );
+                PrincipalPresenter presenter = new PrincipalPresenter(usuarioModel);
                 WindowManager.getInstance().initialize(presenter);
             });
         } else {

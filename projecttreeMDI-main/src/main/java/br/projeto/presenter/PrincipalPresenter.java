@@ -1,12 +1,9 @@
 package br.projeto.presenter;
 
 import br.projeto.command.*;
-import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
-import br.projeto.model.PerfilProjetoIntermediariaModel;
 import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
-import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
 import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.helpers.WindowManager;
 import br.projeto.presenter.window_command.*;
@@ -17,6 +14,7 @@ import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.ProjetoRepositoryMock;
 import br.projeto.service.ConstrutorDeArvoreNavegacaoService;
+import br.projeto.service.InstanciaRepositoryService;
 import br.projeto.service.NoArvoreComposite;
 import br.projeto.view.GlobalWindowManager;
 import br.projeto.view.PrincipalView;
@@ -37,30 +35,31 @@ public final class PrincipalPresenter extends Observer {
     private final ConstrutorDeArvoreNavegacaoService construtorDeArvoreNavegacaoService;
     private final Map<String, Command> comandos;
     private final List<WindowCommand> windowCommands = new ArrayList<>();
+    private InstanciaRepositoryService repositoryService = InstanciaRepositoryService.getInstancia();
     
     /*ATUALIZAR*/
     //private AtualizarProjetoCommand atualizarProjetoCommand;
     /*ATUALIZAR*/
     
-    public PrincipalPresenter(ProjetoRepositoryMock repository, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel) {
+    public PrincipalPresenter(UsuarioModel usuarioModel) {
         this.view = new PrincipalView();
-        this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;//NOVO
+        this.projetoDeEstimativaRepository = repositoryService.getProjetoDeEstimativaRepository();
         this.projetoDeEstimativaRepository.addObserver(this);//NOVO
         
-        this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;//NOVO
+        this.perfilProjetoDeEstimativaRepository = repositoryService.getPerfilProjetoDeEstimativaRepository();
         this.perfilProjetoDeEstimativaRepository.addObserver(this);//NOVO
         
-        this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;//NOVO
+        this.projetoFuncionalidadesPersonalizadasRepository = repositoryService.getProjetoFuncionalidadesPersonalizadasRepository();
         //this.projetoFuncionalidadesPersonalizadasRepository.addObserver(this);//NOVO
         
-        this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;//NOVO
+        this.perfilFuncionalidadesPersonalizadasRepository = repositoryService.getPerfilFuncionalidadesPersonalizadasRepository();
         /*this.perfilFuncionalidadesPersonalizadasRepository.addObserver(this);//NOVO*/
         
-        this.perfilProjetoIntermediariaRepository = perfilProjetoIntermediariaRepository;
+        this.perfilProjetoIntermediariaRepository = repositoryService.getPerfilPerfilProjetoIntermediariaRepository();
         
         this.usuarioModel = usuarioModel;
         
-        this.repository = repository;
+        this.repository = repositoryService.getRepositoryMock();
         this.repository.addObserver(this);
 
         this.construtorDeArvoreNavegacaoService = new ConstrutorDeArvoreNavegacaoService();

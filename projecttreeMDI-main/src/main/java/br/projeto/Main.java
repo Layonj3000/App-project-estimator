@@ -1,33 +1,18 @@
 package br.projeto;
 
-import br.projeto.db.DB;
-import br.projeto.enums.SimNao;
-import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
-import br.projeto.model.PerfilProjetoDeEstimativaModel;
-import br.projeto.model.ProjetoDeEstimativaModel;
-import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
 import br.projeto.model.UsuarioModel;
-import br.projeto.presenter.PrincipalPresenter;
-import br.projeto.presenter.TelaPresenter;
-import br.projeto.presenter.helpers.WindowManager;
+import br.projeto.presenter.LoginUsuarioPresenter;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
-import br.projeto.repository.PerfilProjetoIntermediariaRepository;
-import br.projeto.repository.ProjetoDeEstimativaRepository;
-import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
-import br.projeto.repository.ProjetoRepositoryMock;
 import br.projeto.repository.UsuarioRepository;
 import br.projeto.repository_factory.RepositoryFactory;
-import br.projeto.state.LoginState;
-import java.sql.Date;
 
-import javax.swing.*;
 
 public class Main {
 
     public static void main(String[] args) {
         
-          TelaPresenter presenter = new TelaPresenter(new LoginState());  
+          LoginUsuarioPresenter loginPresenter = new LoginUsuarioPresenter();
           
           
 //        RepositoryFactory factory = RepositoryFactory.escolherClasseFabricada(ProjetoDeEstimativaRepository.class);

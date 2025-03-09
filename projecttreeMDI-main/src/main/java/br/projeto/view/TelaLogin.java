@@ -8,6 +8,9 @@ import br.projeto.command.Command;
 import br.projeto.command.LoginCommand;
 import br.projeto.presenter.TelaPresenter;
 import br.projeto.state.RegistroState;
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -20,6 +23,7 @@ public class TelaLogin extends javax.swing.JFrame {
      */
     public TelaLogin() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -80,19 +84,9 @@ public class TelaLogin extends javax.swing.JFrame {
         btnEntrar.setBackground(new java.awt.Color(0, 153, 153));
         btnEntrar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnEntrar.setText("Entrar");
-        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEntrarActionPerformed(evt);
-            }
-        });
 
         btnCriarConta.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnCriarConta.setText("Criar Conta");
-        btnCriarConta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCriarContaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,10 +112,13 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addContainerGap(82, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCriarConta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEntrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(153, 153, 153))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnEntrar)
+                        .addGap(157, 157, 157))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnCriarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(147, 147, 147))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,19 +158,6 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_SenhaLoginActionPerformed
 
-    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        String email = TxtEmail.getText();
-        String senha = new String(SenhaLogin.getPassword());
-
-        Command login = new LoginCommand(this, email, senha);
-        login.execute();
-    }//GEN-LAST:event_btnEntrarActionPerformed
-
-    private void btnCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarContaActionPerformed
-        TelaPresenter presenter = new TelaPresenter(new RegistroState());
-        dispose();
-    }//GEN-LAST:event_btnCriarContaActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -207,6 +191,22 @@ public class TelaLogin extends javax.swing.JFrame {
                 new TelaLogin().setVisible(true);
             }
         });
+    }
+
+    public JPasswordField getSenhaLogin() {
+        return SenhaLogin;
+    }
+
+    public JTextField getTxtEmail() {
+        return TxtEmail;
+    }
+
+    public JButton getBtnCriarConta() {
+        return btnCriarConta;
+    }
+
+    public JButton getBtnEntrar() {
+        return btnEntrar;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
