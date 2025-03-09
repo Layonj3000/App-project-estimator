@@ -46,7 +46,7 @@ public class PreencherTabelaFuncionalidadesProjetoCommand implements Command{
         ManterProjetoDeEstimativaView view = escolhaFuncionalidadesProjetoPresenter.getView();
         
         
-        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Selecionar", "Funcionalidades", "Valores"},0){
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Selecionar", "Funcionalidades", "Dias"},0){
             @Override
             public Class<?> getColumnClass(int columnIndex){
                 return (columnIndex == 0) ? Boolean.class: String.class;

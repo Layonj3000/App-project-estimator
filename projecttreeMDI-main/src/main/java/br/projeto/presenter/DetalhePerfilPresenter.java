@@ -25,7 +25,7 @@ import javax.swing.JDesktopPane;
  *
  * @author USER
  */
-public class DetalhePerfilPresenter implements Observer{
+public class DetalhePerfilPresenter extends Observer{
     private final DetalhePerfilView view;
     // private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO
@@ -99,10 +99,6 @@ public class DetalhePerfilPresenter implements Observer{
             return funcionalidadesEscolhidas;
     }
 
-    @Override
-    public void update(List<Projeto> projetos) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     @Override
     public void updatePerfilModel(List<PerfilProjetoDeEstimativaModel> listaPerfilProjetoDeEstimativaModel) {
@@ -112,28 +108,10 @@ public class DetalhePerfilPresenter implements Observer{
     }
 
     @Override
-    public void updateProjetoModel(List<ProjetoDeEstimativaModel> listaProjetoDeEstimativaModel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void updateProjetoFuncionalidadesPersonalizadasModel(List<ProjetosFuncionalidadesPersonalizadasModel> listaProjetosFuncionalidadesPersonalizadasModel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public void updatePerfilFuncionalidadesPersonalizadasModel(List<PerfilFuncionalidadesPersonalizadasModel> listaPerfilFuncionalidadesPersonalizadasModel) {
         if(listaPerfilFuncionalidadesPersonalizadasModel!=null && !listaPerfilFuncionalidadesPersonalizadasModel.isEmpty()){
         carregarDetalhesPerfil();
         }
     }
-
-    @Override
-    public void updatePerfilProjetoIntermediariaModel(List<PerfilProjetoIntermediariaModel> listaPerfilProjetoIntermediariaModel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-
-
 
 }

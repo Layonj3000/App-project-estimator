@@ -30,7 +30,7 @@ public class PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand implements 
     public void execute() {
         JTable tabela = escolhaFuncionalidadesPerfilPresenter.getView().getTable();
         
-        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Funcionalidades", "Valores"},0){
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Funcionalidades", "Dias"},0){
             
             @Override
             public boolean isCellEditable(int row, int column){

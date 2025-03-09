@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class DetalheProjetoPresenter implements Observer {
+public class DetalheProjetoPresenter extends Observer {
 
     private final DetalheProjetoView view;
     private final EstimaProjetoService estimaService;
@@ -37,7 +37,8 @@ public class DetalheProjetoPresenter implements Observer {
     private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
     private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
 
-    public DetalheProjetoPresenter(DetalheProjetoView view/*/, ProjetoRepositoryMock repository*/, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, Integer projetoId, String projetoNome) {//NOME E REPOSITORY SERÃO RETIRADOS
+    private Map<String, Integer> funcionalidades;
+    public DetalheProjetoPresenter(DetalheProjetoView view, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, Integer projetoId, String projetoNome) {//NOME E REPOSITORY SERÃO RETIRADOS
         this.view = view;
         //this.repository = repository;
         
@@ -57,12 +58,10 @@ public class DetalheProjetoPresenter implements Observer {
         this.projetoNome = projetoNome;
         this.estimaService = new EstimaProjetoService();
 
-        //this.repository.addObserver(this);
         carregarDetalhesProjeto();
     }
 
     private void carregarDetalhesProjeto() {
-        //Projeto projeto = repository.getProjetoPorNome(projetoNome);//ANTIGO
         ProjetoDeEstimativaModel projeto = projetoDeEstimativaRepository.findById(projetoId);
         List<PerfilProjetoDeEstimativaModel> perfilList = perfilProjetoDeEstimativaRepository.findByProjetoEstimativa(projeto);
         List<ProjetosFuncionalidadesPersonalizadasModel> projetosFuncionalidadesPersonalizadasList= projetoFuncionalidadesPersonalizadasRepository.findByProjetoEstimativa(projeto);
@@ -77,9 +76,7 @@ public class DetalheProjetoPresenter implements Observer {
         }
     }
 
-    private void carregarCabecalho(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList) {//PARAMETRO ERA DO TIPO PROJETO
-//        String tiposConcatenados = projeto.getPerfis().stream()
-//                .collect(Collectors.joining(", "));//ANTIGO
+    private void carregarCabecalho(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList) {
         String tiposConcatenados = perfilProjetoDeEstimativaModelList.stream()//NOVO
                                    .map(PerfilProjetoDeEstimativaModel :: getNomePerfil)
                                    .collect(Collectors.joining(", ")); 
@@ -93,32 +90,28 @@ public class DetalheProjetoPresenter implements Observer {
                 projeto.getStatus()
         );
     }
-
-//    private void carregarDetalhes(Projeto projeto) {//ANTIGO
-//        Object[][] dadosTabela = projeto.getFuncionalidadesEscolhidas()
-//                .entrySet()
-//                .stream()
-//                .map(entry -> {
-//                    String nomeFuncionalidade = entry.getKey();
-//                    int dias = entry.getValue();
-//                    double valor = estimaService.calcularValorUnitario(projeto.getPerfis().get(0), dias);
-//                    return new Object[]{nomeFuncionalidade, dias, String.format("R$ %.2f", valor)};
-//                })
-//                .toArray(Object[][]::new);
-//
-//        double valorTotal = calcularValorTotal(projeto);
-//        view.atualizarTabela(dadosTabela, valorTotal);
-//    }
+    
     private void carregarDetalhes(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList, List<ProjetosFuncionalidadesPersonalizadasModel> projetoFuncionalidadesPersonalizadasList,List<PerfilFuncionalidadesPersonalizadasModel> perfilFuncionalidadesPersonalizadasList) {//NOVO
-
-        Object[][] dadosTabela = funcionalidadesEscolhidasPerfil(projeto, perfilProjetoDeEstimativaModelList, projetoFuncionalidadesPersonalizadasList, perfilFuncionalidadesPersonalizadasList)
+        funcionalidades = funcionalidadesEscolhidasPerfil(projeto, perfilProjetoDeEstimativaModelList, projetoFuncionalidadesPersonalizadasList, perfilFuncionalidadesPersonalizadasList);
+        
+        final int diasTamanhoProjeto = funcionalidades.entrySet()
+            .stream()
+            .filter(entry -> entry.getKey().equals("Pequeno") || entry.getKey().equals("Médio") || entry.getKey().equals("Grande"))
+            .mapToInt(Map.Entry::getValue)
+            .findFirst()
+            .orElse(0);
+        
+        Object[][] dadosTabela = funcionalidades
                 .entrySet()
                 .stream()
                 .map(entry -> {
                     String nomeFuncionalidade = entry.getKey();
                     int dias = entry.getValue();
-                    double valor = estimaService.calcularValorUnitario(projeto, perfilProjetoDeEstimativaModelList, dias);
-                    return new Object[]{nomeFuncionalidade, dias, String.format("R$ %.2f", valor)};
+                    double valor = estimaService.calcularValorUnitario(projeto, perfilProjetoDeEstimativaModelList, nomeFuncionalidade, dias, diasTamanhoProjeto);
+                    if(nomeFuncionalidade.equals("MVP") || nomeFuncionalidade.equals("Básico") || nomeFuncionalidade.equals("Profissional")){
+                        return new Object[]{nomeFuncionalidade, dias + "%", String.format("R$ %.2f", valor)};
+                    }
+                        return new Object[]{nomeFuncionalidade, dias, String.format("R$ %.2f", valor)};
                 })
                 .toArray(Object[][]::new);
 
@@ -126,25 +119,27 @@ public class DetalheProjetoPresenter implements Observer {
         view.atualizarTabela(dadosTabela, valorTotal);
     }
 
-//    private double calcularValorTotal(Projeto projeto) {//ANTIGO
-//        return projeto.getFuncionalidadesEscolhidas()
-//                .entrySet()
-//                .stream()
-//                .mapToDouble(entry -> {
-//                    int dias = entry.getValue();
-//                    return estimaService.calcularValorUnitario(projeto.getPerfis().get(0), dias);
-//                })
-//                .sum();
-//    }
     private double calcularValorTotal(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList, List<ProjetosFuncionalidadesPersonalizadasModel> projetoFuncionalidadesPersonalizadasList,List<PerfilFuncionalidadesPersonalizadasModel> perfilFuncionalidadesPersonalizadasList) {//NOVO
-        return funcionalidadesEscolhidasPerfil(projeto, perfilProjetoDeEstimativaModelList, projetoFuncionalidadesPersonalizadasList, perfilFuncionalidadesPersonalizadasList)
+                
+        final int diasTamanhoProjeto = funcionalidades
+            .entrySet()
+            .stream()
+            .filter(entry -> entry.getKey().equals("Pequeno") || entry.getKey().equals("Médio") || entry.getKey().equals("Grande"))
+            .mapToInt(Map.Entry::getValue)
+            .findFirst()
+            .orElse(0);
+        
+        Double somaFuncionalidades =funcionalidades
                 .entrySet()
                 .stream()
                 .mapToDouble(entry -> {
+                    String nomeFuncionalidade = entry.getKey();
                     int dias = entry.getValue();
-                    return estimaService.calcularValorUnitario(projeto, perfilProjetoDeEstimativaModelList, dias);
+                    return estimaService.calcularValorUnitario(projeto, perfilProjetoDeEstimativaModelList, nomeFuncionalidade, dias, diasTamanhoProjeto);
                 })
                 .sum();
+        
+        return somaFuncionalidades;
     }
 
     private Map<String, SimNao> funcionalidadesEscolhidasProjeto(ProjetoDeEstimativaModel projeto,  List<ProjetosFuncionalidadesPersonalizadasModel> projetoFuncionalidadesPersonalizadasList) {
@@ -173,18 +168,11 @@ public class DetalheProjetoPresenter implements Observer {
         for (Map.Entry<String, SimNao> entrySet : funcionalidadesEscolhidasProjeto(projeto, projetoFuncionalidadesPersonalizadasList).entrySet()) {
             for (PerfilProjetoDeEstimativaModel model : perfilProjetoDeEstimativaModelList) {
                 funcionalidadesDisponiveis = model.getFuncionalidadesDisponiveis();
-            //}
+                
             if(funcionalidadesDisponiveis.containsKey(entrySet.getKey())){
                 Integer valor = funcionalidadesEscolhidasPerfil.getOrDefault(entrySet.getKey(), 0) + funcionalidadesDisponiveis.getOrDefault(entrySet.getKey(), 0);
                 funcionalidadesEscolhidasPerfil.put(entrySet.getKey(), valor);
             }else{
-/*                for(PerfilFuncionalidadesPersonalizadasModel perfilFuncionalidadesPersonalizadasModel: perfilFuncionalidadesPersonalizadasList){
-                    if(entrySet.getKey().equals(perfilFuncionalidadesPersonalizadasModel.getNome())){
-                        Integer valor = funcionalidadesEscolhidasPerfil.getOrDefault(entrySet.getKey(), 0) + perfilFuncionalidadesPersonalizadasModel.getValor();
-                        funcionalidadesEscolhidasPerfil.put(entrySet.getKey(), valor);
-                    }
-                    perfilFuncionalidadesPersonalizadasList.remove(perfilFuncionalidadesPersonalizadasModel);
-                }*/
                  Iterator<PerfilFuncionalidadesPersonalizadasModel> iterator = perfilFuncionalidadesPersonalizadasList.iterator();
                  while (iterator.hasNext()) {
                     PerfilFuncionalidadesPersonalizadasModel perfilFuncionalidadesPersonalizadasModel = iterator.next();
@@ -202,10 +190,6 @@ public class DetalheProjetoPresenter implements Observer {
     }
 
     //verificar lançamento de excessoes em updates nao utilizados
-    @Override
-    public void update(List<Projeto> projetos) {
-        carregarDetalhesProjeto();
-    }
 
     @Override
     public void updatePerfilModel(List<PerfilProjetoDeEstimativaModel> listaPerfilProjetoDeEstimativaModel) {
@@ -235,10 +219,10 @@ public class DetalheProjetoPresenter implements Observer {
         }
     }
 
+    
+    //IMPORTANTE PARA ATUALIZAR FUNCIONALIDADES PERSONALIZADAS
     @Override
     public void updatePerfilProjetoIntermediariaModel(List<PerfilProjetoIntermediariaModel> listaPerfilProjetoIntermediariaModel) {
-        //if(listaPerfilProjetoIntermediariaModel != null && !listaPerfilProjetoIntermediariaModel.isEmpty()){
             carregarDetalhesProjeto();
-        //}
     }
 }

@@ -19,7 +19,7 @@ public class EstimaProjetoService {
         return calcularDiasFuncionalidades(projeto.getFuncionalidadesEscolhidas());
     }
 
-    public double calcularCusto(Projeto projeto) {//ANTIGO
+   public double calcularCusto(Projeto projeto) {//ANTIGO
         int diasTotais = calcularDiasTotais(projeto);
         return diasTotais * VALOR_DIARIA_DESENVOLVIMENTO;
     }
@@ -36,8 +36,9 @@ public class EstimaProjetoService {
         }
     }*/
 
-    public double calcularValorUnitario(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList, int dias) {//LEMBRAR DE ADICIONAR A LOGICA PARA O TAMANHO DO PROJETO(MVP, Básico, Profissional)
+    public double calcularValorUnitario(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList, String nomeFuncionalidade, int dias, int diasTamanhoProjeto) {//LEMBRAR DE ADICIONAR A LOGICA PARA O TAMANHO DO PROJETO(MVP, Básico, Profissional)
         double ValorUnitarioDesenvolvimento = 0;
+        int resultadoDiasNivelUI;
         for (PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel : perfilProjetoDeEstimativaModelList) {
             if (verificaGerenteProjeto(projeto.getGerenteDeProjetos())) {
                 ValorUnitarioDesenvolvimento += perfilProjetoDeEstimativaModel.getGerenteDeProjetos();
@@ -54,6 +55,14 @@ public class EstimaProjetoService {
                     break;
             }
         }
+            //Verifica nível  de UI
+        if(nomeFuncionalidade.equals("MVP") || nomeFuncionalidade.equals("Básico") || nomeFuncionalidade.equals("Profissional")){
+                //Nesse contexto dias é, na verdade, porcentagem
+                resultadoDiasNivelUI = (int)((dias/100.0) * diasTamanhoProjeto);
+                
+                return ValorUnitarioDesenvolvimento * resultadoDiasNivelUI;
+        }
+        
         return ValorUnitarioDesenvolvimento * dias;
     }
 
@@ -65,7 +74,7 @@ public class EstimaProjetoService {
         }
     }
 
-   public int calcularDiasFuncionalidades(Map<String, Integer> funcionalidadesEscolhidas) {//ANTIGO
+    public int calcularDiasFuncionalidades(Map<String, Integer> funcionalidadesEscolhidas) {//ANTIGO
         int totalDias = 0;
         for (Integer dias : funcionalidadesEscolhidas.values()) {
             totalDias += dias;
@@ -73,17 +82,6 @@ public class EstimaProjetoService {
         return totalDias;
     }
     
-    /*public int calcularDiasFuncionalidades(List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList,List<PerfilFuncionalidadesPersonalizadasModel> perfilFuncionalidadesPersonalizadasList, String nomeFuncionalidade, Integer valorFuncionalidade) {//NOVO
-        double dias = 0;
-        for(PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel:perfilProjetoDeEstimativaModelList){
-            if(perfilProjetoDeEstimativaModel.getFuncionalidadesDisponiveis().get(nomeFuncionalidade)!=null||perfilProjetoDeEstimativaModel.getFuncionalidadesDisponiveis().get(nomeFuncionalidade)!=0){
-                dias += perfilProjetoDeEstimativaModel.getFuncionalidadesDisponiveis().get(nomeFuncionalidade);
-            }else{
-                for
-            }
-        }
-        
-    }*/
 
     public double calcularCustosAdicionais(double custoHardware, double custoSoftware, double custoRiscos, double custoGarantia, double fundoReserva, double outrosCustos) {
         return custoHardware + custoSoftware + custoRiscos + custoGarantia + fundoReserva + outrosCustos;

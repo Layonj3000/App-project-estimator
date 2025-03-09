@@ -54,9 +54,15 @@ public class SalvarPerfilProjetoDeEstimativaCommand implements Command{
 
         Double taxaDiariaDesenvolvimento, taxaDiariaGerenciaProjeto, taxaDiariaDesign;
             try {
-               taxaDiariaDesenvolvimento = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getView().getTxtTaxaDiariaDesenvolvimento().getText());
-               taxaDiariaGerenciaProjeto = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getView().getTxtTaxaDiariaGerenciaProjeto().getText());
-               taxaDiariaDesign = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getView().getTxtTaxaDiariaDesign().getText());
+                              
+            if (auxiliarService.verificaPreenchimentoTaxaDev(escolhaFuncionalidadesPerfilPresenter) || auxiliarService.verificaPreenchimentoNome(nomePerfil) ||
+                auxiliarService.verificaPreenchimentoTaxaGerProjetos(escolhaFuncionalidadesPerfilPresenter, perfilProjetoDeEstimativaModel)){
+                    return;
+                } else {
+                    taxaDiariaDesenvolvimento = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getView().getTxtTaxaDiariaDesenvolvimento().getText());
+                    taxaDiariaGerenciaProjeto = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getView().getTxtTaxaDiariaGerenciaProjeto().getText());
+                    taxaDiariaDesign = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getView().getTxtTaxaDiariaDesign().getText());
+                }
             } catch (NumberFormatException e) {
                JOptionPane.showMessageDialog(null, "Digite um número válido para as taxas diárias!", "Erro de entrada", JOptionPane.ERROR_MESSAGE);
                return;

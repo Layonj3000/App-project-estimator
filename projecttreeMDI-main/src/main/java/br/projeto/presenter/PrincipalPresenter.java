@@ -25,7 +25,7 @@ import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.*;
 
-public final class PrincipalPresenter implements Observer {
+public final class PrincipalPresenter extends Observer {
     private final PrincipalView view;
     private final ProjetoRepositoryMock repository;
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
@@ -96,7 +96,7 @@ public final class PrincipalPresenter implements Observer {
         /*novo comando "Atualizar Projeto"*/
         comandos.put("Atualizar projeto",new AtualizarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
         /*novo comando "Atualizar Projeto"*/
-        comandos.put("Novo projeto", new CriarProjetoCommand(/*repository,*/ projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository/*,view.getDesktop()*/,perfilProjetoIntermediariaRepository, usuarioModel));
+        comandos.put("Novo projeto", new CriarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository/*,view.getDesktop()*/,perfilProjetoIntermediariaRepository, usuarioModel));
         /*novo comando "Novo Perfil"*/
         comandos.put("Novo perfil", new CriarPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository/*, view.getDesktop()*/, usuarioModel));
         /*novo comando "Novo Perfil"*/
@@ -104,7 +104,7 @@ public final class PrincipalPresenter implements Observer {
         comandos.put("Atualizar perfil", new AtualizarPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel));
         /*novo comando "Atualizar Perfil"*/
         comandos.put("Excluir projeto", new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository));
-        comandos.put("Abrir detalhes", new AbrirDetalhesProjetoProjetoCommand(/*repository,*/projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, view.getDesktop()));
+        comandos.put("Abrir detalhes", new AbrirDetalhesProjetoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, view.getDesktop()));
         return comandos;
     }
     
@@ -178,8 +178,7 @@ public final class PrincipalPresenter implements Observer {
             
             AtualizarProjetoCommand atualizarProjetoCommand = new AtualizarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel);
             atualizarProjetoCommand.setProjetoId(projeto.getId());
-            //noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Elaborar estimativa", "action", comandos.get("Elaborar estimativa")));
-            //noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Visualizar estimativa", "action", comandos.get("Visualizar estimativa")));
+            
             noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Atualizar projeto de estimativa", "action", atualizarProjetoCommand));
             noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Compartilhar projeto de estimativa", "action", comandos.get("Compartilhar projeto de estimativa")));
             noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Exportar projeto de estimativa", "action", comandos.get("Exportar projeto de estimativa")));
@@ -301,7 +300,6 @@ public final class PrincipalPresenter implements Observer {
     }
 
     
-    //VERIFICAR LOGICA DE ATUALIZAÇÃO 03/03/2025
     @Override
     public void updatePerfilModel(List<PerfilProjetoDeEstimativaModel> listaPerfilProjetoDeEstimativaModel) {
         SwingUtilities.invokeLater(() -> {
@@ -327,16 +325,4 @@ public final class PrincipalPresenter implements Observer {
             configurarArvore();
         });    }
 
-    @Override
-    public void updateProjetoFuncionalidadesPersonalizadasModel(List<ProjetosFuncionalidadesPersonalizadasModel> listaProjetosFuncionalidadesPersonalizadasModel) {
-           }
-
-    @Override
-    public void updatePerfilFuncionalidadesPersonalizadasModel(List<PerfilFuncionalidadesPersonalizadasModel> listaPerfilFuncionalidadesPersonalizadasModel) {
-          }
-
-    @Override
-    public void updatePerfilProjetoIntermediariaModel(List<PerfilProjetoIntermediariaModel> listaPerfilProjetoIntermediariaModel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

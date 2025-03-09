@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class DashBoardProjetoPresenter implements Observer {
+public class DashBoardProjetoPresenter extends Observer {
     private final DashBoardProjetoView view;
     private final EstimaProjetoService estimaService;
     private final ProjetoRepositoryMock repository;
@@ -74,28 +74,4 @@ public class DashBoardProjetoPresenter implements Observer {
         carregarDashboard();
     }
 
-    @Override
-    public void updatePerfilModel(List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void updateProjetoModel(List<ProjetoDeEstimativaModel> projetoDeEstimativaModel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void updateProjetoFuncionalidadesPersonalizadasModel(List<ProjetosFuncionalidadesPersonalizadasModel> listaProjetosFuncionalidadesPersonalizadasModel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void updatePerfilFuncionalidadesPersonalizadasModel(List<PerfilFuncionalidadesPersonalizadasModel> listaPerfilFuncionalidadesPersonalizadasModel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void updatePerfilProjetoIntermediariaModel(List<PerfilProjetoIntermediariaModel> listaPerfilProjetoIntermediariaModel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

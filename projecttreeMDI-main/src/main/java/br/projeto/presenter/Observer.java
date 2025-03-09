@@ -8,12 +8,36 @@ import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 
-public interface Observer {
-    void update(List<Projeto> projetos);
-    void updatePerfilModel(List<PerfilProjetoDeEstimativaModel> listaPerfilProjetoDeEstimativaModel);
-    void updateProjetoModel(List<ProjetoDeEstimativaModel> listaProjetoDeEstimativaModel);
-    void updateProjetoFuncionalidadesPersonalizadasModel(List<ProjetosFuncionalidadesPersonalizadasModel> listaProjetosFuncionalidadesPersonalizadasModel);
-    void updatePerfilFuncionalidadesPersonalizadasModel(List<PerfilFuncionalidadesPersonalizadasModel> listaPerfilFuncionalidadesPersonalizadasModel);
-    void updatePerfilProjetoIntermediariaModel(List<PerfilProjetoIntermediariaModel> listaPerfilProjetoIntermediariaModel);
+public abstract class Observer {
+    public void update(List<Projeto> projetos){
+        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR O UPDATE");//IDENTIFICAR O NOME DO ESTADO
+        throw new RuntimeException();
+    };
+    
+    public void updatePerfilModel(List<PerfilProjetoDeEstimativaModel> listaPerfilProjetoDeEstimativaModel){
+        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR O UPDATE");//IDENTIFICAR O NOME DO ESTADO
+        throw new RuntimeException();
+    };
+    
+    public void updateProjetoModel(List<ProjetoDeEstimativaModel> listaProjetoDeEstimativaModel){
+        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR O UPDATE");//IDENTIFICAR O NOME DO ESTADO
+        throw new RuntimeException();
+    };
+    
+    public void updateProjetoFuncionalidadesPersonalizadasModel(List<ProjetosFuncionalidadesPersonalizadasModel> listaProjetosFuncionalidadesPersonalizadasModel){
+        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR O UPDATE");//IDENTIFICAR O NOME DO ESTADO
+        throw new RuntimeException();
+    };
+    
+    public void updatePerfilFuncionalidadesPersonalizadasModel(List<PerfilFuncionalidadesPersonalizadasModel> listaPerfilFuncionalidadesPersonalizadasModel){
+        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR O UPDATE");//IDENTIFICAR O NOME DO ESTADO
+        throw new RuntimeException();
+    };
+    
+    public void updatePerfilProjetoIntermediariaModel(List<PerfilProjetoIntermediariaModel> listaPerfilProjetoIntermediariaModel){
+        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR O UPDATE");//IDENTIFICAR O NOME DO ESTADO
+        throw new RuntimeException();
+    };
 }
