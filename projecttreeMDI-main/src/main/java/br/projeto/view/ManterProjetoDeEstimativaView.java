@@ -13,7 +13,7 @@ import javax.swing.JTextField;
  *
  * @author David Potentini
  */
-public class ManterProjetoDeEstimativaView extends javax.swing.JFrame implements IProjetoDeEstimativaView{
+public class ManterProjetoDeEstimativaView extends javax.swing.JFrame{
     /**
      * Creates new form ManterProjetoDeEstimativaView
      */
@@ -23,22 +23,14 @@ public class ManterProjetoDeEstimativaView extends javax.swing.JFrame implements
     }
 
 
-    @Override
     public JButton getBtnConfirmar() {
         return btnConfirmar;
     }
 
-    @Override
     public JButton getBtnVoltar() {
         return btnVoltar;
     }
     
-    @Override 
-    public JFrame getFrame(){
-        return this;
-    }
-    
-    @Override
     public JTable getTable() {
         return tblFuncionalidades;
     }

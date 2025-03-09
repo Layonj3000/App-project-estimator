@@ -4,28 +4,23 @@
  */
 package br.projeto.presenter;
 
-import br.projeto.model.PerfilProjetoDeEstimativaModel;
-import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.UsuarioModel;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
-import br.projeto.state.PlataformaEscolhidaState;
-import br.projeto.state.AProjetoDeEstimativaPresenterState;
+import br.projeto.state.escolha_perfis_projeto.AEscolhaPerfilState;
+import br.projeto.state.escolha_perfis_projeto.AtualizacaoEscolhaPerfilState;
+import br.projeto.state.escolha_perfis_projeto.InclusaoEscolhaPerfilState;
 import br.projeto.view.EscolhaPlataformaView;
-import br.projeto.view.IProjetoDeEstimativaView;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JFrame;
 
 /**
  *
  * @author USER
  */
-public class ProjetoDeEstimativaPresenter {
-    
+public class EscolhaPerfilPresenter {
+        
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 
     private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
@@ -33,82 +28,46 @@ public class ProjetoDeEstimativaPresenter {
     private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
     private final UsuarioModel usuarioModel;
     
-    //teste
     private Integer idProjeto;
-    // private List<Integer> perfisIds;
-  
-    private IProjetoDeEstimativaView view;
     
-    private AProjetoDeEstimativaPresenterState estado; 
-
+    private final EscolhaPlataformaView view;
     
-    //CONSTRUTOR PARA UUPDATE
-    public ProjetoDeEstimativaPresenter(IProjetoDeEstimativaView view, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel) {
+    private AEscolhaPerfilState estado;
+    
+    public EscolhaPerfilPresenter(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository, PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel){
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
         this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;
         this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;
         this.perfilProjetoIntermediariaRepository = perfilProjetoIntermediariaRepository;
         this.usuarioModel = usuarioModel;
-        //this.perfisIds = new ArrayList<>();
-        this.view = view;//new EscolhaPlataformaView();
         
-
+        this.view = new EscolhaPlataformaView();
     }
     
     public void setEstadoInicial(){
         if(idProjeto != null){
-            this.estado = new PlataformaEscolhidaState(this, idProjeto);
+            this.estado = new AtualizacaoEscolhaPerfilState(this, idProjeto);
         }else{
-            this.estado = new PlataformaEscolhidaState(this);
+            this.estado = new InclusaoEscolhaPerfilState(this);
         }
     }
-
-    public PerfilProjetoIntermediariaRepository getPerfilProjetoIntermediariaRepository() {
-        return perfilProjetoIntermediariaRepository;
-    }
     
-    public void salvar(){
-        estado.salvar();
-    }
-    
-    public void escolherPlataforma(){
-        estado.escolherPlataforma();
-    }
-    
-    public void setState(AProjetoDeEstimativaPresenterState estado){
-        this.estado = estado;
-    }
-
-    public IProjetoDeEstimativaView getView() {
-        return view;
-    }
-
-    public void setView(IProjetoDeEstimativaView view) {
-        this.view = view;
-    }
-
-    /*IDS PERFIL PROJETO*/
-    public UsuarioModel getUsuarioModel() {
-        return usuarioModel;
-    }
-
-    /*public List<Integer> getIdPerfil() {
-        return perfisIds;
-    }
-
-    public void addIdPerfil(Integer idPerfil) {
-        perfisIds.add(idPerfil);
-    }*/
-
-    public Integer getIdProjeto() {
-        return idProjeto;
-    }
-
-    public void setIdProjeto(Integer idProjeto) {
+    public void setIdProjeto(Integer idProjeto){
         this.idProjeto = idProjeto;
     }
-    /*IDS PERFIL PROJETO*/
+    
+    public void confirmar(){
+        estado.confirmar();
+    }
+    
+    public void voltar(){
+        estado.voltar();
+    }
+
+    public EscolhaPlataformaView getView() {
+        return view;
+    }
     
     public ProjetoDeEstimativaRepository getProjetoDeEstimativaRepository() {
         return projetoDeEstimativaRepository;
@@ -125,7 +84,12 @@ public class ProjetoDeEstimativaPresenter {
     public PerfilFuncionalidadesPersonalizadasRepository getPerfilFuncionalidadesPersonalizadasRepository() {
         return perfilFuncionalidadesPersonalizadasRepository;
     }
-    
-    
 
+    public PerfilProjetoIntermediariaRepository getPerfilProjetoIntermediariaRepository() {
+        return perfilProjetoIntermediariaRepository;
+    }
+
+    public UsuarioModel getUsuarioModel() {
+        return usuarioModel;
+    }
 }

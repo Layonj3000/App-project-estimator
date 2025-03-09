@@ -4,7 +4,7 @@
  */
 package br.projeto.command;
 
-import br.projeto.presenter.ProjetoDeEstimativaPresenter;
+import br.projeto.presenter.EscolhaPerfilPresenter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
@@ -14,11 +14,11 @@ import javax.swing.JTable;
  * @author David Potentini
  */
 public class ObterPerfisSelecionadosCommand implements Command{
-    private ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter;
+    private EscolhaPerfilPresenter escolhaPerfilPresenter;
     private List<Integer> idPerfisSelecionados;
 
-    public ObterPerfisSelecionadosCommand(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter) {
-        this.projetoDeEstimativaPresenter = projetoDeEstimativaPresenter;
+    public ObterPerfisSelecionadosCommand(EscolhaPerfilPresenter escolhaPerfilPresenter) {
+        this.escolhaPerfilPresenter = escolhaPerfilPresenter;
         idPerfisSelecionados = new ArrayList<>();
     }
     
@@ -26,9 +26,8 @@ public class ObterPerfisSelecionadosCommand implements Command{
 
     @Override
     public void execute() {
-        JTable tabela = projetoDeEstimativaPresenter.getView().getTable();
+        JTable tabela = escolhaPerfilPresenter.getView().getTable();
         int qtdLinhas = tabela.getRowCount();
-        int qtdColunas  = tabela.getColumnCount();
         
         for(int i = 0; i < qtdLinhas; i++){
             //for(int j = 0; j < qtdColunas; j++){

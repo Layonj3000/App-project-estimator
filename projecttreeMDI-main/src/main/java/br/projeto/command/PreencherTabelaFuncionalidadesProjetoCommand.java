@@ -9,7 +9,7 @@ import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
-import br.projeto.presenter.ProjetoDeEstimativaPresenter;
+import br.projeto.presenter.EscolhaFuncionalidadesProjetoPresenter;
 import br.projeto.service.AdicionaListenerCheckBoxProjeto;
 import br.projeto.view.IProjetoDeEstimativaView;
 import br.projeto.view.ManterProjetoDeEstimativaView;
@@ -30,20 +30,20 @@ import javax.swing.table.DefaultTableModel;
  * @author David Potentini
  */
 public class PreencherTabelaFuncionalidadesProjetoCommand implements Command{
-    private ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter;
+    private EscolhaFuncionalidadesProjetoPresenter escolhaFuncionalidadesProjetoPresenter;
     private List<Integer> idPerfisSelecionados;
     private Integer projetoId;
     
-    public PreencherTabelaFuncionalidadesProjetoCommand(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter, List<Integer> idPerfisSelecionados, Integer projetoId){
-        this.projetoDeEstimativaPresenter = projetoDeEstimativaPresenter;
+    public PreencherTabelaFuncionalidadesProjetoCommand(EscolhaFuncionalidadesProjetoPresenter escolhaFuncionalidadesProjetoPresenter, List<Integer> idPerfisSelecionados, Integer projetoId){
+        this.escolhaFuncionalidadesProjetoPresenter = escolhaFuncionalidadesProjetoPresenter;
         this.idPerfisSelecionados = idPerfisSelecionados;
         this.projetoId = projetoId;
     }
 
     @Override
     public void execute() {
-        JTable tabela = projetoDeEstimativaPresenter.getView().getTable();
-        ManterProjetoDeEstimativaView view = (ManterProjetoDeEstimativaView) projetoDeEstimativaPresenter.getView();
+        JTable tabela = escolhaFuncionalidadesProjetoPresenter.getView().getTable();
+        ManterProjetoDeEstimativaView view = escolhaFuncionalidadesProjetoPresenter.getView();
         
         
         DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Selecionar", "Funcionalidades", "Valores"},0){
@@ -65,7 +65,7 @@ public class PreencherTabelaFuncionalidadesProjetoCommand implements Command{
             
             for(Integer idList: idPerfisSelecionados){
                 //PEGA O ID DOS PERFIS SELECIONADOS E ADICIONA A LISTA DE PERFIS CRIADA ANTERIORMENTE
-                PerfilProjetoDeEstimativaModel modelPerfil = projetoDeEstimativaPresenter.getPerfilProjetoDeEstimativaRepository().findById(idList);
+                PerfilProjetoDeEstimativaModel modelPerfil = escolhaFuncionalidadesProjetoPresenter.getPerfilProjetoDeEstimativaRepository().findById(idList);
                 perfilProjetoDeEstimativaModelList.add(modelPerfil);
                 
             }
@@ -82,7 +82,7 @@ public class PreencherTabelaFuncionalidadesProjetoCommand implements Command{
                         criarMapaFucionalidadesSomadas(funcionalidadesSomadasMap, nomeFuncionalidade, valorFuncionalidade);
                     }
                 }
-                perfilFuncionalidadesPersonalizadasModelList.addAll(projetoDeEstimativaPresenter.getPerfilFuncionalidadesPersonalizadasRepository().findByPerfilProjetoEstimativa(model));
+                perfilFuncionalidadesPersonalizadasModelList.addAll(escolhaFuncionalidadesProjetoPresenter.getPerfilFuncionalidadesPersonalizadasRepository().findByPerfilProjetoEstimativa(model));
                  
                 for(PerfilFuncionalidadesPersonalizadasModel funcionalidadePersonalizada: perfilFuncionalidadesPersonalizadasModelList){
                     
@@ -107,12 +107,12 @@ public class PreencherTabelaFuncionalidadesProjetoCommand implements Command{
                         //modelo.addRow(new Object[]{false, entrySet.getKey(), entrySet.getValue()});//ANTES
                 }//ANTES*/
             if (projetoId != null) {
-                ProjetoDeEstimativaModel projetoDeEstimativaModel = projetoDeEstimativaPresenter
+                ProjetoDeEstimativaModel projetoDeEstimativaModel = escolhaFuncionalidadesProjetoPresenter
                     .getProjetoDeEstimativaRepository().findById(projetoId);
 
                 
                 List<ProjetosFuncionalidadesPersonalizadasModel> projetosFuncionalidadesPersonalizadasModel = 
-                    projetoDeEstimativaPresenter.getProjetoFuncionalidadesPersonalizadasRepository()
+                    escolhaFuncionalidadesProjetoPresenter.getProjetoFuncionalidadesPersonalizadasRepository()
                     .findByProjetoEstimativa(projetoDeEstimativaModel);
                 
                 preencherTxtFields(view, projetoDeEstimativaModel);

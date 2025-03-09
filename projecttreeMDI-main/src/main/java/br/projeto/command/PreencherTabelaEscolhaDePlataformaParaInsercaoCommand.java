@@ -6,7 +6,7 @@ package br.projeto.command;
 
 import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
-import br.projeto.presenter.ProjetoDeEstimativaPresenter;
+import br.projeto.presenter.EscolhaPerfilPresenter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
@@ -17,15 +17,15 @@ import javax.swing.table.DefaultTableModel;
  * @author USER
  */
 public class PreencherTabelaEscolhaDePlataformaParaInsercaoCommand implements Command{
-    private final ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter;
+    private final EscolhaPerfilPresenter escolhaPerfilPresenter;
 
-    public PreencherTabelaEscolhaDePlataformaParaInsercaoCommand(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter) {
-        this.projetoDeEstimativaPresenter = projetoDeEstimativaPresenter;
+    public PreencherTabelaEscolhaDePlataformaParaInsercaoCommand(EscolhaPerfilPresenter escolhaPerfilPresenter) {
+        this.escolhaPerfilPresenter = escolhaPerfilPresenter;
     }
 
     @Override
     public void execute() {
-        JTable tabela = projetoDeEstimativaPresenter.getView().getTable();
+        JTable tabela = escolhaPerfilPresenter.getView().getTable();
         
         DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Selecionar", "Plataforma", "Id"}, 0){
             @Override   
@@ -42,7 +42,7 @@ public class PreencherTabelaEscolhaDePlataformaParaInsercaoCommand implements Co
         //O PROXIMO PASSO É PERCORRER OS PERFIL E ADICIONÁ-LOS AO JTABLE DE ESCOLHA DE PLATAFORMAS
         //POSSIVELMENTE DEPOIS IRA MUDAR PARA UM FindByUser COMO EM OUTROS CONTEXTOS DA APLICAÇÃO
         
-        List<PerfilProjetoDeEstimativaModel> perfilList = projetoDeEstimativaPresenter.getPerfilProjetoDeEstimativaRepository().findByUser(projetoDeEstimativaPresenter.getUsuarioModel());
+        List<PerfilProjetoDeEstimativaModel> perfilList = escolhaPerfilPresenter.getPerfilProjetoDeEstimativaRepository().findByUser(escolhaPerfilPresenter.getUsuarioModel());
                 
         for(PerfilProjetoDeEstimativaModel perfil: perfilList){
             String nomePlataforma = perfil.getNomePerfil();

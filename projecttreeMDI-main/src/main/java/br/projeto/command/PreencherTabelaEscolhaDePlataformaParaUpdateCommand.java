@@ -6,7 +6,7 @@ package br.projeto.command;
 
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.PerfilProjetoIntermediariaModel;
-import br.projeto.presenter.ProjetoDeEstimativaPresenter;
+import br.projeto.presenter.EscolhaPerfilPresenter;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,18 +18,18 @@ import javax.swing.table.DefaultTableModel;
  * @author USER
  */
 public class PreencherTabelaEscolhaDePlataformaParaUpdateCommand implements Command{
-    private final ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter;
+    private final EscolhaPerfilPresenter escolhaPerfilPresenter;
     private final Integer projetoId;
     
     
-    public PreencherTabelaEscolhaDePlataformaParaUpdateCommand(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter, Integer projetoId) {
-        this.projetoDeEstimativaPresenter = projetoDeEstimativaPresenter;
+    public PreencherTabelaEscolhaDePlataformaParaUpdateCommand(EscolhaPerfilPresenter escolhaPerfilPresenter, Integer projetoId) {
+        this.escolhaPerfilPresenter = escolhaPerfilPresenter;
         this.projetoId = projetoId;
     }
 
     @Override
     public void execute() {
-        JTable tabela = projetoDeEstimativaPresenter.getView().getTable();
+        JTable tabela = escolhaPerfilPresenter.getView().getTable();
         
         DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Selecionar", "Plataforma", "Id"}, 0){
             @Override   
@@ -43,9 +43,9 @@ public class PreencherTabelaEscolhaDePlataformaParaUpdateCommand implements Comm
             }
         };
 
-            List<PerfilProjetoDeEstimativaModel> perfilUsuarioList = projetoDeEstimativaPresenter.getPerfilProjetoDeEstimativaRepository().findByUser(projetoDeEstimativaPresenter.getUsuarioModel());
+            List<PerfilProjetoDeEstimativaModel> perfilUsuarioList = escolhaPerfilPresenter.getPerfilProjetoDeEstimativaRepository().findByUser(escolhaPerfilPresenter.getUsuarioModel());
 
-            List<PerfilProjetoIntermediariaModel> perfilProjetoList = projetoDeEstimativaPresenter.getPerfilProjetoIntermediariaRepository().findByProjeto(projetoId);
+            List<PerfilProjetoIntermediariaModel> perfilProjetoList = escolhaPerfilPresenter.getPerfilProjetoIntermediariaRepository().findByProjeto(projetoId);
 
             for (PerfilProjetoDeEstimativaModel perfil : perfilUsuarioList) {
                 String nomePlataforma = perfil.getNomePerfil();

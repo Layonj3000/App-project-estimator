@@ -12,7 +12,7 @@ import javax.swing.JTable;
  *
  * @author layon
  */
-public class EscolhaPlataformaView extends javax.swing.JFrame implements IProjetoDeEstimativaView{
+public class EscolhaPlataformaView extends javax.swing.JFrame{
 
     /**
      * Creates new form TelaPlataforma
@@ -198,22 +198,16 @@ public class EscolhaPlataformaView extends javax.swing.JFrame implements IProjet
     }
 
     
-    @Override
+    
     public JButton getBtnConfirmar() {
         return btnConfirmar;
     }
 
-    @Override
+    
     public JButton getBtnVoltar() {
         return btnVoltar;
     }
     
-    @Override
-    public JFrame getFrame(){
-        return this;
-    }
-
-    @Override
     public JTable getTable() {
         return tblPlataformas;
     }

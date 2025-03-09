@@ -7,7 +7,7 @@ package br.projeto.command;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
-import br.projeto.presenter.ProjetoDeEstimativaPresenter;
+import br.projeto.presenter.EscolhaFuncionalidadesProjetoPresenter;
 import br.projeto.service.RetornaProjetoModelService;
 import br.projeto.service.VerificacoesTelaProjetoService;
 import br.projeto.view.ManterProjetoDeEstimativaView;
@@ -23,12 +23,12 @@ import javax.swing.JTable;
  * @author David Potentini
  */
 public class SalvarProjetoDeEstimativaCommand implements Command{
-    private final ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter;
+    private final EscolhaFuncionalidadesProjetoPresenter escolhaFuncionalidadesProjetoPresenter;
     private final List<Integer> idPerfisSelecionados;
     private final Integer projetoId;
     
-    public SalvarProjetoDeEstimativaCommand(ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter, List<Integer> idPerfisSelecionados, Integer projetoId) {
-        this.projetoDeEstimativaPresenter = projetoDeEstimativaPresenter;
+    public SalvarProjetoDeEstimativaCommand(EscolhaFuncionalidadesProjetoPresenter escolhaFuncionalidadesProjetoPresenter, List<Integer> idPerfisSelecionados, Integer projetoId) {
+        this.escolhaFuncionalidadesProjetoPresenter = escolhaFuncionalidadesProjetoPresenter;
         this.idPerfisSelecionados = idPerfisSelecionados;
         this.projetoId = projetoId;
     }
@@ -37,7 +37,7 @@ public class SalvarProjetoDeEstimativaCommand implements Command{
     
      @Override
     public void execute() {
-        ManterProjetoDeEstimativaView view = (ManterProjetoDeEstimativaView) projetoDeEstimativaPresenter.getView();
+        ManterProjetoDeEstimativaView view = escolhaFuncionalidadesProjetoPresenter.getView();
         JTable tabela = view.getTable();
 
         // Usando o Singleton para as verificações
@@ -95,7 +95,7 @@ public class SalvarProjetoDeEstimativaCommand implements Command{
         projetoDeEstimativaModel.setOutrosCustos(outrosCustos);
         projetoDeEstimativaModel.setPercentualComImpostos(percentualComImpostos);
         projetoDeEstimativaModel.setPercentualLucroDesejado(percentualDeLucroDesejado);
-        projetoDeEstimativaModel.setUsuarioModel(projetoDeEstimativaPresenter.getUsuarioModel());
+        projetoDeEstimativaModel.setUsuarioModel(escolhaFuncionalidadesProjetoPresenter.getUsuarioModel());
         projetoDeEstimativaModel.setDataCriacao(new Date(System.currentTimeMillis()));
         projetoDeEstimativaModel.setStatus(0);
         
@@ -103,31 +103,31 @@ public class SalvarProjetoDeEstimativaCommand implements Command{
         if(projetoId != null){
             projetoDeEstimativaModel.setId(projetoId);
         
-            projetoDeEstimativaPresenter.getProjetoDeEstimativaRepository().update(projetoDeEstimativaModel);
+            escolhaFuncionalidadesProjetoPresenter.getProjetoDeEstimativaRepository().update(projetoDeEstimativaModel);
             
-            if(!projetoDeEstimativaPresenter.getPerfilProjetoIntermediariaRepository().findByProjeto(projetoId).isEmpty()){
-                projetoDeEstimativaPresenter.getPerfilProjetoIntermediariaRepository().deleteByProjeto(projetoId);
+            if(!escolhaFuncionalidadesProjetoPresenter.getPerfilProjetoIntermediariaRepository().findByProjeto(projetoId).isEmpty()){
+                escolhaFuncionalidadesProjetoPresenter.getPerfilProjetoIntermediariaRepository().deleteByProjeto(projetoId);
             }
             
-            if(!projetoDeEstimativaPresenter.getProjetoFuncionalidadesPersonalizadasRepository().findByProjetoEstimativa(projetoDeEstimativaModel).isEmpty()){
-                projetoDeEstimativaPresenter.getProjetoFuncionalidadesPersonalizadasRepository().deleteByProjetoDeEstimativa(projetoDeEstimativaModel);
+            if(!escolhaFuncionalidadesProjetoPresenter.getProjetoFuncionalidadesPersonalizadasRepository().findByProjetoEstimativa(projetoDeEstimativaModel).isEmpty()){
+                escolhaFuncionalidadesProjetoPresenter.getProjetoFuncionalidadesPersonalizadasRepository().deleteByProjetoDeEstimativa(projetoDeEstimativaModel);
             }
         }else{
-            projetoDeEstimativaPresenter.getProjetoDeEstimativaRepository().insert(projetoDeEstimativaModel);
+            escolhaFuncionalidadesProjetoPresenter.getProjetoDeEstimativaRepository().insert(projetoDeEstimativaModel);
         }
         /*LOGICA PARA UPDATE*/
 
         // Inserindo relacao com os perfis selecionados
         for (Integer idPerfil : idPerfisSelecionados) {
-            PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = projetoDeEstimativaPresenter.getPerfilProjetoDeEstimativaRepository().findById(idPerfil);
-            projetoDeEstimativaPresenter.getPerfilProjetoIntermediariaRepository().insert(projetoDeEstimativaModel, perfilProjetoDeEstimativaModel);
+            PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = escolhaFuncionalidadesProjetoPresenter.getPerfilProjetoDeEstimativaRepository().findById(idPerfil);
+            escolhaFuncionalidadesProjetoPresenter.getPerfilProjetoIntermediariaRepository().insert(projetoDeEstimativaModel, perfilProjetoDeEstimativaModel);
         }
 
         // Inserindo as funcionalidades personalizadas
         List<ProjetosFuncionalidadesPersonalizadasModel> funcionalidadesPersonalizadasList = retornaProjetoModelService.getFuncionalidadesPersonalizadas();
         if (funcionalidadesPersonalizadasList != null) {
             for (ProjetosFuncionalidadesPersonalizadasModel model : funcionalidadesPersonalizadasList) {
-                projetoDeEstimativaPresenter.getProjetoFuncionalidadesPersonalizadasRepository().insert(model);
+                escolhaFuncionalidadesProjetoPresenter.getProjetoFuncionalidadesPersonalizadasRepository().insert(model);
             }
         }
 
@@ -139,7 +139,7 @@ public class SalvarProjetoDeEstimativaCommand implements Command{
         }else{
             JOptionPane.showMessageDialog(null, "PROJETO ATUALIZADO COM SUCESSO!!");
         }
-        projetoDeEstimativaPresenter.getView().getFrame().dispose();
+        escolhaFuncionalidadesProjetoPresenter.getView().dispose();
     }
     
     

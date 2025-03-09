@@ -5,7 +5,7 @@
 package br.projeto.command;
 
 import br.projeto.model.UsuarioModel;
-import br.projeto.presenter.ProjetoDeEstimativaPresenter;
+import br.projeto.presenter.EscolhaPerfilPresenter;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
@@ -53,9 +53,9 @@ public class AtualizarProjetoCommand implements Command{
     @Override
     public void execute() {
         
-        ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter = new ProjetoDeEstimativaPresenter(new EscolhaPlataformaView(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository,usuarioModel);
-        projetoDeEstimativaPresenter.setIdProjeto(projetoId);
-        projetoDeEstimativaPresenter.setEstadoInicial();
+        EscolhaPerfilPresenter escolhaPerfilPresenter = new EscolhaPerfilPresenter(projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository,usuarioModel);
+        escolhaPerfilPresenter.setIdProjeto(projetoId);
+        escolhaPerfilPresenter.setEstadoInicial();
         /*for(Integer idPerfil: perfisIds){
             projetoDeEstimativaPresenter.addIdPerfil(idPerfil);
         }*/

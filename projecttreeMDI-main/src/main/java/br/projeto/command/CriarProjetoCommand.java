@@ -3,7 +3,7 @@ package br.projeto.command;
 import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.UsuarioModel;
-import br.projeto.presenter.ProjetoDeEstimativaPresenter;
+import br.projeto.presenter.EscolhaPerfilPresenter;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
@@ -16,7 +16,7 @@ import br.projeto.view.EscolhaPlataformaView;
 import javax.swing.*;
 import java.util.Optional;
 
-public class CriarProjetoProjetoCommand implements Command {
+public class CriarProjetoCommand implements Command {
     /*private final ProjetoRepositoryMock repository;*/
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 
@@ -28,7 +28,7 @@ public class CriarProjetoProjetoCommand implements Command {
     private final UsuarioModel usuarioModel;
     //private final CriarProjetoMock criarProjetoMock;
 
-    public CriarProjetoProjetoCommand(/*ProjetoRepositoryMock repository,*/ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository,ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,/* JDesktopPane desktop,*/PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel) {
+    public CriarProjetoCommand(/*ProjetoRepositoryMock repository,*/ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository,ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,/* JDesktopPane desktop,*/PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel) {
         /*this.repository = repository;*/
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.perfilProjetoDeEstimativaRepository =perfilProjetoDeEstimativaRepository;
@@ -44,9 +44,9 @@ public class CriarProjetoProjetoCommand implements Command {
     @Override
     public void execute() {
         //IMPLEMENTAR NOVA LOGICA DE CRIACAO
-        ProjetoDeEstimativaPresenter projetoDeEstimativaPresenter = new ProjetoDeEstimativaPresenter(new EscolhaPlataformaView(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository,usuarioModel);
-        projetoDeEstimativaPresenter.setIdProjeto(null);
-        projetoDeEstimativaPresenter.setEstadoInicial();
+        EscolhaPerfilPresenter escolhaPerfilPresenter = new EscolhaPerfilPresenter(projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository,usuarioModel);
+        escolhaPerfilPresenter.setIdProjeto(null);
+        escolhaPerfilPresenter.setEstadoInicial();
     }
 /*    @Override
     public void execute() {

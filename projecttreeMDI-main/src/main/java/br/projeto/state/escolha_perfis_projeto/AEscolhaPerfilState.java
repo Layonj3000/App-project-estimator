@@ -4,6 +4,7 @@
  */
 package br.projeto.state.escolha_perfis_projeto;
 
+import br.projeto.presenter.EscolhaPerfilPresenter;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author USER
  */
 public class AEscolhaPerfilState {
-    private EscolhaPerfilPresenter escolhaPerfilPresenter;
+    protected EscolhaPerfilPresenter escolhaPerfilPresenter;
 
     public AEscolhaPerfilState(EscolhaPerfilPresenter escolhaPerfilPresenter) {
         this.escolhaPerfilPresenter = escolhaPerfilPresenter;
