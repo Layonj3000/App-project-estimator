@@ -3,9 +3,7 @@ package br.projeto.repository;
 import br.projeto.repository.abstr.IUsuarioRepository;
 import br.projeto.db.DB;
 import br.projeto.db.DbException;
-import br.projeto.model.Subject;
 import br.projeto.model.UsuarioModel;
-import br.projeto.presenter.Observer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -68,28 +66,7 @@ public class UsuarioRepository implements /*Subject,*/ IUsuarioRepository {
         return null;
     }
     
-    
-//    public boolean verificarLogin(String email, String senha) {
-//        PreparedStatement ps = null;
-//        ResultSet rs = null;
-//
-//        try{
-//            ps = conn.prepareStatement("SELECT * FROM usuario WHERE email = ? AND senha = ?");
-//            ps.setString(1, email);
-//            ps.setString(2, senha);
-//            rs = ps.executeQuery();
-//            
-//            if(rs.next()){     
-//                return true;
-//            }
-//        }catch(SQLException e){
-//            throw new DbException(e.getMessage());
-//        }finally {
-//            DB.closeStatement(ps);
-//            DB.closeResultSet(rs);
-//        }
-//        return false;
-//    }
+ 
     public UsuarioModel findByEmailandPassword(String email, String senha) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -112,7 +89,27 @@ public class UsuarioRepository implements /*Subject,*/ IUsuarioRepository {
         }
         return null;
     }
-    
+    public boolean emailExists(String email) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            ps = conn.prepareStatement("SELECT COUNT(*) FROM usuario WHERE email = ?");
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+
+            if (rs.next() && rs.getInt(1) > 0) {
+                return true; 
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatement(ps);
+            DB.closeResultSet(rs);
+        }
+
+        return false;
+    }    
     @Override
     public void insert(UsuarioModel usuario) {
         PreparedStatement ps = null;
