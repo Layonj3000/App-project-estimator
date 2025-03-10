@@ -4,9 +4,10 @@
  */
 package br.projeto.registro_proxy;
 
+import br.projeto.adapter.IValidadorSenha;
+import br.projeto.adapter.ValidadorSenhaAdapter;
 import br.projeto.presenter.LoginUsuarioPresenter;
 import br.projeto.presenter.RegistroUsuarioPresenter;
-import com.pss.senha.validacao.ValidadorSenha;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -17,10 +18,10 @@ import javax.swing.JOptionPane;
  */
 public class RegistroProxy implements IRegistroProxy{
     private RegistroUsuarioPresenter registroUsuarioPresenter;
-    private ValidadorSenha validador;
+    private IValidadorSenha validador;
     public RegistroProxy(RegistroUsuarioPresenter registroUsuarioPresenter) {
         this.registroUsuarioPresenter =  registroUsuarioPresenter;
-        this.validador = new ValidadorSenha();
+        this.validador = new ValidadorSenhaAdapter();
     }
 
     @Override

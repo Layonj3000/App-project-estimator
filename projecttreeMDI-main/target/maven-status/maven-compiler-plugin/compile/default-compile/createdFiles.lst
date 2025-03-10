@@ -130,6 +130,7 @@ br\projeto\state\escolha_perfis_projeto\AtualizacaoEscolhaPerfilState$2.class
 br\projeto\repository\abstr\IUsuarioRepository.class
 br\projeto\view\GlobalWindowManager.class
 br\projeto\command\PreencherTabelaEscolhaDePlataformaParaUpdateCommand$1.class
+br\projeto\adapter\ValidadorSenhaAdapter.class
 br\projeto\presenter\DetalheProjetoPresenter.class
 br\projeto\repository_factory\ProjetoFuncionalidadesPersonalizadasRepositoryFactory.class
 br\projeto\view\TelaLogin$2.class
@@ -137,6 +138,7 @@ br\projeto\service\ComponenteNoArvore.class
 br\projeto\service\IconService.class
 br\projeto\presenter\RegistroUsuarioPresenter$2.class
 br\projeto\view\ManterPerfilProjetoDeEstimativaView$3.class
+br\projeto\adapter\IValidadorSenha.class
 br\projeto\view\ManterProjetoDeEstimativaViewBackup$3.class
 br\projeto\repository\ProjetoRepositoryMock.class
 br\projeto\view\DetalhePerfilView$1.class
