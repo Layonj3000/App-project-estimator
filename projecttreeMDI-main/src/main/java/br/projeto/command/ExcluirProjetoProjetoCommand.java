@@ -1,6 +1,5 @@
 package br.projeto.command;
 
-import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoRepositoryMock;
 

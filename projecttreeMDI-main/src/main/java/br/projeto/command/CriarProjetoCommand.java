@@ -1,7 +1,5 @@
 package br.projeto.command;
 
-import br.projeto.model.Projeto;
-import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.EscolhaPerfilPresenter;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
@@ -9,12 +7,6 @@ import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
-import br.projeto.repository.ProjetoRepositoryMock;
-import br.projeto.service.CriarProjetoMock;
-import br.projeto.view.EscolhaPlataformaView;
-
-import javax.swing.*;
-import java.util.Optional;
 
 public class CriarProjetoCommand implements Command {
     /*private final ProjetoRepositoryMock repository;*/

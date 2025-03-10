@@ -1,12 +1,10 @@
 package br.projeto.presenter.window_command;
 
-import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-import br.projeto.command.Command;
 
 public class FecharJanelasProjetoRelacionadasCommand implements WindowCommand {
     private final JDesktopPane desktop;

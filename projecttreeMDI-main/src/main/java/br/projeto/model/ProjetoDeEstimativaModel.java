@@ -1,10 +1,7 @@
 package br.projeto.model;
 
 import br.projeto.enums.SimNao;
-import br.projeto.enums.Status;
-
 import java.sql.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

@@ -4,10 +4,8 @@
  */
 package br.projeto.service;
 
-import br.projeto.view.ManterProjetoDeEstimativaView;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**

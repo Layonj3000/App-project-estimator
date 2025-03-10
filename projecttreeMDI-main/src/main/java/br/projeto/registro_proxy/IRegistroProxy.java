@@ -4,8 +4,6 @@
  */
 package br.projeto.registro_proxy;
 
-import br.projeto.view.TelaRegistro;
-
 /**
  *
  * @author layon

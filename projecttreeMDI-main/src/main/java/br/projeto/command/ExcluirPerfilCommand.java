@@ -4,7 +4,6 @@
  */
 package br.projeto.command;
 
-import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import javax.swing.JOptionPane;
 

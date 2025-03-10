@@ -41,9 +41,9 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         TxtEmail = new javax.swing.JTextField();
-        SenhaLogin = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
         btnCriarConta = new javax.swing.JButton();
+        SenhaLogin = new javax.swing.JPasswordField();
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton2.setText("Criar Conta");
@@ -70,19 +70,14 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel3.setText("Senha:");
 
-        SenhaLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        SenhaLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SenhaLoginActionPerformed(evt);
-            }
-        });
-
         btnEntrar.setBackground(new java.awt.Color(0, 153, 153));
         btnEntrar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnEntrar.setText("Entrar");
 
         btnCriarConta.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnCriarConta.setText("Criar Conta");
+
+        SenhaLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -127,13 +122,13 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addComponent(TxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(SenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addComponent(btnEntrar)
                 .addGap(18, 18, 18)
                 .addComponent(btnCriarConta)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -149,10 +144,6 @@ public class TelaLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void SenhaLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SenhaLoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SenhaLoginActionPerformed
 
     /**
      * @param args the command line arguments

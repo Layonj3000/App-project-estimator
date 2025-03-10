@@ -4,10 +4,8 @@
  */
 package br.projeto.command;
 
-import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.presenter.EscolhaPerfilPresenter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;

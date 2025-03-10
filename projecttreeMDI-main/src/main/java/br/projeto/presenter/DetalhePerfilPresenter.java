@@ -6,20 +6,12 @@ package br.projeto.presenter;
 
 import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
-import br.projeto.model.PerfilProjetoIntermediariaModel;
-import br.projeto.model.Projeto;
-import br.projeto.model.ProjetoDeEstimativaModel;
-import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
-import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.view.DetalhePerfilView;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.JDesktopPane;
 
 /**
  *

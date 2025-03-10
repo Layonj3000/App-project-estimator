@@ -7,9 +7,6 @@ import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.EscolhaFuncionalidadesPerfilPresenter;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
-import br.projeto.state.escolha_funcionalidades_perfil.InclusaoEscolhaFuncionalidadesPerfilState;
-import br.projeto.view.ManterPerfilProjetoDeEstimativaView;
-import javax.swing.JDesktopPane;
 /**
  *
  * @author USER

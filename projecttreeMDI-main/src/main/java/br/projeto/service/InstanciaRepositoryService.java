@@ -4,9 +4,6 @@
  */
 package br.projeto.service;
 
-import br.projeto.model.UsuarioModel;
-import br.projeto.presenter.PrincipalPresenter;
-import br.projeto.presenter.helpers.WindowManager;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;

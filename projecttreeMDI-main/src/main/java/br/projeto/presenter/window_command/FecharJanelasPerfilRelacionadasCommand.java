@@ -4,7 +4,6 @@
  */
 package br.projeto.presenter.window_command;
 
-import br.projeto.command.Command;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import java.util.ArrayList;
 import java.util.List;

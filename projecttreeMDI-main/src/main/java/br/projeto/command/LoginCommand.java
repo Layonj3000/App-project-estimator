@@ -8,10 +8,8 @@ import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.LoginUsuarioPresenter;
 import br.projeto.presenter.PrincipalPresenter;
 import br.projeto.presenter.helpers.WindowManager;
-import br.projeto.repository.ProjetoRepositoryMock;
 import br.projeto.repository.UsuarioRepository;
 import br.projeto.service.InstanciaRepositoryService;
-import br.projeto.view.TelaLogin;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 

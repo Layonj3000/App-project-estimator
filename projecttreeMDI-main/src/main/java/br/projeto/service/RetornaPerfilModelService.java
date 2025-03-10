@@ -6,7 +6,6 @@ package br.projeto.service;
 
 import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

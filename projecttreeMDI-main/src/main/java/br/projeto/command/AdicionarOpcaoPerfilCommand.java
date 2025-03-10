@@ -5,8 +5,6 @@
 package br.projeto.command;
 
 import br.projeto.presenter.EscolhaFuncionalidadesPerfilPresenter;
-import java.awt.Rectangle;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 

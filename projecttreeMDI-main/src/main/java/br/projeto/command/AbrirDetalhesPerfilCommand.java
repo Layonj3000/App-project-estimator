@@ -8,8 +8,6 @@ import br.projeto.presenter.DetalhePerfilPresenter;
 import br.projeto.presenter.helpers.WindowManager;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
-import br.projeto.repository.ProjetoDeEstimativaRepository;
-import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
 import br.projeto.view.DetalhePerfilView;
 import javax.swing.JDesktopPane;
 

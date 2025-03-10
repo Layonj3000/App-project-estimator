@@ -6,7 +6,6 @@ package br.projeto.repository;
 
 import br.projeto.db.DB;
 import br.projeto.db.DbException;
-import br.projeto.enums.SimNao;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
 import br.projeto.model.Subject;
@@ -18,7 +17,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

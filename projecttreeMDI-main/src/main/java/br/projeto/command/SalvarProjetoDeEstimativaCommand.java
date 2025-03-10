@@ -12,7 +12,6 @@ import br.projeto.service.RetornaProjetoModelService;
 import br.projeto.service.VerificacoesTelaProjetoService;
 import br.projeto.view.ManterProjetoDeEstimativaView;
 import java.sql.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;

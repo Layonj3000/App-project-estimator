@@ -4,8 +4,6 @@
  */
 package br.projeto.service;
 
-import br.projeto.enums.SimNao;
-import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
 import java.util.ArrayList;

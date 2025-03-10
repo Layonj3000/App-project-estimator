@@ -4,12 +4,9 @@
  */
 package br.projeto.service;
 
-import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.presenter.EscolhaFuncionalidadesPerfilPresenter;
-import java.sql.Date;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;

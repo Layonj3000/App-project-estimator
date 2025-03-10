@@ -58,7 +58,6 @@ public class RegistroProxy implements IRegistroProxy{
         List<String> errosSenha = validador.validar(registroUsuarioPresenter.getSenha());
         mensagensErro.addAll(errosSenha);
 
-        // Se houver erros, exibe todos em um único JOptionPane
         if (!mensagensErro.isEmpty()) {
             JOptionPane.showMessageDialog(null, String.join("\n", mensagensErro), "Erro de Validação", JOptionPane.ERROR_MESSAGE);
             return false;

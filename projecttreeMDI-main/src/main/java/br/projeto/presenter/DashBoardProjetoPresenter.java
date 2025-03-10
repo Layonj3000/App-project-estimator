@@ -1,11 +1,6 @@
 package br.projeto.presenter;
 
-import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
-import br.projeto.model.PerfilProjetoDeEstimativaModel;
-import br.projeto.model.PerfilProjetoIntermediariaModel;
 import br.projeto.model.Projeto;
-import br.projeto.model.ProjetoDeEstimativaModel;
-import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
 import br.projeto.repository.ProjetoRepositoryMock;
 import br.projeto.service.EstimaProjetoService;
 import br.projeto.view.DashBoardProjetoView;

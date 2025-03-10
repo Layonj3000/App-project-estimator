@@ -1,7 +1,5 @@
 package br.projeto.model;
 
-import br.projeto.enums.FormatoLOG;
-
 public class UsuarioModel {
     private Integer id;
     private String nome;

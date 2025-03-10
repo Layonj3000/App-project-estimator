@@ -4,14 +4,11 @@
  */
 package br.projeto.state.escolha_funcionalidades_perfil;
 
-import br.projeto.state.escolha_funcionalidades_perfil.AEscolhaFuncionalidadesPerfilState;
-import br.projeto.command.AdicionarOpcaoPerfilCommand;
 import br.projeto.command.PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand;
 import br.projeto.command.SalvarPerfilProjetoDeEstimativaCommand;
 import br.projeto.presenter.EscolhaFuncionalidadesPerfilPresenter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 
 /**
  *

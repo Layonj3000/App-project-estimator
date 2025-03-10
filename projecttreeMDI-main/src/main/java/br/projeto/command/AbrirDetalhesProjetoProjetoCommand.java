@@ -7,7 +7,6 @@ import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
-import br.projeto.repository.ProjetoRepositoryMock;
 import br.projeto.view.DetalheProjetoView;
 
 import javax.swing.*;

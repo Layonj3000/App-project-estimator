@@ -8,8 +8,6 @@ import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.PerfilProjetoIntermediariaModel;
 import br.projeto.presenter.EscolhaPerfilPresenter;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 

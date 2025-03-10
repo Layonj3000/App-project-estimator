@@ -1,6 +1,5 @@
 package br.projeto.repository.abstr;
 
-import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.UsuarioModel;
 

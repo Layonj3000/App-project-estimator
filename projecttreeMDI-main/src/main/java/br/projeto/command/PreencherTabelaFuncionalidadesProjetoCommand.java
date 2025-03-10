@@ -11,17 +11,11 @@ import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
 import br.projeto.presenter.EscolhaFuncionalidadesProjetoPresenter;
 import br.projeto.service.AdicionaListenerCheckBoxProjeto;
-import br.projeto.view.IProjetoDeEstimativaView;
 import br.projeto.view.ManterProjetoDeEstimativaView;
-import java.awt.Checkbox;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.DefaultCellEditor;
-import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 

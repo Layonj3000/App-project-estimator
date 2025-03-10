@@ -7,7 +7,6 @@ package br.projeto.command;
 import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.presenter.EscolhaFuncionalidadesPerfilPresenter;
-import br.projeto.service.MapValoresPadraoPerfilService;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JTable;

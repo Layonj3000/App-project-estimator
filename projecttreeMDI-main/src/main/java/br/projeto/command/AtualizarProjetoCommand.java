@@ -11,9 +11,6 @@ import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
-import br.projeto.view.EscolhaPlataformaView;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *

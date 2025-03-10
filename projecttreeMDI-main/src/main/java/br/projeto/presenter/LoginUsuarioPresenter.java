@@ -5,7 +5,6 @@
 package br.projeto.presenter;
 
 import br.projeto.command.LoginCommand;
-import br.projeto.registro_proxy.RegistroProxy;
 import br.projeto.view.TelaLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

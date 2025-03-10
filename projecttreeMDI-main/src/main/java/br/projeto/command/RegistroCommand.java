@@ -6,7 +6,6 @@ package br.projeto.command;
 
 import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.RegistroUsuarioPresenter;
-import br.projeto.registro_proxy.RegistroProxy;
 import br.projeto.repository.UsuarioRepository;
 import br.projeto.repository_factory.RepositoryFactory;
 import javax.swing.JOptionPane;

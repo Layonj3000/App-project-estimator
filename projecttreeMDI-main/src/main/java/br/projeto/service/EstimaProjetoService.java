@@ -1,7 +1,6 @@
 package br.projeto.service;
 
 import br.projeto.enums.SimNao;
-import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;

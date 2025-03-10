@@ -5,7 +5,6 @@ import br.projeto.repository.abstr.IPerfilProjetoIntermediariaRepository;
 import br.projeto.db.DbException;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.PerfilProjetoIntermediariaModel;
-import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.Subject;
 import br.projeto.presenter.Observer;
