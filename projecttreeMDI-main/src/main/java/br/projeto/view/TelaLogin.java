@@ -4,10 +4,6 @@
  */
 package br.projeto.view;
 
-import br.projeto.command.Command;
-import br.projeto.command.LoginCommand;
-import br.projeto.presenter.TelaPresenter;
-import br.projeto.state.RegistroState;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;

@@ -45,7 +45,6 @@ C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\m
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\registro_proxy\IRegistroProxy.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\AdicionarOpcaoPerfilCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository\abstr\IProjetoDeEstimativaRepository.java
-C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\state\RegistroState.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\Command.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\ObterPerfisSelecionadosCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository\abstr\IPerfilProjetoDeEstimativaRepository.java
@@ -57,13 +56,10 @@ C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\m
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository\PerfilFuncionalidadesPersonalizadasRepository.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\ProvedorMenuContextual.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\state\escolha_funcionalidades_perfil\AEscolhaFuncionalidadesPerfilState.java
-C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\TelaPresenter.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\state\escolha_funcionalidade_projeto\AEscolhaFuncionalidadeProjetoState.java
-C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\state\LoginState.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\state\escolha_funcionalidade_projeto\InsercaoEscolhaFuncionalidadesProjetoState.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\EscolhaFuncionalidadesProjetoPresenter.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository\abstr\IUsuarioRepository.java
-C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\state\TelaState.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\window_command\ConfigurarMenuJanelaCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\PrincipalView.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\GlobalWindowManager.java
@@ -80,6 +76,7 @@ C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\m
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\CriarProjetoCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\DetalhePerfilPresenter.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository\abstr\IProjetoFuncionalidadesPersonalizadasRepository.java
+C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\CompartilharCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\state\escolha_funcionalidades_perfil\InclusaoEscolhaFuncionalidadesPerfilState.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\SalvarPerfilProjetoDeEstimativaCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\PreencherTabelaFuncionalidadesPerfilParaUpdateCommand.java
