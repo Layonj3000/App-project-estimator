@@ -24,6 +24,7 @@ C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\m
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\MostrarMensagemProjetoCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository\ProjetoDeEstimativaRepository.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\VerificacoesTelaProjetoService.java
+C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\adapter\ValidadorSenhaAdapter.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\PreencherTabelaEscolhaDePlataformaParaUpdateCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\window_command\WindowCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\model\Subject.java
@@ -41,6 +42,7 @@ C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\m
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository_factory\RepositoryFactory.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository_factory\ProjetoDeEstimativaRepositoryFactory.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\AbrirInternalFrameGenericoProjetoCommand.java
+C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\adapter\IValidadorSenha.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\TelaRegistro.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\registro_proxy\IRegistroProxy.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\AdicionarOpcaoPerfilCommand.java
@@ -72,6 +74,7 @@ C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\m
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\window_command\OrganizarLadoALadoCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\enums\Status.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand.java
+C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\TelaCompartilhar.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\AtualizarPerfilCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\CriarProjetoCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\DetalhePerfilPresenter.java
@@ -104,10 +107,12 @@ C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\m
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\DesktopMemento.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\CriarBarraBotaoService.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\RetornaProjetoModelService.java
+C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\TotalizadoresProjetoService.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository\ProjetoRepositoryMock.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\ExcluirProjetoProjetoCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\RegistroCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\DashBoardProjetoPresenter.java
+C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\IniciarTelaCompartilharCommand.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository\UsuarioRepository.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\DashBoardProjetoView.java
 C:\Users\layon\Desktop\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\window_command\FecharJanelasProjetoRelacionadasCommand.java

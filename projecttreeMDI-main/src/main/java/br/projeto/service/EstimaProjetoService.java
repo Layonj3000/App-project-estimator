@@ -36,33 +36,42 @@ public class EstimaProjetoService {
     }*/
 
     public double calcularValorUnitario(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList, String nomeFuncionalidade, int dias, int diasTamanhoProjeto) {//LEMBRAR DE ADICIONAR A LOGICA PARA O TAMANHO DO PROJETO(MVP, Básico, Profissional)
-        double ValorUnitarioDesenvolvimento = 0;
+        double ValorUnitarioDesenvolvimento = retornaValorTotalDia(projeto,perfilProjetoDeEstimativaModelList);
         int resultadoDiasNivelUI;
-        for (PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel : perfilProjetoDeEstimativaModelList) {
-            if (verificaGerenteProjeto(projeto.getGerenteDeProjetos())) {
-                ValorUnitarioDesenvolvimento += perfilProjetoDeEstimativaModel.getGerenteDeProjetos();
-            }
-            switch (perfilProjetoDeEstimativaModel.getNomePerfil()) {
-                case "Web/Back-end":
-                    ValorUnitarioDesenvolvimento =+ perfilProjetoDeEstimativaModel.getTaxaDiariaDesenvolvimento();
-                    break;
-                case "Android"://PODIA DEIXAR SOMENTE O DEFAULT, MAS OPTEI POR DEIXAR O ANDROID E IOS PARA MELHOR ENTENDIMENTO
-                case "iOS":
-                default:    
-                    ValorUnitarioDesenvolvimento += perfilProjetoDeEstimativaModel.getTaxaDiariaDesenvolvimento();
-                    ValorUnitarioDesenvolvimento += perfilProjetoDeEstimativaModel.getTaxaDiariaDesign();
-                    break;
-            }
-        }
+        
             //Verifica nível  de UI
         if(nomeFuncionalidade.equals("MVP") || nomeFuncionalidade.equals("Básico") || nomeFuncionalidade.equals("Profissional")){
                 //Nesse contexto dias é, na verdade, porcentagem
-                resultadoDiasNivelUI = (int)((dias/100.0) * diasTamanhoProjeto);
+                resultadoDiasNivelUI = calculaResultadoDiasNivelUI(dias, diasTamanhoProjeto);
                 
                 return ValorUnitarioDesenvolvimento * resultadoDiasNivelUI;
         }
         
         return ValorUnitarioDesenvolvimento * dias;
+    }
+   
+    public Double retornaValorTotalDia(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList){
+        double valorUnitarioDesenvolvimento = 0;
+        for (PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel : perfilProjetoDeEstimativaModelList) {
+            if (verificaGerenteProjeto(projeto.getGerenteDeProjetos())) {
+                valorUnitarioDesenvolvimento += perfilProjetoDeEstimativaModel.getGerenteDeProjetos();
+            }
+            switch (perfilProjetoDeEstimativaModel.getNomePerfil()) {
+                case "Web/Back-end":
+                    valorUnitarioDesenvolvimento =+ perfilProjetoDeEstimativaModel.getTaxaDiariaDesenvolvimento();
+                    break;
+                case "Android"://PODIA DEIXAR SOMENTE O DEFAULT, MAS OPTEI POR DEIXAR O ANDROID E IOS PARA MELHOR ENTENDIMENTO
+                case "iOS":
+                default:    
+                    valorUnitarioDesenvolvimento += perfilProjetoDeEstimativaModel.getTaxaDiariaDesenvolvimento();
+                    valorUnitarioDesenvolvimento += perfilProjetoDeEstimativaModel.getTaxaDiariaDesign();
+                    break;
+            }
+        }
+        return valorUnitarioDesenvolvimento;
+    }
+    public Integer calculaResultadoDiasNivelUI(int dias, int diasTamanhoProjeto){
+        return (int)((dias/100.0) * diasTamanhoProjeto);
     }
 
     private boolean verificaGerenteProjeto(SimNao gerenteProjeto) {

@@ -14,7 +14,8 @@ import java.sql.Date;
  * @author USER
  */
 public class DetalhePerfilView extends JInternalFrame {
-    private JLabel lblNome, lblCriador, lblData/*, lblTipoProjeto, lblStatus, lblValorTotal*/;
+    private JLabel lblNome, lblCriador, lblData;//PADRAO
+    private JLabel lblTaxaDesign, lblTaxaDesenvolvimento, lblTaxaGerenciaProjeto;//ADICIONADOS
     private JTable tabelaDetalhes;
     private DefaultTableModel modeloTabela;
 
@@ -34,16 +35,20 @@ public class DetalhePerfilView extends JInternalFrame {
         painelCabecalho.setBorder(BorderFactory.createTitledBorder("Informações do Perfil"));
 
         lblNome = new JLabel("Nome: ");
-        lblCriador = new JLabel("Criador: ");
         lblData = new JLabel("Data de Criação: ");
+        lblCriador = new JLabel("Criador: ");
+        lblTaxaDesign = new JLabel("Taxa Diária Design: ");
+        lblTaxaDesenvolvimento = new JLabel("Taxa Diária Desenvolvimento: ");
+        lblTaxaGerenciaProjeto = new JLabel("Taxa Diária Gerência Projeto: ");
         /*lblTipoProjeto = new JLabel("Tipo de Projeto: ");
         lblStatus = new JLabel("Status: ");*/
 
         painelCabecalho.add(lblNome);
-        painelCabecalho.add(lblCriador);
+        painelCabecalho.add(lblTaxaDesenvolvimento);
         painelCabecalho.add(lblData);
-        /*painelCabecalho.add(lblTipoProjeto);
-        painelCabecalho.add(lblStatus);*/
+        painelCabecalho.add(lblTaxaDesign);
+        painelCabecalho.add(lblCriador);
+        painelCabecalho.add(lblTaxaGerenciaProjeto);
 
         painelPrincipal.add(painelCabecalho, BorderLayout.NORTH);
 
@@ -71,12 +76,13 @@ public class DetalhePerfilView extends JInternalFrame {
         painelPrincipal.add(painelTabela, BorderLayout.CENTER);
     }
 
-    public void atualizarCabecalho(String nome, String criador, Date data/*, String tipoProjeto, Status status*/) {//ANTIGO TIPO DE DATA ERA STRING
-        lblNome.setText("Nome: " + nome);                                                                          //ANTIGO TIPO DE STATUS ERA STRING 
+    public void atualizarCabecalho(String nome, String criador, Date data, String taxaDev, String taxaDes, String taxaGer) {
+        lblNome.setText("Nome: " + nome);                                                                          
         lblCriador.setText("Criador: " + criador);
         lblData.setText("Data de Criação: " + data);
-        /*lblTipoProjeto.setText("Tipo de Projeto: " + tipoProjeto);
-        lblStatus.setText("Status: " + status);*/
+        lblTaxaDesenvolvimento.setText("Taxa Diária Desenvolvimento: " + taxaDev);
+        lblTaxaDesign.setText("Taxa Diária Design: " + taxaDes);
+        lblTaxaGerenciaProjeto.setText("Taxa Diária Gerência Projeto: " + taxaGer);
     }
 
     public void atualizarTabela(Object[][] dados/*, double valorTotal*/) {

@@ -29,20 +29,27 @@ public class VerificacoesTelaProjetoService {
                percentualComImpostos != null && !percentualComImpostos.trim().isEmpty() &&
                percentualDeLucroDesejado != null && !percentualDeLucroDesejado.trim().isEmpty();
     }
+    
+    public boolean verificarCamposPorcentagem(String percentualComImpostos, String percentualDeLucroDesejado){
+        Double percentualComImp = Double.valueOf(percentualComImpostos);
+        Double percentualLucroDesejado = Double.valueOf(percentualDeLucroDesejado);
+        
+        return percentualComImp>100 && percentualLucroDesejado>100;
+    }
 
     public boolean verificarCustosEPercentuais(String custoHardwareEInstalacoesFisicas, String custoSoftware,
                                                String custoRiscos, String custoGarantia, String fundoDeReserva,
                                                String outrosCustos, String percentualComImpostos,
                                                String percentualDeLucroDesejado) {
         try {
-            if (!custoHardwareEInstalacoesFisicas.isEmpty()) Double.parseDouble(custoHardwareEInstalacoesFisicas);
-            if (!custoSoftware.isEmpty()) Double.parseDouble(custoSoftware);
-            if (!custoRiscos.isEmpty()) Double.parseDouble(custoRiscos);
-            if (!custoGarantia.isEmpty()) Double.parseDouble(custoGarantia);
-            if (!fundoDeReserva.isEmpty()) Double.parseDouble(fundoDeReserva);
-            if (!outrosCustos.isEmpty()) Double.parseDouble(outrosCustos);
-            if (!percentualComImpostos.isEmpty()) Double.parseDouble(percentualComImpostos);
-            if (!percentualDeLucroDesejado.isEmpty()) Double.parseDouble(percentualDeLucroDesejado);
+            if (!custoHardwareEInstalacoesFisicas.isEmpty()) {Double.parseDouble(custoHardwareEInstalacoesFisicas);}
+            if (!custoSoftware.isEmpty()) {Double.parseDouble(custoSoftware);}
+            if (!custoRiscos.isEmpty()) {Double.parseDouble(custoRiscos);}
+            if (!custoGarantia.isEmpty()) {Double.parseDouble(custoGarantia);}
+            if (!fundoDeReserva.isEmpty()) {Double.parseDouble(fundoDeReserva);}
+            if (!outrosCustos.isEmpty()) {Double.parseDouble(outrosCustos);}
+            if (!percentualComImpostos.isEmpty()) {Double.parseDouble(percentualComImpostos);}
+            if (!percentualDeLucroDesejado.isEmpty()) {Double.parseDouble(percentualDeLucroDesejado);}
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -55,7 +62,6 @@ public class VerificacoesTelaProjetoService {
         
         for(int i = 0; i < qtdLinhas; i++){
             if((Boolean)tabela.getValueAt(i, 0)){
-                //COLOCAR VERIFFICAÇÕES EM OUTROS METODOS
                 Integer trueOrFalse=(Boolean) tabela.getValueAt(i, 0).equals(true)? 1 : 0;
                 mapProjetos.put((String)tabela.getValueAt(i, 1), trueOrFalse);
             }

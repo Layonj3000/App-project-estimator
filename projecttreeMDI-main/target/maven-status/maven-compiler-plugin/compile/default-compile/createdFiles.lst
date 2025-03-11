@@ -148,6 +148,7 @@ br\projeto\registro_proxy\IRegistroProxy.class
 br\projeto\service\MapValoresPadraoPerfilService.class
 br\projeto\command\PreencherTabelaFuncionalidadesProjetoCommand.class
 br\projeto\service\ConstrutorDeArvoreNavegacaoService$2.class
+br\projeto\service\TotalizadoresProjetoService.class
 br\projeto\command\SalvarProjetoDeEstimativaCommand.class
 br\projeto\state\escolha_funcionalidade_projeto\AEscolhaFuncionalidadeProjetoState.class
 br\projeto\view\PrincipalView.class

@@ -53,10 +53,17 @@ public class DetalhePerfilPresenter extends Observer{
     }
     
     private void carregarCabecalho(PerfilProjetoDeEstimativaModel perfil) {
+        String taxaDev = Double.toString(perfil.getTaxaDiariaDesenvolvimento());
+        String taxaDes = Double.toString(perfil.getTaxaDiariaDesign());
+        String taxaGer = Double.toString(perfil.getTaxaDiariaGerenciaProjeto());
+        
         view.atualizarCabecalho(
                 perfil.getNomePerfil(), 
                 perfil.getNomeUsuario(), 
-                perfil.getDataCriacao()
+                perfil.getDataCriacao(),
+                taxaDev,
+                taxaDes,
+                taxaGer
                 );
     }
     

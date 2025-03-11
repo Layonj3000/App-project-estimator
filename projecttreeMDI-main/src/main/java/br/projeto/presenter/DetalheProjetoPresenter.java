@@ -12,8 +12,10 @@ import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
 import br.projeto.service.EstimaProjetoService;
+import br.projeto.service.TotalizadoresProjetoService;
 import br.projeto.view.DetalheProjetoView;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 
@@ -33,7 +35,9 @@ public class DetalheProjetoPresenter extends Observer {
     private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
     private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
     private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
-
+    private TotalizadoresProjetoService totalizadoresService =  TotalizadoresProjetoService.getInstance();
+    
+    
     private Map<String, Integer> funcionalidades;
     public DetalheProjetoPresenter(DetalheProjetoView view, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, Integer projetoId, String projetoNome) {//NOME E REPOSITORY SERÃO RETIRADOS
         this.view = view;
@@ -78,12 +82,18 @@ public class DetalheProjetoPresenter extends Observer {
                                    .map(PerfilProjetoDeEstimativaModel :: getNomePerfil)
                                    .collect(Collectors.joining(", ")); 
         
-
+        String percentualLucro = Double.toString(projeto.getPercentualLucroDesejado());
+        String percentualImpostos = Double.toString(projeto.getPercentualComImpostos());
+        String totalDevDiario = Double.toString(estimaService.retornaValorTotalDia(projeto, perfilProjetoDeEstimativaModelList));
+        
         view.atualizarCabecalho(
                 projeto.getNomeProjetoDeEstimativa(),
                 projeto.getNomeUsuario(),
                 projeto.getDataCriacao(),
-                tiposConcatenados
+                tiposConcatenados,
+                percentualLucro,
+                percentualImpostos,
+                totalDevDiario
         );
     }
     
@@ -105,17 +115,76 @@ public class DetalheProjetoPresenter extends Observer {
                     int dias = entry.getValue();
                     double valor = estimaService.calcularValorUnitario(projeto, perfilProjetoDeEstimativaModelList, nomeFuncionalidade, dias, diasTamanhoProjeto);
                     if(nomeFuncionalidade.equals("MVP") || nomeFuncionalidade.equals("Básico") || nomeFuncionalidade.equals("Profissional")){
-                        return new Object[]{nomeFuncionalidade, dias + "%", String.format("R$ %.2f", valor)};
+                        return new Object[]{nomeFuncionalidade, estimaService.calculaResultadoDiasNivelUI(dias, diasTamanhoProjeto), String.format("R$ %.2f", valor)};
                     }
                         return new Object[]{nomeFuncionalidade, dias, String.format("R$ %.2f", valor)};
                 })
                 .toArray(Object[][]::new);
 
-        double valorTotal = calcularValorTotal(projeto, perfilProjetoDeEstimativaModelList, projetoFuncionalidadesPersonalizadasList, perfilFuncionalidadesPersonalizadasList);
-        view.atualizarTabela(dadosTabela, valorTotal);
+        List<Object[]> listaDados = new ArrayList<>(Arrays.asList(dadosTabela));
+        /*Custos Adicionais*/
+        addCustosAdicionais(listaDados, projeto);
+        /*Custos Adicionais*/
+                
+        dadosTabela = listaDados.toArray(Object[][]::new);        
+        double valorTotal = calcularValorTotal(projeto, perfilProjetoDeEstimativaModelList);
+        
+        view.atualizarTabela(dadosTabela);
+        
+        double valorTotalBase = calcularValorTotalBase(projeto, perfilProjetoDeEstimativaModelList);
+        double imposto = totalizadoresService.getImposto(projeto, valorTotalBase);
+        double lucroCalculado = totalizadoresService.getLucroCalculado(projeto, valorTotalBase);
+        double mediaMes = totalizadoresService.getMediaMes(projeto, view, valorTotal);
+        double totalMes = totalizadoresService.getTotalMeses(projeto, view);
+        int totalDias = totalizadoresService.getTotalDias(projeto, view);
+    
+        view.atualizarRodape(totalDias, totalMes,imposto,lucroCalculado,mediaMes, valorTotal);
     }
+    
+    private void addCustosAdicionais(List<Object[]> listaDados, ProjetoDeEstimativaModel projeto){
+        if(projeto.getCustoHardware()>0){
+            listaDados.add(new Object[]{"Custo Com Hardware e Instalações Físicas", "", String.format("R$ %.2f", projeto.getCustoHardware())});
+        }
+        if(projeto.getCustoSoftware()>0){
+            listaDados.add(new Object[]{"Custo Com Software", "", String.format("R$ %.2f", projeto.getCustoSoftware())});
+        }
+        if(projeto.getCustoRiscos()>0){
+            listaDados.add(new Object[]{"Custo Com Riscos", "", String.format("R$ %.2f", projeto.getCustoRiscos())});
+        }
+        if(projeto.getCustoGarantia()>0){
+            listaDados.add(new Object[]{"Custos Com Garantia", "", String.format("R$ %.2f", projeto.getCustoGarantia())});
+        }
+        if(projeto.getFundoDeReserva()>0){
+            listaDados.add(new Object[]{"Fundo De Reserva", "", String.format("R$ %.2f", projeto.getFundoDeReserva())});
+        }
+        if(projeto.getOutrosCustos()>0){
+            listaDados.add(new Object[]{"Outros Custos", "", String.format("R$ %.2f", projeto.getOutrosCustos())});
+        }
+    }
+    
+    private double calcularTotalCustosAdicionais(ProjetoDeEstimativaModel projeto){
+        Double totalCustosAdicionais = 0.0;
+        totalCustosAdicionais += projeto.getCustoHardware();
+        totalCustosAdicionais += projeto.getCustoSoftware();
+        totalCustosAdicionais += projeto.getCustoRiscos();
+        totalCustosAdicionais += projeto.getCustoGarantia();
+        totalCustosAdicionais += projeto.getFundoDeReserva();
+        totalCustosAdicionais += projeto.getOutrosCustos();
+        return totalCustosAdicionais;
+    }
+    
+    private double calcularValorTotal(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList){
 
-    private double calcularValorTotal(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList, List<ProjetosFuncionalidadesPersonalizadasModel> projetoFuncionalidadesPersonalizadasList,List<PerfilFuncionalidadesPersonalizadasModel> perfilFuncionalidadesPersonalizadasList) {//NOVO
+        double valorTotalBase = calcularValorTotalBase(projeto, perfilProjetoDeEstimativaModelList);
+        double imposto = totalizadoresService.getImposto(projeto, valorTotalBase);
+        double lucroCalculado = totalizadoresService.getLucroCalculado(projeto, valorTotalBase);
+        
+        double valorTotal = valorTotalBase +  imposto + lucroCalculado;
+        
+        return valorTotal;
+    }
+    
+    private double calcularValorTotalBase(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList) {//NOVO
                 
         final int diasTamanhoProjeto = funcionalidades
             .entrySet()
@@ -135,7 +204,7 @@ public class DetalheProjetoPresenter extends Observer {
                 })
                 .sum();
         
-        return somaFuncionalidades;
+        return (somaFuncionalidades + calcularTotalCustosAdicionais(projeto));
     }
 
     private Map<String, SimNao> funcionalidadesEscolhidasProjeto(ProjetoDeEstimativaModel projeto,  List<ProjetosFuncionalidadesPersonalizadasModel> projetoFuncionalidadesPersonalizadasList) {
