@@ -7,8 +7,8 @@ import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
-import com.log.LogConfig;
-import com.log.LogRegister;
+import com.log.adaptador.LogConfig;
+import com.log.model.LogRegister;
 
 public class CriarProjetoCommand implements Command {
     /*private final ProjetoRepositoryMock repository;*/
