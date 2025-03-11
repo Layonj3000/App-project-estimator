@@ -36,11 +36,16 @@
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.48.0.0</version>
         </dependency>
-	<dependency>
-	    <groupId>com.github.claytonfraga</groupId>
-	    <artifactId>validadorsenha</artifactId>
-	    <version>master</version>
-	</dependency>        
+        <dependency>
+            <groupId>com.github.laratidesco</groupId>
+            <artifactId>log</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+        <dependency>
+	        <groupId>com.github.claytonfraga</groupId>
+	        <artifactId>validadorsenha</artifactId>
+	        <version>master</version>
+	    </dependency>
     </dependencies>
 
 </project>
