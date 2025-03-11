@@ -7,6 +7,8 @@ import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
+import com.log.LogConfig;
+import com.log.LogRegister;
 
 public class CriarProjetoCommand implements Command {
     /*private final ProjetoRepositoryMock repository;*/
@@ -36,9 +38,20 @@ public class CriarProjetoCommand implements Command {
     @Override
     public void execute() {
         //IMPLEMENTAR NOVA LOGICA DE CRIACAO
-        EscolhaPerfilPresenter escolhaPerfilPresenter = new EscolhaPerfilPresenter(projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository,usuarioModel);
+        EscolhaPerfilPresenter escolhaPerfilPresenter = new EscolhaPerfilPresenter(projetoDeEstimativaRepository,
+                perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository,
+                perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository,usuarioModel);
         escolhaPerfilPresenter.setIdProjeto(null);
         escolhaPerfilPresenter.setEstadoInicial();
+
+        // Registro Log
+        LogConfig.getInstance().setLogFormat(usuarioModel.getFormatoLOG());
+        LogConfig.getInstance().novoRegistro(new LogRegister("Criação de Projeto", usuarioModel.getNome(), usuarioModel.getEmail(), true, "Sucesso"));
+        // Arrumar a parte de tratamento de exceção para mensagem do erro
+        // LogConfig.getInstance().novoRegistro(new LogRegister("Criação de Projeto", usuarioModel.getNome(), usuarioModel.getEmail(), false, "Mensagem do Erro (tratamento de exceção)"));
+
+
+
     }
 /*    @Override
     public void execute() {
