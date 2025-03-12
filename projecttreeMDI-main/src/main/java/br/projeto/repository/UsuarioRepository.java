@@ -19,7 +19,6 @@ public class UsuarioRepository implements /*Subject,*/ IUsuarioRepository {
     public UsuarioRepository(Connection conn){
         this.conn = conn;
     }
-    //VERIFICAR A POSSIVEL CRIACAO DE UMA CLASSE DE INSTANCIACAO OBJETOS DO TIPO UuarioModel
     
     @Override
     public List<UsuarioModel> findAll() {

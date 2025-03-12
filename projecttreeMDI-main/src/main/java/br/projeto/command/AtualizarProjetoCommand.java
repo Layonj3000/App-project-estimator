@@ -4,6 +4,7 @@
  */
 package br.projeto.command;
 
+import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.EscolhaPerfilPresenter;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
@@ -11,6 +12,7 @@ import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,6 +51,13 @@ public class AtualizarProjetoCommand implements Command{
 
     @Override
     public void execute() {
+        
+        //VALIDAR DEPOIS
+        ProjetoDeEstimativaModel projetoModel = projetoDeEstimativaRepository.findById(projetoId);
+        if(projetoModel.getCompartilhadoValor() == 1){
+            JOptionPane.showMessageDialog(null, "Não é possível atualizar um projeto compartilhado", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
         EscolhaPerfilPresenter escolhaPerfilPresenter = new EscolhaPerfilPresenter(projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository,usuarioModel);
         escolhaPerfilPresenter.setIdProjeto(projetoId);

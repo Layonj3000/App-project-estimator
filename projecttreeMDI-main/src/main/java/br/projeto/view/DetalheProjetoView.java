@@ -7,7 +7,7 @@ import java.sql.Date;
 import java.text.DecimalFormat;
 
 public class DetalheProjetoView extends JInternalFrame {
-    private JLabel lblNome, lblCriador, lblData, lblTipoProjeto, lblValorTotal;//PADRAO
+    private JLabel lblNome, lblCriador, lblData, lblTipoProjeto, lblValorTotal, lblCompartilhadoPor;//PADRAO
     private JLabel lblPercentualLucro, lblPercentualImposto, lblGastoDevDiario;//ADICIONADOS
     private JLabel lblImposto, lblLucroCalculado, lblDias, lblMeses, lblMediaMes;//TOTALIZADORES ADICIONADOS
     private JTable tabelaDetalhes;
@@ -33,6 +33,7 @@ public class DetalheProjetoView extends JInternalFrame {
         lblData = new JLabel("Data de Criação: ");
         lblTipoProjeto = new JLabel("Tipo de Projeto: ");
         /*ADICIONADOS*/
+        lblCompartilhadoPor = new JLabel("Compartilhado Por: ");
         lblPercentualLucro = new JLabel("Percentual Lucro: ");
         lblPercentualImposto = new JLabel("Percentual Imposto: ");
         lblGastoDevDiario = new JLabel("Valor p/ dia trabalho total: ");
@@ -44,6 +45,7 @@ public class DetalheProjetoView extends JInternalFrame {
         painelCabecalho.add(lblGastoDevDiario);
         painelCabecalho.add(lblPercentualImposto);
         painelCabecalho.add(lblCriador);
+        painelCabecalho.add(lblCompartilhadoPor);
        
 
         painelPrincipal.add(painelCabecalho, BorderLayout.NORTH);
@@ -122,9 +124,10 @@ public class DetalheProjetoView extends JInternalFrame {
         painelPrincipal.add(painelTabela, BorderLayout.CENTER);
     }
 
-    public void atualizarCabecalho(String nome, String criador, Date data, String tipoProjeto, String percentualLucro, String percentualImpostos, String totalDevDiario) {
+    public void atualizarCabecalho(String nome, String criador, Date data, String tipoProjeto, String percentualLucro, String percentualImpostos, String totalDevDiario, String compartilhadoPor) {
         lblNome.setText("Nome: " + nome);                                                                      
         lblCriador.setText("Criador: " + criador);
+        lblCompartilhadoPor.setText("Compartilhado Por: " + compartilhadoPor);
         lblData.setText("Data de Criação: " + data);
         lblTipoProjeto.setText("Tipo de Projeto: " + tipoProjeto);
         lblPercentualLucro.setText("Percentual Lucro: " + percentualLucro + "%");

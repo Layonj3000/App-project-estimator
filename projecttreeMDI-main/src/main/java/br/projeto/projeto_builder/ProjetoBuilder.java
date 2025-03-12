@@ -8,6 +8,4 @@ package br.projeto.projeto_builder;
  *
  * @author USER
  */
-public class ProjetoBuilder {
-    
-}
+

@@ -1,8 +1,16 @@
 package br.projeto.presenter;
 
+import br.projeto.enums.SimNao;
+import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.Projeto;
+import br.projeto.model.ProjetoDeEstimativaModel;
+import br.projeto.model.UsuarioModel;
+import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
+import br.projeto.repository.PerfilProjetoIntermediariaRepository;
+import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoRepositoryMock;
 import br.projeto.service.EstimaProjetoService;
+import br.projeto.service.TotalizadoresProjetoService;
 import br.projeto.view.DashBoardProjetoView;
 import org.jfree.data.general.DefaultPieDataset;
 
@@ -19,7 +27,6 @@ public class DashBoardProjetoPresenter extends Observer {
         this.view = view;
         this.repository = repository;
         this.estimaService = new EstimaProjetoService();
-
         this.repository.addObserver(this);
         carregarDashboard();
     }
@@ -42,6 +49,7 @@ public class DashBoardProjetoPresenter extends Observer {
 
         view.atualizarGraficos(datasetCustos, datasetProjetos);
     }
+    
 
     private DefaultPieDataset gerarDatasetCustos(List<Projeto> projetos) {
         DefaultPieDataset dataset = new DefaultPieDataset();

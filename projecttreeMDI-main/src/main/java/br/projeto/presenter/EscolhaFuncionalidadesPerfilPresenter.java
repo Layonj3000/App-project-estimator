@@ -28,7 +28,7 @@ public class EscolhaFuncionalidadesPerfilPresenter {
 
     private ManterPerfilProjetoDeEstimativaView view;
     private AEscolhaFuncionalidadesPerfilState estado;
-    //ADICIONAR BOTAO PARA EXCLUIR LINHA
+    
     public EscolhaFuncionalidadesPerfilPresenter(PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository, UsuarioModel usuarioModel) {
         this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
         this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;

@@ -6,12 +6,15 @@ import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.PerfilProjetoIntermediariaModel;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
+import br.projeto.model.UsuarioModel;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
+import br.projeto.repository.UsuarioRepository;
 import br.projeto.service.EstimaProjetoService;
+import br.projeto.service.InstanciaRepositoryService;
 import br.projeto.service.TotalizadoresProjetoService;
 import br.projeto.view.DetalheProjetoView;
 import java.util.ArrayList;
@@ -36,6 +39,7 @@ public class DetalheProjetoPresenter extends Observer {
     private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
     private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
     private TotalizadoresProjetoService totalizadoresService =  TotalizadoresProjetoService.getInstance();
+    private UsuarioRepository usuarioRepository = InstanciaRepositoryService.getInstancia().getUsuarioRepository();
     
     
     private Map<String, Integer> funcionalidades;
@@ -86,6 +90,14 @@ public class DetalheProjetoPresenter extends Observer {
         String percentualImpostos = Double.toString(projeto.getPercentualComImpostos());
         String totalDevDiario = Double.toString(estimaService.retornaValorTotalDia(projeto, perfilProjetoDeEstimativaModelList));
         
+        String nomeCompartilhador = "";
+        if(projeto.getCompartilhadoValor() == 1){
+            UsuarioModel compartilhador = usuarioRepository.findById(projeto.getCompartilhadoPor());
+            nomeCompartilhador = compartilhador.getNome();
+        }
+        
+        
+        
         view.atualizarCabecalho(
                 projeto.getNomeProjetoDeEstimativa(),
                 projeto.getNomeUsuario(),
@@ -93,7 +105,8 @@ public class DetalheProjetoPresenter extends Observer {
                 tiposConcatenados,
                 percentualLucro,
                 percentualImpostos,
-                totalDevDiario
+                totalDevDiario,
+                nomeCompartilhador
         );
     }
     

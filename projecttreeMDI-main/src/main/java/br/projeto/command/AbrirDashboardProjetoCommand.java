@@ -1,7 +1,11 @@
 package br.projeto.command;
 
+import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.DashBoardProjetoPresenter;
 import br.projeto.presenter.helpers.WindowManager;
+import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
+import br.projeto.repository.PerfilProjetoIntermediariaRepository;
+import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoRepositoryMock;
 import br.projeto.view.DashBoardProjetoView;
 
