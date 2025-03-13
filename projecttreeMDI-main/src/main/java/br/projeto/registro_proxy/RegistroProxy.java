@@ -52,7 +52,7 @@ public class RegistroProxy implements IRegistroProxy{
             mensagensErro.add("Email inválido! Use o formato correto (exemplo@dominio.com).");
         }
         
-        if (usuarioRepository.emailExists(registroUsuarioPresenter.getEmail())) {
+        if (usuarioRepository.findByEmail(registroUsuarioPresenter.getEmail()) != null) {
             mensagensErro.add("Este email já está cadastrado! Tente outro.");
         }
         List<String> errosSenha = validador.validar(registroUsuarioPresenter.getSenha());

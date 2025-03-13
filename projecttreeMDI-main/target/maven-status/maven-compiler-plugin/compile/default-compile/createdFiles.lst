@@ -1,6 +1,7 @@
 br\projeto\view\EscolhaPlataformaView$2.class
 br\projeto\repository_factory\ProjetoDeEstimativaRepositoryFactory.class
 br\projeto\view\ManterPerfilProjetoDeEstimativaView$2.class
+br\projeto\observer\LogNotifier.class
 br\projeto\state\escolha_funcionalidade_projeto\InsercaoEscolhaFuncionalidadesProjetoState.class
 br\projeto\command\PreencherTabelaEscolhaDePlataformaParaInsercaoCommand$1.class
 br\projeto\presenter\window_command\SetLookAndFeelCommand.class
@@ -17,6 +18,7 @@ br\projeto\presenter\EscolhaFuncionalidadesPerfilPresenter$1.class
 br\projeto\repository_factory\RepositoryFactory.class
 br\projeto\state\escolha_funcionalidades_perfil\AtualizacaoEscolhaFuncionalidadesPerfilState.class
 br\projeto\state\escolha_funcionalidade_projeto\AtualizacaoEscolhaFuncionalidadesProjetoState.class
+br\projeto\command\ProjetoCommand.class
 br\projeto\view\DetalheProjetoView$1.class
 br\projeto\presenter\Observer.class
 br\projeto\repository_factory\UsuarioRepositoryFactory.class
@@ -77,6 +79,7 @@ br\projeto\command\PreencherTabelaFuncionalidadesProjetoCommand$1.class
 br\projeto\presenter\helpers\WindowManager.class
 br\projeto\presenter\window_command\FecharJanelasProjetoRelacionadasCommand.class
 br\projeto\view\TelaCompartilhar$2.class
+br\projeto\observer\FileLogger.class
 br\projeto\presenter\window_command\FecharJanelasPerfilRelacionadasCommand.class
 br\projeto\state\escolha_funcionalidades_perfil\InclusaoEscolhaFuncionalidadesPerfilState.class
 br\projeto\view\ManterPerfilProjetoDeEstimativaView.class
@@ -108,6 +111,7 @@ br\projeto\service\CriarBarraBotaoService.class
 br\projeto\command\ExcluirPerfilCommand.class
 br\projeto\repository\ProjetoFuncionalidadesPersonalizadasRepository.class
 br\projeto\model\Subject.class
+br\projeto\observer\LogObserver.class
 br\projeto\command\PreencherTabelaEscolhaDePlataformaParaInsercaoCommand.class
 br\projeto\state\escolha_perfis_projeto\AtualizacaoEscolhaPerfilState$1.class
 br\projeto\db\DbException.class

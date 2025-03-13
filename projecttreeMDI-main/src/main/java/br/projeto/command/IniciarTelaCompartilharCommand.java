@@ -5,6 +5,8 @@
 package br.projeto.command;
 
 import br.projeto.model.UsuarioModel;
+import br.projeto.presenter.CompartilharPresenter;
+import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
@@ -14,16 +16,18 @@ import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
  * @author layon
  */
 public class IniciarTelaCompartilharCommand implements Command{
-    private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
-    private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
+    private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
+    private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;
     private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
+    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;
     private final UsuarioModel usuarioModel;
     private Integer projetoId;
-
-    public IniciarTelaCompartilharCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel) {
+    
+    public IniciarTelaCompartilharCommand(PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository,ProjetoDeEstimativaRepository projetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel) {
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;
         this.perfilProjetoIntermediariaRepository = perfilProjetoIntermediariaRepository;
+        this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
         this.usuarioModel = usuarioModel;
     }
 
@@ -33,7 +37,7 @@ public class IniciarTelaCompartilharCommand implements Command{
     
     @Override
     public void execute() {
-        //chama a presenter
+        new CompartilharPresenter(perfilProjetoDeEstimativaRepository, projetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilProjetoIntermediariaRepository, usuarioModel, projetoId);
     }
     
 }

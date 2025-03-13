@@ -88,17 +88,17 @@ public class UsuarioRepository implements /*Subject,*/ IUsuarioRepository {
         }
         return null;
     }
-    public boolean emailExists(String email) {
+    public UsuarioModel findByEmail(String email) {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
         try {
-            ps = conn.prepareStatement("SELECT COUNT(*) FROM usuario WHERE email = ?");
+            ps = conn.prepareStatement("SELECT * FROM usuario WHERE email = ?");
             ps.setString(1, email);
             rs = ps.executeQuery();
 
-            if (rs.next() && rs.getInt(1) > 0) {
-                return true; 
+            if (rs.next()) {
+                return instantiateUsuarioModel(rs);
             }
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
@@ -106,9 +106,8 @@ public class UsuarioRepository implements /*Subject,*/ IUsuarioRepository {
             DB.closeStatement(ps);
             DB.closeResultSet(rs);
         }
-
-        return false;
-    }    
+        return null;
+    } 
     @Override
     public void insert(UsuarioModel usuario) {
         PreparedStatement ps = null;

@@ -91,16 +91,18 @@ public class DetalheProjetoPresenter extends Observer {
         String totalDevDiario = Double.toString(estimaService.retornaValorTotalDia(projeto, perfilProjetoDeEstimativaModelList));
         
         String nomeCompartilhador = "";
+        String nomeCriador = projeto.getNomeUsuario();
         if(projeto.getCompartilhadoValor() == 1){
             UsuarioModel compartilhador = usuarioRepository.findById(projeto.getCompartilhadoPor());
             nomeCompartilhador = compartilhador.getNome();
+            nomeCriador = "";
         }
         
         
         
         view.atualizarCabecalho(
                 projeto.getNomeProjetoDeEstimativa(),
-                projeto.getNomeUsuario(),
+                nomeCriador,
                 projeto.getDataCriacao(),
                 tiposConcatenados,
                 percentualLucro,

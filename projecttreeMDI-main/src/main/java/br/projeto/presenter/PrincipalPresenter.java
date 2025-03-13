@@ -93,7 +93,7 @@ public final class PrincipalPresenter extends Observer {
         comandos.put("Principal", new AbrirDashboardProjetoCommand(view.getDesktop(), repository));
         comandos.put("Usuário", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Usuário"));
         comandos.put("Perfis", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Perfis"));
-        comandos.put("Compartilhar projeto de estimativa",new IniciarTelaCompartilharCommand(projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
+        comandos.put("Compartilhar projeto de estimativa",new IniciarTelaCompartilharCommand(perfilProjetoDeEstimativaRepository,projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
         comandos.put("Exportar projeto de estimativa", new MostrarMensagemProjetoCommand("Exportar ainda não implementado"));
         comandos.put("Atualizar projeto",new AtualizarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
         comandos.put("Novo projeto", new CriarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository/*,view.getDesktop()*/,perfilProjetoIntermediariaRepository, usuarioModel, logNotifier));
@@ -176,13 +176,14 @@ public final class PrincipalPresenter extends Observer {
             AtualizarProjetoCommand atualizarProjetoCommand = new AtualizarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel);
             atualizarProjetoCommand.setProjetoId(projeto.getId());
             
-            IniciarTelaCompartilharCommand compartilharCommand = new IniciarTelaCompartilharCommand(projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel);
+            IniciarTelaCompartilharCommand compartilharCommand = new IniciarTelaCompartilharCommand(perfilProjetoDeEstimativaRepository,projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel);
             compartilharCommand.setProjetoId(projeto.getId());
             
-            noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Atualizar projeto de estimativa", "action", atualizarProjetoCommand));
-            noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Compartilhar projeto de estimativa", "action", compartilharCommand));
-            noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Exportar projeto de estimativa", "action", comandos.get("Exportar projeto de estimativa")));
-            
+            if(projeto.getCompartilhadoValor() == 0){
+                noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Atualizar projeto de estimativa", "action", atualizarProjetoCommand));
+                noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Compartilhar projeto de estimativa", "action", compartilharCommand));
+                noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Exportar projeto de estimativa", "action", comandos.get("Exportar projeto de estimativa")));
+            }
 
             noProjetos.adicionarFilho(noProjeto);
         }
