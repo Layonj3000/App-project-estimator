@@ -26,7 +26,7 @@ public class ObterPerfisSelecionadosCommand implements Command{
 
     @Override
     public void execute() {
-        JTable tabela = escolhaPerfilPresenter.getView().getTable();
+        JTable tabela = escolhaPerfilPresenter.getTable();
         int qtdLinhas = tabela.getRowCount();
         
         for(int i = 0; i < qtdLinhas; i++){

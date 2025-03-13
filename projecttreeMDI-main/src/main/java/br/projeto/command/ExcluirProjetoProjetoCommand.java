@@ -10,15 +10,6 @@ public class ExcluirProjetoProjetoCommand implements Command {
     private ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
     private Integer projetoId;
     private String projetoNome;//ATRIBUTO ANTIGO
-
-    public ExcluirProjetoProjetoCommand(ProjetoRepositoryMock repository) {//CONSTRUTOR ANTIGO 1
-        this.repository = repository;
-    }
-
-    public ExcluirProjetoProjetoCommand(ProjetoRepositoryMock repository, String projetoNome) {//CONSTRUTOR ANTIGO 2
-        this.repository = repository;
-        this.projetoNome = projetoNome;
-    }
     
     public ExcluirProjetoProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository){//CONSTRUTOR NOVO 1
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
@@ -37,30 +28,6 @@ public class ExcluirProjetoProjetoCommand implements Command {
     public void setProjetoId(Integer projetoId) {
         this.projetoId = projetoId;
     }
-
-//    @Override
-//    public void execute() {
-//        if (projetoNome == null || projetoNome.isEmpty()) {
-//            new MostrarMensagemProjetoCommand("Nome do projeto não definido.").execute();
-//            return;
-//        }
-//
-//        int confirmacao = JOptionPane.showConfirmDialog(
-//                null,
-//                "Deseja realmente excluir o projeto \"" + projetoNome + "\"?",
-//                "Confirmar Exclusão",
-//                JOptionPane.YES_NO_OPTION
-//        );
-//
-//        if (confirmacao == JOptionPane.YES_OPTION) {
-//            boolean removido = repository.removerProjetoPorNome(projetoNome);
-//            if (removido) {
-//                new MostrarMensagemProjetoCommand("Projeto \"" + projetoNome + "\" removido com sucesso!").execute();
-//            } else {
-//                new MostrarMensagemProjetoCommand("Erro ao remover o projeto \"" + projetoNome + "\".").execute();
-//            }
-//        }
-//    }
     
     
     //OBS: AS TABELAS INTERMEDIARIA E DE FUNCIONALIDADES EXTRAS EXCLUEM AUTOMATICAMENTE APOS EXCLUIR O PERFIL

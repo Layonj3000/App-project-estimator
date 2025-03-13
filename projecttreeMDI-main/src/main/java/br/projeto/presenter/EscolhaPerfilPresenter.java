@@ -14,6 +14,8 @@ import br.projeto.state.escolha_perfis_projeto.AEscolhaPerfilState;
 import br.projeto.state.escolha_perfis_projeto.AtualizacaoEscolhaPerfilState;
 import br.projeto.state.escolha_perfis_projeto.InclusaoEscolhaPerfilState;
 import br.projeto.view.EscolhaPlataformaView;
+import javax.swing.JButton;
+import javax.swing.JTable;
 
 /**
  *
@@ -91,5 +93,17 @@ public class EscolhaPerfilPresenter {
 
     public UsuarioModel getUsuarioModel() {
         return usuarioModel;
+    }
+    
+    public JTable getTable(){
+        return view.getTable();
+    }
+    
+    public JButton getBtnConfirmar(){
+        return view.getBtnConfirmar();
+    }
+    
+    public JButton getBtnVoltar(){
+        return view.getBtnVoltar();
     }
 }

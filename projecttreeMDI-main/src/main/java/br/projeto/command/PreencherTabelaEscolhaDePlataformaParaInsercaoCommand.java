@@ -23,7 +23,7 @@ public class PreencherTabelaEscolhaDePlataformaParaInsercaoCommand implements Co
 
     @Override
     public void execute() {
-        JTable tabela = escolhaPerfilPresenter.getView().getTable();
+        JTable tabela = escolhaPerfilPresenter.getTable();
         
         DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Selecionar", "Plataforma", "Id"}, 0){
             @Override   

@@ -92,9 +92,10 @@ public final class PrincipalPresenter extends Observer {
         comandos.put("Exportar projeto de estimativa", new MostrarMensagemProjetoCommand("Exportar ainda não implementado"));
         comandos.put("Atualizar projeto",new AtualizarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
         comandos.put("Novo projeto", new CriarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository/*,view.getDesktop()*/,perfilProjetoIntermediariaRepository, usuarioModel));
-        comandos.put("Novo perfil", new CriarPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository/*, view.getDesktop()*/, usuarioModel));
+        comandos.put("Novo perfil", new CriarPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel));
         comandos.put("Atualizar perfil", new AtualizarPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel));
         comandos.put("Excluir projeto", new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository));
+        comandos.put("Excluir Perfil", new ExcluirPerfilCommand(perfilProjetoDeEstimativaRepository));
         comandos.put("Abrir detalhes", new AbrirDetalhesProjetoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, view.getDesktop()));
         return comandos;
     }

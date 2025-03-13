@@ -41,20 +41,7 @@ public class PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand implements 
                 }
               return String.class;  
             }
-            
-//            @Override
-//            public void setValueAt(Object aValue, int row, int column) {
-//                if (column == 2) { 
-//                    if (aValue.getClass() != Integer.class) {
-//                        super.setValueAt(aValue, row, column);
-//                    } else {
-//                        super.setValueAt(0, row, column); 
-//                    }
-//                } else {
-//                    super.setValueAt(aValue, row, column);
-//                }
-//            }
-//        
+                 
         };
         
        PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = new PerfilProjetoDeEstimativaModel();

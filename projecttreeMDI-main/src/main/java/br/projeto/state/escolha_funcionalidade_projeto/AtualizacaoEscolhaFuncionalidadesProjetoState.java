@@ -44,14 +44,14 @@ public class AtualizacaoEscolhaFuncionalidadesProjetoState extends AEscolhaFunci
     //VERIFICAR DEMETER
     private void configuraTela() {
         escolhaFuncionalidadeProjetoPresenter.getView().setVisible(false);
-        escolhaFuncionalidadeProjetoPresenter.getView().getBtnConfirmar().addActionListener(new ActionListener(){
+        escolhaFuncionalidadeProjetoPresenter.getBtnConfirmar().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                confirmar();
             }
         });
         
-        escolhaFuncionalidadeProjetoPresenter.getView().getBtnVoltar().addActionListener(new ActionListener(){
+        escolhaFuncionalidadeProjetoPresenter.getBtnVoltar().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 voltar();

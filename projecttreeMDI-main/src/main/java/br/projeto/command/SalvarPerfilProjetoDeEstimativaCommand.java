@@ -37,8 +37,8 @@ public class SalvarPerfilProjetoDeEstimativaCommand implements Command{
     
         @Override
         public void execute() {
-           JTable tabela = escolhaFuncionalidadesPerfilPresenter.getView().getTable();
-           String nomePerfil = escolhaFuncionalidadesPerfilPresenter.getView().getTxtNomePerfil().getText();
+           JTable tabela = escolhaFuncionalidadesPerfilPresenter.getTable();
+           String nomePerfil = escolhaFuncionalidadesPerfilPresenter.getTxtNomePerfil();
            auxiliarService.encerrarEdicaoCelula(tabela);
 
            if (!auxiliarService.verificarValoresInconsistentes(tabela)) {
@@ -56,9 +56,9 @@ public class SalvarPerfilProjetoDeEstimativaCommand implements Command{
                 auxiliarService.verificaPreenchimentoTaxaGerProjetos(escolhaFuncionalidadesPerfilPresenter, perfilProjetoDeEstimativaModel)){
                     return;
                 } else {
-                    taxaDiariaDesenvolvimento = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getView().getTxtTaxaDiariaDesenvolvimento().getText());
-                    taxaDiariaGerenciaProjeto = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getView().getTxtTaxaDiariaGerenciaProjeto().getText());
-                    taxaDiariaDesign = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getView().getTxtTaxaDiariaDesign().getText());
+                    taxaDiariaDesenvolvimento = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getTxtTaxaDiariaDesenvolvimento());
+                    taxaDiariaGerenciaProjeto = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getTxtTaxaDiariaGerenciaProjeto());
+                    taxaDiariaDesign = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getTxtTaxaDiariaDesign());
                 }
             } catch (NumberFormatException e) {
                JOptionPane.showMessageDialog(null, "Digite um número válido para as taxas diárias!", "Erro de entrada", JOptionPane.ERROR_MESSAGE);

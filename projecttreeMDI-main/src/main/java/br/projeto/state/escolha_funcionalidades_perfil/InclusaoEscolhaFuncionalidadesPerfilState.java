@@ -40,14 +40,14 @@ public class InclusaoEscolhaFuncionalidadesPerfilState extends AEscolhaFuncional
         //VERIFICAR DEMETER
     private void configuraTela() {
         escolhaFuncionalidadesPerfilPresenter.getView().setVisible(false);
-        escolhaFuncionalidadesPerfilPresenter.getView().getBtnConfirmar().addActionListener(new ActionListener(){
+        escolhaFuncionalidadesPerfilPresenter.getBtnConfirmar().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                salvar();
             }
         });
         
-        escolhaFuncionalidadesPerfilPresenter.getView().getBtnVoltar().addActionListener(new ActionListener(){
+        escolhaFuncionalidadesPerfilPresenter.getBtnVoltar().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 voltar();

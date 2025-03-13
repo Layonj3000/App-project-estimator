@@ -36,7 +36,7 @@ public class PreencherTabelaFuncionalidadesProjetoCommand implements Command{
 
     @Override
     public void execute() {
-        JTable tabela = escolhaFuncionalidadesProjetoPresenter.getView().getTable();
+        JTable tabela = escolhaFuncionalidadesProjetoPresenter.getTable();
         ManterProjetoDeEstimativaView view = escolhaFuncionalidadesProjetoPresenter.getView();
         
         

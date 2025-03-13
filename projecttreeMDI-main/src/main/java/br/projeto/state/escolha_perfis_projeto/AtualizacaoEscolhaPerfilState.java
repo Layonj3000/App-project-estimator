@@ -49,14 +49,14 @@ public class AtualizacaoEscolhaPerfilState extends AEscolhaPerfilState{
     private void configuraTela() {
         escolhaPerfilPresenter.getView().setVisible(false);
         
-        escolhaPerfilPresenter.getView().getBtnConfirmar().addActionListener(new ActionListener(){
+        escolhaPerfilPresenter.getBtnConfirmar().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 confirmar();
             }
         });
         
-        escolhaPerfilPresenter.getView().getBtnVoltar().addActionListener(new ActionListener(){
+        escolhaPerfilPresenter.getBtnVoltar().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 voltar();

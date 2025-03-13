@@ -15,6 +15,8 @@ import br.projeto.state.escolha_funcionalidade_projeto.AtualizacaoEscolhaFuncion
 import br.projeto.state.escolha_funcionalidade_projeto.InsercaoEscolhaFuncionalidadesProjetoState;
 import br.projeto.view.ManterProjetoDeEstimativaView;
 import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JTable;
 
 /**
  *
@@ -99,4 +101,51 @@ public class EscolhaFuncionalidadesProjetoPresenter {
         return view;
     }
     
+    public String getTxtNomeProjetoEstimativa(){
+        return view.getTxtNomeProjetoEstimativa().getText();
+    }
+    
+    public String getTxtCustoGarantia(){
+        return view.getTxtCustoGarantia().getText().trim();
+    }
+    
+    public String getTxtCustoHardwareEInstalacoesFisicas(){
+        return view.getTxtCustoHardwareEInstalacoesFisicas().getText().trim();
+    }
+    
+    public String getTxtCustoRiscos(){
+        return view.getTxtCustoRiscos().getText().trim();
+    }
+    
+    public String getTxtCustoSoftware(){
+        return view.getTxtCustoSoftware().getText().trim();
+    }
+    
+    public String getTxtFundoReserva(){
+        return view.getTxtFundoReserva().getText().trim();
+    }
+    
+    public String getTxtOutrosCustos(){
+        return view.getTxtOutrosCustos().getText().trim();
+    }
+    
+    public String getTxtPercentualComImpostos(){
+        return view.getTxtPercentualComImpostos().getText().trim();
+    }
+    
+    public String getTxtPercentualLucroDesejado(){
+        return view.getTxtPercentualLucroDesejado().getText().trim();
+    }
+    
+    public JTable getTable(){
+        return view.getTable();
+    }
+    
+    public JButton getBtnConfirmar(){
+        return view.getBtnConfirmar();
+    }
+    
+    public JButton getBtnVoltar(){
+        return view.getBtnVoltar();
+    }
 }

@@ -15,6 +15,8 @@ import br.projeto.state.escolha_funcionalidades_perfil.InclusaoEscolhaFuncionali
 import br.projeto.view.ManterPerfilProjetoDeEstimativaView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JTable;
 
 /**
  *
@@ -100,6 +102,34 @@ public class EscolhaFuncionalidadesPerfilPresenter {
 
     public PerfilFuncionalidadesPersonalizadasRepository getPerfilFuncionalidadesPersonalizadasRepository() {
         return perfilFuncionalidadesPersonalizadasRepository;
+    }
+    
+    public String getTxtNomePerfil(){
+        return view.getTxtNomePerfil().getText();
+    }
+    
+    public String getTxtTaxaDiariaDesenvolvimento(){
+        return view.getTxtTaxaDiariaDesenvolvimento().getText().trim();
+    }
+    
+    public String getTxtTaxaDiariaDesign(){
+        return view.getTxtTaxaDiariaDesign().getText().trim();
+    }
+    
+    public String getTxtTaxaDiariaGerenciaProjeto(){
+        return view.getTxtTaxaDiariaGerenciaProjeto().getText().trim();
+    }
+    
+    public JButton getBtnConfirmar(){
+        return view.getBtnConfirmar();
+    }
+    
+    public JButton getBtnVoltar(){
+        return view.getBtnVoltar();
+    }
+    
+    public JTable getTable(){
+        return view.getTable();
     }
     
 }
