@@ -1,0 +1,34 @@
+[33m423e553[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m 🧹 Cleanup: Removendo importações desnecessárias
+[33mac3a02e[m :sparkles: Feat: Adicionando validação para garantir que o e-mail seja único
+[33mee570ce[m :sparkles: Feat: Adicionando adapter para o validador de senha
+[33m48b3dd6[m :sparkles: Feat: Criando a lógica básica de compartilhar projeto
+[33me826f8d[m :recycle: Refactor: Refatorando fluxo de login e registro
+[33m32be3dc[m :sparkles: Feat: Adicionando o campo formato _log no banco e removendo o campo status
+[33mfee7152[m ajuste no calculo de projetos de estimativa
+[33md8252a4[m refatorando rotina de inclusao/atualização de projetos
+[33mf003e83[m atualização de perfil incluida
+[33m1b92722[m iniciando refatoração do state de projetos de estimativa
+[33m6c588d7[m Ajuste parcial no update projetos e no state
+[33m65f7202[m Consertando bug update
+[33m91f6066[m :bug: Fix: Resolvendo conflitos no merge
+[33m594aabb[m Merge branch 'trabalho-final-src'
+[33mdaff829[m Correção de bugs, implementação do insert, implementação  parciall do update
+[33m1d4ac50[m :recycle: Refactor: Refatorando login e registro
+[33m5bba84c[m :sparkles: Feat: Adicionando verificações no login e registro
+[33m3ea615d[m :sparkles: Feat: Criando a lógica de login e registro
+[33m41c6a90[m Merge pull request #27 from Layonj3000/trabalho-final-src
+[33m50a7b33[m Progresso com a inserçao de novo perfil e adaptação para receber modulo de login/cadastro de usuario
+[33m287868f[m Delete TrabalhoFinal.zip
+[33mbfad6ae[m Merge pull request #26 from Layonj3000/trabalho-final-src
+[33m039d357[m visualizaçao de perfil e inserção de projetos(parcialmente completo)
+[33m87f0590[m adicionando tabelas para suportar funcionalidades extras e criando entidades para manter projetos de estimativa
+[33m1e21d28[m ajustando delete automatico da tabela intermediaria
+[33mbf096aa[m arvore de projeto e detalhes do projeto buscam direto do banco ao inves de buscar no RepositoryMock
+[33m4b0e0f3[m arvore de projeto e detalhes do projeto buscam direto do banco ao inves de buscar no RepositoryMock
+[33m0f3cbf3[m :bug: Bug: Colocando o trabalho em .zip
+[33m745457c[m Renomeando classes repository
+[33m4571bd4[m consertando commit
+[33m231e0e5[m consertando commit
+[33m3836156[m Adicionando operacoes de CRUD ao projeto base
+[33me0faf89[m :sparkles: Feat: Criando as principais views
+[33mcd24983[m Initial commit

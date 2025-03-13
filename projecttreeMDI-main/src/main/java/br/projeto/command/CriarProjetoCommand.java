@@ -1,6 +1,7 @@
 package br.projeto.command;
 
 import br.projeto.model.UsuarioModel;
+import br.projeto.observer.LogNotifier;
 import br.projeto.presenter.EscolhaPerfilPresenter;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
@@ -10,19 +11,20 @@ import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
 import com.log.adaptador.LogConfig;
 import com.log.model.LogRegister;
 
-public class CriarProjetoCommand implements Command {
+public class CriarProjetoCommand extends ProjetoCommand {
     /*private final ProjetoRepositoryMock repository;*/
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 
     private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
     private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
     private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
-    
+
     /*private final JDesktopPane desktop;*/
     private final UsuarioModel usuarioModel;
     //private final CriarProjetoMock criarProjetoMock;
 
-    public CriarProjetoCommand(/*ProjetoRepositoryMock repository,*/ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository,ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,/* JDesktopPane desktop,*/PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel) {
+    public CriarProjetoCommand(/*ProjetoRepositoryMock repository,*/ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository,ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,/* JDesktopPane desktop,*/PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel, LogNotifier logNotifier) {
+        super(logNotifier, usuarioModel.getFormatoLOG());
         /*this.repository = repository;*/
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.perfilProjetoDeEstimativaRepository =perfilProjetoDeEstimativaRepository;
@@ -44,15 +46,14 @@ public class CriarProjetoCommand implements Command {
         escolhaPerfilPresenter.setIdProjeto(null);
         escolhaPerfilPresenter.setEstadoInicial();
 
-        // Registro Log
-        LogConfig.getInstance().setLogFormat(usuarioModel.getFormatoLOG());
-        LogConfig.getInstance().novoRegistro(new LogRegister("Criação de Projeto", usuarioModel.getNome(), usuarioModel.getEmail(), true, "Sucesso"));
-        // Arrumar a parte de tratamento de exceção para mensagem do erro
-        // LogConfig.getInstance().novoRegistro(new LogRegister("Criação de Projeto", usuarioModel.getNome(), usuarioModel.getEmail(), false, "Mensagem do Erro (tratamento de exceção)"));
+        LogRegister logRegister = new LogRegister("Criação de Projeto", usuarioModel.getNome(),
+                usuarioModel.getEmail(), true, "Sucesso");
 
-
-
+        super.setLogRegister(logRegister);
+        super.execute();
     }
+
+
 /*    @Override
     public void execute() {
         Optional<Projeto> projetoCriado = criarProjetoMock.criarProjetoAleatorio();

@@ -5,6 +5,8 @@ import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.UsuarioModel;
+import br.projeto.observer.FileLogger;
+import br.projeto.observer.LogNotifier;
 import br.projeto.presenter.helpers.WindowManager;
 import br.projeto.presenter.window_command.*;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
@@ -85,16 +87,19 @@ public final class PrincipalPresenter extends Observer {
 
     private Map<String, Command> inicializarComandos() {
         Map<String, Command> comandos = new HashMap<>();
+        FileLogger fileLogger = new FileLogger();
+        LogNotifier logNotifier = new LogNotifier();
+        logNotifier.add(fileLogger);
         comandos.put("Principal", new AbrirDashboardProjetoCommand(view.getDesktop(), repository));
         comandos.put("Usuário", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Usuário"));
         comandos.put("Perfis", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Perfis"));
         comandos.put("Compartilhar projeto de estimativa",new IniciarTelaCompartilharCommand(projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
         comandos.put("Exportar projeto de estimativa", new MostrarMensagemProjetoCommand("Exportar ainda não implementado"));
         comandos.put("Atualizar projeto",new AtualizarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
-        comandos.put("Novo projeto", new CriarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository/*,view.getDesktop()*/,perfilProjetoIntermediariaRepository, usuarioModel));
+        comandos.put("Novo projeto", new CriarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository/*,view.getDesktop()*/,perfilProjetoIntermediariaRepository, usuarioModel, logNotifier));
         comandos.put("Novo perfil", new CriarPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel));
         comandos.put("Atualizar perfil", new AtualizarPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel));
-        comandos.put("Excluir projeto", new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository));
+        comandos.put("Excluir projeto", new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository,usuarioModel, logNotifier));
         comandos.put("Excluir Perfil", new ExcluirPerfilCommand(perfilProjetoDeEstimativaRepository));
         comandos.put("Abrir detalhes", new AbrirDetalhesProjetoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, view.getDesktop()));
         return comandos;
@@ -225,11 +230,14 @@ public final class PrincipalPresenter extends Observer {
         
         //PROJETO DE ESTIMATIVA
         private void adicionarMenuContextual(ProjetoDeEstimativaModel projeto, NoArvoreComposite noProjeto) {//NOVO
+            FileLogger fileLogger = new FileLogger();
+            LogNotifier logNotifier = new LogNotifier();
+            logNotifier.add(fileLogger);
         noProjeto.setMenuContextual(() -> {
             JPopupMenu menu = new JPopupMenu();
             JMenuItem excluirProjetoItem = new JMenuItem("Excluir Projeto");
             excluirProjetoItem.addActionListener(e -> {
-                Command cmdExcluir = new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository, projeto.getId());
+                Command cmdExcluir = new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository, projeto.getId(), usuarioModel, logNotifier);
                 cmdExcluir.execute();
             });
             menu.add(excluirProjetoItem);
