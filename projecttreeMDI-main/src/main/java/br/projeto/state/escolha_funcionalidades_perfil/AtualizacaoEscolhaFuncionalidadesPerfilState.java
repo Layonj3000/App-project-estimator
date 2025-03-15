@@ -43,8 +43,7 @@ public class AtualizacaoEscolhaFuncionalidadesPerfilState extends AEscolhaFuncio
             new MostrarMensagemCommand("Preencha o conteúdo da linha adicionada: " + e.getMessage()).execute();
         } catch (Exception e) { 
             new MostrarMensagemCommand("Ocorreu um erro inesperado: " + e.getMessage()).execute();
-        }  
-        //escolhaFuncionalidadesPerfilPresenter.getView().dispose();        
+        }        
     }
     
     @Override

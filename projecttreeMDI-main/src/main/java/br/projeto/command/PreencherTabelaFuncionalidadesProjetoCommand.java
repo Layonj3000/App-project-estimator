@@ -69,7 +69,7 @@ public class PreencherTabelaFuncionalidadesProjetoCommand implements Command{
                 //ADICIONAR VERIFICAÇÃO PARA VER SE O CAMPO NAO É NULL(CASO FOIR QUER DIZER QUE FOI REMOVIDO DO PERFIL)
                 //SE funcionalidadesDisponiveis.chave != null, pega o valor e chave para inserir na tabela
                 for(Map.Entry<String, Integer> mapPerfil: model.getFuncionalidadesDisponiveis().entrySet()){
-                    if(mapPerfil.getValue() != null && mapPerfil.getValue()!= 0){
+                    if(mapPerfil.getValue() != null/* && mapPerfil.getValue()!= 0*/){
                         String nomeFuncionalidade = mapPerfil.getKey();
                         Integer valorFuncionalidade = mapPerfil.getValue();
                         
@@ -80,7 +80,7 @@ public class PreencherTabelaFuncionalidadesProjetoCommand implements Command{
                  
                 for(PerfilFuncionalidadesPersonalizadasModel funcionalidadePersonalizada: perfilFuncionalidadesPersonalizadasModelList){
                     
-                    if(funcionalidadePersonalizada.getValor() != null && funcionalidadePersonalizada.getValor() != 0){
+                    if(funcionalidadePersonalizada.getValor() != null/* && funcionalidadePersonalizada.getValor() != 0*/){
                         String nomeFuncionalidade = funcionalidadePersonalizada.getNome();
                         Integer valorFuncionalidade = funcionalidadePersonalizada.getValor();
                         
@@ -92,14 +92,6 @@ public class PreencherTabelaFuncionalidadesProjetoCommand implements Command{
             
             /*ALTERAÇÃO PARA SUPORTAR UPDATE*/
             
-            
-            /*if(projetoId!=null){
-                ProjetoDeEstimativaModel projetoDeEstimativaModel = projetoDeEstimativaPresenter.getProjetoDeEstimativaRepository().findById(projetoId);
-                //List<ProjetosFuncionalidadesPersonalizadasModel> projetosFuncionalidadesPersonalizadasModel = projetoDeEstimativaPresenter.getProjetoFuncionalidadesPersonalizadasRepository().findByProjetoEstimativa(projetoDeEstimativaModel);
-                
-                for(Map.Entry<String, Integer> entrySet: funcionalidadesSomadasMap.entrySet()){//ANTES
-                        //modelo.addRow(new Object[]{false, entrySet.getKey(), entrySet.getValue()});//ANTES
-                }//ANTES*/
             if (projetoId != null) {
                 ProjetoDeEstimativaModel projetoDeEstimativaModel = escolhaFuncionalidadesProjetoPresenter
                     .getProjetoDeEstimativaRepository().findById(projetoId);
@@ -231,7 +223,7 @@ public class PreencherTabelaFuncionalidadesProjetoCommand implements Command{
         view.getTxtCustoSoftware().setText(String.valueOf(projetoDeEstimativaModel.getCustoSoftware()));
         view.getTxtFundoReserva().setText(String.valueOf(projetoDeEstimativaModel.getFundoDeReserva()));
         view.getTxtOutrosCustos().setText(String.valueOf(projetoDeEstimativaModel.getOutrosCustos()));
-        view.getTxtPercentualComImpostos().setText(String.valueOf(projetoDeEstimativaModel.getPercentualLucroDesejado()));
+        view.getTxtPercentualComImpostos().setText(String.valueOf(projetoDeEstimativaModel.getPercentualComImpostos()));
         view.getTxtPercentualLucroDesejado().setText(String.valueOf(projetoDeEstimativaModel.getPercentualLucroDesejado()));
     }
     

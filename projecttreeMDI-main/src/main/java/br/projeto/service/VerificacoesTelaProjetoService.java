@@ -34,7 +34,7 @@ public class VerificacoesTelaProjetoService {
         Double percentualComImp = Double.valueOf(percentualComImpostos);
         Double percentualLucroDesejado = Double.valueOf(percentualDeLucroDesejado);
         
-        return percentualComImp>100 && percentualLucroDesejado>100;
+        return percentualComImp>100 || percentualLucroDesejado>100;
     }
 
     public boolean verificarCustosEPercentuais(String custoHardwareEInstalacoesFisicas, String custoSoftware,

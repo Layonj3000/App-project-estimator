@@ -26,10 +26,14 @@ public class SalvarProjetoDeEstimativaCommand implements Command{
     private final List<Integer> idPerfisSelecionados;
     private final Integer projetoId;
     
+    VerificacoesTelaProjetoService verificacoesService;
+    
     public SalvarProjetoDeEstimativaCommand(EscolhaFuncionalidadesProjetoPresenter escolhaFuncionalidadesProjetoPresenter, List<Integer> idPerfisSelecionados, Integer projetoId) {
         this.escolhaFuncionalidadesProjetoPresenter = escolhaFuncionalidadesProjetoPresenter;
         this.idPerfisSelecionados = idPerfisSelecionados;
         this.projetoId = projetoId;
+        
+        this.verificacoesService = VerificacoesTelaProjetoService.getInstancia();
     }
     
     
@@ -39,67 +43,27 @@ public class SalvarProjetoDeEstimativaCommand implements Command{
         ManterProjetoDeEstimativaView view = escolhaFuncionalidadesProjetoPresenter.getView();
         JTable tabela = view.getTable();
 
-        
-        VerificacoesTelaProjetoService verificacoesService = VerificacoesTelaProjetoService.getInstancia();
+        String nomeProjeto = escolhaFuncionalidadesProjetoPresenter.getTxtNomeProjetoEstimativa();
+        String percentualComImpostosText = escolhaFuncionalidadesProjetoPresenter.getTxtPercentualComImpostos();
+        String percentualDeLucroDesejadoText = escolhaFuncionalidadesProjetoPresenter.getTxtPercentualLucroDesejado();
 
-        
-        String nomeProjeto = view.getTxtNomeProjetoEstimativa().getText();
-        String percentualComImpostosText = view.getTxtPercentualComImpostos().getText();
-        String percentualDeLucroDesejadoText = view.getTxtPercentualLucroDesejado().getText();
+        verificaCamposObrigatoriosEPorcentagem(nomeProjeto, percentualComImpostosText, percentualDeLucroDesejadoText);
 
-        
-        if (!verificacoesService.verificarCamposObrigatorios(nomeProjeto, percentualComImpostosText, percentualDeLucroDesejadoText)) {
-            throw new IllegalArgumentException("O percentual com imposto, de lucro desejado e o nome do projeto devem ser obrigatoriamente informados.");
-        }
-        
-        if(verificacoesService.verificarCamposPorcentagem(percentualComImpostosText, percentualDeLucroDesejadoText)){
-            throw new IllegalArgumentException("Os campos de porcentagem não devem exceder 100%");
-        }
+        String custoHardwareEInstalacoesFisicasText = escolhaFuncionalidadesProjetoPresenter.getTxtCustoHardwareEInstalacoesFisicas();
+        String custoSoftwareText = escolhaFuncionalidadesProjetoPresenter.getTxtCustoSoftware();
+        String custoRiscosText = escolhaFuncionalidadesProjetoPresenter.getTxtCustoRiscos();
+        String custoGarantiaText = escolhaFuncionalidadesProjetoPresenter.getTxtCustoGarantia();
+        String fundoDeReservaText = escolhaFuncionalidadesProjetoPresenter.getTxtFundoReserva();
+        String outrosCustosText = escolhaFuncionalidadesProjetoPresenter.getTxtOutrosCustos();
 
-        
-        String custoHardwareEInstalacoesFisicasText = view.getTxtCustoHardwareEInstalacoesFisicas().getText();
-        String custoSoftwareText = view.getTxtCustoSoftware().getText();
-        String custoRiscosText = view.getTxtCustoRiscos().getText();
-        String custoGarantiaText = view.getTxtCustoGarantia().getText();
-        String fundoDeReservaText = view.getTxtFundoReserva().getText();
-        String outrosCustosText = view.getTxtOutrosCustos().getText();
-
-        try{
-            verificacoesService.verificarCustosEPercentuais(custoHardwareEInstalacoesFisicasText, custoSoftwareText,
-                                                                 custoRiscosText, custoGarantiaText, fundoDeReservaText,
-                                                                 outrosCustosText, percentualComImpostosText, percentualDeLucroDesejadoText);
-        }catch(IllegalArgumentException e){
-            throw new IllegalArgumentException("Um ou mais campos com valores inválidos: "+e.getMessage());
-        }
-
-        
+        verificaValoresInválidos(custoHardwareEInstalacoesFisicasText, custoSoftwareText, custoGarantiaText, custoRiscosText, fundoDeReservaText, outrosCustosText, percentualComImpostosText, percentualDeLucroDesejadoText);
+ 
         Map<String, Integer> mapProjetos = verificacoesService.verificarProjetosSelecionados(tabela);
 
-       
-        Double custoHardwareEInstalacoesFisicas = custoHardwareEInstalacoesFisicasText.isEmpty() ? 0.0 : Double.parseDouble(custoHardwareEInstalacoesFisicasText);
-        Double custoSoftware = custoSoftwareText.isEmpty() ? 0.0 : Double.parseDouble(custoSoftwareText);
-        Double custoRiscos = custoRiscosText.isEmpty() ? 0.0 : Double.parseDouble(custoRiscosText);
-        Double custoGarantia = custoGarantiaText.isEmpty() ? 0.0 : Double.parseDouble(custoGarantiaText);
-        Double fundoDeReserva = fundoDeReservaText.isEmpty() ? 0.0 : Double.parseDouble(fundoDeReservaText);
-        Double outrosCustos = outrosCustosText.isEmpty() ? 0.0 : Double.parseDouble(outrosCustosText);
-        Double percentualComImpostos = percentualComImpostosText.isEmpty() ? 0.0 : Double.parseDouble(percentualComImpostosText);
-        Double percentualDeLucroDesejado = percentualDeLucroDesejadoText.isEmpty() ? 0.0 : Double.parseDouble(percentualDeLucroDesejadoText);
-
-        
         RetornaProjetoModelService retornaProjetoModelService = new RetornaProjetoModelService(mapProjetos);
         ProjetoDeEstimativaModel projetoDeEstimativaModel = retornaProjetoModelService.getProjeto();
 
-        projetoDeEstimativaModel.setNomeProjetoDeEstimativa(nomeProjeto);
-        projetoDeEstimativaModel.setCustoHardware(custoHardwareEInstalacoesFisicas);
-        projetoDeEstimativaModel.setCustoSoftware(custoSoftware);
-        projetoDeEstimativaModel.setCustoRiscos(custoRiscos);
-        projetoDeEstimativaModel.setCustoGarantia(custoGarantia);
-        projetoDeEstimativaModel.setFundoDeReserva(fundoDeReserva);
-        projetoDeEstimativaModel.setOutrosCustos(outrosCustos);
-        projetoDeEstimativaModel.setPercentualComImpostos(percentualComImpostos);
-        projetoDeEstimativaModel.setPercentualLucroDesejado(percentualDeLucroDesejado);
-        projetoDeEstimativaModel.setUsuarioModel(escolhaFuncionalidadesProjetoPresenter.getUsuarioModel());
-        projetoDeEstimativaModel.setDataCriacao(new Date(System.currentTimeMillis()));
+        setExtrasProjeto(projetoDeEstimativaModel, custoHardwareEInstalacoesFisicasText, custoSoftwareText, custoRiscosText, custoGarantiaText, fundoDeReservaText, outrosCustosText, nomeProjeto, percentualComImpostosText, percentualDeLucroDesejadoText);    
         
         /*LOGICA PARA UPDATE*/
         if(projetoId != null){
@@ -140,6 +104,50 @@ public class SalvarProjetoDeEstimativaCommand implements Command{
         }
         escolhaFuncionalidadesProjetoPresenter.getView().dispose();
     }
-}
+    
+    //TUDO QUE NÃO É FUNCIONALIDADE
+    private void setExtrasProjeto(ProjetoDeEstimativaModel projetoDeEstimativaModel, String custoHardwareEInstalacoesFisicasText, String custoSoftwareText, String custoRiscosText, String custoGarantiaText, String fundoDeReservaText, String outrosCustosText, String nomeProjeto, String percentualComImpostosText, String percentualDeLucroDesejadoText){
+        Double custoHardwareEInstalacoesFisicas = custoHardwareEInstalacoesFisicasText.isEmpty() ? 0.0 : Double.parseDouble(custoHardwareEInstalacoesFisicasText);
+        Double custoSoftware = custoSoftwareText.isEmpty() ? 0.0 : Double.parseDouble(custoSoftwareText);
+        Double custoRiscos = custoRiscosText.isEmpty() ? 0.0 : Double.parseDouble(custoRiscosText);
+        Double custoGarantia = custoGarantiaText.isEmpty() ? 0.0 : Double.parseDouble(custoGarantiaText);
+        Double fundoDeReserva = fundoDeReservaText.isEmpty() ? 0.0 : Double.parseDouble(fundoDeReservaText);
+        Double outrosCustos = outrosCustosText.isEmpty() ? 0.0 : Double.parseDouble(outrosCustosText);
+        Double percentualComImpostos = percentualComImpostosText.isEmpty() ? 0.0 : Double.parseDouble(percentualComImpostosText);
+        Double percentualDeLucroDesejado = percentualDeLucroDesejadoText.isEmpty() ? 0.0 : Double.parseDouble(percentualDeLucroDesejadoText);
+        
+        projetoDeEstimativaModel.setNomeProjetoDeEstimativa(nomeProjeto);
+        projetoDeEstimativaModel.setCustoHardware(custoHardwareEInstalacoesFisicas);
+        projetoDeEstimativaModel.setCustoSoftware(custoSoftware);
+        projetoDeEstimativaModel.setCustoRiscos(custoRiscos);
+        projetoDeEstimativaModel.setCustoGarantia(custoGarantia);
+        projetoDeEstimativaModel.setFundoDeReserva(fundoDeReserva);
+        projetoDeEstimativaModel.setOutrosCustos(outrosCustos);
+        projetoDeEstimativaModel.setPercentualComImpostos(percentualComImpostos);
+        projetoDeEstimativaModel.setPercentualLucroDesejado(percentualDeLucroDesejado);
+        projetoDeEstimativaModel.setUsuarioModel(escolhaFuncionalidadesProjetoPresenter.getUsuarioModel());
+        projetoDeEstimativaModel.setDataCriacao(new Date(System.currentTimeMillis()));
+    }
+    
+    private void verificaCamposObrigatoriosEPorcentagem(String nomeProjeto, String percentualComImpostosText, String percentualDeLucroDesejadoText){
+        if (!verificacoesService.verificarCamposObrigatorios(nomeProjeto, percentualComImpostosText, percentualDeLucroDesejadoText)) {
+            throw new IllegalArgumentException("O percentual com imposto, de lucro desejado e o nome do projeto devem ser obrigatoriamente informados.");
+        }
+        
+        if(verificacoesService.verificarCamposPorcentagem(percentualComImpostosText, percentualDeLucroDesejadoText)){
+            throw new IllegalArgumentException("Os campos de porcentagem não devem exceder 100%");
+        }
+    }
+    
+    private void verificaValoresInválidos(String custoHardwareEInstalacoesFisicasText, String custoSoftwareText,String custoGarantiaText, String custoRiscosText, String fundoDeReservaText, String outrosCustosText, String percentualComImpostosText, String percentualDeLucroDesejadoText){
+        try{
+            verificacoesService.verificarCustosEPercentuais(custoHardwareEInstalacoesFisicasText, custoSoftwareText,
+                                                                 custoRiscosText, custoGarantiaText, fundoDeReservaText,
+                                                                 outrosCustosText, percentualComImpostosText, percentualDeLucroDesejadoText);
+        }catch(IllegalArgumentException e){
+            throw new IllegalArgumentException("Um ou mais campos com valores inválidos: "+e.getMessage());
+        }
+    }
+    }
    
 

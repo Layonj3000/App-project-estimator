@@ -41,7 +41,7 @@ public class AuxiliarTelaPerfilService {
            }
         }
 
-        public boolean verificarValoresInconsistentes(JTable tabela) {
+        public boolean verificarValoresInconsistentesTabela(JTable tabela) {
            int qtdLinhas = tabela.getRowCount();
            for (int i = 0; i < qtdLinhas; i++) {
                 Object valor = tabela.getValueAt(i, 1);

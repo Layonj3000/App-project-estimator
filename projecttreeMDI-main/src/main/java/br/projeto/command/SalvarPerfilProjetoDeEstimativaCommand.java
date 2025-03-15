@@ -29,41 +29,29 @@ public class SalvarPerfilProjetoDeEstimativaCommand implements Command{
     Double taxaDiariaDesenvolvimento = null;
     Double taxaDiariaGerenciaProjeto = null;
     Double taxaDiariaDesign = null;
+    
+    JTable tabela;
+    String nomePerfil; 
 
     public SalvarPerfilProjetoDeEstimativaCommand(EscolhaFuncionalidadesPerfilPresenter escolhaFuncionalidadesPerfilPresenter, Integer idPerfil) {
         this.escolhaFuncionalidadesPerfilPresenter = escolhaFuncionalidadesPerfilPresenter;
         this.auxiliarService = AuxiliarTelaPerfilService.getInstance();
         this.idPerfil = idPerfil;
+        
+        this.tabela = escolhaFuncionalidadesPerfilPresenter.getTable();
+        this.nomePerfil = escolhaFuncionalidadesPerfilPresenter.getTxtNomePerfil();
     }
     
         @Override
         public void execute(){
-           JTable tabela = escolhaFuncionalidadesPerfilPresenter.getTable();
-           String nomePerfil = escolhaFuncionalidadesPerfilPresenter.getTxtNomePerfil();
-           
-        try {
-            auxiliarService.encerrarEdicaoCelula(tabela);
-            auxiliarService.verificarValoresInconsistentes(tabela);
-        } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
-            throw e;
-        }
-           Map<String, Integer> mapPerfil = auxiliarService.criarMapPerfil(tabela);
-           RetornaPerfilModelService retornaPerfilModelService = new RetornaPerfilModelService(mapPerfil);
-           PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = retornaPerfilModelService.instantiatePerfilComMap();
 
-            try {
-                              
-            if (auxiliarService.verificaPreenchimentoTaxaDev(escolhaFuncionalidadesPerfilPresenter) || auxiliarService.verificaPreenchimentoNome(nomePerfil) ||
-                auxiliarService.verificaPreenchimentoTaxaGerProjetos(escolhaFuncionalidadesPerfilPresenter, perfilProjetoDeEstimativaModel)){
-                    throw new IllegalArgumentException("Preenchimento obrigatório não realizado!");
-                } else {
-                    taxaDiariaDesenvolvimento = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getTxtTaxaDiariaDesenvolvimento());
-                    taxaDiariaGerenciaProjeto = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getTxtTaxaDiariaGerenciaProjeto());
-                    taxaDiariaDesign = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getTxtTaxaDiariaDesign());
-                }
-            } catch (NumberFormatException e) {
-                    throw new NumberFormatException("Valor inválido para número inserido!");
-            }
+            verificaDadosTabela();
+
+            Map<String, Integer> mapPerfil = auxiliarService.criarMapPerfil(tabela);
+            RetornaPerfilModelService retornaPerfilModelService = new RetornaPerfilModelService(mapPerfil);
+            PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = retornaPerfilModelService.instantiatePerfilComMap();
+
+            verificaDadosTxtFields(perfilProjetoDeEstimativaModel);
 
             setExtrasPerfil(perfilProjetoDeEstimativaModel, nomePerfil, taxaDiariaDesenvolvimento, taxaDiariaGerenciaProjeto, taxaDiariaDesign);
             
@@ -116,6 +104,33 @@ public class SalvarPerfilProjetoDeEstimativaCommand implements Command{
                 throw new DbException(e.getMessage());
             }
         }
+        
+        private void verificaDadosTabela(){
+            try {
+                auxiliarService.encerrarEdicaoCelula(tabela);
+                auxiliarService.verificarValoresInconsistentesTabela(tabela);
+            } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
+                throw e;
+            }
+        }
+        
+        private void verificaDadosTxtFields(PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel){
+            try {
+                              
+            if (auxiliarService.verificaPreenchimentoTaxaDev(escolhaFuncionalidadesPerfilPresenter) || auxiliarService.verificaPreenchimentoNome(nomePerfil) ||
+                auxiliarService.verificaPreenchimentoTaxaGerProjetos(escolhaFuncionalidadesPerfilPresenter, perfilProjetoDeEstimativaModel)){
+                    throw new IllegalArgumentException("Preenchimento obrigatório não realizado!");
+                } else {
+                    taxaDiariaDesenvolvimento = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getTxtTaxaDiariaDesenvolvimento());
+                    taxaDiariaGerenciaProjeto = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getTxtTaxaDiariaGerenciaProjeto());
+                    taxaDiariaDesign = auxiliarService.obterTaxa(escolhaFuncionalidadesPerfilPresenter.getTxtTaxaDiariaDesign());
+                }
+            } catch (NumberFormatException e) {
+                    throw new NumberFormatException(e.getMessage());
+            }
+        }
+        
+        
 
     }
     
