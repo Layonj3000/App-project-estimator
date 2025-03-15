@@ -5,6 +5,7 @@
 package br.projeto.command;
 
 import br.projeto.presenter.EscolhaFuncionalidadesPerfilPresenter;
+import java.awt.Rectangle;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,14 +34,11 @@ public class AdicionarOpcaoPerfilCommand implements Command{
     
         tabela.editCellAt(novaLinha, 0);
         
-        /*SCROLL ACOMPANHA A LINHA ADICIONADA*/
-        /*JScrollPane scrollPane = (JScrollPane) tabela.getParent();
-       // Rola até a nova linha
-        Rectangle retangulo = tabela.getCellRect(novaLinha, 0, true);
-        scrollPane.getViewport().scrollRectToVisible(retangulo);
-        //tabela.setModel(modelo);*/
+        
     
-        //ver maneiras do scroll acompanhar
+        /*SCROLL ACOMPANHA*/
+        Rectangle rect = tabela.getCellRect(novaLinha, 0, true);  
+        tabela.scrollRectToVisible(rect);
     }
     
     

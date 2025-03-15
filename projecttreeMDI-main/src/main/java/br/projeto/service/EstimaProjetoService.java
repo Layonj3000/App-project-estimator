@@ -7,6 +7,7 @@ import br.projeto.model.ProjetoDeEstimativaModel;
 import java.util.List;
 
 import java.util.Map;
+import java.util.Optional;
 
 public class EstimaProjetoService {
 
@@ -53,7 +54,7 @@ public class EstimaProjetoService {
     public Double retornaValorTotalDia(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList){
         double valorUnitarioDesenvolvimento = 0;
         for (PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel : perfilProjetoDeEstimativaModelList) {
-            if (verificaGerenteProjeto(projeto.getGerenteDeProjetos())) {
+            if (verificaGerenteProjeto(projeto.getGerenteDeProjetos(), perfilProjetoDeEstimativaModel)) {
                 valorUnitarioDesenvolvimento += perfilProjetoDeEstimativaModel.getGerenteDeProjetos();
             }
             switch (perfilProjetoDeEstimativaModel.getNomePerfil()) {
@@ -74,8 +75,10 @@ public class EstimaProjetoService {
         return (int)((dias/100.0) * diasTamanhoProjeto);
     }
 
-    private boolean verificaGerenteProjeto(SimNao gerenteProjeto) {
-        if (gerenteProjeto == SimNao.SIM) {
+    private boolean verificaGerenteProjeto(SimNao gerenteProjeto, PerfilProjetoDeEstimativaModel perfilModel) {
+        Optional<Integer> valor = Optional.ofNullable(perfilModel.getGerenteDeProjetos());
+        
+        if (gerenteProjeto == SimNao.SIM && valor.isPresent()) {
             return true;
         } else {
             return false;

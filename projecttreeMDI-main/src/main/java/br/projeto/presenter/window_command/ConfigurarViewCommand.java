@@ -1,7 +1,7 @@
 package br.projeto.presenter.window_command;
 
 
-import br.projeto.command.MostrarMensagemProjetoCommand;
+import br.projeto.command.MostrarMensagemCommand;
 import br.projeto.presenter.PrincipalPresenter;
 import br.projeto.service.CriarBarraBotaoService;
 
@@ -26,7 +26,7 @@ public class ConfigurarViewCommand implements WindowCommand {
             if (comandoPrincipal != null) {
                 comandoPrincipal.execute();
             } else {
-                new MostrarMensagemProjetoCommand("Comando 'Principal' não encontrado.").execute();
+                new MostrarMensagemCommand("Comando 'Principal' não encontrado.").execute();
             }
         });
     }

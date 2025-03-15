@@ -4,6 +4,7 @@
  */
 package br.projeto.service;
 
+import br.projeto.command.MostrarMensagemCommand;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.presenter.EscolhaFuncionalidadesPerfilPresenter;
 import java.util.LinkedHashMap;
@@ -36,22 +37,23 @@ public class AuxiliarTelaPerfilService {
           if (linha != -1) {
                TableCellEditor editor = tabela.getCellEditor(linha, coluna);
                editor.stopCellEditing();
+
            }
         }
 
         public boolean verificarValoresInconsistentes(JTable tabela) {
            int qtdLinhas = tabela.getRowCount();
            for (int i = 0; i < qtdLinhas; i++) {
-               try {
-                   Object valor = tabela.getValueAt(i, 1);
-                   Integer.parseInt(valor.toString());
-               } catch (NumberFormatException | NullPointerException e) {
-                   JOptionPane.showMessageDialog(null, "O valor da linha " + i + " não é um número inteiro válido!", "Erro de tipo", JOptionPane.ERROR_MESSAGE);
-                   return false;
-              }
+                Object valor = tabela.getValueAt(i, 1);
+                try {
+                    Integer.parseInt(valor.toString());
+                } catch (NumberFormatException | NullPointerException e) {
+                    throw new IllegalArgumentException("Valor inválido na linha " + i + ": " + e.getMessage());
+                }
            }
            return true;
        }
+        
         public Map<String, Integer> criarMapPerfil(JTable tabela) {
            Map<String, Integer> mapPerfil = new LinkedHashMap<>();
            int qtdLinhas = tabela.getRowCount();

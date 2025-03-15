@@ -24,6 +24,7 @@ import java.util.LinkedHashMap;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class DetalheProjetoPresenter extends Observer {
@@ -250,7 +251,17 @@ public class DetalheProjetoPresenter extends Observer {
                 funcionalidadesDisponiveis = model.getFuncionalidadesDisponiveis();
                 
             if(funcionalidadesDisponiveis.containsKey(entrySet.getKey())){
-                Integer valor = funcionalidadesEscolhidasPerfil.getOrDefault(entrySet.getKey(), 0) + funcionalidadesDisponiveis.getOrDefault(entrySet.getKey(), 0);
+                Optional<Integer> funcionalidadesEscolhidasOptional = Optional.ofNullable(funcionalidadesEscolhidasPerfil.get(entrySet.getKey()));
+                Optional<Integer> funcionalidadesDisponiveisOptional = Optional.ofNullable(funcionalidadesDisponiveis.get(entrySet.getKey()));
+                
+                Integer valor = 0;
+                if(funcionalidadesEscolhidasOptional.isPresent()){
+                    valor += funcionalidadesEscolhidasPerfil.get(entrySet.getKey());
+                }
+                if(funcionalidadesDisponiveisOptional.isPresent()){
+                    valor += funcionalidadesDisponiveis.get(entrySet.getKey());
+                }
+                
                 funcionalidadesEscolhidasPerfil.put(entrySet.getKey(), valor);
             }else{
                  Iterator<PerfilFuncionalidadesPersonalizadasModel> iterator = perfilFuncionalidadesPersonalizadasList.iterator();

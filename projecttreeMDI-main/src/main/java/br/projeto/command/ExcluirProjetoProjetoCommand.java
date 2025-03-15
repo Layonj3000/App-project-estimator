@@ -42,8 +42,7 @@ public class ExcluirProjetoProjetoCommand extends ProjetoCommand {
     @Override
     public void execute(){
          if (projetoId == null) {
-            new MostrarMensagemProjetoCommand("Nome do projeto não definido.").execute();
-            return;
+            throw new IllegalArgumentException("Id do projeto não definido.");
         }
 
         int confirmacao = JOptionPane.showConfirmDialog(
@@ -57,9 +56,9 @@ public class ExcluirProjetoProjetoCommand extends ProjetoCommand {
             projetoNome = projetoDeEstimativaRepository.findById(projetoId).getNomeProjetoDeEstimativa();
             boolean removido = projetoDeEstimativaRepository.deleteById(projetoId);
             if (removido) {
-                new MostrarMensagemProjetoCommand("Projeto \"" + projetoNome + "\" removido com sucesso!").execute();
+                new MostrarMensagemCommand("Projeto \"" + projetoNome + "\" removido com sucesso!").execute();
             } else {
-                new MostrarMensagemProjetoCommand("Erro ao remover o projeto \"" + projetoDeEstimativaRepository.findById(projetoId).getNomeProjetoDeEstimativa() + "\".").execute();
+                new MostrarMensagemCommand("Erro ao remover o projeto \"" + projetoDeEstimativaRepository.findById(projetoId).getNomeProjetoDeEstimativa() + "\".").execute();
             }
         }
 

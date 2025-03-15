@@ -86,7 +86,7 @@ public class DetalhePerfilPresenter extends Observer{
             Map<String, Integer> funcionalidadesEscolhidas = new LinkedHashMap<>();
             
             for(Map.Entry<String, Integer> entrySet: funcionalidadesPerfil.entrySet()){
-                if(entrySet.getValue() != null && entrySet.getValue()!= 0){
+                if(entrySet.getValue() != null /*&& entrySet.getValue()!= 0*/){
                     funcionalidadesEscolhidas.put(entrySet.getKey(), entrySet.getValue());
                 }
             }

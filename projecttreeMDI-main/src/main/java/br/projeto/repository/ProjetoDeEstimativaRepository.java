@@ -8,6 +8,7 @@ import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.Subject;
 import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.Observer;
+import br.projeto.service.RetornaProjetoModelService;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -27,11 +28,15 @@ public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimat
     private List<Observer> observers;
     private List<ProjetoDeEstimativaModel> projetosDeEstimativaModel;
     
+    private RetornaProjetoModelService serviceProjeto;
+    
     public ProjetoDeEstimativaRepository(Connection conn) {    
         this.conn = conn;
         observers = new ArrayList<>();
         projetos = new ArrayList<>();//VERIFICAR RETIRADA
         projetosDeEstimativaModel = new ArrayList<>();
+        
+        serviceProjeto = new RetornaProjetoModelService();
     }
 
     @Override
@@ -55,7 +60,7 @@ public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimat
                     usuario = instantiateUsuarioModel(rs);
                     usuarioModelMap.put(usuario.getId(), usuario);
                 }
-                ProjetoDeEstimativaModel projetoDeEstimativaModel = instantiateProjetoDeEstimativaModel(rs, usuario);
+                ProjetoDeEstimativaModel projetoDeEstimativaModel = serviceProjeto.instantiateProjetoDeEstimativaModel(rs, usuario);
                 projetoDeEstimativaModelList.add(projetoDeEstimativaModel);
             }
             return projetoDeEstimativaModelList;
@@ -89,7 +94,7 @@ public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimat
                     usuario = instantiateUsuarioModel(rs);
                     usuarioModelMap.put(usuario.getId(), usuario);
                 }
-                ProjetoDeEstimativaModel projetoDeEstimativaModel = instantiateProjetoDeEstimativaModel(rs, usuario);
+                ProjetoDeEstimativaModel projetoDeEstimativaModel = serviceProjeto.instantiateProjetoDeEstimativaModel(rs, usuario);
                 projetoDeEstimativaModelList.add(projetoDeEstimativaModel);
             }
             return projetoDeEstimativaModelList;
@@ -116,7 +121,7 @@ public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimat
 
             if (rs.next()) {
                 UsuarioModel usuarioModel = instantiateUsuarioModel(rs);
-                ProjetoDeEstimativaModel projetoDeEstimativaModel = instantiateProjetoDeEstimativaModel(rs, usuarioModel);
+                ProjetoDeEstimativaModel projetoDeEstimativaModel = serviceProjeto.instantiateProjetoDeEstimativaModel(rs, usuarioModel);
                 //projetosDeEstimativaModel.add(projetoDeEstimativaModel);
                 //notifyObservers();//VERIFICAR SEM FUNCIONA SEM
                 return projetoDeEstimativaModel;
@@ -456,100 +461,6 @@ public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimat
         return usuarioModel;
     }
 
-    private ProjetoDeEstimativaModel instantiateProjetoDeEstimativaModel(ResultSet rs, UsuarioModel usuarioModel) throws SQLException {
-        ProjetoDeEstimativaModel projetoDeEstimativaModel = new ProjetoDeEstimativaModel();
-        projetoDeEstimativaModel.setId(rs.getInt("id"));
-        projetoDeEstimativaModel.setUsuarioModel(usuarioModel);
-        projetoDeEstimativaModel.setCompartilhado(rs.getInt("compartilhado"));
-        projetoDeEstimativaModel.setCompartilhadoPor(rs.getInt("compartilhado_por"));
-        long timestamp = rs.getLong("data_criacao");
-        Date data = new Date(timestamp);
-        projetoDeEstimativaModel.setDataCriacao(data);
-        projetoDeEstimativaModel.setNomeProjetoDeEstimativa(rs.getString("nome_projeto_estimativa"));
-        projetoDeEstimativaModel.setPequeno(rs.getInt("pequeno"));
-        projetoDeEstimativaModel.setMedio(rs.getInt("medio"));
-        projetoDeEstimativaModel.setGrande(rs.getInt("grande"));
-        projetoDeEstimativaModel.setMvp(rs.getInt("mvp"));
-        projetoDeEstimativaModel.setBasico(rs.getInt("basico"));
-        projetoDeEstimativaModel.setProfissional(rs.getInt("profissional"));
-        projetoDeEstimativaModel.setCadastroPorEmailSenha(rs.getInt("cadastro_por_email_senha"));
-        projetoDeEstimativaModel.setCadastroPorFacebook(rs.getInt("cadastro_por_facebook"));
-        projetoDeEstimativaModel.setCadastroPorTwitter(rs.getInt("cadastro_por_twitter"));
-        projetoDeEstimativaModel.setCadastroPorGoogle(rs.getInt("cadastro_por_google"));
-        projetoDeEstimativaModel.setCadastroPorLinkedin(rs.getInt("cadastro_por_linkedin"));
-        projetoDeEstimativaModel.setCadastroPorGithub(rs.getInt("cadastro_por_github"));
-        projetoDeEstimativaModel.setCadastroPorConviteUsuario(rs.getInt("cadastro_por_convite_usuario"));
-        projetoDeEstimativaModel.setCadastroPorContasMultitenant(rs.getInt("cadastro_por_contas_multitenant"));
-        projetoDeEstimativaModel.setCadastroPorSubdominios(rs.getInt("cadastro_por_subdominios"));
-        projetoDeEstimativaModel.setCadastroPorDominiosPersonalizados(rs.getInt("cadastro_por_dominios_personalizados"));
-        projetoDeEstimativaModel.setPainel(rs.getInt("painel"));
-        projetoDeEstimativaModel.setFeedDeAtividades(rs.getInt("feed_de_atividades"));
-        projetoDeEstimativaModel.setUploadDeArquivos(rs.getInt("upload_de_arquivos"));
-        projetoDeEstimativaModel.setUploadDeMidia(rs.getInt("upload_de_midia"));
-        projetoDeEstimativaModel.setPerfisDeUsuario(rs.getInt("perfis_de_usuario"));
-        projetoDeEstimativaModel.setEmailsTransacionais(rs.getInt("emails_transacionais"));
-        projetoDeEstimativaModel.setTags(rs.getInt("tags"));
-        projetoDeEstimativaModel.setAvaliacoesOuComentarios(rs.getInt("avaliacoes_ou_comentarios"));
-        projetoDeEstimativaModel.setProcessamentoAudioVideo(rs.getInt("processamento_audio_video"));
-        projetoDeEstimativaModel.setPesquisaTextoLivre(rs.getInt("pesquisa_texto_livre"));
-        projetoDeEstimativaModel.setPesquisa(rs.getInt("pesquisa"));
-        projetoDeEstimativaModel.setCalendario(rs.getInt("calendario"));
-        projetoDeEstimativaModel.setExibicaoDadosMapaGeolocalizacao(rs.getInt("exibicao_dados_mapa_geolocalizacao"));
-        projetoDeEstimativaModel.setExibicaoMarcadoresRegioesMapaPersonalizados(rs.getInt("exibicao_marcadores_regioes_mapa_personalizados"));
-        projetoDeEstimativaModel.setReservas(rs.getInt("reservas"));
-        projetoDeEstimativaModel.setMensagens(rs.getInt("mensagens"));
-        projetoDeEstimativaModel.setForunsOuComentarios(rs.getInt("foruns_ou_comentarios"));
-        projetoDeEstimativaModel.setCompartilhamentoSocial(rs.getInt("compartilhamento_social"));
-        projetoDeEstimativaModel.setIntegracaoFacebookOpenGraph(rs.getInt("integracao_facebook_open_graph"));
-        projetoDeEstimativaModel.setNotificacaoPush(rs.getInt("notificacao_push"));
-        projetoDeEstimativaModel.setPlanosDeAssinatura(rs.getInt("planos_de_assinatura"));
-        projetoDeEstimativaModel.setProcessamentoDePagamento(rs.getInt("processamento_de_pagamento"));
-        projetoDeEstimativaModel.setCarrinhoDeCompras(rs.getInt("carrinho_de_compras"));
-        projetoDeEstimativaModel.setMarketplaceDeUsuarios(rs.getInt("marketplace_de_usuarios"));
-        projetoDeEstimativaModel.setGerenciamentoDeProdutos(rs.getInt("gerenciamento_de_produtos"));
-        projetoDeEstimativaModel.setComprasDentroDoAplicativo(rs.getInt("compras_dentro_do_aplicativo"));
-        projetoDeEstimativaModel.setColetaInformacaoPagamento(rs.getInt("coleta_informacao_pagamento"));
-        projetoDeEstimativaModel.setIntegracaoCms((rs.getInt("integracao_cms")));
-        projetoDeEstimativaModel.setPaginasAdministracaoUsuarios(rs.getInt("paginas_administracao_usuarios"));
-        projetoDeEstimativaModel.setModeracaoAprovacaoConteudo(rs.getInt("moderacao_aprovacao_conteudo"));
-        projetoDeEstimativaModel.setIntercom(rs.getInt("intercom"));
-        projetoDeEstimativaModel.setAnalisesUso(rs.getInt("analises_uso"));
-        projetoDeEstimativaModel.setRelatoriosErro(rs.getInt("relatorios_erro"));
-        projetoDeEstimativaModel.setMonitoramentoPerformance(rs.getInt("monitoramento_performance"));
-        projetoDeEstimativaModel.setSuporteMultilingue(rs.getInt("suporte_multilingue"));
-        projetoDeEstimativaModel.setConectarServicosDeTerceiros(rs.getInt("conectar_servicos_de_terceiros"));
-        projetoDeEstimativaModel.setApiParaTerceiros(rs.getInt("api_para_terceiros"));
-        projetoDeEstimativaModel.setEnvioSms(rs.getInt("envio_sms"));
-        projetoDeEstimativaModel.setMascaramentoNumeroTelefone(rs.getInt("mascaramento_numero_telefone"));
-        projetoDeEstimativaModel.setSegurancaBaseadaCertificadoSsl(rs.getInt("seguranca_baseada_certificado_ssl"));
-        projetoDeEstimativaModel.setProtecaoContraDos(rs.getInt("protecao_contra_dos"));
-        projetoDeEstimativaModel.setAutenticacaoDuasEtapas(rs.getInt("autenticacao_duas_etapas"));
-        projetoDeEstimativaModel.setDesenvolvimentoEspecificoApp(rs.getInt("desenvolvimento_especifico_app"));
-        projetoDeEstimativaModel.setDesignIconeApp(rs.getInt("design_icone_app"));
-        projetoDeEstimativaModel.setSincronizacaoNuvem(rs.getInt("sincronizacao_nuvem"));
-        projetoDeEstimativaModel.setDadosSensoresDispositivo(rs.getInt("dados_sensores_dispositivo"));
-        projetoDeEstimativaModel.setCodigoBarraQrCode(rs.getInt("codigo_barra_qr_code"));
-        projetoDeEstimativaModel.setDadosSaude(rs.getInt("dados_saude"));
-        projetoDeEstimativaModel.setAppleWatch(rs.getInt("apple_watch"));
-        projetoDeEstimativaModel.setGerenteDeProjetos(rs.getInt("gerente_de_projetos"));
-        projetoDeEstimativaModel.setCustoHardware(rs.getDouble("custo_hardware"));
-        projetoDeEstimativaModel.setCustoSoftware(rs.getDouble("custo_software"));
-        projetoDeEstimativaModel.setCustoRiscos(rs.getDouble("custo_riscos"));
-        projetoDeEstimativaModel.setCustoGarantia(rs.getDouble("custo_garantia"));
-        projetoDeEstimativaModel.setFundoDeReserva(rs.getDouble("fundo_de_reserva"));
-        projetoDeEstimativaModel.setOutrosCustos(rs.getDouble("outros_custos"));
-        /*projetoDeEstimativaModel.setSubTotal(rs.getDouble("sub_total"));*/
-        projetoDeEstimativaModel.setPercentualComImpostos(rs.getDouble("percentual_com_impostos"));
-        /*projetoDeEstimativaModel.setTotalComImposto(rs.getDouble("total_com_imposto"));*/
-        projetoDeEstimativaModel.setPercentualLucroDesejado(rs.getDouble("percentual_lucro_desejado"));
-        /*projetoDeEstimativaModel.setLucroCalculado(rs.getDouble("lucro_calculado"));
-        projetoDeEstimativaModel.setDias(rs.getInt("dias"));
-        projetoDeEstimativaModel.setMeses(rs.getDouble("meses"));
-        projetoDeEstimativaModel.setPrecoFinalCliente(rs.getDouble("preco_final_cliente"));
-        projetoDeEstimativaModel.setMediaPorMes(rs.getDouble("media_por_mes"));*/
-
-        return projetoDeEstimativaModel;
-    }
     
     private void setIntOrNull(PreparedStatement ps, int index, Integer value) throws SQLException{
         if (value == null) {

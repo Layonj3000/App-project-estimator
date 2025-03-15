@@ -5,6 +5,7 @@
 package br.projeto.presenter;
 
 import br.projeto.command.AdicionarOpcaoPerfilCommand;
+import br.projeto.command.MostrarMensagemCommand;
 import br.projeto.command.RemoverOpcaoPerfilCommand;
 import br.projeto.model.UsuarioModel;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
@@ -73,7 +74,11 @@ public class EscolhaFuncionalidadesPerfilPresenter {
         view.getBtnAdicionarFuncionalidade().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                new AdicionarOpcaoPerfilCommand(EscolhaFuncionalidadesPerfilPresenter.this).execute();
+                try{
+                    new AdicionarOpcaoPerfilCommand(EscolhaFuncionalidadesPerfilPresenter.this).execute();
+                }catch(IllegalArgumentException ex){
+                    new MostrarMensagemCommand("Erro: " + ex.getMessage()).execute();
+                }
             }
         }); 
         
@@ -83,7 +88,11 @@ public class EscolhaFuncionalidadesPerfilPresenter {
         view.getBtnRemoverFuncionalidade().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                new RemoverOpcaoPerfilCommand(EscolhaFuncionalidadesPerfilPresenter.this).execute();
+                try{
+                    new RemoverOpcaoPerfilCommand(EscolhaFuncionalidadesPerfilPresenter.this).execute();
+                }catch(IllegalArgumentException ex){
+                    new MostrarMensagemCommand("Erro: " + ex.getMessage()).execute();
+                }
             }
         });
     }

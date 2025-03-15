@@ -2,10 +2,10 @@ package br.projeto.command;
 
 import javax.swing.*;
 
-public class MostrarMensagemProjetoCommand implements Command {
+public class MostrarMensagemCommand implements Command {
     private final String mensagem;
 
-    public MostrarMensagemProjetoCommand(String mensagem) {
+    public MostrarMensagemCommand(String mensagem) {
         this.mensagem = mensagem;
     }
 

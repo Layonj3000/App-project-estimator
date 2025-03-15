@@ -29,8 +29,7 @@ public class RemoverOpcaoPerfilCommand implements Command{
         int coluna = tabela.getSelectedColumn();
         
         if(linha == -1){
-            JOptionPane.showMessageDialog(null, "Selecione uma linha para excluir!", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
+            throw new IllegalArgumentException("Selecione uma linha para ser excluída!");
         }
         
         int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir esta linha?", 

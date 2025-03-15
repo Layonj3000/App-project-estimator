@@ -31,7 +31,6 @@ public class SalvarPerfilProjetoDeEstimativaCommand implements Command{
     public SalvarPerfilProjetoDeEstimativaCommand(EscolhaFuncionalidadesPerfilPresenter escolhaFuncionalidadesPerfilPresenter, Integer idPerfil) {
         this.escolhaFuncionalidadesPerfilPresenter = escolhaFuncionalidadesPerfilPresenter;
         this.auxiliarService = AuxiliarTelaPerfilService.getInstance();
-        
         this.idPerfil = idPerfil;
     }
     
@@ -39,15 +38,16 @@ public class SalvarPerfilProjetoDeEstimativaCommand implements Command{
         public void execute() {
            JTable tabela = escolhaFuncionalidadesPerfilPresenter.getTable();
            String nomePerfil = escolhaFuncionalidadesPerfilPresenter.getTxtNomePerfil();
-           auxiliarService.encerrarEdicaoCelula(tabela);
-
-           if (!auxiliarService.verificarValoresInconsistentes(tabela)) {
-               return;
-           }
-
+           
+        try {
+            auxiliarService.encerrarEdicaoCelula(tabela);
+            auxiliarService.verificarValoresInconsistentes(tabela);
+        } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
+            new MostrarMensagemCommand(e.getMessage()).execute();
+        }
            Map<String, Integer> mapPerfil = auxiliarService.criarMapPerfil(tabela);
            RetornaPerfilModelService retornaPerfilModelService = new RetornaPerfilModelService(mapPerfil);
-           PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = retornaPerfilModelService.getPerfil();
+           PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = retornaPerfilModelService.instantiatePerfilComMap();
 
         Double taxaDiariaDesenvolvimento, taxaDiariaGerenciaProjeto, taxaDiariaDesign;
             try {

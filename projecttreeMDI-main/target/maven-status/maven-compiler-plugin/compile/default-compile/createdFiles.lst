@@ -13,7 +13,6 @@ br\projeto\state\escolha_funcionalidades_perfil\AtualizacaoEscolhaFuncionalidade
 br\projeto\presenter\LoginUsuarioPresenter.class
 br\projeto\repository\PerfilFuncionalidadesPersonalizadasRepository.class
 br\projeto\command\LoginCommand.class
-br\projeto\command\MostrarMensagemProjetoCommand.class
 br\projeto\presenter\EscolhaFuncionalidadesPerfilPresenter$1.class
 br\projeto\repository_factory\RepositoryFactory.class
 br\projeto\state\escolha_funcionalidades_perfil\AtualizacaoEscolhaFuncionalidadesPerfilState.class
@@ -26,8 +25,10 @@ br\projeto\service\CriarProjetoMock.class
 br\projeto\service\ConstrutorDeArvoreNavegacaoService.class
 br\projeto\presenter\EscolhaPerfilPresenter.class
 br\projeto\service\RetornaProjetoModelService.class
+br\projeto\command\MostrarMensagemCommand.class
 br\projeto\repository\UsuarioRepository.class
 br\projeto\repository\abstr\IProjetoFuncionalidadesPersonalizadasRepository.class
+br\projeto\presenter\CompartilharPresenter$2.class
 br\projeto\command\RemoverOpcaoPerfilCommand.class
 br\projeto\command\CompartilharCommand.class
 br\projeto\service\RetornaPerfilModelService.class
@@ -129,9 +130,11 @@ br\projeto\command\AtualizarProjetoCommand.class
 br\projeto\view\ManterPerfilProjetoDeEstimativaView$4.class
 br\projeto\view\TelaLogin$1.class
 br\projeto\repository_factory\PerfilProjetoDeEstimativaRepositoryFactory.class
+br\projeto\presenter\CompartilharPresenter$1.class
 br\projeto\repository\ProjetoDeEstimativaRepository.class
 br\projeto\state\escolha_perfis_projeto\AtualizacaoEscolhaPerfilState$2.class
 br\projeto\repository\abstr\IUsuarioRepository.class
+br\projeto\presenter\CompartilharPresenter.class
 br\projeto\view\GlobalWindowManager.class
 br\projeto\command\PreencherTabelaEscolhaDePlataformaParaUpdateCommand$1.class
 br\projeto\adapter\ValidadorSenhaAdapter.class

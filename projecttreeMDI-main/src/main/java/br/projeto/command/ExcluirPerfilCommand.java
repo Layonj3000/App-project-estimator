@@ -37,8 +37,7 @@ public class ExcluirPerfilCommand implements Command{
     @Override
     public void execute() {
         if (perfilId == null) {
-            new MostrarMensagemProjetoCommand("Nome do projeto não definido.").execute();
-            return;
+            throw new IllegalArgumentException("Id do perfil não definido.");
         }
 
         int confirmacao = JOptionPane.showConfirmDialog(
@@ -53,9 +52,9 @@ public class ExcluirPerfilCommand implements Command{
             boolean removido = perfilProjetoDeEstimativaRepository.deleteById(perfilId);
             
             if (removido) {
-                new MostrarMensagemProjetoCommand("Perfil \"" + perfilNome + "\" removido com sucesso!").execute();
+                new MostrarMensagemCommand("Perfil \"" + perfilNome + "\" removido com sucesso!").execute();
             } else {
-                new MostrarMensagemProjetoCommand("Erro ao remover o projeto \"" + perfilProjetoDeEstimativaRepository.findById(perfilId).getNomePerfil() + "\".").execute();
+                new MostrarMensagemCommand("Erro ao remover o projeto \"" + perfilProjetoDeEstimativaRepository.findById(perfilId).getNomePerfil() + "\".").execute();
             }
         }      
     }

@@ -55,7 +55,7 @@ public class PreencherTabelaFuncionalidadesPerfilParaUpdateCommand implements Co
             String nomeFuncionalidade = entrySet.getKey();
             Integer valorFuncionalidade = entrySet.getValue();
             
-            if(valorFuncionalidade!=null && valorFuncionalidade!=0){
+            if(valorFuncionalidade!=null){
                 modelo.addRow(new Object[]{nomeFuncionalidade, valorFuncionalidade});
             }
         }
@@ -69,7 +69,7 @@ public class PreencherTabelaFuncionalidadesPerfilParaUpdateCommand implements Co
             String nomeFuncionalidade = funcionalidadePersonalizada.getNome();
             Integer valorFuncionalidade = funcionalidadePersonalizada.getValor();
             
-            if(valorFuncionalidade!=null && valorFuncionalidade!=0){
+            if(valorFuncionalidade!=null){
                 modelo.addRow(new Object[]{nomeFuncionalidade, valorFuncionalidade});
             }
             

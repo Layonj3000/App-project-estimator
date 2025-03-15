@@ -1,6 +1,6 @@
 package br.projeto.presenter.helpers;
 
-import br.projeto.command.MostrarMensagemProjetoCommand;
+import br.projeto.command.MostrarMensagemCommand;
 import br.projeto.presenter.PrincipalPresenter;
 
 import javax.swing.*;
@@ -48,7 +48,7 @@ public class WindowManager {
                 frame.moveToFront();
                 frame.setSelected(true);
             } catch (Exception e) {
-                new MostrarMensagemProjetoCommand("Falha ao trazer janela para frente:\n" + e.getMessage());
+                new MostrarMensagemCommand("Falha ao trazer janela para frente:\n" + e.getMessage());
             }
         });
     }

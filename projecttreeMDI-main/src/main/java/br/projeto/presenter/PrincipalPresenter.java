@@ -94,7 +94,7 @@ public final class PrincipalPresenter extends Observer {
         comandos.put("Usuário", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Usuário"));
         comandos.put("Perfis", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Perfis"));
         comandos.put("Compartilhar projeto de estimativa",new IniciarTelaCompartilharCommand(perfilProjetoDeEstimativaRepository,projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
-        comandos.put("Exportar projeto de estimativa", new MostrarMensagemProjetoCommand("Exportar ainda não implementado"));
+        comandos.put("Exportar projeto de estimativa", new MostrarMensagemCommand("Exportar ainda não implementado"));
         comandos.put("Atualizar projeto",new AtualizarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
         comandos.put("Novo projeto", new CriarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository/*,view.getDesktop()*/,perfilProjetoIntermediariaRepository, usuarioModel, logNotifier));
         comandos.put("Novo perfil", new CriarPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel));
@@ -239,7 +239,11 @@ public final class PrincipalPresenter extends Observer {
             JMenuItem excluirProjetoItem = new JMenuItem("Excluir Projeto");
             excluirProjetoItem.addActionListener(e -> {
                 Command cmdExcluir = new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository, projeto.getId(), usuarioModel, logNotifier);
+                try{
                 cmdExcluir.execute();
+                }catch(IllegalArgumentException ex){
+                    new MostrarMensagemCommand("Id do projeto não definido: " + ex.getMessage()).execute();
+                }
             });
             menu.add(excluirProjetoItem);
             return menu;
@@ -253,7 +257,11 @@ public final class PrincipalPresenter extends Observer {
             JMenuItem excluirPerfilItem = new JMenuItem("Excluir Perfil");
             excluirPerfilItem.addActionListener(e -> {
                 Command cmdExcluir = new ExcluirPerfilCommand(perfilProjetoDeEstimativaRepository, perfil.getId());
+                try{
                 cmdExcluir.execute();
+                }catch(IllegalArgumentException ex){
+                    new MostrarMensagemCommand("Id do perfil não definido: " + ex.getMessage()).execute();
+                }
             });
             menu.add(excluirPerfilItem);
             return menu;
@@ -286,7 +294,7 @@ public final class PrincipalPresenter extends Observer {
             getView().revalidate();
             getView().repaint();
         } else {
-            new MostrarMensagemProjetoCommand("Nenhum estado anterior salvo para restaurar.").execute();
+            new MostrarMensagemCommand("Nenhum estado anterior salvo para restaurar.").execute();
         }
     }
 

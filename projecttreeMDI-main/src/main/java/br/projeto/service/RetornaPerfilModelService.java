@@ -6,6 +6,10 @@ package br.projeto.service;
 
 import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
+import br.projeto.model.UsuarioModel;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,16 +23,18 @@ public class RetornaPerfilModelService {
     private PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel;
     //private PerfilFuncionalidadesPersonalizadasModel perfilFuncionalidadesPersonalizadasModel;
     
+    
+    //Contrutor para instanciar perfil com base em um map(precisa das variaveis como globais pois o metodo de funcionalidades personalizadas tambem faz uso)
     public RetornaPerfilModelService(Map<String, Integer> mapPerfil) {
         this.mapPerfil = mapPerfil;
         perfilProjetoDeEstimativaModel = new PerfilProjetoDeEstimativaModel();
         //perfilFuncionalidadesPersonalizadasModel = new PerfilFuncionalidadesPersonalizadasModel();
     }
     
-    public PerfilProjetoDeEstimativaModel getPerfil(){
-        //perfilProjetoDeEstimativaModel.setId(rs.getInt("id"));
-        //perfilProjetoDeEstimativaModel.setNomePerfil(rs.getString("nome_perfil"));
-        //perfilProjetoDeEstimativaModel.setUsuarioModel(usuarioModel);
+    //Construtor para instanciar perfil com base em um resutSet
+    public RetornaPerfilModelService(){}
+    
+    public PerfilProjetoDeEstimativaModel instantiatePerfilComMap(){
         perfilProjetoDeEstimativaModel.setPequeno(mapPerfil.get("Pequeno"));
         perfilProjetoDeEstimativaModel.setMedio(mapPerfil.get("Médio"));
         perfilProjetoDeEstimativaModel.setGrande(mapPerfil.get("Grande"));
@@ -95,12 +101,6 @@ public class RetornaPerfilModelService {
         perfilProjetoDeEstimativaModel.setDadosSaude(mapPerfil.get("Dados de Saúde"));
         perfilProjetoDeEstimativaModel.setAppleWatch(mapPerfil.get("Apple Watch"));
         perfilProjetoDeEstimativaModel.setGerenteDeProjetos(mapPerfil.get("Gerente de Projetos"));
-        /*perfilProjetoDeEstimativaModel.setTaxaDiariaDesign(rs.getDouble("taxa_diaria_design"));
-        perfilProjetoDeEstimativaModel.setTaxaDiariaGerenciaProjeto(rs.getDouble("taxa_diaria_gerencia_projeto"));
-        perfilProjetoDeEstimativaModel.setTaxaDiariaDesenvolvimento(rs.getDouble("taxa_diaria_desenvolvimento"));
-        long timestamp = rs.getLong("data_criacao");
-        Date data = new Date(timestamp);
-        perfilProjetoDeEstimativaModel.setDataCriacao(data);*/
 
         return perfilProjetoDeEstimativaModel;
     }
@@ -123,6 +123,99 @@ public class RetornaPerfilModelService {
             return funconalidadesPersonalizadasList;
         }
         return null;
+    }
+    
+    public PerfilProjetoDeEstimativaModel instantiatePerfilComResultSet(ResultSet rs, UsuarioModel usuarioModel) throws SQLException {
+        PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = new PerfilProjetoDeEstimativaModel();
+        perfilProjetoDeEstimativaModel.setId(getIntegerOrNull(rs, "id"));
+        perfilProjetoDeEstimativaModel.setNomePerfil(rs.getObject("nome_perfil", String.class));
+        perfilProjetoDeEstimativaModel.setUsuarioModel(usuarioModel);
+        perfilProjetoDeEstimativaModel.setPequeno(getIntegerOrNull(rs, "pequeno"));
+        perfilProjetoDeEstimativaModel.setMedio(getIntegerOrNull(rs, "medio"));
+        perfilProjetoDeEstimativaModel.setGrande(getIntegerOrNull(rs, "grande"));
+        perfilProjetoDeEstimativaModel.setMvp(getIntegerOrNull(rs, "mvp"));
+        perfilProjetoDeEstimativaModel.setBasico(getIntegerOrNull(rs, "basico"));
+        perfilProjetoDeEstimativaModel.setProfissional(getIntegerOrNull(rs, "profissional"));
+        perfilProjetoDeEstimativaModel.setCadastroPorEmailSenha(getIntegerOrNull(rs, "cadastro_por_email_senha"));
+        perfilProjetoDeEstimativaModel.setCadastroPorFacebook(getIntegerOrNull(rs, "cadastro_por_facebook"));
+        perfilProjetoDeEstimativaModel.setCadastroPorTwitter(getIntegerOrNull(rs, "cadastro_por_twitter"));
+        perfilProjetoDeEstimativaModel.setCadastroPorGoogle(getIntegerOrNull(rs, "cadastro_por_google"));
+        perfilProjetoDeEstimativaModel.setCadastroPorLinkedin(getIntegerOrNull(rs, "cadastro_por_linkedin"));
+        perfilProjetoDeEstimativaModel.setCadastroPorGithub(getIntegerOrNull(rs, "cadastro_por_github"));
+        perfilProjetoDeEstimativaModel.setCadastroPorConviteUsuario(getIntegerOrNull(rs, "cadastro_por_convite_usuario"));
+        perfilProjetoDeEstimativaModel.setCadastroPorContasMultitenant(getIntegerOrNull(rs, "cadastro_por_contas_multitenant"));
+        perfilProjetoDeEstimativaModel.setCadastroPorSubdominios(getIntegerOrNull(rs, "cadastro_por_subdominios"));
+        perfilProjetoDeEstimativaModel.setCadastroPorDominiosPersonalizados(getIntegerOrNull(rs, "cadastro_por_dominios_personalizados"));
+        perfilProjetoDeEstimativaModel.setPainel(getIntegerOrNull(rs, "painel"));
+        perfilProjetoDeEstimativaModel.setFeedDeAtividades(getIntegerOrNull(rs, "feed_de_atividades"));
+        perfilProjetoDeEstimativaModel.setUploadDeArquivos(getIntegerOrNull(rs, "upload_de_arquivos"));
+        perfilProjetoDeEstimativaModel.setUploadDeMidia(getIntegerOrNull(rs, "upload_de_midia"));
+        perfilProjetoDeEstimativaModel.setPerfisDeUsuario(getIntegerOrNull(rs, "perfis_de_usuario"));
+        perfilProjetoDeEstimativaModel.setEmailsTransacionais(getIntegerOrNull(rs, "emails_transacionais"));
+        perfilProjetoDeEstimativaModel.setTags(getIntegerOrNull(rs, "tags"));
+        perfilProjetoDeEstimativaModel.setAvaliacoesOuComentarios(getIntegerOrNull(rs, "avaliacoes_ou_comentarios"));
+        perfilProjetoDeEstimativaModel.setProcessamentoAudioVideo(getIntegerOrNull(rs, "processamento_audio_video"));
+        perfilProjetoDeEstimativaModel.setPesquisaTextoLivre(getIntegerOrNull(rs, "pesquisa_texto_livre"));
+        perfilProjetoDeEstimativaModel.setPesquisa(getIntegerOrNull(rs, "pesquisa"));
+        perfilProjetoDeEstimativaModel.setCalendario(getIntegerOrNull(rs, "calendario"));
+        perfilProjetoDeEstimativaModel.setExibicaoDadosMapaGeolocalizacao(getIntegerOrNull(rs, "exibicao_dados_mapa_geolocalizacao"));
+        perfilProjetoDeEstimativaModel.setExibicaoMarcadoresRegioesMapaPersonalizados(getIntegerOrNull(rs, "exibicao_marcadores_regioes_mapa_personalizados"));
+        perfilProjetoDeEstimativaModel.setReservas(getIntegerOrNull(rs, "reservas"));
+        perfilProjetoDeEstimativaModel.setMensagens(getIntegerOrNull(rs, "mensagens"));
+        perfilProjetoDeEstimativaModel.setForunsOuComentarios(getIntegerOrNull(rs, "foruns_ou_comentarios"));
+        perfilProjetoDeEstimativaModel.setCompartilhamentoSocial(getIntegerOrNull(rs, "compartilhamento_social"));
+        perfilProjetoDeEstimativaModel.setIntegracaoFacebookOpenGraph(getIntegerOrNull(rs, "integracao_facebook_open_graph"));
+        perfilProjetoDeEstimativaModel.setNotificacaoPush(getIntegerOrNull(rs, "notificacao_push"));
+        perfilProjetoDeEstimativaModel.setPlanosDeAssinatura(getIntegerOrNull(rs, "planos_de_assinatura"));
+        perfilProjetoDeEstimativaModel.setProcessamentoDePagamento(getIntegerOrNull(rs, "processamento_de_pagamento"));
+        perfilProjetoDeEstimativaModel.setCarrinhoDeCompras(getIntegerOrNull(rs, "carrinho_de_compras"));
+        perfilProjetoDeEstimativaModel.setMarketplaceDeUsuarios(getIntegerOrNull(rs, "marketplace_de_usuarios"));
+        perfilProjetoDeEstimativaModel.setGerenciamentoDeProdutos(getIntegerOrNull(rs, "gerenciamento_de_produtos"));
+        perfilProjetoDeEstimativaModel.setComprasDentroDoAplicativo(getIntegerOrNull(rs, "compras_dentro_do_aplicativo"));
+        perfilProjetoDeEstimativaModel.setColetaInformacaoPagamento(getIntegerOrNull(rs, "coleta_informacao_pagamento"));
+        perfilProjetoDeEstimativaModel.setIntegracaoCms(getIntegerOrNull(rs, "integracao_cms"));
+        perfilProjetoDeEstimativaModel.setPaginasAdministracaoUsuarios(getIntegerOrNull(rs, "paginas_administracao_usuarios"));
+        perfilProjetoDeEstimativaModel.setModeracaoAprovacaoConteudo(getIntegerOrNull(rs, "moderacao_aprovacao_conteudo"));
+        perfilProjetoDeEstimativaModel.setIntercom(getIntegerOrNull(rs, "intercom"));
+        perfilProjetoDeEstimativaModel.setAnalisesUso(getIntegerOrNull(rs, "analises_uso"));
+        perfilProjetoDeEstimativaModel.setRelatoriosErro(getIntegerOrNull(rs, "relatorios_erro"));
+        perfilProjetoDeEstimativaModel.setMonitoramentoPerformance(getIntegerOrNull(rs, "monitoramento_performance"));
+        perfilProjetoDeEstimativaModel.setSuporteMultilingue(getIntegerOrNull(rs, "suporte_multilingue"));
+        perfilProjetoDeEstimativaModel.setConectarServicosDeTerceiros(getIntegerOrNull(rs, "conectar_servicos_de_terceiros"));
+        perfilProjetoDeEstimativaModel.setApiParaTerceiros(getIntegerOrNull(rs, "api_para_terceiros"));
+        perfilProjetoDeEstimativaModel.setEnvioSms(getIntegerOrNull(rs, "envio_sms"));
+        perfilProjetoDeEstimativaModel.setMascaramentoNumeroTelefone(getIntegerOrNull(rs, "mascaramento_numero_telefone"));
+        perfilProjetoDeEstimativaModel.setSegurancaBaseadaCertificadoSsl(getIntegerOrNull(rs, "seguranca_baseada_certificado_ssl"));
+        perfilProjetoDeEstimativaModel.setProtecaoContraDos(getIntegerOrNull(rs, "protecao_contra_dos"));
+        perfilProjetoDeEstimativaModel.setAutenticacaoDuasEtapas(getIntegerOrNull(rs, "autenticacao_duas_etapas"));
+        perfilProjetoDeEstimativaModel.setDesenvolvimentoEspecificoApp(getIntegerOrNull(rs, "desenvolvimento_especifico_app"));
+        perfilProjetoDeEstimativaModel.setDesignIconeApp(getIntegerOrNull(rs, "design_icone_app"));
+        perfilProjetoDeEstimativaModel.setSincronizacaoNuvem(getIntegerOrNull(rs, "sincronizacao_nuvem"));
+        perfilProjetoDeEstimativaModel.setDadosSensoresDispositivo(getIntegerOrNull(rs, "dados_sensores_dispositivo"));
+        perfilProjetoDeEstimativaModel.setCodigoBarraQrCode(getIntegerOrNull(rs, "codigo_barra_qr_code"));
+        perfilProjetoDeEstimativaModel.setDadosSaude(getIntegerOrNull(rs, "dados_saude"));
+        perfilProjetoDeEstimativaModel.setAppleWatch(getIntegerOrNull(rs, "apple_watch"));
+        perfilProjetoDeEstimativaModel.setGerenteDeProjetos(getIntegerOrNull(rs, "gerente_de_projetos"));
+        perfilProjetoDeEstimativaModel.setTaxaDiariaDesign(getDoubleOrNull(rs, "taxa_diaria_design"));
+        perfilProjetoDeEstimativaModel.setTaxaDiariaGerenciaProjeto(getDoubleOrNull(rs, "taxa_diaria_gerencia_projeto"));
+        perfilProjetoDeEstimativaModel.setTaxaDiariaDesenvolvimento(getDoubleOrNull(rs, "taxa_diaria_desenvolvimento"));
+
+        Long timestamp = rs.getLong("data_criacao");
+        if (timestamp != null) {
+            perfilProjetoDeEstimativaModel.setDataCriacao(new Date(timestamp));
+        }
+
+        return perfilProjetoDeEstimativaModel;
+    }
+    
+    private Integer getIntegerOrNull(ResultSet rs, String column) throws SQLException {
+        int value = rs.getInt(column);
+        return rs.wasNull() ? null : value;
+    }
+
+    private Double getDoubleOrNull(ResultSet rs, String column) throws SQLException {
+        double value = rs.getDouble(column);
+        return rs.wasNull() ? null : value;
     }
     
 }
