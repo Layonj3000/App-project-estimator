@@ -4,8 +4,10 @@
  */
 package br.projeto.state.escolha_perfis_projeto;
 
+import br.projeto.command.MostrarMensagemCommand;
 import br.projeto.command.ObterPerfisSelecionadosCommand;
 import br.projeto.command.PreencherTabelaEscolhaDePlataformaParaUpdateCommand;
+import br.projeto.db.DbException;
 import br.projeto.presenter.EscolhaFuncionalidadesProjetoPresenter;
 import br.projeto.presenter.EscolhaPerfilPresenter;
 import java.awt.event.ActionEvent;
@@ -29,15 +31,16 @@ public class AtualizacaoEscolhaPerfilState extends AEscolhaPerfilState{
     
     @Override
     public void confirmar(){
-        ObterPerfisSelecionadosCommand perfisSelecionados  = new ObterPerfisSelecionadosCommand(escolhaPerfilPresenter);
-        perfisSelecionados.execute();
-        escolhaPerfilPresenter.getView().dispose();
-        
-        EscolhaFuncionalidadesProjetoPresenter projetoPresenter = new EscolhaFuncionalidadesProjetoPresenter(escolhaPerfilPresenter.getProjetoDeEstimativaRepository(), escolhaPerfilPresenter.getPerfilProjetoDeEstimativaRepository(), escolhaPerfilPresenter.getProjetoFuncionalidadesPersonalizadasRepository(), 
-                                                                                                             escolhaPerfilPresenter.getPerfilFuncionalidadesPersonalizadasRepository(), escolhaPerfilPresenter.getPerfilProjetoIntermediariaRepository(), escolhaPerfilPresenter.getUsuarioModel());
-        projetoPresenter.setProjetoId(projetoId);
-        projetoPresenter.setPerfisSelecionados(perfisSelecionados.getIdPerfisSelecionados());
-        projetoPresenter.setEstadoInicial();
+            ObterPerfisSelecionadosCommand perfisSelecionados  = new ObterPerfisSelecionadosCommand(escolhaPerfilPresenter);
+            perfisSelecionados.execute();
+            escolhaPerfilPresenter.getView().dispose();
+
+            EscolhaFuncionalidadesProjetoPresenter projetoPresenter = new EscolhaFuncionalidadesProjetoPresenter(escolhaPerfilPresenter.getProjetoDeEstimativaRepository(), escolhaPerfilPresenter.getPerfilProjetoDeEstimativaRepository(), escolhaPerfilPresenter.getProjetoFuncionalidadesPersonalizadasRepository(), 
+                                                                                                                 escolhaPerfilPresenter.getPerfilFuncionalidadesPersonalizadasRepository(), escolhaPerfilPresenter.getPerfilProjetoIntermediariaRepository(), escolhaPerfilPresenter.getUsuarioModel());
+            projetoPresenter.setProjetoId(projetoId);
+            projetoPresenter.setPerfisSelecionados(perfisSelecionados.getIdPerfisSelecionados());
+            projetoPresenter.setEstadoInicial();
+ 
     }
     
     @Override

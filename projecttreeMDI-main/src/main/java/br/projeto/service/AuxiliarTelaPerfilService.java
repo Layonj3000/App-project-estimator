@@ -71,7 +71,7 @@ public class AuxiliarTelaPerfilService {
 
     public boolean verificaPreenchimentoNome(String nomePerfil) {
         if(nomePerfil.trim().isEmpty()){
-            JOptionPane.showMessageDialog(null, "O nome do perfil não pode ser vazio!", "Erro de entrada", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "O nome do perfil não pode ser vazio!", "Erro de entrada", JOptionPane.ERROR_MESSAGE);
             return true;
         }
             return false;
@@ -79,7 +79,7 @@ public class AuxiliarTelaPerfilService {
     
     public boolean verificaPreenchimentoTaxaDev(EscolhaFuncionalidadesPerfilPresenter escolhaFuncionalidadesPerfilPresenter) {
         if(escolhaFuncionalidadesPerfilPresenter.getTxtTaxaDiariaDesenvolvimento().isEmpty()){
-            JOptionPane.showMessageDialog(null, "A taxa diária de desenvolvimento deve ser preenchida!", "Erro de entrada", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "A taxa diária de desenvolvimento deve ser preenchida!", "Erro de entrada", JOptionPane.ERROR_MESSAGE);
             return true;
         }
             return false;
@@ -87,7 +87,7 @@ public class AuxiliarTelaPerfilService {
 
     public boolean verificaPreenchimentoTaxaGerProjetos(EscolhaFuncionalidadesPerfilPresenter escolhaFuncionalidadesPerfilPresenter, PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel) {
         if(escolhaFuncionalidadesPerfilPresenter.getTxtTaxaDiariaGerenciaProjeto().isEmpty() && (perfilProjetoDeEstimativaModel.getGerenteDeProjetos() != null)){
-            JOptionPane.showMessageDialog(null, "A taxa diária de gerência de projetos deve ser preenchida!", "Erro de entrada", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "A taxa diária de gerência de projetos deve ser preenchida!", "Erro de entrada", JOptionPane.ERROR_MESSAGE);
             return true;
         }
             return false;

@@ -49,13 +49,11 @@ public class SalvarProjetoDeEstimativaCommand implements Command{
 
         
         if (!verificacoesService.verificarCamposObrigatorios(nomeProjeto, percentualComImpostosText, percentualDeLucroDesejadoText)) {
-            JOptionPane.showMessageDialog(null, "O percentual com imposto, de lucro desejado e o nome do projeto devem ser obrigatoriamente informados.", "Campos Obrigatórios!", JOptionPane.ERROR_MESSAGE);
-            return;
+            throw new IllegalArgumentException("O percentual com imposto, de lucro desejado e o nome do projeto devem ser obrigatoriamente informados.");
         }
         
         if(verificacoesService.verificarCamposPorcentagem(percentualComImpostosText, percentualDeLucroDesejadoText)){
-            JOptionPane.showMessageDialog(null, "Os campos de porcentagem não devem exceder 100%", "Valores inválidos", JOptionPane.ERROR_MESSAGE);
-            return;
+            throw new IllegalArgumentException("Os campos de porcentagem não devem exceder 100%");
         }
 
         
@@ -66,11 +64,12 @@ public class SalvarProjetoDeEstimativaCommand implements Command{
         String fundoDeReservaText = view.getTxtFundoReserva().getText();
         String outrosCustosText = view.getTxtOutrosCustos().getText();
 
-        if (!verificacoesService.verificarCustosEPercentuais(custoHardwareEInstalacoesFisicasText, custoSoftwareText,
-                                                             custoRiscosText, custoGarantiaText, fundoDeReservaText,
-                                                             outrosCustosText, percentualComImpostosText, percentualDeLucroDesejadoText)) {
-            JOptionPane.showMessageDialog(null, "Digite um número válido para os custos e percentuais!", "Erro de entrada", JOptionPane.ERROR_MESSAGE);
-            return;
+        try{
+            verificacoesService.verificarCustosEPercentuais(custoHardwareEInstalacoesFisicasText, custoSoftwareText,
+                                                                 custoRiscosText, custoGarantiaText, fundoDeReservaText,
+                                                                 outrosCustosText, percentualComImpostosText, percentualDeLucroDesejadoText);
+        }catch(IllegalArgumentException e){
+            throw new IllegalArgumentException("Um ou mais campos com valores inválidos: "+e.getMessage());
         }
 
         

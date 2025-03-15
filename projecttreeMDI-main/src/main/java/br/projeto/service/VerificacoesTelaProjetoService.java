@@ -51,8 +51,8 @@ public class VerificacoesTelaProjetoService {
             if (!percentualComImpostos.isEmpty()) {Double.parseDouble(percentualComImpostos);}
             if (!percentualDeLucroDesejado.isEmpty()) {Double.parseDouble(percentualDeLucroDesejado);}
             return true;
-        } catch (NumberFormatException e) {
-            return false;
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
 

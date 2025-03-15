@@ -4,8 +4,10 @@
  */
 package br.projeto.state.escolha_funcionalidade_projeto;
 
+import br.projeto.command.MostrarMensagemCommand;
 import br.projeto.command.PreencherTabelaFuncionalidadesProjetoCommand;
 import br.projeto.command.SalvarProjetoDeEstimativaCommand;
+import br.projeto.db.DbException;
 import br.projeto.presenter.EscolhaFuncionalidadesProjetoPresenter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,7 +33,15 @@ public class AtualizacaoEscolhaFuncionalidadesProjetoState extends AEscolhaFunci
     
         @Override
     public void confirmar(){
-        new SalvarProjetoDeEstimativaCommand(escolhaFuncionalidadeProjetoPresenter,idPerfisSelecionados, projetoId).execute();
+        try{
+            new SalvarProjetoDeEstimativaCommand(escolhaFuncionalidadeProjetoPresenter,idPerfisSelecionados, projetoId).execute();
+        } catch (IllegalArgumentException e) {
+            new MostrarMensagemCommand("Erro de validação: " + e.getMessage()).execute();
+        } catch (DbException e) {
+            new MostrarMensagemCommand("Erro no banco de dados: " + e.getMessage()).execute();
+        }catch (Exception e) { 
+            new MostrarMensagemCommand("Ocorreu um erro inesperado: " + e.getMessage()).execute();
+        } 
         //CODIGO PARA APARECER MENSAGEM DE SALVO COM SUCESSO
         //projetoDeEstimativaPresenter.getView().getFrame().dispose();
     }

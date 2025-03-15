@@ -181,12 +181,11 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
                     throw new DbException("Unexpected error! No rows affected!");
                 }
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             throw new DbException(e.getMessage());
         }finally {
                 DB.closeStatement(ps);
-                DB.closeResultSet(rs); 
-             
+                DB.closeResultSet(rs);    
         }    
     }
 
@@ -207,7 +206,7 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
             
         perfilFuncionalidadesPersonalizadasModelList.add(perfilFuncionalidadesPersonalizadasModel);
         notifyObservers();
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             throw new DbException(e.getMessage());
         } finally {
             DB.closeStatement(ps);

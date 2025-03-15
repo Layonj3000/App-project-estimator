@@ -4,8 +4,10 @@
  */
 package br.projeto.state.escolha_funcionalidades_perfil;
 
+import br.projeto.command.MostrarMensagemCommand;
 import br.projeto.command.PreencherTabelaFuncionalidadesPerfilParaUpdateCommand;
 import br.projeto.command.SalvarPerfilProjetoDeEstimativaCommand;
+import br.projeto.db.DbException;
 import br.projeto.presenter.EscolhaFuncionalidadesPerfilPresenter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,8 +31,19 @@ public class AtualizacaoEscolhaFuncionalidadesPerfilState extends AEscolhaFuncio
     
         @Override
     public void salvar(){
-        new SalvarPerfilProjetoDeEstimativaCommand(escolhaFuncionalidadesPerfilPresenter, idPerfil).execute();
-        
+        try{
+            new SalvarPerfilProjetoDeEstimativaCommand(escolhaFuncionalidadesPerfilPresenter, idPerfil).execute();
+        } catch (NumberFormatException e) {
+            new MostrarMensagemCommand("Número inválido inserido: " + e.getMessage()).execute();
+        } catch (IllegalArgumentException e) {
+            new MostrarMensagemCommand("Erro de validação: " + e.getMessage()).execute();
+        } catch (DbException e) {
+            new MostrarMensagemCommand("Erro no banco de dados: " + e.getMessage()).execute();
+        } catch (ArrayIndexOutOfBoundsException e){
+            new MostrarMensagemCommand("Preencha o conteúdo da linha adicionada: " + e.getMessage()).execute();
+        } catch (Exception e) { 
+            new MostrarMensagemCommand("Ocorreu um erro inesperado: " + e.getMessage()).execute();
+        }  
         //escolhaFuncionalidadesPerfilPresenter.getView().dispose();        
     }
     
