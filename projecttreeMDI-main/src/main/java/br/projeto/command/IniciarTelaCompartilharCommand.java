@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.projeto.command;
 
 import br.projeto.model.UsuarioModel;
@@ -11,10 +7,6 @@ import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
 
-/**
- *
- * @author layon
- */
 public class IniciarTelaCompartilharCommand implements Command{
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
     private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.projeto.presenter;
 
 import br.projeto.command.CompartilharCommand;
@@ -13,12 +9,10 @@ import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
-/**
- *
- * @author layon
- */
-public class CompartilharPresenter {
-    private TelaCompartilhar telaCompartilhar;
+import javax.swing.JOptionPane;
+
+public final class CompartilharPresenter {
+    private final TelaCompartilhar telaCompartilhar;
     private final Integer projetoID;
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
     private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;
@@ -42,10 +36,25 @@ public class CompartilharPresenter {
         telaCompartilhar.getBtnConfirmar().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                CompartilharCommand compartilharCommand = new CompartilharCommand(CompartilharPresenter.this,perfilProjetoDeEstimativaRepository, projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository, perfilProjetoIntermediariaRepository, usuarioModel, projetoID);
-                compartilharCommand.execute();                
-            }       
-        });
+                try{
+                    CompartilharCommand compartilharCommand = new CompartilharCommand(CompartilharPresenter.this,perfilProjetoDeEstimativaRepository, projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository, perfilProjetoIntermediariaRepository, usuarioModel, projetoID);
+                    compartilharCommand.execute();   
+                    JOptionPane.showMessageDialog(null, "Projeto compartilhado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                }catch (IllegalArgumentException ex) {
+                    JOptionPane.showMessageDialog(null, 
+                        ex.getMessage(), 
+                        "Erro", 
+                        JOptionPane.ERROR_MESSAGE
+                    );
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, 
+                        "Ocorreu um erro inesperado. Tente novamente.", 
+                        "Erro", 
+                        JOptionPane.ERROR_MESSAGE
+                    );
+                }
+            }      
+         });
         telaCompartilhar.getBtnVoltar().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){

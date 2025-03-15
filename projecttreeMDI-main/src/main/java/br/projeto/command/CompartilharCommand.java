@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.projeto.command;
 
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
-import br.projeto.model.PerfilProjetoIntermediariaModel;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
 import br.projeto.model.UsuarioModel;
@@ -17,12 +12,7 @@ import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.UsuarioRepository;
 import br.projeto.service.InstanciaRepositoryService;
 import java.util.List;
-import javax.swing.JOptionPane;
 
-/**
- *
- * @author layon
- */
 public class CompartilharCommand implements Command{
     private final CompartilharPresenter compartilharPresenter;
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
@@ -48,24 +38,23 @@ public class CompartilharCommand implements Command{
     public void execute() {
 
         if (compartilharPresenter.getEmail().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Email não pode ser nulo ou vazio", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;        
-       }
-        if (usuarioRepository.findByEmail(compartilharPresenter.getEmail()) == null) {
-            JOptionPane.showMessageDialog(null, "Email não encontrado", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;        
-       }
-        if (compartilharPresenter.getEmail().equals(usuarioModel.getEmail())) {
-            JOptionPane.showMessageDialog(null, "Você não pode compartilhar consigo mesmo", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;        
-       }        
-        
-        ProjetoDeEstimativaModel projeto = projetoDeEstimativaRepository.findById(projetoID);
-        if(projeto.getCompartilhadoValor() == 1){
-            JOptionPane.showMessageDialog(null, "Não é possível compartilhar um projeto compartilhado", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
+            throw new IllegalArgumentException("Email não pode ser nulo ou vazio");
         }
-        
+
+        UsuarioModel usuarioDestino = usuarioRepository.findByEmail(compartilharPresenter.getEmail());
+        if (usuarioDestino == null) {
+            throw new IllegalArgumentException("Email não encontrado");
+        }
+
+        if (compartilharPresenter.getEmail().equals(usuarioModel.getEmail())) {
+            throw new IllegalArgumentException("Você não pode compartilhar consigo mesmo");
+        }
+
+        ProjetoDeEstimativaModel projeto = projetoDeEstimativaRepository.findById(projetoID);
+        if (projeto.getCompartilhadoValor() == 1) {
+            throw new IllegalArgumentException("Não é possível compartilhar um projeto compartilhado");
+        }     
+         
         List<PerfilProjetoDeEstimativaModel> perfis = perfilProjetoDeEstimativaRepository.findByProjetoEstimativa(projeto);
         List<ProjetosFuncionalidadesPersonalizadasModel> funcionalidadesPersonalizadas = projetoFuncionalidadesPersonalizadasRepository.findByProjetoEstimativa(projeto);
         
@@ -74,22 +63,15 @@ public class CompartilharCommand implements Command{
         projeto.setUsuarioModel(usuarioRepository.findByEmail(compartilharPresenter.getEmail()));
         projeto.setId(null);  // Definindo o ID como nulo para criar um novo projeto
         projetoDeEstimativaRepository.insert(projeto);
-        
-        List<PerfilProjetoIntermediariaModel> perfisProjeto = perfilProjetoIntermediariaRepository.findByProjeto(projetoID);
-//        
-//        if(!perfilProjetoIntermediariaRepository.findByProjeto(idProjetoCompartilhado).isEmpty()){
-//            perfilProjetoIntermediariaRepository.deleteById(idProjetoCompartilhado, perfis);
-//        }        
 
         for (PerfilProjetoDeEstimativaModel perfil : perfis) {   
             perfilProjetoIntermediariaRepository.insert(projeto, perfil);
         }
 
-       for (ProjetosFuncionalidadesPersonalizadasModel funcionalidade : funcionalidadesPersonalizadas) {
+        for (ProjetosFuncionalidadesPersonalizadasModel funcionalidade : funcionalidadesPersonalizadas) {
            funcionalidade.setProjetoDeEstimativaModel(projeto);
            projetoFuncionalidadesPersonalizadasRepository.insert(funcionalidade);
         }        
 
-//        System.out.println("Projeto compartilhado com sucesso!");
     }
 }

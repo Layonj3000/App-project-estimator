@@ -1,20 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.projeto.presenter;
 
 import br.projeto.command.LoginCommand;
 import br.projeto.view.TelaLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author layon
- */
-public class LoginUsuarioPresenter {
-    private TelaLogin telaLogin;
+public final class LoginUsuarioPresenter {
+    private final TelaLogin telaLogin;
 
     public LoginUsuarioPresenter() {
         this.telaLogin = new TelaLogin();
@@ -33,7 +26,11 @@ public class LoginUsuarioPresenter {
         telaLogin.getBtnEntrar().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                new LoginCommand(LoginUsuarioPresenter.this).execute();
+                try { 
+                    new LoginCommand(LoginUsuarioPresenter.this).execute();
+                } catch (IllegalArgumentException ex) {
+                    JOptionPane.showMessageDialog(telaLogin, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                }
             }       
         });       
         telaLogin.setVisible(true);
