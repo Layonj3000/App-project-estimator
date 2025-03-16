@@ -15,13 +15,11 @@ br\projeto\presenter\EscolhaFuncionalidadesPerfilPresenter$1.class
 br\projeto\repository_factory\RepositoryFactory.class
 br\projeto\state\escolha_funcionalidades_perfil\AtualizacaoEscolhaFuncionalidadesPerfilState.class
 br\projeto\state\escolha_funcionalidade_projeto\AtualizacaoEscolhaFuncionalidadesProjetoState.class
-br\projeto\command\ProjetoCommand.class
 br\projeto\perfil_builder\AndroidBuilder.class
 br\projeto\view\DetalheProjetoView$1.class
 br\projeto\perfil_builder\BackEndBuilder.class
 br\projeto\presenter\Observer.class
 br\projeto\repository_factory\UsuarioRepositoryFactory.class
-br\projeto\service\CriarProjetoMock.class
 br\projeto\service\ConstrutorDeArvoreNavegacaoService.class
 br\projeto\presenter\EscolhaPerfilPresenter.class
 br\projeto\service\RetornaProjetoModelService.class
@@ -51,7 +49,6 @@ br\projeto\view\TelaLogin.class
 br\projeto\command\Command.class
 br\projeto\repository\abstr\IProjetoDeEstimativaRepository.class
 br\projeto\state\escolha_perfis_projeto\AtualizacaoEscolhaPerfilState.class
-br\projeto\view\TesteView$1.class
 br\projeto\presenter\EscolhaFuncionalidadesPerfilPresenter$2.class
 br\projeto\command\RegistroCommand.class
 br\projeto\view\EscolhaPlataformaView$1.class
@@ -64,7 +61,6 @@ br\projeto\repository_factory\PerfilFuncionalidadesPersonalizadasRepositoryFacto
 br\projeto\repository\abstr\IPerfilFuncionalidadesPersonalizadasRepository.class
 br\projeto\command\IniciarTelaCompartilharCommand.class
 br\projeto\view\DetalheProjetoView.class
-br\projeto\model\Projeto.class
 br\projeto\command\SalvarPerfilProjetoDeEstimativaCommand.class
 br\projeto\perfil_builder\Diretor.class
 br\projeto\presenter\DetalhePerfilPresenter.class
@@ -83,6 +79,7 @@ br\projeto\view\TelaCompartilhar$2.class
 br\projeto\observer\FileLogger.class
 br\projeto\presenter\window_command\FecharJanelasPerfilRelacionadasCommand.class
 br\projeto\state\escolha_funcionalidades_perfil\InclusaoEscolhaFuncionalidadesPerfilState.class
+br\projeto\command\ProjetoLogCommand.class
 br\projeto\view\ManterPerfilProjetoDeEstimativaView.class
 br\projeto\command\AdicionarOpcaoPerfilCommand.class
 br\projeto\command\AbrirDetalhesProjetoCommand.class
@@ -104,7 +101,6 @@ br\projeto\presenter\LoginUsuarioPresenter$2.class
 br\projeto\view\GlobalWindowManager$1.class
 br\projeto\enums\SimNao.class
 br\projeto\command\PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand.class
-br\projeto\view\TesteView$2.class
 br\projeto\state\escolha_perfis_projeto\AEscolhaPerfilState.class
 br\projeto\command\PreencherTabelaFuncionalidadesPerfilParaUpdateCommand$1.class
 br\projeto\model\ProjetoDeEstimativaModel.class
@@ -124,7 +120,6 @@ br\projeto\model\PerfilFuncionalidadesPersonalizadasModel.class
 br\projeto\command\AbrirInternalFrameGenericoProjetoCommand.class
 br\projeto\state\escolha_perfis_projeto\InclusaoEscolhaPerfilState$1.class
 br\projeto\model\PerfilProjetoIntermediariaModel.class
-br\projeto\presenter\DashBoardProjetoPresenter.class
 br\projeto\service\ProvedorMenuContextual.class
 br\projeto\presenter\window_command\ConfigurarMenuJanelaCommand.class
 br\projeto\view\TelaLogin$1.class
@@ -143,7 +138,7 @@ br\projeto\service\IconService.class
 br\projeto\presenter\RegistroUsuarioPresenter$2.class
 br\projeto\view\ManterPerfilProjetoDeEstimativaView$3.class
 br\projeto\adapter\IValidadorSenha.class
-br\projeto\repository\ProjetoRepositoryMock.class
+br\projeto\command\AbrirDetalhesUsuarioCommand.class
 br\projeto\view\DetalhePerfilView$1.class
 br\projeto\view\DetalhePerfilView.class
 br\projeto\presenter\RegistroUsuarioPresenter.class
@@ -161,7 +156,6 @@ br\projeto\presenter\DesktopMemento.class
 br\projeto\repository\abstr\IPerfilProjetoIntermediariaRepository.class
 br\projeto\view\ManterProjetoDeEstimativaView.class
 br\projeto\repository\PerfilProjetoDeEstimativaRepository.class
-br\projeto\view\TesteView.class
 br\projeto\command\ObterPerfisSelecionadosCommand.class
 br\projeto\db\DB.class
 br\projeto\service\InstanciaRepositoryService.class

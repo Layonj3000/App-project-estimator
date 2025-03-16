@@ -12,7 +12,7 @@ C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Sof
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\observer\LogObserver.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\window_command\ConfigurarMenuJanelaCommand.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\window_command\ConfigurarViewCommand.java
-C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\CriarProjetoMock.java
+C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\AbrirDetalhesUsuarioCommand.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\PrincipalPresenter.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\state\escolha_funcionalidades_perfil\AtualizacaoEscolhaFuncionalidadesPerfilState.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\RemoverOpcaoPerfilCommand.java
@@ -25,7 +25,6 @@ C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Sof
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\DashBoardProjetoView.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\state\escolha_perfis_projeto\AtualizacaoEscolhaPerfilState.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\PrincipalView.java
-C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository\ProjetoRepositoryMock.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\ManterPerfilProjetoDeEstimativaView.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\AbrirCriacaoPerfilCommand.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\state\escolha_funcionalidades_perfil\InclusaoEscolhaFuncionalidadesPerfilState.java
@@ -85,11 +84,9 @@ C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Sof
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\MapValoresPadraoPerfilService.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\model\ProjetosFuncionalidadesPersonalizadasModel.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\model\UsuarioModel.java
-C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\model\Projeto.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\CompartilharCommand.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\AuxiliarTelaPerfilService.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\PreencherTabelaEscolhaDePlataformaParaUpdateCommand.java
-C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\DashBoardProjetoPresenter.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\DetalhePerfilView.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\Observer.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\ProvedorMenuContextual.java
@@ -108,10 +105,9 @@ C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Sof
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\RetornaPerfilModelService.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\DetalheProjetoView.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository_factory\UsuarioRepositoryFactory.java
+C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\ProjetoLogCommand.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\ComponenteNoArvore.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository\UsuarioRepository.java
-C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\ProjetoCommand.java
-C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\TesteView.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\ManterProjetoDeEstimativaView.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\state\escolha_funcionalidade_projeto\AtualizacaoEscolhaFuncionalidadesProjetoState.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\TelaInicialAplicacaoView.java
