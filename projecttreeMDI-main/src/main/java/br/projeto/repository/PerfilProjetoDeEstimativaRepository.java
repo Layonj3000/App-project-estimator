@@ -9,6 +9,7 @@ import br.projeto.model.Subject;
 import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.Observer;
 import br.projeto.service.RetornaPerfilModelService;
+import br.projeto.service.RetornaUsuarioModelService;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -27,6 +28,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
     private List<PerfilProjetoDeEstimativaModel> perfisProjetoDeEstimativaModel;
     
     private RetornaPerfilModelService servicePerfil;
+    private RetornaUsuarioModelService serviceUsuario;
 
     public PerfilProjetoDeEstimativaRepository(Connection conn) {
         this.conn = conn;
@@ -34,6 +36,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
         perfisProjetoDeEstimativaModel = new ArrayList<>();
         
         servicePerfil = new RetornaPerfilModelService();
+        this.serviceUsuario = RetornaUsuarioModelService.getInstancia();
     }
 
     
@@ -55,7 +58,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
             while (rs.next()) {
                 UsuarioModel usuario = usuarioModelMap.get(rs.getInt("user_id"));
                 if (usuario == null) {
-                    usuario = instantiateUsuarioModel(rs);
+                    usuario = serviceUsuario.instantiateUsuarioModel(rs);
                     usuarioModelMap.put(usuario.getId(), usuario);
                 }
                 PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = servicePerfil.instantiatePerfilComResultSet(rs, usuario);
@@ -90,7 +93,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
             while (rs.next()) {
                 UsuarioModel usuario = usuarioModelMap.get(rs.getInt("user_id"));
                 if (usuario == null) {
-                    usuario = instantiateUsuarioModel(rs);
+                    usuario = serviceUsuario.instantiateUsuarioModel(rs);
                     usuarioModelMap.put(usuario.getId(), usuario);
                 }
                 PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = servicePerfil.instantiatePerfilComResultSet(rs, usuario);
@@ -125,14 +128,12 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
             while (rs.next()) {
                 UsuarioModel usuario = usuarioModelMap.get(rs.getInt("user_id"));
                 if (usuario == null) {
-                    usuario = instantiateUsuarioModel(rs);
+                    usuario = serviceUsuario.instantiateUsuarioModel(rs);
                     usuarioModelMap.put(usuario.getId(), usuario);
                 }
                 PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = servicePerfil.instantiatePerfilComResultSet(rs, usuario);
                 perfilProjetoDeEstimativaModelList.add(perfilProjetoDeEstimativaModel);
             }
-            //perfisProjetoDeEstimativaModel.addAll(perfisProjetoDeEstimativaModel);
-            //notifyObservers();//VERIFICAR SE FUNCIONA SEM
             return perfilProjetoDeEstimativaModelList;
         }catch(SQLException e){
             throw new DbException(e.getMessage());
@@ -153,7 +154,7 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                UsuarioModel usuarioModel = instantiateUsuarioModel(rs);
+                UsuarioModel usuarioModel = serviceUsuario.instantiateUsuarioModel(rs);
                 PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = servicePerfil.instantiatePerfilComResultSet(rs, usuarioModel);
                 return perfilProjetoDeEstimativaModel;
             }
@@ -450,11 +451,6 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
             DB.closeStatement(ps);
             DB.closeStatement(stfkON);            
         }
-    }
-
-    private UsuarioModel instantiateUsuarioModel(ResultSet rs) throws SQLException {
-        UsuarioModel usuarioModel = new UsuarioModel(rs.getInt("user_id"), rs.getString("nome"), rs.getString("senha"), rs.getString("email"), rs.getString("formato_log"));
-        return usuarioModel;
     }
 
    

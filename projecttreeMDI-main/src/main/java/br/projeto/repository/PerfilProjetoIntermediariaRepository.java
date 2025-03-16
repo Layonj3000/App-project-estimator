@@ -8,6 +8,7 @@ import br.projeto.model.PerfilProjetoIntermediariaModel;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.Subject;
 import br.projeto.presenter.Observer;
+import br.projeto.service.RetonaIntermediariaModelService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,11 +23,15 @@ public class PerfilProjetoIntermediariaRepository implements IPerfilProjetoInter
     private Connection conn;
     private List<Observer> observers;
     private List<PerfilProjetoIntermediariaModel> perfilProjetoIntermediariaModelList;
+    
+    private RetonaIntermediariaModelService intermediariaService;
 
     public PerfilProjetoIntermediariaRepository(Connection conn) {
         this.conn = conn;       
         observers = new ArrayList<>();
         perfilProjetoIntermediariaModelList = new ArrayList<>();
+        
+        this.intermediariaService = RetonaIntermediariaModelService.getInstancia();
     }
     
 
@@ -40,7 +45,7 @@ public class PerfilProjetoIntermediariaRepository implements IPerfilProjetoInter
             rs = st.executeQuery("SELECT * FROM perfil_projeto_intermediaria");
             List<PerfilProjetoIntermediariaModel> perfilProjetoIntermediariaModelList = new ArrayList<>();
             while (rs.next()) {
-                PerfilProjetoIntermediariaModel perfilProjetoIntermediariaModel = instantiatePerfilProjetoIntermediariaModel(rs);
+                PerfilProjetoIntermediariaModel perfilProjetoIntermediariaModel = intermediariaService.instantiatePerfilProjetoIntermediariaModel(rs);
                 perfilProjetoIntermediariaModelList.add(perfilProjetoIntermediariaModel);
             }
             return perfilProjetoIntermediariaModelList;
@@ -65,7 +70,7 @@ public class PerfilProjetoIntermediariaRepository implements IPerfilProjetoInter
 
             rs = ps.executeQuery();
             if (rs.next()) {
-                return instantiatePerfilProjetoIntermediariaModel(rs);
+                return intermediariaService.instantiatePerfilProjetoIntermediariaModel(rs);
             }
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
@@ -88,7 +93,7 @@ public class PerfilProjetoIntermediariaRepository implements IPerfilProjetoInter
             rs = ps.executeQuery();
             List<PerfilProjetoIntermediariaModel> perfilProjetoIntermediariaModelList = new ArrayList<>();
         while (rs.next()) {
-                PerfilProjetoIntermediariaModel perfilProjetoIntermediariaModel = instantiatePerfilProjetoIntermediariaModel(rs);
+                PerfilProjetoIntermediariaModel perfilProjetoIntermediariaModel = intermediariaService.instantiatePerfilProjetoIntermediariaModel(rs);
                 perfilProjetoIntermediariaModelList.add(perfilProjetoIntermediariaModel);
         }
             return perfilProjetoIntermediariaModelList;
@@ -182,33 +187,8 @@ public class PerfilProjetoIntermediariaRepository implements IPerfilProjetoInter
             DB.closeStatement(ps);
         }
     }
+    
 
-//    public boolean deleteByProjectId(Integer idProjeto) {
-//        PreparedStatement ps = null;
-//        ResultSet rs = null;
-//
-//        try {
-//            ps = conn.prepareStatement("DELETE FROM perfil_projeto_intermediaria "
-//                    + "WHERE projeto_id = ? ");
-//            ps.setInt(1, idProjeto);
-//
-//            int rowsAffected = ps.executeUpdate();
-//
-//            if (rowsAffected > 0) {
-//                return true;
-//            } else {
-//                throw new DbException("Unexpected error! No rows affected!");
-//            }
-//        } catch (SQLException e) {
-//            throw new DbException(e.getMessage());
-//        }
-//
-//    }
-
-    private PerfilProjetoIntermediariaModel instantiatePerfilProjetoIntermediariaModel(ResultSet rs) throws SQLException {
-        PerfilProjetoIntermediariaModel perfilProjetoIntermediariaModel = new PerfilProjetoIntermediariaModel(rs.getInt("projeto_id"), rs.getInt("perfil_id"));
-        return perfilProjetoIntermediariaModel;
-    }
 
     @Override
     public void addObserver(Observer observer) {

@@ -12,7 +12,9 @@ import br.projeto.model.Subject;
 import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.Observer;
 import br.projeto.repository.abstr.IProjetoFuncionalidadesPersonalizadasRepository;
+import br.projeto.service.RetornaFuncionalidadesPersonalizadasModelService;
 import br.projeto.service.RetornaProjetoModelService;
+import br.projeto.service.RetornaUsuarioModelService;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -33,13 +35,20 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
     private List<ProjetosFuncionalidadesPersonalizadasModel> projetosFuncionalidadesPersonalizadasModelList;
     
     private RetornaProjetoModelService serviceProjeto;
+    private RetornaUsuarioModelService serviceUsuario;
+    private RetornaFuncionalidadesPersonalizadasModelService funcionalidadesPersonalizadasServicie;
+
+
     
     public ProjetoFuncionalidadesPersonalizadasRepository(Connection conn) {
         this.conn = conn;
         observers = new ArrayList<>();
         projetosFuncionalidadesPersonalizadasModelList = new ArrayList<>();
         
-        serviceProjeto = new RetornaProjetoModelService();        
+        serviceProjeto = new RetornaProjetoModelService();    
+        this.serviceUsuario = RetornaUsuarioModelService.getInstancia();
+        this.funcionalidadesPersonalizadasServicie = RetornaFuncionalidadesPersonalizadasModelService.getInstancia();
+
     }
     
     
@@ -65,14 +74,14 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
                 ProjetoDeEstimativaModel projetoDeEstimativa = projetoDeEstimativaModelMap.get(rs.getInt("projeto_id"));
                 UsuarioModel usuario = usuarioModelMap.get(rs.getInt("user_id"));
                 if (usuario == null) {
-                    usuario = instantiateUsuarioModel(rs);
+                    usuario = serviceUsuario.instantiateUsuarioModel(rs);
                     usuarioModelMap.put(usuario.getId(), usuario);
                 }                
                 if (projetoDeEstimativa == null) {
                     projetoDeEstimativa = serviceProjeto.instantiateProjetoDeEstimativaModel(rs, usuario);
                     projetoDeEstimativaModelMap.put(projetoDeEstimativa.getId(), projetoDeEstimativa);
                 }
-                ProjetosFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadasModel = instantiateProjetosFuncionalidadesPersonalizadasModel(rs, projetoDeEstimativa);
+                ProjetosFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadasModel = funcionalidadesPersonalizadasServicie.instantiateProjetosFuncionalidadesPersonalizadasModel(rs, projetoDeEstimativa);
                 projetosFuncionalidadesPersonalizadasModelListMetodo.add(projetosFuncionalidadesPersonalizadasModel);
             }
             return projetosFuncionalidadesPersonalizadasModelListMetodo;
@@ -99,9 +108,9 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                UsuarioModel usuarioModel = instantiateUsuarioModel(rs);
+                UsuarioModel usuarioModel = serviceUsuario.instantiateUsuarioModel(rs);
                 ProjetoDeEstimativaModel projetoDeEstimativaModel = serviceProjeto.instantiateProjetoDeEstimativaModel(rs, usuarioModel);
-                ProjetosFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadasModel = instantiateProjetosFuncionalidadesPersonalizadasModel(rs, projetoDeEstimativaModel);
+                ProjetosFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadasModel = funcionalidadesPersonalizadasServicie.instantiateProjetosFuncionalidadesPersonalizadasModel(rs, projetoDeEstimativaModel);
                 return projetosFuncionalidadesPersonalizadasModel;
             }
         } catch (SQLException e) {
@@ -137,14 +146,14 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
                 ProjetoDeEstimativaModel projetoDeEstimativa = projetoDeEstimativaModelMap.get(rs.getInt("projeto_id"));
                 UsuarioModel usuario = usuarioModelMap.get(rs.getInt("user_id"));
                 if (usuario == null) {
-                    usuario = instantiateUsuarioModel(rs);
+                    usuario = serviceUsuario.instantiateUsuarioModel(rs);
                     usuarioModelMap.put(usuario.getId(), usuario);
                 }                
                 if (projetoDeEstimativa == null) {
                     projetoDeEstimativa = serviceProjeto.instantiateProjetoDeEstimativaModel(rs, usuario);
                     projetoDeEstimativaModelMap.put(projetoDeEstimativa.getId(), projetoDeEstimativa);
                 }
-                ProjetosFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadas = instantiateProjetosFuncionalidadesPersonalizadasModel(rs, projetoDeEstimativa);
+                ProjetosFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadas = funcionalidadesPersonalizadasServicie.instantiateProjetosFuncionalidadesPersonalizadasModel(rs, projetoDeEstimativa);
                 projetosFuncionalidadesPersonalizadasModelListMetodo.add(projetosFuncionalidadesPersonalizadas);
             }
             return projetosFuncionalidadesPersonalizadasModelListMetodo;
@@ -286,20 +295,8 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
     
     
     
-    private ProjetosFuncionalidadesPersonalizadasModel instantiateProjetosFuncionalidadesPersonalizadasModel(ResultSet rs, ProjetoDeEstimativaModel projetoDeEstimativaModel) throws SQLException {
-        ProjetosFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadasModel = new ProjetosFuncionalidadesPersonalizadasModel();
-        projetosFuncionalidadesPersonalizadasModel.setId(rs.getInt("id"));
-        projetosFuncionalidadesPersonalizadasModel.setNome(rs.getString("nome"));
-        projetosFuncionalidadesPersonalizadasModel.setSelecionado((rs.getInt("selecionado")));
-        projetosFuncionalidadesPersonalizadasModel.setProjetoDeEstimativaModel(projetoDeEstimativaModel);
-        
-        return projetosFuncionalidadesPersonalizadasModel;
-    }
 
 
-    private UsuarioModel instantiateUsuarioModel(ResultSet rs) throws SQLException {
-        UsuarioModel usuarioModel = new UsuarioModel(rs.getInt("user_id"), rs.getString("nome"), rs.getString("senha"), rs.getString("email"), rs.getString("formato_log"));
-        return usuarioModel;    }
 
     @Override
     public void addObserver(Observer observer) {

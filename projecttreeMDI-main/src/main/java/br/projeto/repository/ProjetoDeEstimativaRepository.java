@@ -8,6 +8,7 @@ import br.projeto.model.Subject;
 import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.Observer;
 import br.projeto.service.RetornaProjetoModelService;
+import br.projeto.service.RetornaUsuarioModelService;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -20,13 +21,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimativaRepository {//TESTAR MUDANÇA NA TIPAGEM DE OUTROS CUSTOS
-    //CONSIDERAR COLOCAR TODOS OS METODOS DE INSTANTIATE EM UMA SERVICE
+public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimativaRepository {
+    
     private Connection conn;
     private List<Observer> observers;
     private List<ProjetoDeEstimativaModel> projetosDeEstimativaModel;
     
     private RetornaProjetoModelService serviceProjeto;
+    private RetornaUsuarioModelService serviceUsuario;
     
     public ProjetoDeEstimativaRepository(Connection conn) {    
         this.conn = conn;
@@ -34,6 +36,7 @@ public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimat
         projetosDeEstimativaModel = new ArrayList<>();
         
         serviceProjeto = new RetornaProjetoModelService();
+        this.serviceUsuario = RetornaUsuarioModelService.getInstancia();
     }
 
     @Override
@@ -54,7 +57,7 @@ public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimat
             while (rs.next()) {
                 UsuarioModel usuario = usuarioModelMap.get(rs.getInt("user_id"));
                 if (usuario == null) {
-                    usuario = instantiateUsuarioModel(rs);
+                    usuario = serviceUsuario.instantiateUsuarioModel(rs);
                     usuarioModelMap.put(usuario.getId(), usuario);
                 }
                 ProjetoDeEstimativaModel projetoDeEstimativaModel = serviceProjeto.instantiateProjetoDeEstimativaModel(rs, usuario);
@@ -88,7 +91,7 @@ public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimat
             while (rs.next()) {
                 UsuarioModel usuario = usuarioModelMap.get(rs.getInt("user_id"));
                 if (usuario == null) {
-                    usuario = instantiateUsuarioModel(rs);
+                    usuario = serviceUsuario.instantiateUsuarioModel(rs);
                     usuarioModelMap.put(usuario.getId(), usuario);
                 }
                 ProjetoDeEstimativaModel projetoDeEstimativaModel = serviceProjeto.instantiateProjetoDeEstimativaModel(rs, usuario);
@@ -117,10 +120,8 @@ public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimat
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                UsuarioModel usuarioModel = instantiateUsuarioModel(rs);
+                UsuarioModel usuarioModel = serviceUsuario.instantiateUsuarioModel(rs);
                 ProjetoDeEstimativaModel projetoDeEstimativaModel = serviceProjeto.instantiateProjetoDeEstimativaModel(rs, usuarioModel);
-                //projetosDeEstimativaModel.add(projetoDeEstimativaModel);
-                //notifyObservers();//VERIFICAR SEM FUNCIONA SEM
                 return projetoDeEstimativaModel;
             }
         } catch (SQLException e) {
@@ -185,11 +186,6 @@ public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimat
                             "?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setInt(1, projetoDeEstimativaModel.getUsuarioModel().getId());
             ps.setInt(2, projetoDeEstimativaModel.getCompartilhadoValor());
-//            if (projetoDeEstimativaModel.getCompartilhadoPor() == null) {
-//                ps.setNull(3, java.sql.Types.INTEGER); 
-//            } else {
-//                ps.setInt(3, projetoDeEstimativaModel.getCompartilhadoPor());
-//            }
             setIntOrNull(ps, 3, projetoDeEstimativaModel.getCompartilhadoPor());
             ps.setDate(4, projetoDeEstimativaModel.getDataCriacao());
             ps.setString(5, projetoDeEstimativaModel.getNomeProjetoDeEstimativa());
@@ -265,15 +261,8 @@ public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimat
             setDoubleOrNull(ps, 75, projetoDeEstimativaModel.getCustoGarantia());
             setDoubleOrNull(ps, 76, projetoDeEstimativaModel.getFundoDeReserva());
             setDoubleOrNull(ps, 77, projetoDeEstimativaModel.getOutrosCustos());
-            /*ps.setDouble(79, projetoDeEstimativaModel.getSubTotal());*/
             ps.setDouble(78, projetoDeEstimativaModel.getPercentualComImpostos());
-            /*ps.setDouble(81, projetoDeEstimativaModel.getTotalComImposto());*/
             ps.setDouble(79, projetoDeEstimativaModel.getPercentualLucroDesejado());
-            /*ps.setDouble(83, projetoDeEstimativaModel.getLucroCalculado());
-            ps.setInt(84, projetoDeEstimativaModel.getDias());
-            ps.setDouble(85, projetoDeEstimativaModel.getMeses());
-            ps.setDouble(86, projetoDeEstimativaModel.getPrecoFinalCliente());
-            ps.setDouble(87, projetoDeEstimativaModel.getMediaPorMes());*/
 
 
             int rowsAffected = ps.executeUpdate();
@@ -453,11 +442,6 @@ public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimat
         }
     }
 
-    private UsuarioModel instantiateUsuarioModel(ResultSet rs) throws SQLException {
-        UsuarioModel usuarioModel = new UsuarioModel(rs.getInt("user_id"), rs.getString("nome"), rs.getString("senha"), rs.getString("email"),rs.getString("formato_log"));
-        return usuarioModel;
-    }
-
     
     private void setIntOrNull(PreparedStatement ps, int index, Integer value) throws SQLException{
         if (value == null) {
@@ -488,7 +472,6 @@ public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimat
     @Override
     public void notifyObservers() {
         for (Observer observer : observers) {
-            ///observer.update(projetos);
             observer.updateProjetoModel(projetosDeEstimativaModel);
         }
     }

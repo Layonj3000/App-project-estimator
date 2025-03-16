@@ -13,7 +13,9 @@ import br.projeto.model.Subject;
 import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.Observer;
 import br.projeto.repository.abstr.IPerfilFuncionalidadesPersonalizadasRepository;
+import br.projeto.service.RetornaFuncionalidadesPersonalizadasModelService;
 import br.projeto.service.RetornaPerfilModelService;
+import br.projeto.service.RetornaUsuarioModelService;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,6 +35,10 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
     private List<Observer> observers;
     private List<PerfilFuncionalidadesPersonalizadasModel> perfilFuncionalidadesPersonalizadasModelList;
     private RetornaPerfilModelService perfilService;
+    private RetornaUsuarioModelService serviceUsuario;
+    private RetornaFuncionalidadesPersonalizadasModelService funcionalidadesPersonalizadasServicie;
+
+
     
     public PerfilFuncionalidadesPersonalizadasRepository(Connection conn) {
         this.conn = conn;
@@ -40,6 +46,8 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
         perfilFuncionalidadesPersonalizadasModelList = new ArrayList<>(); 
         
         perfilService = new RetornaPerfilModelService();
+        this.serviceUsuario = RetornaUsuarioModelService.getInstancia();
+        this.funcionalidadesPersonalizadasServicie = RetornaFuncionalidadesPersonalizadasModelService.getInstancia();
     }
     
     
@@ -65,14 +73,14 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
                 PerfilProjetoDeEstimativaModel perfilDeEstimativa = perfilProjetoDeEstimativaModelMap.get(rs.getInt("perfil_id"));
                 UsuarioModel usuario = usuarioModelMap.get(rs.getInt("user_id"));
                 if (usuario == null) {
-                    usuario = instantiateUsuarioModel(rs);
+                    usuario = serviceUsuario.instantiateUsuarioModel(rs);
                     usuarioModelMap.put(usuario.getId(), usuario);
                 }                
                 if (perfilDeEstimativa == null) {
                     perfilDeEstimativa = perfilService.instantiatePerfilComResultSet(rs, usuario);
                     perfilProjetoDeEstimativaModelMap.put(perfilDeEstimativa.getId(), perfilDeEstimativa);
                 }
-                PerfilFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadasModel = instantiatePerfilFuncionalidadesPersonalizadasModel(rs, perfilDeEstimativa);
+                PerfilFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadasModel = funcionalidadesPersonalizadasServicie.instantiatePerfilFuncionalidadesPersonalizadasModel(rs, perfilDeEstimativa);
                 perfilFuncionalidadesPersonalizadasModelList.add(projetosFuncionalidadesPersonalizadasModel);
             }
             return perfilFuncionalidadesPersonalizadasModelList;
@@ -99,9 +107,9 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                UsuarioModel usuarioModel = instantiateUsuarioModel(rs);
+                UsuarioModel usuarioModel = serviceUsuario.instantiateUsuarioModel(rs);
                 PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = perfilService.instantiatePerfilComResultSet(rs, usuarioModel);
-                PerfilFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadasModel = instantiatePerfilFuncionalidadesPersonalizadasModel(rs, perfilProjetoDeEstimativaModel);
+                PerfilFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadasModel = funcionalidadesPersonalizadasServicie.instantiatePerfilFuncionalidadesPersonalizadasModel(rs, perfilProjetoDeEstimativaModel);
                 return projetosFuncionalidadesPersonalizadasModel;
             }
         } catch (SQLException e) {
@@ -138,14 +146,14 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
                 PerfilProjetoDeEstimativaModel perfilDeEstimativa = perfilProjetoDeEstimativaModelMap.get(rs.getInt("perfil_id"));
                 UsuarioModel usuario = usuarioModelMap.get(rs.getInt("user_id"));
                 if (usuario == null) {
-                    usuario = instantiateUsuarioModel(rs);
+                    usuario = serviceUsuario.instantiateUsuarioModel(rs);
                     usuarioModelMap.put(usuario.getId(), usuario);
                 }                
                 if (perfilDeEstimativa == null) {
                     perfilDeEstimativa = perfilService.instantiatePerfilComResultSet(rs, usuario);
                     perfilProjetoDeEstimativaModelMap.put(perfilDeEstimativa.getId(), perfilDeEstimativa);
                 }
-                PerfilFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadasModel = instantiatePerfilFuncionalidadesPersonalizadasModel(rs, perfilDeEstimativa);
+                PerfilFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadasModel = funcionalidadesPersonalizadasServicie.instantiatePerfilFuncionalidadesPersonalizadasModel(rs, perfilDeEstimativa);
                 perfilFuncionalidadesPersonalizadasModelList.add(projetosFuncionalidadesPersonalizadasModel);
             }
             return perfilFuncionalidadesPersonalizadasModelList;
@@ -283,19 +291,7 @@ public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, I
         }    
     }
     
-    private PerfilFuncionalidadesPersonalizadasModel instantiatePerfilFuncionalidadesPersonalizadasModel(ResultSet rs, PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel) throws SQLException {
-        PerfilFuncionalidadesPersonalizadasModel projetosFuncionalidadesPersonalizadasModel = new PerfilFuncionalidadesPersonalizadasModel();
-        projetosFuncionalidadesPersonalizadasModel.setId(rs.getInt("id"));
-        projetosFuncionalidadesPersonalizadasModel.setNome(rs.getString("nome"));
-        projetosFuncionalidadesPersonalizadasModel.setValor(rs.getInt("valor"));
-        projetosFuncionalidadesPersonalizadasModel.setPerfilProjetoDeEstimativaModel(perfilProjetoDeEstimativaModel);
-        
-        return projetosFuncionalidadesPersonalizadasModel;
-    }
 
-    private UsuarioModel instantiateUsuarioModel(ResultSet rs) throws SQLException {
-        UsuarioModel usuarioModel = new UsuarioModel(rs.getInt("user_id"), rs.getString("nome"), rs.getString("senha"), rs.getString("email"), rs.getString("formato_log"));
-        return usuarioModel;    }
 
     @Override
     public void addObserver(Observer observer) {

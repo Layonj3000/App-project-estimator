@@ -6,6 +6,7 @@ import br.projeto.db.DbException;
 import br.projeto.model.Subject;
 import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.Observer;
+import br.projeto.service.RetornaUsuarioModelService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,12 +21,16 @@ public class UsuarioRepository implements Subject, IUsuarioRepository {
     
     private UsuarioModel usuarioModel;
     private List<Observer> observers;
+    
+    private RetornaUsuarioModelService serviceUsuario;
 
     public UsuarioRepository(Connection conn){
         this.conn = conn;
         
         this.usuarioModel = new UsuarioModel();
         this.observers = new ArrayList<>();
+        
+        this.serviceUsuario = RetornaUsuarioModelService.getInstancia();
     }
     
     @Override
@@ -37,7 +42,7 @@ public class UsuarioRepository implements Subject, IUsuarioRepository {
             st = conn.createStatement();
             rs = st.executeQuery("SELECT * FROM usuario");
             while(rs.next()){
-                UsuarioModel usuario = instantiateUsuarioModel(rs);
+                UsuarioModel usuario = serviceUsuario.instantiateUsuarioModel(rs);
                 usuarioList.add(usuario);
             }
             return usuarioList;
@@ -61,7 +66,7 @@ public class UsuarioRepository implements Subject, IUsuarioRepository {
             rs = ps.executeQuery();
 
             if(rs.next()){
-                UsuarioModel usuarioModel = instantiateUsuarioModel(rs);
+                UsuarioModel usuarioModel = serviceUsuario.instantiateUsuarioModel(rs);
                 return usuarioModel;
             }
         }catch(SQLException e){
@@ -85,7 +90,7 @@ public class UsuarioRepository implements Subject, IUsuarioRepository {
             rs = ps.executeQuery();
             
             if(rs.next()){     
-                UsuarioModel usuarioModel = instantiateUsuarioModel(rs);
+                UsuarioModel usuarioModel = serviceUsuario.instantiateUsuarioModel(rs);
                 return usuarioModel;
             }
         }catch(SQLException e){
@@ -106,7 +111,7 @@ public class UsuarioRepository implements Subject, IUsuarioRepository {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                return instantiateUsuarioModel(rs);
+                return serviceUsuario.instantiateUsuarioModel(rs);
             }
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
@@ -193,10 +198,6 @@ public class UsuarioRepository implements Subject, IUsuarioRepository {
         }
     }
 
-    private UsuarioModel instantiateUsuarioModel(ResultSet rs) throws SQLException {
-        UsuarioModel usuarioModel = new UsuarioModel(rs.getInt("id"), rs.getString("nome"), rs.getString("senha"), rs.getString("email"), rs.getString("formato_log"));
-        return usuarioModel;
-    }
 
     @Override
     public void addObserver(Observer observer) {
