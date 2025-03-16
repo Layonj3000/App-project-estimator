@@ -23,10 +23,10 @@ import javax.swing.JTable;
  */
 public class EscolhaPerfilPresenter {
         
-    private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
-    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 
-    private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
-    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
+    private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
+    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository; 
+    private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;
+    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;
     private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
     private final UsuarioModel usuarioModel;
     

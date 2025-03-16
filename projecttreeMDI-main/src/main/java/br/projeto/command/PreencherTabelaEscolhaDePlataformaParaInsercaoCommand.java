@@ -38,8 +38,6 @@ public class PreencherTabelaEscolhaDePlataformaParaInsercaoCommand implements Co
         };
         
         //O PROXIMO PASSO É PERCORRER OS PERFIL E ADICIONÁ-LOS AO JTABLE DE ESCOLHA DE PLATAFORMAS
-        //POSSIVELMENTE DEPOIS IRA MUDAR PARA UM FindByUser COMO EM OUTROS CONTEXTOS DA APLICAÇÃO
-        
         List<PerfilProjetoDeEstimativaModel> perfilList = escolhaPerfilPresenter.getPerfilProjetoDeEstimativaRepository().findByUser(escolhaPerfilPresenter.getUsuarioModel());
                 
         for(PerfilProjetoDeEstimativaModel perfil: perfilList){

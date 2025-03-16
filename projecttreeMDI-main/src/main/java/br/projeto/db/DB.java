@@ -1,6 +1,5 @@
 package br.projeto.db;
 
-import br.projeto.command.MostrarMensagemCommand;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -11,7 +10,6 @@ public class DB {
     private static Connection conn = null;
 
     public static Connection getConnection(){
-        //String url = "jdbc:sqlite:projetos_de_estimativas.db";
         String dbPath = "src/main/resources/projetos_de_estimativas.db"; 
         String url = "jdbc:sqlite:" + dbPath;
         if (conn == null) {

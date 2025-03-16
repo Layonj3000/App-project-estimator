@@ -4,7 +4,6 @@
  */
 package br.projeto.repository;
 
-import br.projeto.command.MostrarMensagemCommand;
 import br.projeto.db.DB;
 import br.projeto.db.DbException;
 import br.projeto.model.PerfilFuncionalidadesPersonalizadasModel;

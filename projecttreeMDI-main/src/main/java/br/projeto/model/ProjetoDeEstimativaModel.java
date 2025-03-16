@@ -6,7 +6,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ProjetoDeEstimativaModel {
-    //VERIFICAR ALGUMAS MUDANÇAS DE TIPO DEPOIS!!!!!!!!!!!
 
     private Integer id;
     private UsuarioModel usuarioModel;
@@ -86,15 +85,8 @@ public class ProjetoDeEstimativaModel {
     private Double custoGarantia;
     private Double fundoDeReserva;
     private Double outrosCustos;
-    /*private Double subTotal;*/
     private Double percentualComImpostos;
-    /*private Double totalComImposto;*/
     private Double percentualLucroDesejado;
-    /*private Double lucroCalculado;
-    private Integer dias;
-    private Double meses;
-    private Double precoFinalCliente;
-    private Double mediaPorMes;*/
     private final Map<String, SimNao> funcionalidadesDisponiveis;
 
     public ProjetoDeEstimativaModel(){
@@ -179,15 +171,8 @@ public class ProjetoDeEstimativaModel {
         this.custoGarantia = custoGarantia;
         this.fundoDeReserva = fundoDeReserva;
         this.outrosCustos = outrosCustos;
-        /*this.subTotal = subTotal;*/
         this.percentualComImpostos = percentualComImpostos;
-        /*this.totalComImposto = totalComImposto;*/
         this.percentualLucroDesejado = percentualLucroDesejado;
-        /*this.lucroCalculado = lucroCalculado;
-        this.dias = dias;
-        this.meses = meses;
-        this.precoFinalCliente = precoFinalCliente;
-        this.mediaPorMes = mediaPorMes;*/
         funcionalidadesDisponiveis = new LinkedHashMap<>();
     }
 
@@ -826,14 +811,6 @@ public class ProjetoDeEstimativaModel {
         this.outrosCustos = outrosCustos;
     }
 
-    /*public Double getSubTotal() {
-        return subTotal;
-    }
-
-    public void setSubTotal(Double subTotal) {
-        this.subTotal = subTotal;
-    }*/
-
     public Double getPercentualComImpostos() {
         return percentualComImpostos;
     }
@@ -842,14 +819,6 @@ public class ProjetoDeEstimativaModel {
         this.percentualComImpostos = percentualComImpostos;
     }
 
-    /*public Double getTotalComImposto() {
-        return totalComImposto;
-    }
-
-    public void setTotalComImposto(Double totalComImposto) {
-        this.totalComImposto = totalComImposto;
-    }*/
-
     public Double getPercentualLucroDesejado() {
         return percentualLucroDesejado;
     }
@@ -857,46 +826,6 @@ public class ProjetoDeEstimativaModel {
     public void setPercentualLucroDesejado(Double percentualLucroDesejado) {
         this.percentualLucroDesejado = percentualLucroDesejado;
     }
-
-    /*public Double getLucroCalculado() {
-        return lucroCalculado;
-    }
-
-    public void setLucroCalculado(Double lucroCalculado) {
-        this.lucroCalculado = lucroCalculado;
-    }
-
-    public Integer getDias() {
-        return dias;
-    }
-
-    public void setDias(Integer dias) {
-        this.dias = dias;
-    }
-
-    public Double getMeses() {
-        return meses;
-    }
-
-    public void setMeses(Double meses) {
-        this.meses = meses;
-    }
-
-    public Double getPrecoFinalCliente() {
-        return precoFinalCliente;
-    }
-
-    public void setPrecoFinalCliente(Double precoFinalCliente) {
-        this.precoFinalCliente = precoFinalCliente;
-    }
-
-    public Double getMediaPorMes() {
-        return mediaPorMes;
-    }
-
-    public void setMediaPorMes(Double mediaPorMes) {
-        this.mediaPorMes = mediaPorMes;
-    }*/
 
 public Map<String, SimNao> getFuncionalidadesDisponiveis() {
     funcionalidadesDisponiveis.put("Compartilhado", compartilhado);

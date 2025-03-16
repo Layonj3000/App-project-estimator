@@ -42,7 +42,7 @@ public class TotalizadoresProjetoService {
             Object valorCelula = modeloTabela.getValueAt(i, colunaDias);
 
             if (valorCelula != null) {
-                String valorTexto = valorCelula.toString();//.replaceAll("[^0-9]", "");
+                String valorTexto = valorCelula.toString();
 
                 if (!valorTexto.isEmpty()) {
                 totalDias += Integer.parseInt(valorTexto);

@@ -43,12 +43,9 @@ public class InclusaoEscolhaFuncionalidadesPerfilState extends AEscolhaFuncional
             new MostrarMensagemCommand("Preencha o conteúdo da linha adicionada: " + e.getMessage()).execute();
         } catch (Exception e) { 
             new MostrarMensagemCommand("Ocorreu um erro inesperado: " + e.getMessage()).execute();
-        }  
-        //escolhaFuncionalidadesPerfilPresenter.getView().dispose();        
+        }        
     }
     
-    
-        //VERIFICAR DEMETER
     private void configuraTela() {
         escolhaFuncionalidadesPerfilPresenter.getView().setVisible(false);
         escolhaFuncionalidadesPerfilPresenter.getBtnConfirmar().addActionListener(new ActionListener(){

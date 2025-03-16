@@ -61,7 +61,7 @@ public class CompartilharCommand implements Command{
         projeto.setCompartilhado(1); 
         projeto.setCompartilhadoPor(usuarioModel.getId());
         projeto.setUsuarioModel(usuarioRepository.findByEmail(compartilharPresenter.getEmail()));
-        projeto.setId(null);  // Definindo o ID como nulo para criar um novo projeto
+        projeto.setId(null);  
         projetoDeEstimativaRepository.insert(projeto);
 
         for (PerfilProjetoDeEstimativaModel perfil : perfis) {   

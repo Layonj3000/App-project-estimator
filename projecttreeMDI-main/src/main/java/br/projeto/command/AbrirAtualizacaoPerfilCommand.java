@@ -14,8 +14,8 @@ import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
  * @author David Potentini
  */
 public class AbrirAtualizacaoPerfilCommand implements Command{
-    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 
-    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
+    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;
+    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;
     private final UsuarioModel usuarioModel;
     
     private Integer idPerfil;

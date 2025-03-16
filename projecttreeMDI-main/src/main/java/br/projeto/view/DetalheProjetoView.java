@@ -32,12 +32,11 @@ public class DetalheProjetoView extends JInternalFrame {
         lblCriador = new JLabel("Criador: ");
         lblData = new JLabel("Data de Criação: ");
         lblTipoProjeto = new JLabel("Tipo de Projeto: ");
-        /*ADICIONADOS*/
         lblCompartilhadoPor = new JLabel("Compartilhado Por: ");
         lblPercentualLucro = new JLabel("Percentual Lucro: ");
         lblPercentualImposto = new JLabel("Percentual Imposto: ");
         lblGastoDevDiario = new JLabel("Valor p/ dia trabalho total: ");
-        /*ADICIONADOS*/
+        
         painelCabecalho.add(lblNome);
         painelCabecalho.add(lblData);
         painelCabecalho.add(lblPercentualLucro);
@@ -125,8 +124,7 @@ public class DetalheProjetoView extends JInternalFrame {
         painelValores.add(painelValorTotal);
         /*Adicionando os paineis de rodapé ao painelValores*/
         
-        //painelTabela.add(painelValorTotal, BorderLayout.SOUTH);//ANTES
-        painelTabela.add(painelValores, BorderLayout.SOUTH);//NOVO
+        painelTabela.add(painelValores, BorderLayout.SOUTH);
         painelPrincipal.add(painelTabela, BorderLayout.CENTER);
     }
 

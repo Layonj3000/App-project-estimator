@@ -13,8 +13,6 @@ import br.projeto.model.UsuarioModel;
  */
 public abstract class PerfilBuilder {
     protected PerfilProjetoDeEstimativaModel perfilModel;
-//    protected String nome;
-//    protected UsuarioModel usuarioModel;
     
     public PerfilBuilder(UsuarioModel usuarioModel){
         this.perfilModel = new PerfilProjetoDeEstimativaModel();

@@ -8,21 +8,17 @@ import java.util.List;
 
 public class FecharJanelasProjetoRelacionadasCommand implements WindowCommand {
     private final JDesktopPane desktop;
-    // final List<Projeto> listaProjetos;//ANTIGO
-    private final List<ProjetoDeEstimativaModel> listaProjetoDeEstimativaModel;//NOVO
+    private final List<ProjetoDeEstimativaModel> listaProjetoDeEstimativaModel;
 
-    public FecharJanelasProjetoRelacionadasCommand(JDesktopPane desktop, List<ProjetoDeEstimativaModel> listaProjetoDeEstimativaModel /*List<Projeto> listaProjetos*//*ANTIGO*/) {
+    public FecharJanelasProjetoRelacionadasCommand(JDesktopPane desktop, List<ProjetoDeEstimativaModel> listaProjetoDeEstimativaModel) {
         this.desktop = desktop;
-        //this.listaProjetos = listaProjetos;//ANTIGO
         this.listaProjetoDeEstimativaModel = listaProjetoDeEstimativaModel;
     }
 
     @Override
     public void execute() {
         List<String> nomesProjetos = new ArrayList<>();
-        //for (Projeto projeto : listaProjetos) {//ANTIGO
         for (ProjetoDeEstimativaModel projetoDeEstimativaModel:listaProjetoDeEstimativaModel){
-            //nomesProjetos.add(projeto.getNome());//ANTIGO
             nomesProjetos.add(projetoDeEstimativaModel.getNomeProjetoDeEstimativa());
         }
 

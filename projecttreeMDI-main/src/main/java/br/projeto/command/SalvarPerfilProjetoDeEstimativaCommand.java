@@ -11,10 +11,8 @@ import br.projeto.presenter.EscolhaFuncionalidadesPerfilPresenter;
 import br.projeto.service.RetornaPerfilModelService;
 import br.projeto.service.AuxiliarTelaPerfilService;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**

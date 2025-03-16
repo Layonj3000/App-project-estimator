@@ -12,7 +12,6 @@ import br.projeto.service.RetornaPerfilModelService;
 import br.projeto.service.RetornaUsuarioModelService;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -483,7 +482,6 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
     @Override
     public void notifyObservers() {
         for (Observer observer : observers) {
-            //observer.update(projetos);
             observer.updatePerfilModel(perfisProjetoDeEstimativaModel);
         }
     }

@@ -50,8 +50,6 @@ public class AtualizacaoEscolhaFuncionalidadesPerfilState extends AEscolhaFuncio
     }
     
     
-    
-        //VERIFICAR DEMETER
     private void configuraTela() {
         escolhaFuncionalidadesPerfilPresenter.getView().setVisible(false);
         escolhaFuncionalidadesPerfilPresenter.getBtnConfirmar().addActionListener(new ActionListener(){

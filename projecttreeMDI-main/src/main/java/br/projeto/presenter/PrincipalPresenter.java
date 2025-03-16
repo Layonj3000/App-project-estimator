@@ -25,10 +25,10 @@ import java.util.*;
 
 public final class PrincipalPresenter extends Observer {
     private final PrincipalView view;
-    private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
-    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 
-    private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
-    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
+    private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
+    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository; 
+    private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;
+    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;
     private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
     private final UsuarioModel usuarioModel;
     private final ConstrutorDeArvoreNavegacaoService construtorDeArvoreNavegacaoService;
@@ -155,7 +155,7 @@ public final class PrincipalPresenter extends Observer {
                 }
             };
             cmdDetalhes.setProjetoId(projeto.getId());
-            cmdDetalhes.setProjetoNome(projeto.getNomeProjetoDeEstimativa());//VERIFICAR POSSIBLIDADE DE EXCLUSAO DA LINHA
+            cmdDetalhes.setProjetoNome(projeto.getNomeProjetoDeEstimativa());
             NoArvoreComposite noProjeto = construtorDeArvoreNavegacaoService.criarNo(projeto.getNomeProjetoDeEstimativa(), "projeto", cmdDetalhes);
 
             adicionarMenuContextual(projeto, noProjeto);
@@ -194,7 +194,7 @@ public final class PrincipalPresenter extends Observer {
                 }
             };
             cmdDetalhes.setPerfilId(perfil.getId());
-            cmdDetalhes.setPerfilNome(perfil.getNomePerfil());//VERIFICAR POSSIBLIDADE DE EXCLUSAO DA LINHA
+            cmdDetalhes.setPerfilNome(perfil.getNomePerfil());
             NoArvoreComposite noPerfil = construtorDeArvoreNavegacaoService.criarNo(perfil.getNomePerfil(), "perfil", cmdDetalhes);
 
             adicionarMenuContextual(perfil, noPerfil);
@@ -213,7 +213,7 @@ public final class PrincipalPresenter extends Observer {
     }
         
         //PROJETO DE ESTIMATIVA
-        private void adicionarMenuContextual(ProjetoDeEstimativaModel projeto, NoArvoreComposite noProjeto) {//NOVO
+        private void adicionarMenuContextual(ProjetoDeEstimativaModel projeto, NoArvoreComposite noProjeto) {
             FileLogger fileLogger = new FileLogger();
             LogNotifier logNotifier = new LogNotifier();
             logNotifier.add(fileLogger);
@@ -234,7 +234,7 @@ public final class PrincipalPresenter extends Observer {
       }
         
       //PERFIL DE ESTIMATIVA
-        private void adicionarMenuContextual(PerfilProjetoDeEstimativaModel perfil, NoArvoreComposite noPerfil) {//NOVO
+        private void adicionarMenuContextual(PerfilProjetoDeEstimativaModel perfil, NoArvoreComposite noPerfil) {
         noPerfil.setMenuContextual(() -> {
             JPopupMenu menu = new JPopupMenu();
             JMenuItem excluirPerfilItem = new JMenuItem("Excluir Perfil");

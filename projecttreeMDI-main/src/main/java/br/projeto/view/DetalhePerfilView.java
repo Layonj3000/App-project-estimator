@@ -14,8 +14,8 @@ import java.sql.Date;
  * @author David Potentini
  */
 public class DetalhePerfilView extends JInternalFrame {
-    private JLabel lblNome, lblCriador, lblData;//PADRAO
-    private JLabel lblTaxaDesign, lblTaxaDesenvolvimento, lblTaxaGerenciaProjeto;//ADICIONADOS
+    private JLabel lblNome, lblCriador, lblData;
+    private JLabel lblTaxaDesign, lblTaxaDesenvolvimento, lblTaxaGerenciaProjeto;
     private JTable tabelaDetalhes;
     private DefaultTableModel modeloTabela;
 

@@ -37,7 +37,6 @@ public class InclusaoEscolhaPerfilState extends AEscolhaPerfilState{
         projetoPresenter.setEstadoInicial();
     }
 
-    //VERIFICAR DEMETER
     private void configuraTela() {
         escolhaPerfilPresenter.getView().setVisible(false);
         

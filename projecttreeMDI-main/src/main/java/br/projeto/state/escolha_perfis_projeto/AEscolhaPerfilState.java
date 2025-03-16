@@ -4,8 +4,8 @@
  */
 package br.projeto.state.escolha_perfis_projeto;
 
+import br.projeto.command.MostrarMensagemCommand;
 import br.projeto.presenter.EscolhaPerfilPresenter;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,7 +19,7 @@ public class AEscolhaPerfilState {
     }
     
     public void confirmar(){
-        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR A OPERAÇÃO NESSE ESTADO");
+        new MostrarMensagemCommand("NÃO É POSSIVEL REALIZAR A OPERAÇÃO NESSE ESTADO").execute();
         throw new RuntimeException();
     }
     

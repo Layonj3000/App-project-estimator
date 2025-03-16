@@ -4,7 +4,6 @@
  */
 package br.projeto.perfil_builder;
 
-import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.UsuarioModel;
 import java.sql.Date;
 
@@ -44,14 +43,12 @@ public class BackEndBuilder extends PerfilBuilder{
         perfilModel.setPainel(5);
         perfilModel.setFeedDeAtividades(4);
         perfilModel.setUploadDeArquivos(4);
-        //perfilModel.setUploadDeMidia(null);//verificar se mostra ou nao
         perfilModel.setPerfisDeUsuario(2);
         perfilModel.setEmailsTransacionais(2);
         perfilModel.setTags(2);
         perfilModel.setAvaliacoesOuComentarios(5);
         perfilModel.setProcessamentoAudioVideo(5);
         perfilModel.setPesquisaTextoLivre(5);
-        //perfilModel.setPesquisa(null);//verificar se mostra ou nao
         perfilModel.setCalendario(7);
         perfilModel.setExibicaoDadosMapaGeolocalizacao(3);
         perfilModel.setExibicaoMarcadoresRegioesMapaPersonalizados(3);
@@ -60,20 +57,17 @@ public class BackEndBuilder extends PerfilBuilder{
         perfilModel.setForunsOuComentarios(5);
         perfilModel.setCompartilhamentoSocial(2);
         perfilModel.setIntegracaoFacebookOpenGraph(5);
-//        perfilModel.setNotificacaoPush(null);//verificar se mostra ou nao
         perfilModel.setPlanosDeAssinatura(8);
         perfilModel.setProcessamentoDePagamento(5);
         perfilModel.setCarrinhoDeCompras(8);
         perfilModel.setMarketplaceDeUsuarios(12);
         perfilModel.setGerenciamentoDeProdutos(4);
-//        perfilModel.setComprasDentroDoAplicativo(null);//verificar se mostra ou nao
-//        perfilModel.setColetaInformacaoPagamento(null);
         perfilModel.setIntegracaoCms(7);
         perfilModel.setPaginasAdministracaoUsuarios(3);
         perfilModel.setModeracaoAprovacaoConteudo(4);
         perfilModel.setIntercom(3);
         perfilModel.setAnalisesUso(3);
-        perfilModel.setRelatoriosErro(0);//verificar pois mostra o valor mesmo que seja 0
+        perfilModel.setRelatoriosErro(0);
         perfilModel.setMonitoramentoPerformance(1);
         perfilModel.setSuporteMultilingue(4);
         perfilModel.setConectarServicosDeTerceiros(6);
@@ -83,19 +77,12 @@ public class BackEndBuilder extends PerfilBuilder{
         perfilModel.setSegurancaBaseadaCertificadoSsl(3);
         perfilModel.setProtecaoContraDos(5);
         perfilModel.setAutenticacaoDuasEtapas(5);
-        perfilModel.setDesenvolvimentoEspecificoApp(0);//verificar pois mostra o valor mesmo que seja 0
-//        perfilModel.setDesignIconeApp(null);
-//        perfilModel.setSincronizacaoNuvem(null);
-//        perfilModel.setDadosSensoresDispositivo(null);
-//        perfilModel.setCodigoBarraQrCode(null);
-//        perfilModel.setDadosSaude(null);
-//        perfilModel.setAppleWatch(null);
+        perfilModel.setDesenvolvimentoEspecificoApp(0);
         perfilModel.setGerenteDeProjetos(10);
     }
 
     @Override
     public void setTaxas() {
-        //perfilModel.setTaxaDiariaDesign(null);
         perfilModel.setTaxaDiariaGerenciaProjeto(300.00);
         perfilModel.setTaxaDiariaDesenvolvimento(450.00);
     }

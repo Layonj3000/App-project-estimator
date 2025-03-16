@@ -184,7 +184,6 @@ public class UsuarioRepository implements Subject, IUsuarioRepository {
     
     @Override
     public void deleteById(Integer id) {
-    //FICAR ATENTO NO COMPORTAMENTO DAS DEMAIS TABELAS COM LIGAÇÃO COM USUARIO AO REALIZAR O DELETE
         PreparedStatement ps = null;
         try{
             ps = conn.prepareStatement("DELETE FROM usuario WHERE id=?");

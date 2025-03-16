@@ -79,11 +79,9 @@ public class PerfilProjetoDeEstimativaModel {
     private double taxaDiariaDesenvolvimento;
     private Date dataCriacao;
     private final Map<String, Integer> funcionalidadesDisponiveis;
-    //private final Map<String, String> relacaoBancoNomeReal;
 
     public PerfilProjetoDeEstimativaModel(){
             this.funcionalidadesDisponiveis = new LinkedHashMap<>();
-            //this.relacaoBancoNomeReal = new HashMap<>();
     }
     public PerfilProjetoDeEstimativaModel(Integer id, UsuarioModel usuarioModel, String nomePerfil, Integer pequeno, Integer medio, Integer grande, Integer mvp, Integer basico, Integer profissional, Integer cadastroPorEmailSenha, Integer cadastroPorFacebook, Integer cadastroPorTwitter, Integer cadastroPorGoogle, Integer cadastroPorLinkedin, Integer cadastroPorGithub, Integer cadastroPorConviteUsuario, Integer cadastroPorContasMultitenant, Integer cadastroPorSubdominios, Integer cadastroPorDominiosPersonalizados, Integer painel, Integer feedDeAtividades, Integer uploadDeArquivos, Integer uploadDeMidia, Integer perfisDeUsuario, Integer emailsTransacionais, Integer tags, Integer avaliacoesOuComentarios, Integer processamentoAudioVideo, Integer pesquisaTextoLivre, Integer pesquisa, Integer calendario, Integer exibicaoDadosMapaGeolocalizacao, Integer exibicaoMarcadoresRegioesMapaPersonalizados, Integer reservas, Integer mensagens, Integer forunsOuComentarios, Integer compartilhamentoSocial, Integer IntegeregracaoFacebookOpenGraph, Integer notificacaoPush, Integer planosDeAssinatura, Integer processamentoDePagamento, Integer carrinhoDeCompras, Integer marketplaceDeUsuarios, Integer gerenciamentoDeProdutos, Integer comprasDentroDoAplicativo, Integer coletaInformacaoPagamento, Integer IntegeregracaoCms, Integer paginasAdministracaoUsuarios, Integer moderacaoAprovacaoConteudo, Integer Integerercom, Integer analisesUso, Integer relatoriosErro, Integer monitoramentoPerformance, Integer suporteMultilingue, Integer conectarServicosDeTerceiros, Integer apiParaTerceiros, Integer envioSms, Integer mascaramentoNumeroTelefone, Integer segurancaBaseadaCertificadoSsl, Integer protecaoContraDos, Integer autenticacaoDuasEtapas, Integer desenvolvimentoEspecificoApp, Integer designIconeApp, Integer sincronizacaoNuvem, Integer dadosSensoresDispositivo, Integer codigoBarraQrCode, Integer dadosSaude, Integer appleWatch, Integer gerenteDeProjetos, double taxaDiariaDesign, double taxaDiariaGerenciaProjeto, double taxaDiariaDesenvolvimento, Date dataCriacao) {
         this.id = id;
@@ -160,7 +158,6 @@ public class PerfilProjetoDeEstimativaModel {
         this.taxaDiariaDesenvolvimento = taxaDiariaDesenvolvimento;
         this.dataCriacao = dataCriacao;
         this.funcionalidadesDisponiveis = new LinkedHashMap<>();
-        //this.relacaoBancoNomeReal = new HashMap<>();
     }
 
     public Integer getId() {

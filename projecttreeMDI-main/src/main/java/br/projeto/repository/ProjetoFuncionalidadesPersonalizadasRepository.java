@@ -16,7 +16,6 @@ import br.projeto.service.RetornaFuncionalidadesPersonalizadasModelService;
 import br.projeto.service.RetornaProjetoModelService;
 import br.projeto.service.RetornaUsuarioModelService;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -185,7 +184,7 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
                     projetosFuncionalidadesPersonalizadasModel.setId(rs.getInt(1));
                     projetosFuncionalidadesPersonalizadasModelList.add(projetosFuncionalidadesPersonalizadasModel);
                     notifyObservers();
-                    //return rs.getInt(1);
+                    
                 } else {
                     throw new DbException("Unexpected error! No rows affected!");
                 }
@@ -196,7 +195,6 @@ public class ProjetoFuncionalidadesPersonalizadasRepository implements Subject, 
             DB.closeStatement(ps);
             DB.closeResultSet(rs);
         }
-        //return null;
     }
 
     @Override

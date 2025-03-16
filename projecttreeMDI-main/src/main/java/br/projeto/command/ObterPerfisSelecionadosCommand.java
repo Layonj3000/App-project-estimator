@@ -30,12 +30,10 @@ public class ObterPerfisSelecionadosCommand implements Command{
         int qtdLinhas = tabela.getRowCount();
         
         for(int i = 0; i < qtdLinhas; i++){
-            //for(int j = 0; j < qtdColunas; j++){
                 if(tabela.getValueAt(i, 0).equals(true)){
                     Integer idPerfil = (Integer)tabela.getValueAt(i, 2);
                     idPerfisSelecionados.add(idPerfil);
                 }
-            //}
         } 
     }
     

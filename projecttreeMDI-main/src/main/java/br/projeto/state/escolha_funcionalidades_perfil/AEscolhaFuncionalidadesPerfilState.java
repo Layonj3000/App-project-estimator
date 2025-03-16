@@ -4,8 +4,8 @@
  */
 package br.projeto.state.escolha_funcionalidades_perfil;
 
+import br.projeto.command.MostrarMensagemCommand;
 import br.projeto.presenter.EscolhaFuncionalidadesPerfilPresenter;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,11 +16,10 @@ public abstract class AEscolhaFuncionalidadesPerfilState {
 
     public AEscolhaFuncionalidadesPerfilState(EscolhaFuncionalidadesPerfilPresenter escolhaFuncionalidadesPerfilPresenter) {
         this.escolhaFuncionalidadesPerfilPresenter = escolhaFuncionalidadesPerfilPresenter;
-        //CRIAR UM METODO REMOVE LISTENERS E ADICIONAR A CHAMADA AQUI
     }
 
     public void salvar(){
-        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR A OPERAÇÃO NESSE ESTADO");//IDENTIFICAR O NOME DO ESTADO
+        new MostrarMensagemCommand("NÃO É POSSIVEL REALIZAR A OPERAÇÃO NESSE ESTADO").execute();
         throw new RuntimeException();
     }
     

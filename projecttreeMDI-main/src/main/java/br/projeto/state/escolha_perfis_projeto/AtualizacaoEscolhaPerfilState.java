@@ -4,10 +4,8 @@
  */
 package br.projeto.state.escolha_perfis_projeto;
 
-import br.projeto.command.MostrarMensagemCommand;
 import br.projeto.command.ObterPerfisSelecionadosCommand;
 import br.projeto.command.PreencherTabelaEscolhaDePlataformaParaUpdateCommand;
-import br.projeto.db.DbException;
 import br.projeto.presenter.EscolhaFuncionalidadesProjetoPresenter;
 import br.projeto.presenter.EscolhaPerfilPresenter;
 import java.awt.event.ActionEvent;
@@ -44,7 +42,6 @@ public class AtualizacaoEscolhaPerfilState extends AEscolhaPerfilState{
     }
     
 
-    //VERIFICAR DEMETER
     private void configuraTela() {
         escolhaPerfilPresenter.getView().setVisible(false);
         

@@ -27,7 +27,6 @@ public class AbrirTelaInicialAplicacao implements Command {
             
             try {
                 telaInicialAplicacaoView.setMaximum(true);
-                /*dashboardView.setMaximum(true);*/
             } catch (Exception ignored) {
             }
         }

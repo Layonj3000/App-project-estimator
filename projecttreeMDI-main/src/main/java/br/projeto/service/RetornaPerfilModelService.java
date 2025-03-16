@@ -21,17 +21,13 @@ import java.util.Map;
 public class RetornaPerfilModelService {
     private Map<String, Integer> mapPerfil;
     private PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel;
-    //private PerfilFuncionalidadesPersonalizadasModel perfilFuncionalidadesPersonalizadasModel;
     
     
-    //Contrutor para instanciar perfil com base em um map(precisa das variaveis como globais pois o metodo de funcionalidades personalizadas tambem faz uso)
     public RetornaPerfilModelService(Map<String, Integer> mapPerfil) {
         this.mapPerfil = mapPerfil;
         perfilProjetoDeEstimativaModel = new PerfilProjetoDeEstimativaModel();
-        //perfilFuncionalidadesPersonalizadasModel = new PerfilFuncionalidadesPersonalizadasModel();
     }
-    
-    //Construtor para instanciar perfil com base em um resutSet
+
     public RetornaPerfilModelService(){}
     
     public PerfilProjetoDeEstimativaModel instantiatePerfilComMap(){

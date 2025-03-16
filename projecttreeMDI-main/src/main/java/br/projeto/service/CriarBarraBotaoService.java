@@ -18,7 +18,7 @@ public class CriarBarraBotaoService {
 
         adicionarBotao(toolBar, "Dashboard", "principal", "Principal");
         adicionarBotao(toolBar, "Novo Projeto", "projeto", "Novo projeto");
-        adicionarBotao(toolBar, "Novo Perfil", "perfil", "Novo perfil");//mudar ícone
+        adicionarBotao(toolBar, "Novo Perfil", "perfil", "Novo perfil");
         adicionarBotao(toolBar, "Usuário", "usuario", "Usuário");
 
         return toolBar;

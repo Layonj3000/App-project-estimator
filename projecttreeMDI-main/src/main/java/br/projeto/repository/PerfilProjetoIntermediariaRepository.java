@@ -148,7 +148,7 @@ public class PerfilProjetoIntermediariaRepository implements IPerfilProjetoInter
     }
 
     @Override
-    public void deleteById(Integer idProjeto, Integer idPerfil) {//O proposito é excluir linhas individuais quando necessario. Caso algum registro seja excluido nas tabelas de projeto e perfil de projeto, todos os registro relacionados nesse tabela intermediaria serão excluidos automaticamente
+    public void deleteById(Integer idProjeto, Integer idPerfil) {
         PreparedStatement ps = null;
 
         try {

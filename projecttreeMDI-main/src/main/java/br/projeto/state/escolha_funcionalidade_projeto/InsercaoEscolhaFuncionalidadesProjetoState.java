@@ -43,12 +43,9 @@ public class InsercaoEscolhaFuncionalidadesProjetoState  extends AEscolhaFuncion
         } catch (Exception e) { 
             new MostrarMensagemCommand("Ocorreu um erro inesperado: " + e.getMessage()).execute();
         } 
-        //CODIGO PARA APARECER MENSAGEM DE SALVO COM SUCESSO
-        //projetoDeEstimativaPresenter.getView().getFrame().dispose();
     }
     
 
-    //VERIFICAR DEMETER
     private void configuraTela() {
         escolhaFuncionalidadesProjetoPresenter.getView().setVisible(false);
         escolhaFuncionalidadesProjetoPresenter.getBtnConfirmar().addActionListener(new ActionListener(){

@@ -16,21 +16,17 @@ import javax.swing.JInternalFrame;
  */
 public class FecharJanelasPerfilRelacionadasCommand implements WindowCommand{
     private final JDesktopPane desktop;
-    // final List<Projeto> listaProjetos;//ANTIGO
-    private final List<PerfilProjetoDeEstimativaModel> listaPerfilProjetoDeEstimativaModel;//NOVO
+    private final List<PerfilProjetoDeEstimativaModel> listaPerfilProjetoDeEstimativaModel;
 
-    public FecharJanelasPerfilRelacionadasCommand(JDesktopPane desktop, List<PerfilProjetoDeEstimativaModel> listaPerfilProjetoDeEstimativaModel /*List<Projeto> listaProjetos*//*ANTIGO*/) {
+    public FecharJanelasPerfilRelacionadasCommand(JDesktopPane desktop, List<PerfilProjetoDeEstimativaModel> listaPerfilProjetoDeEstimativaModel) {
         this.desktop = desktop;
-        //this.listaProjetos = listaProjetos;//ANTIGO
         this.listaPerfilProjetoDeEstimativaModel = listaPerfilProjetoDeEstimativaModel;
     }
 
     @Override
     public void execute() {
         List<String> nomesPerfis = new ArrayList<>();
-        //for (Projeto projeto : listaProjetos) {//ANTIGO
         for (PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel:listaPerfilProjetoDeEstimativaModel){
-            //nomesProjetos.add(projeto.getNome());//ANTIGO
             nomesPerfis.add(perfilProjetoDeEstimativaModel.getNomePerfil());
         }
 

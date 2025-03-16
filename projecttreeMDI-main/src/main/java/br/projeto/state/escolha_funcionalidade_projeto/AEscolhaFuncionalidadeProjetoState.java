@@ -4,8 +4,8 @@
  */
 package br.projeto.state.escolha_funcionalidade_projeto;
 
+import br.projeto.command.MostrarMensagemCommand;
 import br.projeto.presenter.EscolhaFuncionalidadesProjetoPresenter;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,7 +19,7 @@ public class AEscolhaFuncionalidadeProjetoState {
     }
     
     public void confirmar(){
-        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR A OPERAÇÃO NESSE ESTADO");//IDENTIFICAR O NOME DO ESTADO
+        new MostrarMensagemCommand("NÃO É POSSIVEL REALIZAR A OPERAÇÃO NESSE ESTADO").execute();
         throw new RuntimeException();
     }
     

@@ -10,16 +10,16 @@ import javax.swing.*;
 public class ExcluirProjetoCommand extends ProjetoLogCommand {
     private ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
     private Integer projetoId;
-    private String projetoNome;//ATRIBUTO ANTIGO
+    private String projetoNome;
     private final UsuarioModel usuarioModel;
     
-    public ExcluirProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, UsuarioModel usuarioModel, LogNotifier logNotifier){//CONSTRUTOR NOVO 1
+    public ExcluirProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, UsuarioModel usuarioModel, LogNotifier logNotifier){
         super(logNotifier, usuarioModel.getFormatoLOG());
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.usuarioModel = usuarioModel;
     }
     
-    public ExcluirProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, Integer projetoId,UsuarioModel usuarioModel, LogNotifier logNotifier){//CONSTRUTOR NOVO 2 PARA METODO adicionarMenuContextual() DE PrincipalPresenter
+    public ExcluirProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, Integer projetoId,UsuarioModel usuarioModel, LogNotifier logNotifier){
         super(logNotifier, usuarioModel.getFormatoLOG());
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.projetoId = projetoId;

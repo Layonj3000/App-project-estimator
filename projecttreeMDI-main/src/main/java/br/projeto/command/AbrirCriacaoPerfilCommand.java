@@ -14,13 +14,11 @@ import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 public class AbrirCriacaoPerfilCommand implements Command{
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;
     private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;
-    //private final JDesktopPane desktop;
     private final UsuarioModel usuarioModel;
     
     public AbrirCriacaoPerfilCommand(PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository/*, JDesktopPane desktop*/, UsuarioModel usuarioModel){
     this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
     this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;
-    //this.desktop = desktop;
     this.usuarioModel = usuarioModel;
     }
 

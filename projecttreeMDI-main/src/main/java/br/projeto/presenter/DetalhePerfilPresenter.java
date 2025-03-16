@@ -19,10 +19,8 @@ import java.util.Map;
  */
 public class DetalhePerfilPresenter extends Observer{
     private final DetalhePerfilView view;
-    // private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
-    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO
-    //private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
-    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
+    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;
+    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;
     
     
     private Integer perfilId;
@@ -86,7 +84,7 @@ public class DetalhePerfilPresenter extends Observer{
             Map<String, Integer> funcionalidadesEscolhidas = new LinkedHashMap<>();
             
             for(Map.Entry<String, Integer> entrySet: funcionalidadesPerfil.entrySet()){
-                if(entrySet.getValue() != null /*&& entrySet.getValue()!= 0*/){
+                if(entrySet.getValue() != null){
                     funcionalidadesEscolhidas.put(entrySet.getKey(), entrySet.getValue());
                 }
             }

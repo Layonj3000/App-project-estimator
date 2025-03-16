@@ -11,11 +11,11 @@ import java.util.Optional;
 public class EstimaProjetoService {
 
 
-    public double calcularValorUnitario(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList, String nomeFuncionalidade, int dias, int diasTamanhoProjeto) {//LEMBRAR DE ADICIONAR A LOGICA PARA O TAMANHO DO PROJETO(MVP, Básico, Profissional)
+    public double calcularValorUnitario(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList, String nomeFuncionalidade, int dias, int diasTamanhoProjeto) {
         double ValorUnitarioDesenvolvimento = retornaValorTotalDia(projeto,perfilProjetoDeEstimativaModelList);
         int resultadoDiasNivelUI;
         
-            //Verifica nível  de UI
+        
         if(nomeFuncionalidade.equals("MVP") || nomeFuncionalidade.equals("Básico") || nomeFuncionalidade.equals("Profissional")){
                 //Nesse contexto dias é, na verdade, porcentagem
                 resultadoDiasNivelUI = calculaResultadoDiasNivelUI(dias, diasTamanhoProjeto);

@@ -8,15 +8,13 @@ import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
-import com.log.adaptador.LogConfig;
 import com.log.model.LogRegister;
 
 public class AbrirCriacaoProjetoCommand extends ProjetoLogCommand {
-    /*private final ProjetoRepositoryMock repository;*/
-    private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
-    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 
-    private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
-    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
+    private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
+    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository; 
+    private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;
+    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;
     private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
 
     private final UsuarioModel usuarioModel;
@@ -34,7 +32,6 @@ public class AbrirCriacaoProjetoCommand extends ProjetoLogCommand {
     
     @Override
     public void execute() {
-        //IMPLEMENTAR NOVA LOGICA DE CRIACAO
         EscolhaPerfilPresenter escolhaPerfilPresenter = new EscolhaPerfilPresenter(projetoDeEstimativaRepository,
                 perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository,
                 perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository,usuarioModel);
@@ -47,32 +44,5 @@ public class AbrirCriacaoProjetoCommand extends ProjetoLogCommand {
         super.setLogRegister(logRegister);
         super.execute();
     }
-
-
-/*    @Override
-    public void execute() {
-        Optional<Projeto> projetoCriado = criarProjetoMock.criarProjetoAleatorio();
-
-        projetoCriado.ifPresentOrElse(
-                projeto -> {
-                    repository.adicionarProjeto(
-                            projeto.getNome(),
-                            projeto.getCriador(),
-                            projeto.getDataCriacao(),
-                            projeto.getStatus(),
-                            projeto.isCompartilhado(),
-                            projeto.getCompartilhadoPor(),
-                            projeto.getPerfis(),
-                            projeto.getFuncionalidadesEscolhidas()
-                    );
-                    new MostrarMensagemProjetoCommand("Projeto \"" + projeto.getNome() + "\" criado com sucesso!").execute();
-                },
-                () -> new MostrarMensagemProjetoCommand("Falha ao criar o projeto.").execute());
-    }*/
-    
-    /*public void executeTeste(){
-        Optional<ProjetoDeEstimativaModel> = projetoDeEstimativaRepository.findAll();
-    }*/
-
 
 }

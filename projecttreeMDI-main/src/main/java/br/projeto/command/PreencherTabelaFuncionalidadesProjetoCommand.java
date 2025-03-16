@@ -69,7 +69,7 @@ public class PreencherTabelaFuncionalidadesProjetoCommand implements Command{
                 //ADICIONAR VERIFICAÇÃO PARA VER SE O CAMPO NAO É NULL(CASO FOIR QUER DIZER QUE FOI REMOVIDO DO PERFIL)
                 //SE funcionalidadesDisponiveis.chave != null, pega o valor e chave para inserir na tabela
                 for(Map.Entry<String, Integer> mapPerfil: model.getFuncionalidadesDisponiveis().entrySet()){
-                    if(mapPerfil.getValue() != null/* && mapPerfil.getValue()!= 0*/){
+                    if(mapPerfil.getValue() != null){
                         String nomeFuncionalidade = mapPerfil.getKey();
                         Integer valorFuncionalidade = mapPerfil.getValue();
                         
@@ -129,8 +129,6 @@ public class PreencherTabelaFuncionalidadesProjetoCommand implements Command{
                         modelo.addRow(new Object[]{false, entrySet.getKey(), entrySet.getValue()});//ANTES
                 }
             }
-
-                
             /*ALTERAÇÃO PARA SUPORTAR UPDATE*/    
             
             tabela.setModel(modelo); 
@@ -153,66 +151,6 @@ public class PreencherTabelaFuncionalidadesProjetoCommand implements Command{
                     }else{
                         funcionalidadesSomadasMap.put(nomeFuncionalidade, valorFuncionalidade);
                     }                
-    }
-    
-    private void adicionaListenerTamanhoApp(JTable tabela, DefaultTableModel modelo){
-        final boolean[] isUpdating = {false};
-            tabela.getModel().addTableModelListener(e -> {
-                if (isUpdating[0]) return; // Evita loop infinito
-                isUpdating[0] = true; // Marca que a atualização está ocorrendo
-
-                //int colunaSelecionado = 0;
-                //int colunaNome = 1;
-
-                if (e.getColumn() == 0) {
-                    for (int i = 0; i < tabela.getRowCount(); i++) {
-                        Boolean selecionado = (Boolean) tabela.getValueAt(i, 0);
-                        String nomeFuncionalidade = (String) tabela.getValueAt(i, 1);
-
-                        if (selecionado && (nomeFuncionalidade.equals("Pequeno") || nomeFuncionalidade.equals("Médio") || nomeFuncionalidade.equals("Grande"))) {
-                            for (int j = 0; j < tabela.getRowCount(); j++) {
-                                if (j != i) {
-                                    String outraFuncionalidade = (String) tabela.getValueAt(j, 1);
-                                    if (outraFuncionalidade.equals("Pequeno") || outraFuncionalidade.equals("Médio") || outraFuncionalidade.equals("Grande")) {
-                                        modelo.setValueAt(false, j, 0);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                isUpdating[0] = false; // Libera a atualização
-            });    
-    }
-   
-    private void adicionaListenerModeloApp(JTable tabela, DefaultTableModel modelo){
-        final boolean[] isUpdating = {false};
-            tabela.getModel().addTableModelListener(e -> {
-                if (isUpdating[0]) return; // Evita loop infinito
-                isUpdating[0] = true; // Marca que a atualização está ocorrendo
-
-                //int colunaSelecionado = 0;
-                //int colunaNome = 1;
-
-                if (e.getColumn() == 0) {
-                    for (int i = 0; i < tabela.getRowCount(); i++) {
-                        Boolean selecionado = (Boolean) tabela.getValueAt(i, 0);
-                        String nomeFuncionalidade = (String) tabela.getValueAt(i, 1);
-
-                        if (selecionado && (nomeFuncionalidade.equals("MVP") || nomeFuncionalidade.equals("Básico") || nomeFuncionalidade.equals("Profissional"))) {
-                            for (int j = 0; j < tabela.getRowCount(); j++) {
-                                if (j != i) {
-                                    String outraFuncionalidade = (String) tabela.getValueAt(j, 1);
-                                    if (outraFuncionalidade.equals("MVP") || outraFuncionalidade.equals("Básico") || outraFuncionalidade.equals("Profissional")) {
-                                        modelo.setValueAt(false, j, 0);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                isUpdating[0] = false; // Libera a atualização
-            });
     }
 
     private void preencherTxtFields(ManterProjetoDeEstimativaView view, ProjetoDeEstimativaModel projetoDeEstimativaModel) {

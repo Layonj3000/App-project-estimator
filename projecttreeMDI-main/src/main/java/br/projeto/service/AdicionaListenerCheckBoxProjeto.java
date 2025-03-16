@@ -24,62 +24,77 @@ public class AdicionaListenerCheckBoxProjeto {
     }
     
         public void adicionaListenerTamanhoApp(JTable tabela, DefaultTableModel modelo){
-        final boolean[] isUpdating = {false};
-            tabela.getModel().addTableModelListener(e -> {
-                if (isUpdating[0]) return; // Evita loop infinito
-                isUpdating[0] = true; // Marca que a atualização está ocorrendo
+            final boolean[] isUpdating = {false};
+    
+        tabela.getModel().addTableModelListener(e -> {
+        if (isUpdating[0]) return; 
+        isUpdating[0] = true; 
 
-                //int colunaSelecionado = 0;
-                //int colunaNome = 1;
+        int colunaSelecionada = 0; 
+        int colunaNome = 1; 
 
-                if (e.getColumn() == 0) {
-                    for (int i = 0; i < tabela.getRowCount(); i++) {
-                        Boolean selecionado = (Boolean) tabela.getValueAt(i, 0);
-                        String nomeFuncionalidade = (String) tabela.getValueAt(i, 1);
+        if (e.getColumn() == colunaSelecionada) {
+            int linhaAlterada = e.getFirstRow();
+            Boolean selecionado = (Boolean) tabela.getValueAt(linhaAlterada, colunaSelecionada);
+            String nomeFuncionalidade = (String) tabela.getValueAt(linhaAlterada, colunaNome);
 
-                        if (selecionado && (nomeFuncionalidade.equals("Pequeno") || nomeFuncionalidade.equals("Médio") || nomeFuncionalidade.equals("Grande"))) {
-                            for (int j = 0; j < tabela.getRowCount(); j++) {
-                                if (j != i) {
-                                    String outraFuncionalidade = (String) tabela.getValueAt(j, 1);
-                                    if (outraFuncionalidade.equals("Pequeno") || outraFuncionalidade.equals("Médio") || outraFuncionalidade.equals("Grande")) {
-                                        modelo.setValueAt(false, j, 0);
-                                    }
-                                }
-                            }
+            if (selecionado && (nomeFuncionalidade.equals("Pequeno") || 
+                                nomeFuncionalidade.equals("Médio") || 
+                                nomeFuncionalidade.equals("Grande"))) {
+                
+                
+                for (int i = 0; i < tabela.getRowCount(); i++) {
+                    if (i != linhaAlterada) {
+                        String outraFuncionalidade = (String) tabela.getValueAt(i, colunaNome);
+                        if (outraFuncionalidade.equals("Pequeno") || 
+                            outraFuncionalidade.equals("Médio") || 
+                            outraFuncionalidade.equals("Grande")) {
+                            modelo.setValueAt(false, i, colunaSelecionada);
                         }
                     }
                 }
-                isUpdating[0] = false; // Libera a atualização
-            });    
+            }
+        }
+        
+        isUpdating[0] = false; 
+    });
+
     }
    
     public void adicionaListenerModeloApp(JTable tabela, DefaultTableModel modelo){
         final boolean[] isUpdating = {false};
-            tabela.getModel().addTableModelListener(e -> {
-                if (isUpdating[0]) return; // Evita loop infinito
-                isUpdating[0] = true; // Marca que a atualização está ocorrendo
 
-                //int colunaSelecionado = 0;
-                //int colunaNome = 1;
+        tabela.getModel().addTableModelListener(e -> {
+            if (isUpdating[0]) return; 
+            isUpdating[0] = true; 
 
-                if (e.getColumn() == 0) {
+            int colunaSelecionada = 0; 
+            int colunaNome = 1; 
+
+            if (e.getColumn() == colunaSelecionada) {
+                int linhaAlterada = e.getFirstRow();
+                Boolean selecionado = (Boolean) tabela.getValueAt(linhaAlterada, colunaSelecionada);
+                String nomeFuncionalidade = (String) tabela.getValueAt(linhaAlterada, colunaNome);
+
+                if (selecionado && (nomeFuncionalidade.equals("MVP") || 
+                                    nomeFuncionalidade.equals("Básico") || 
+                                    nomeFuncionalidade.equals("Profissional"))) {
+
+                    
                     for (int i = 0; i < tabela.getRowCount(); i++) {
-                        Boolean selecionado = (Boolean) tabela.getValueAt(i, 0);
-                        String nomeFuncionalidade = (String) tabela.getValueAt(i, 1);
-
-                        if (selecionado && (nomeFuncionalidade.equals("MVP") || nomeFuncionalidade.equals("Básico") || nomeFuncionalidade.equals("Profissional"))) {
-                            for (int j = 0; j < tabela.getRowCount(); j++) {
-                                if (j != i) {
-                                    String outraFuncionalidade = (String) tabela.getValueAt(j, 1);
-                                    if (outraFuncionalidade.equals("MVP") || outraFuncionalidade.equals("Básico") || outraFuncionalidade.equals("Profissional")) {
-                                        modelo.setValueAt(false, j, 0);
-                                    }
-                                }
+                        if (i != linhaAlterada) {
+                            String outraFuncionalidade = (String) tabela.getValueAt(i, colunaNome);
+                            if (outraFuncionalidade.equals("MVP") || 
+                                outraFuncionalidade.equals("Básico") || 
+                                outraFuncionalidade.equals("Profissional")) {
+                                modelo.setValueAt(false, i, colunaSelecionada);
                             }
                         }
                     }
                 }
-                isUpdating[0] = false; // Libera a atualização
-            });
+            }
+
+            isUpdating[0] = false; 
+        });
     }
 }

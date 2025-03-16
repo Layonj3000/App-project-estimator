@@ -16,10 +16,8 @@ import javax.swing.JDesktopPane;
  * @author David Potentini
  */
 public class AbrirDetalhesPerfilCommand implements Command{
-//    private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
-    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO
-//    private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
-    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
+    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;
+    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;
     private final JDesktopPane desktop;
     private Integer perfilId;
     private String perfilNome;
@@ -44,7 +42,7 @@ public class AbrirDetalhesPerfilCommand implements Command{
             throw new IllegalStateException("O nome do perfil não foi definido para este comando.");   
         }
         
-        String tituloJanela = "Detalhes do Perfil: " + perfilProjetoDeEstimativaRepository.findById(perfilId).getNomePerfil();//VERIFICAR MELHORES FORMAS DE IMPLEMENTAR DEPOIS TALVEZ FIRA DEMETER
+        String tituloJanela = "Detalhes do Perfil: " + perfilProjetoDeEstimativaRepository.findById(perfilId).getNomePerfil();
         WindowManager windowManager = WindowManager.getInstance();
         
         if (windowManager.isFrameAberto(tituloJanela)) {

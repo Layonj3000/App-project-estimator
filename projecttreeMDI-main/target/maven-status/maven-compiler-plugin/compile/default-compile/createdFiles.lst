@@ -59,7 +59,6 @@ br\projeto\command\RegistroCommand.class
 br\projeto\view\EscolhaPlataformaView$1.class
 br\projeto\view\TelaCompartilharView$3.class
 br\projeto\view\ManterProjetoDeEstimativaView$1.class
-br\projeto\view\IProjetoDeEstimativaView.class
 br\projeto\presenter\window_command\OrganizarLadoALadoCommand.class
 br\projeto\presenter\PrincipalPresenter$1.class
 br\projeto\repository_factory\PerfilFuncionalidadesPersonalizadasRepositoryFactory.class

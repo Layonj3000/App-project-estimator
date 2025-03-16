@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author David Potentini
  */
-public interface IPerfilFuncionalidadesPersonalizadasRepository {//COLOCAR O PUBLIC NA FRENTE DEPOIS
+public interface IPerfilFuncionalidadesPersonalizadasRepository {
     List<PerfilFuncionalidadesPersonalizadasModel> findAll();
     PerfilFuncionalidadesPersonalizadasModel findById(Integer id);
     List<PerfilFuncionalidadesPersonalizadasModel> findByPerfilProjetoEstimativa(PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel);

@@ -31,13 +31,12 @@ public class DetalheProjetoPresenter extends Observer {
 
     private final DetalheProjetoView view;
     private final EstimaProjetoService estimaService;
-    //private final ProjetoRepositoryMock repository;
-    private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
+    private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
     private final String projetoNome;
-    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO
-    private final Integer projetoId;//NOVO
-    private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
-    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
+    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;
+    private final Integer projetoId;
+    private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;
+    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;
     private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
     private TotalizadoresProjetoService totalizadoresService =  TotalizadoresProjetoService.getInstance();
     private UsuarioRepository usuarioRepository = InstanciaRepositoryService.getInstancia().getUsuarioRepository();
@@ -46,14 +45,13 @@ public class DetalheProjetoPresenter extends Observer {
     private Map<String, Integer> funcionalidades;
     public DetalheProjetoPresenter(DetalheProjetoView view, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, Integer projetoId, String projetoNome) {//NOME E REPOSITORY SERÃO RETIRADOS
         this.view = view;
-        //this.repository = repository;
         
-        this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;//NOVO
-        this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;//NOVO
-        this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;//NOVO
-        this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;//NOVO  
-        this.perfilProjetoIntermediariaRepository= perfilProjetoIntermediariaRepository;//NOVO
-        this.projetoId = projetoId;//NOVO
+        this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
+        this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
+        this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;
+        this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository; 
+        this.perfilProjetoIntermediariaRepository= perfilProjetoIntermediariaRepository;
+        this.projetoId = projetoId;
         
         this.perfilProjetoDeEstimativaRepository.addObserver(this);
         this.projetoDeEstimativaRepository.addObserver(this);
@@ -83,7 +81,7 @@ public class DetalheProjetoPresenter extends Observer {
     }
 
     private void carregarCabecalho(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList) {
-        String tiposConcatenados = perfilProjetoDeEstimativaModelList.stream()//NOVO
+        String tiposConcatenados = perfilProjetoDeEstimativaModelList.stream()
                                    .map(PerfilProjetoDeEstimativaModel :: getNomePerfil)
                                    .collect(Collectors.joining(", ")); 
         
@@ -200,7 +198,7 @@ public class DetalheProjetoPresenter extends Observer {
         return valorTotal;
     }
     
-    private double calcularValorTotalBase(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList) {//NOVO
+    private double calcularValorTotalBase(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList) {
                 
         final int diasTamanhoProjeto = funcionalidades
             .entrySet()
@@ -270,7 +268,7 @@ public class DetalheProjetoPresenter extends Observer {
                     if (entrySet.getKey().equals(perfilFuncionalidadesPersonalizadasModel.getNome())) {
                         Integer valor = funcionalidadesEscolhidasPerfil.getOrDefault(entrySet.getKey(), 0) + perfilFuncionalidadesPersonalizadasModel.getValor();
                         funcionalidadesEscolhidasPerfil.put(entrySet.getKey(), valor);
-                        iterator.remove(); // Remoção segura
+                        iterator.remove(); 
                     }
                 }
    
@@ -280,7 +278,6 @@ public class DetalheProjetoPresenter extends Observer {
         return funcionalidadesEscolhidasPerfil;
     }
 
-    //verificar lançamento de excessoes em updates nao utilizados
 
     @Override
     public void updatePerfilModel(List<PerfilProjetoDeEstimativaModel> listaPerfilProjetoDeEstimativaModel) {

@@ -12,18 +12,16 @@ import br.projeto.view.DetalheProjetoView;
 import javax.swing.*;
 
 public class AbrirDetalhesProjetoCommand implements Command {
-   // private final ProjetoRepositoryMock repository;//ANTIGO
-    private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
-    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO
-    private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
-    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
+    private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
+    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;
+    private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;
+    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;
     private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
     private final JDesktopPane desktop;
     private Integer projetoId;
     private String projetoNome;
 
-    public AbrirDetalhesProjetoCommand(/*ProjetoRepositoryMock repository,*/ProjetoDeEstimativaRepository projetoDeEstimativaRepository,PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, JDesktopPane desktop) {
-        //this.repository = repository;
+    public AbrirDetalhesProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository,PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, JDesktopPane desktop) {
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
         this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;
@@ -50,7 +48,7 @@ public class AbrirDetalhesProjetoCommand implements Command {
             throw new IllegalStateException("O nome do projeto não foi definido para este comando.");
         }
 
-        String tituloJanela = "Detalhes do Projeto: " + projetoDeEstimativaRepository.findById(projetoId).getNomeProjetoDeEstimativa();//VERIFICAR MELHORES FORMAS DE IMPLEMENTAR DEPOIS TALVEZ FIRA DEMETER
+        String tituloJanela = "Detalhes do Projeto: " + projetoDeEstimativaRepository.findById(projetoId).getNomeProjetoDeEstimativa();
         WindowManager windowManager = WindowManager.getInstance();
 
         if (windowManager.isFrameAberto(tituloJanela)) {

@@ -24,8 +24,8 @@ import javax.swing.JTable;
  * @author David Potentini
  */
 public class EscolhaFuncionalidadesPerfilPresenter {
-    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 
-    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
+    private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository; 
+    private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;
     private final UsuarioModel usuarioModel;
     private Integer perfilId;
 
