@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class MapValoresPadraoPerfilService {
     private static MapValoresPadraoPerfilService mapValoresPadraoPerfilService = null;

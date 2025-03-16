@@ -8,7 +8,7 @@ import br.projeto.enums.SimNao;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class ProjetosFuncionalidadesPersonalizadasModel {
     private Integer id;

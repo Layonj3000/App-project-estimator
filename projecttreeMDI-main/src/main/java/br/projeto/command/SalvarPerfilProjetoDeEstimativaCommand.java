@@ -19,7 +19,7 @@ import javax.swing.JTable;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class SalvarPerfilProjetoDeEstimativaCommand implements Command{
     private final EscolhaFuncionalidadesPerfilPresenter escolhaFuncionalidadesPerfilPresenter;

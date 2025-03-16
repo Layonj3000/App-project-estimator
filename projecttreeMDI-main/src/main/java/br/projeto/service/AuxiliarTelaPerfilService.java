@@ -15,7 +15,7 @@ import javax.swing.table.TableCellEditor;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class AuxiliarTelaPerfilService {
     

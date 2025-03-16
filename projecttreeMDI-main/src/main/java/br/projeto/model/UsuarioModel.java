@@ -6,6 +6,8 @@ public class UsuarioModel {
     private String senha;
     private String email;
     private String formatoLOG;
+    
+    public UsuarioModel(){}
 
     public UsuarioModel(Integer id, String nome, String senha, String email, String formatoLOG) {
         this.id = id;

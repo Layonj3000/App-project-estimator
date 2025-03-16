@@ -16,7 +16,7 @@ import java.util.Map;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class RetornaPerfilModelService {
     private Map<String, Integer> mapPerfil;

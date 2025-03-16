@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class DetalhePerfilPresenter extends Observer{
     private final DetalhePerfilView view;

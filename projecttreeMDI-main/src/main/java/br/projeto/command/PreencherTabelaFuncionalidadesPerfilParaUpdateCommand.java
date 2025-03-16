@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class PreencherTabelaFuncionalidadesPerfilParaUpdateCommand implements Command{
     

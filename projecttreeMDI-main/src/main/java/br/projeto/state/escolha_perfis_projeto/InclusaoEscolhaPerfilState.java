@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class InclusaoEscolhaPerfilState extends AEscolhaPerfilState{
 

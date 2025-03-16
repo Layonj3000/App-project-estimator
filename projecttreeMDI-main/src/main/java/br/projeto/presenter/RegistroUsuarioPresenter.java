@@ -55,7 +55,7 @@ public class RegistroUsuarioPresenter implements IRegistroProxy {
             
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, 
-                 "Ocorreu um erro inesperado. Tente novamente.", 
+                 "Ocorreu um erro inesperado. Tente novamente." + ex.getMessage(), 
                 "Erro", 
                 JOptionPane.ERROR_MESSAGE
             );

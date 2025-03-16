@@ -30,6 +30,11 @@ public class Main {
         //usuarioRepository.insert(usuarioModel2);
         //usuarioRepository.deleteById(2);
 //        System.out.println(usuarioRepository.findAll());
+        
+        //usuarioRepository.deleteById(7);
+        //usuarioRepository.deleteById(8);
+        //usuarioRepository.deleteById(9);
+        
         System.out.println(usuarioRepository.findAll());
  //       ProjetoDeEstimativaModel projetoDeEstimativaModel = new ProjetoDeEstimativaModel(1, usuarioModel, 0, null, new Date(System.currentTimeMillis()), "Projeto Teste UM", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 //        ProjetoDeEstimativaModel projetoDeEstimativaModel2 = new ProjetoDeEstimativaModel(2, usuarioModel2, 0, null, new Date(System.currentTimeMillis()), "Projeto Teste DOIS", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0/*, 0.0, 0.0, 0.0, 0.0,*/, 0.0/*, 0.0, 0.0, 0.0*/);

@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class AtualizarProjetoCommand implements Command{
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO

@@ -6,7 +6,7 @@ package br.projeto.model;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class PerfilFuncionalidadesPersonalizadasModel {
     private Integer id;

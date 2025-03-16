@@ -20,7 +20,7 @@ import javax.swing.JTable;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class EscolhaFuncionalidadesProjetoPresenter {
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO

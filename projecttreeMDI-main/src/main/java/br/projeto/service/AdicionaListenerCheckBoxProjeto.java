@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class AdicionaListenerCheckBoxProjeto {
     private static AdicionaListenerCheckBoxProjeto adicionaListenerCheckBoxProjeto = null;

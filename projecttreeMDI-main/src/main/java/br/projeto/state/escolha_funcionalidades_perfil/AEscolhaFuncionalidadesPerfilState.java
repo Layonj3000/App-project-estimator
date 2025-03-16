@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public abstract class AEscolhaFuncionalidadesPerfilState {
     protected EscolhaFuncionalidadesPerfilPresenter escolhaFuncionalidadesPerfilPresenter;

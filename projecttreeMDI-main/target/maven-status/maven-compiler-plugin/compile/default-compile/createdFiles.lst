@@ -8,7 +8,6 @@ br\projeto\presenter\window_command\SetLookAndFeelCommand.class
 br\projeto\command\PreencherTabelaEscolhaDePlataformaParaUpdateCommand.class
 br\projeto\presenter\EscolhaFuncionalidadesProjetoPresenter.class
 br\projeto\presenter\RegistroUsuarioPresenter$1.class
-br\projeto\enums\FormatoLOG.class
 br\projeto\state\escolha_funcionalidades_perfil\AtualizacaoEscolhaFuncionalidadesPerfilState$1.class
 br\projeto\presenter\LoginUsuarioPresenter.class
 br\projeto\repository\PerfilFuncionalidadesPersonalizadasRepository.class
@@ -18,7 +17,9 @@ br\projeto\repository_factory\RepositoryFactory.class
 br\projeto\state\escolha_funcionalidades_perfil\AtualizacaoEscolhaFuncionalidadesPerfilState.class
 br\projeto\state\escolha_funcionalidade_projeto\AtualizacaoEscolhaFuncionalidadesProjetoState.class
 br\projeto\command\ProjetoCommand.class
+br\projeto\perfil_builder\AndroidBuilder.class
 br\projeto\view\DetalheProjetoView$1.class
+br\projeto\perfil_builder\BackEndBuilder.class
 br\projeto\presenter\Observer.class
 br\projeto\repository_factory\UsuarioRepositoryFactory.class
 br\projeto\service\CriarProjetoMock.class
@@ -68,12 +69,14 @@ br\projeto\command\IniciarTelaCompartilharCommand.class
 br\projeto\view\DetalheProjetoView.class
 br\projeto\model\Projeto.class
 br\projeto\command\SalvarPerfilProjetoDeEstimativaCommand.class
+br\projeto\perfil_builder\Diretor.class
 br\projeto\presenter\DetalhePerfilPresenter.class
 br\projeto\view\ManterProjetoDeEstimativaView$2.class
 br\projeto\view\TelaRegistro$1.class
 br\projeto\command\PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand$1.class
 br\projeto\Main.class
 br\projeto\view\DashBoardProjetoView.class
+br\projeto\perfil_builder\PerfilBuilder.class
 br\projeto\service\VerificacoesTelaProjetoService.class
 br\projeto\view\TelaRegistro.class
 br\projeto\command\PreencherTabelaFuncionalidadesProjetoCommand$1.class
@@ -90,6 +93,7 @@ br\projeto\service\ConstrutorDeArvoreNavegacaoService$1.class
 br\projeto\command\AbrirDashboardProjetoCommand.class
 br\projeto\presenter\Zelador.class
 br\projeto\model\ProjetosFuncionalidadesPersonalizadasModel.class
+br\projeto\perfil_builder\IosBuilder.class
 br\projeto\state\escolha_funcionalidades_perfil\InclusaoEscolhaFuncionalidadesPerfilState$1.class
 br\projeto\state\escolha_funcionalidade_projeto\InsercaoEscolhaFuncionalidadesProjetoState$1.class
 br\projeto\repository\abstr\IPerfilProjetoDeEstimativaRepository.class
@@ -152,6 +156,7 @@ br\projeto\view\DetalhePerfilView.class
 br\projeto\command\CriarProjetoCommand.class
 br\projeto\presenter\RegistroUsuarioPresenter.class
 br\projeto\registro_proxy\IRegistroProxy.class
+br\projeto\perfil_builder\BuilderObserver.class
 br\projeto\service\MapValoresPadraoPerfilService.class
 br\projeto\command\PreencherTabelaFuncionalidadesProjetoCommand.class
 br\projeto\service\ConstrutorDeArvoreNavegacaoService$2.class
@@ -170,7 +175,6 @@ br\projeto\db\DB.class
 br\projeto\service\InstanciaRepositoryService.class
 br\projeto\service\NoArvoreComposite.class
 br\projeto\state\escolha_perfis_projeto\InclusaoEscolhaPerfilState$2.class
-br\projeto\enums\Status.class
 br\projeto\repository_factory\PerfilProjetoIntermediariaRepositoryFactory.class
 br\projeto\state\escolha_funcionalidades_perfil\AEscolhaFuncionalidadesPerfilState.class
 br\projeto\state\escolha_funcionalidade_projeto\AtualizacaoEscolhaFuncionalidadesProjetoState$2.class

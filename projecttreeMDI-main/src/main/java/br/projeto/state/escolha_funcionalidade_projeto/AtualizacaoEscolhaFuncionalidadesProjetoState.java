@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class AtualizacaoEscolhaFuncionalidadesProjetoState extends AEscolhaFuncionalidadeProjetoState{
     private Integer projetoId;

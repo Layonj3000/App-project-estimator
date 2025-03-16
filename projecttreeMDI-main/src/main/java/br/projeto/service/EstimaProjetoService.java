@@ -55,10 +55,10 @@ public class EstimaProjetoService {
         double valorUnitarioDesenvolvimento = 0;
         for (PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel : perfilProjetoDeEstimativaModelList) {
             if (verificaGerenteProjeto(projeto.getGerenteDeProjetos(), perfilProjetoDeEstimativaModel)) {
-                valorUnitarioDesenvolvimento += perfilProjetoDeEstimativaModel.getGerenteDeProjetos();
+                valorUnitarioDesenvolvimento += perfilProjetoDeEstimativaModel.getTaxaDiariaGerenciaProjeto();
             }
             switch (perfilProjetoDeEstimativaModel.getNomePerfil()) {
-                case "Web/Back-end":
+                case "Web e Back-end":
                     valorUnitarioDesenvolvimento =+ perfilProjetoDeEstimativaModel.getTaxaDiariaDesenvolvimento();
                     break;
                 case "Android"://PODIA DEIXAR SOMENTE O DEFAULT, MAS OPTEI POR DEIXAR O ANDROID E IOS PARA MELHOR ENTENDIMENTO

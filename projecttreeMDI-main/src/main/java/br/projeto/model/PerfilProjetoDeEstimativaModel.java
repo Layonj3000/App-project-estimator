@@ -723,7 +723,7 @@ public class PerfilProjetoDeEstimativaModel {
         return taxaDiariaDesign;
     }
 
-    public void setTaxaDiariaDesign(double taxaDiariaDesign) {
+    public void setTaxaDiariaDesign(Double taxaDiariaDesign) {
         this.taxaDiariaDesign = taxaDiariaDesign;
     }
 

@@ -6,6 +6,7 @@ import br.projeto.model.PerfilProjetoIntermediariaModel;
 import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.ProjetosFuncionalidadesPersonalizadasModel;
+import br.projeto.model.UsuarioModel;
 
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -40,4 +41,9 @@ public abstract class Observer {
         JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR O UPDATE");//IDENTIFICAR O NOME DO ESTADO
         throw new RuntimeException();
     };
+    
+    public void updateUsuarioModel(UsuarioModel usuarioModel){
+        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR O UPDATE");//IDENTIFICAR O NOME DO ESTADO
+        throw new RuntimeException();
+    }
 }

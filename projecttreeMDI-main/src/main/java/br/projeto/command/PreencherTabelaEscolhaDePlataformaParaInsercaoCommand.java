@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class PreencherTabelaEscolhaDePlataformaParaInsercaoCommand implements Command{
     private final EscolhaPerfilPresenter escolhaPerfilPresenter;

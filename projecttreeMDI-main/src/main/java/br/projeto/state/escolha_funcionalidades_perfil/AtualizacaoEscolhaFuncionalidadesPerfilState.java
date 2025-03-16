@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class AtualizacaoEscolhaFuncionalidadesPerfilState extends AEscolhaFuncionalidadesPerfilState{
     private Integer idPerfil;

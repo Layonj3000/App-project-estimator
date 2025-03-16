@@ -13,7 +13,7 @@ import javax.swing.JDesktopPane;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class AbrirDetalhesPerfilCommand implements Command{
 //    private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO

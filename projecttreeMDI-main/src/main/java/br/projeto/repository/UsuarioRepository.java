@@ -3,7 +3,9 @@ package br.projeto.repository;
 import br.projeto.repository.abstr.IUsuarioRepository;
 import br.projeto.db.DB;
 import br.projeto.db.DbException;
+import br.projeto.model.Subject;
 import br.projeto.model.UsuarioModel;
+import br.projeto.presenter.Observer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,11 +15,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioRepository implements /*Subject,*/ IUsuarioRepository {
+public class UsuarioRepository implements Subject, IUsuarioRepository {
     private Connection conn;
+    
+    private UsuarioModel usuarioModel;
+    private List<Observer> observers;
 
     public UsuarioRepository(Connection conn){
         this.conn = conn;
+        
+        this.usuarioModel = new UsuarioModel();
+        this.observers = new ArrayList<>();
     }
     
     @Override
@@ -128,6 +136,9 @@ public class UsuarioRepository implements /*Subject,*/ IUsuarioRepository {
                 rs = ps.getGeneratedKeys();
                 if(rs.next()){
                     usuario.setId(rs.getInt(1));
+                    
+                    usuarioModel = usuario;
+                    notifyObservers();
                 }else{
                     throw new DbException("Unexpected error! No rows affected");
                 }
@@ -157,6 +168,7 @@ public class UsuarioRepository implements /*Subject,*/ IUsuarioRepository {
             ps.setInt(5, usuario.getId());
 
             ps.executeUpdate();
+            
         }catch(SQLException e){
             throw new DbException(e.getMessage());
         }finally {
@@ -175,6 +187,7 @@ public class UsuarioRepository implements /*Subject,*/ IUsuarioRepository {
             ps.executeUpdate();
         }catch(SQLException e){
             throw new DbException(e.getMessage());
+            
         }finally {
             DB.closeStatement(ps);
         }
@@ -183,6 +196,23 @@ public class UsuarioRepository implements /*Subject,*/ IUsuarioRepository {
     private UsuarioModel instantiateUsuarioModel(ResultSet rs) throws SQLException {
         UsuarioModel usuarioModel = new UsuarioModel(rs.getInt("id"), rs.getString("nome"), rs.getString("senha"), rs.getString("email"), rs.getString("formato_log"));
         return usuarioModel;
+    }
+
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for(Observer observer:observers){
+            observer.updateUsuarioModel(usuarioModel);
+        }
     }
 
 

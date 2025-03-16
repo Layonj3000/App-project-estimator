@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class ManterPerfilProjetoDeEstimativaView extends javax.swing.JFrame {
 

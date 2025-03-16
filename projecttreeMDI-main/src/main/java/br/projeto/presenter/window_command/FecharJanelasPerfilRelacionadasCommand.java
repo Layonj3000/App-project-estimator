@@ -12,7 +12,7 @@ import javax.swing.JInternalFrame;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class FecharJanelasPerfilRelacionadasCommand implements WindowCommand{
     private final JDesktopPane desktop;

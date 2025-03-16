@@ -9,7 +9,7 @@ import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class ProjetoFuncionalidadesPersonalizadasRepositoryFactory extends RepositoryFactory{
 

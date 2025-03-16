@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public interface IProjetoFuncionalidadesPersonalizadasRepository {
     List<ProjetosFuncionalidadesPersonalizadasModel> findAll();

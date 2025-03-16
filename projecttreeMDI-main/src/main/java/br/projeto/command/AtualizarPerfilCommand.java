@@ -11,7 +11,7 @@ import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class AtualizarPerfilCommand implements Command{
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 

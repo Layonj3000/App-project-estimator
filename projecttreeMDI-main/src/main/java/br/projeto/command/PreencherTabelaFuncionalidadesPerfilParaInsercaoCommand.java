@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand implements Command{
     

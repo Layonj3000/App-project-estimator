@@ -8,7 +8,7 @@ import br.projeto.db.DB;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class PerfilFuncionalidadesPersonalizadasRepositoryFactory extends RepositoryFactory{
 

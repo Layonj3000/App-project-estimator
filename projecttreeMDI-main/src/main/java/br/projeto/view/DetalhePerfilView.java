@@ -11,7 +11,7 @@ import java.sql.Date;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class DetalhePerfilView extends JInternalFrame {
     private JLabel lblNome, lblCriador, lblData;//PADRAO

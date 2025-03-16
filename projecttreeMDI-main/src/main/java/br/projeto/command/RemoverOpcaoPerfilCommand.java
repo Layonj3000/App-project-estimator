@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class RemoverOpcaoPerfilCommand implements Command{
     private EscolhaFuncionalidadesPerfilPresenter perfilProjetoDeEstimativaPresenter;

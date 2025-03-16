@@ -21,7 +21,7 @@ import javax.swing.JTable;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class EscolhaFuncionalidadesPerfilPresenter {
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 

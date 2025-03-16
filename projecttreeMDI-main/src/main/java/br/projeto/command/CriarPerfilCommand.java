@@ -9,7 +9,7 @@ import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class CriarPerfilCommand implements Command{
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;

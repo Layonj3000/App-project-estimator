@@ -25,7 +25,7 @@ import java.util.Map;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class PerfilFuncionalidadesPersonalizadasRepository implements Subject, IPerfilFuncionalidadesPersonalizadasRepository{
 

@@ -10,7 +10,7 @@ import javax.swing.JTable;
 
 /**
  *
- * @author USER
+ * @author David Potentini
  */
 public class VerificacoesTelaProjetoService {
     private static VerificacoesTelaProjetoService instancia;
