@@ -12,12 +12,12 @@ import javax.swing.JTextField;
  *
  * @author layon
  */
-public class TelaRegistro extends javax.swing.JFrame {
+public class TelaRegistroView extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaRegistro
      */
-    public TelaRegistro() {
+    public TelaRegistroView() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -42,7 +42,9 @@ public class TelaRegistro extends javax.swing.JFrame {
         btnRegistrar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Registrar");
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Algerian", 0, 24)); // NOI18N
         jLabel1.setText("Cadastre-se");
@@ -149,20 +151,21 @@ public class TelaRegistro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaRegistroView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaRegistroView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaRegistroView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaRegistroView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaRegistro().setVisible(true);
+                new TelaRegistroView().setVisible(true);
             }
         });
     }

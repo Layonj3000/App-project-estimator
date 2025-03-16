@@ -11,12 +11,12 @@ import javax.swing.JTextField;
  *
  * @author layon
  */
-public class TelaCompartilhar extends javax.swing.JFrame {
+public class TelaCompartilharView extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaCompartilhar
      */
-    public TelaCompartilhar() {
+    public TelaCompartilharView() {
         initComponents();
     }
 
@@ -37,6 +37,8 @@ public class TelaCompartilhar extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Compartilhar");
+        setResizable(false);
 
         btnVoltar.setBackground(new java.awt.Color(255, 51, 51));
         btnVoltar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -151,20 +153,21 @@ public class TelaCompartilhar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCompartilhar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCompartilharView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCompartilhar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCompartilharView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCompartilhar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCompartilharView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCompartilhar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCompartilharView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCompartilhar().setVisible(true);
+                new TelaCompartilharView().setVisible(true);
             }
         });
     }

@@ -1,16 +1,16 @@
 package br.projeto.presenter;
 
 import br.projeto.command.LoginCommand;
-import br.projeto.view.TelaLogin;
+import br.projeto.view.TelaLoginView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 public final class LoginUsuarioPresenter {
-    private final TelaLogin telaLogin;
+    private final TelaLoginView telaLogin;
 
     public LoginUsuarioPresenter() {
-        this.telaLogin = new TelaLogin();
+        this.telaLogin = new TelaLoginView();
         configurarTela();
     }
 
@@ -42,7 +42,7 @@ public final class LoginUsuarioPresenter {
     public String getSenha(){
         return new String(telaLogin.getSenhaLogin().getPassword());
     }       
-    public TelaLogin getView(){
+    public TelaLoginView getView(){
         return telaLogin;
     }
 }

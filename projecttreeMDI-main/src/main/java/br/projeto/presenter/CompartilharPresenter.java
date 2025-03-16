@@ -1,7 +1,7 @@
 package br.projeto.presenter;
 
 import br.projeto.command.CompartilharCommand;
-import br.projeto.view.TelaCompartilhar;
+import br.projeto.view.TelaCompartilharView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import br.projeto.model.UsuarioModel;
@@ -12,7 +12,7 @@ import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
 import javax.swing.JOptionPane;
 
 public final class CompartilharPresenter {
-    private final TelaCompartilhar telaCompartilhar;
+    private final TelaCompartilharView telaCompartilhar;
     private final Integer projetoID;
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
     private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;
@@ -21,7 +21,7 @@ public final class CompartilharPresenter {
     private final UsuarioModel usuarioModel;
     
     public CompartilharPresenter(PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel, Integer projetoID) {
-        this.telaCompartilhar = new TelaCompartilhar();
+        this.telaCompartilhar = new TelaCompartilharView();
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;
         this.perfilProjetoIntermediariaRepository = perfilProjetoIntermediariaRepository;
@@ -67,7 +67,7 @@ public final class CompartilharPresenter {
         return telaCompartilhar.getTxtEmail().getText().trim();
     }   
   
-    public TelaCompartilhar getView(){
+    public TelaCompartilharView getView(){
         return telaCompartilhar;
     }  
 }

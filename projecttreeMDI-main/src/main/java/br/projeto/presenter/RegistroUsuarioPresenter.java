@@ -3,22 +3,22 @@ package br.projeto.presenter;
 import br.projeto.command.RegistroCommand;
 import br.projeto.registro_proxy.IRegistroProxy;
 import br.projeto.registro_proxy.RegistroProxy;
-import br.projeto.view.TelaRegistro;
+import br.projeto.view.TelaRegistroView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 public class RegistroUsuarioPresenter implements IRegistroProxy {
-    private final TelaRegistro telaRegistro;
+    private final TelaRegistroView telaRegistro;
     private final RegistroProxy proxy;
     
     public RegistroUsuarioPresenter() {
-        this.telaRegistro = new TelaRegistro();
+        this.telaRegistro = new TelaRegistroView();
         this.proxy = new RegistroProxy(this);
         configurarTela();
     }
 
-    public TelaRegistro getTelaRegistro() {
+    public TelaRegistroView getTelaRegistro() {
         return telaRegistro;
     }
     
@@ -74,7 +74,7 @@ public class RegistroUsuarioPresenter implements IRegistroProxy {
         return new String(telaRegistro.getPwSenha().getPassword());
     }    
 
-    public TelaRegistro getView() {
+    public TelaRegistroView getView() {
         return telaRegistro;
     }
 }
