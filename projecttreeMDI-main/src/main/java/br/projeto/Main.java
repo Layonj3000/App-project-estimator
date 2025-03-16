@@ -6,11 +6,14 @@ import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.UsuarioRepository;
 import br.projeto.repository_factory.RepositoryFactory;
+import br.projeto.view.TelaInicialAplicacaoView;
 
 
 public class Main {
 
     public static void main(String[] args) {
+//          TelaInicialAplicacaoView telaInicialAplicacaoView = new TelaInicialAplicacaoView();
+//          telaInicialAplicacaoView.setVisible(true);
         
           LoginUsuarioPresenter loginPresenter = new LoginUsuarioPresenter();
           

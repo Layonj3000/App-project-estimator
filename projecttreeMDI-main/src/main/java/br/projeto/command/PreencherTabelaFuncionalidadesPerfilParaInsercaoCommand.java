@@ -45,7 +45,6 @@ public class PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand implements 
         };
         
        PerfilProjetoDeEstimativaModel perfilProjetoDeEstimativaModel = new PerfilProjetoDeEstimativaModel();
-        //List<PerfilFuncionalidadesPersonalizadasModel> perfilFuncionalidadesPersonalizadasModelList = new ArrayList<>();
         
         Map<String, Integer> mapPerfilBase = MapValoresPadraoPerfilService.getInstance().getMap();
         

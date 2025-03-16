@@ -3,7 +3,6 @@ package br.projeto.repository;
 import br.projeto.repository.abstr.IProjetoDeEstimativaRepository;
 import br.projeto.db.DB;
 import br.projeto.db.DbException;
-import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.Subject;
 import br.projeto.model.UsuarioModel;
@@ -24,7 +23,6 @@ import java.util.Map;
 public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimativaRepository {//TESTAR MUDANÇA NA TIPAGEM DE OUTROS CUSTOS
     //CONSIDERAR COLOCAR TODOS OS METODOS DE INSTANTIATE EM UMA SERVICE
     private Connection conn;
-    private List<Projeto> projetos;//VERIFICAR RETIRADA
     private List<Observer> observers;
     private List<ProjetoDeEstimativaModel> projetosDeEstimativaModel;
     
@@ -33,7 +31,6 @@ public class ProjetoDeEstimativaRepository implements Subject, IProjetoDeEstimat
     public ProjetoDeEstimativaRepository(Connection conn) {    
         this.conn = conn;
         observers = new ArrayList<>();
-        projetos = new ArrayList<>();//VERIFICAR RETIRADA
         projetosDeEstimativaModel = new ArrayList<>();
         
         serviceProjeto = new RetornaProjetoModelService();

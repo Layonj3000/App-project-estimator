@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author David Potentini
  */
-public class AtualizarProjetoCommand implements Command{
+public class AbrirAtualizacaoProjetoCommand implements Command{
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 
     private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
@@ -32,7 +32,7 @@ public class AtualizarProjetoCommand implements Command{
     private Integer projetoId;
     //private List<Integer> perfisIds;
     
-    public AtualizarProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository, PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel/*, AbrirDetalhesProjetoProjetoCommand abrirDetalhesProjetoProjetoCommand, String nomeNo*/) {
+    public AbrirAtualizacaoProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository, PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel/*, AbrirDetalhesProjetoProjetoCommand abrirDetalhesProjetoProjetoCommand, String nomeNo*/) {
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
         this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;

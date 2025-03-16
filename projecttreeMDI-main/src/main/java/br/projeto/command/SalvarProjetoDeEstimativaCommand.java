@@ -97,12 +97,6 @@ public class SalvarProjetoDeEstimativaCommand implements Command{
             }
         }
 
-        if(projetoId == null){
-            JOptionPane.showMessageDialog(null, "PROJETO CRIADO COM SUCESSO!!");
-        }else{
-            JOptionPane.showMessageDialog(null, "PROJETO ATUALIZADO COM SUCESSO!!");
-        }
-        escolhaFuncionalidadesProjetoPresenter.getView().dispose();
     }
     
     //TUDO QUE NÃO É FUNCIONALIDADE

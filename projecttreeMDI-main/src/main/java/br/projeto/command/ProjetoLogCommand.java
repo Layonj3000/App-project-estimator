@@ -3,12 +3,12 @@ package br.projeto.command;
 import br.projeto.observer.LogNotifier;
 import com.log.model.LogRegister;
 
-public abstract class ProjetoCommand implements Command {
+public abstract class ProjetoLogCommand implements Command {
     private LogNotifier logNotifier;
     private LogRegister logRegister;
     private String formatoLog;
 
-    public ProjetoCommand(LogNotifier logNotifier, String formatoLog) {
+    public ProjetoLogCommand(LogNotifier logNotifier, String formatoLog) {
         this.logNotifier = logNotifier;
         this.formatoLog = formatoLog;
     }

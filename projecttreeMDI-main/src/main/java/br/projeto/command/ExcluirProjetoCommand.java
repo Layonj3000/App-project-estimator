@@ -3,25 +3,23 @@ package br.projeto.command;
 import br.projeto.model.UsuarioModel;
 import br.projeto.observer.LogNotifier;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
-import br.projeto.repository.ProjetoRepositoryMock;
 import com.log.model.LogRegister;
 
 import javax.swing.*;
 
-public class ExcluirProjetoProjetoCommand extends ProjetoCommand {
-    private /*final*/ ProjetoRepositoryMock repository;//FINAL COMENTADO SOMENTE PARA NAO PRECISAR INICIALIZAR NO NOVO CONTRUTOR CRIADO
+public class ExcluirProjetoCommand extends ProjetoLogCommand {
     private ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
     private Integer projetoId;
     private String projetoNome;//ATRIBUTO ANTIGO
     private final UsuarioModel usuarioModel;
     
-    public ExcluirProjetoProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, UsuarioModel usuarioModel, LogNotifier logNotifier){//CONSTRUTOR NOVO 1
+    public ExcluirProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, UsuarioModel usuarioModel, LogNotifier logNotifier){//CONSTRUTOR NOVO 1
         super(logNotifier, usuarioModel.getFormatoLOG());
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.usuarioModel = usuarioModel;
     }
     
-    public ExcluirProjetoProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, Integer projetoId,UsuarioModel usuarioModel, LogNotifier logNotifier){//CONSTRUTOR NOVO 2 PARA METODO adicionarMenuContextual() DE PrincipalPresenter
+    public ExcluirProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, Integer projetoId,UsuarioModel usuarioModel, LogNotifier logNotifier){//CONSTRUTOR NOVO 2 PARA METODO adicionarMenuContextual() DE PrincipalPresenter
         super(logNotifier, usuarioModel.getFormatoLOG());
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.projetoId = projetoId;

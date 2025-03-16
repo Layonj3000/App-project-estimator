@@ -67,12 +67,6 @@ public class DetalhePerfilView extends JInternalFrame {
         JScrollPane scrollTabela = new JScrollPane(tabelaDetalhes);
         painelTabela.add(scrollTabela, BorderLayout.CENTER);
 
-        /*JPanel painelValorTotal = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        lblValorTotal = new JLabel("Valor Total: R$ 0,00");
-        lblValorTotal.setFont(new Font("Arial", Font.BOLD, 14));
-        painelValorTotal.add(lblValorTotal);*/
-
-        /*painelTabela.add(painelValorTotal, BorderLayout.SOUTH);*/
         painelPrincipal.add(painelTabela, BorderLayout.CENTER);
     }
 
@@ -90,7 +84,5 @@ public class DetalhePerfilView extends JInternalFrame {
         for (Object[] linha : dados) {
             modeloTabela.addRow(linha);
         }
-        /*DecimalFormat df = new DecimalFormat("R$ #,##0.00");
-        lblValorTotal.setText("Valor Total: " + df.format(valorTotal));*/
     }    
 }

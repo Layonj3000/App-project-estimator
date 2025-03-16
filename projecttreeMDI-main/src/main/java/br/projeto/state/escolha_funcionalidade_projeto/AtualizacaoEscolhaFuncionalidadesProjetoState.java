@@ -34,7 +34,10 @@ public class AtualizacaoEscolhaFuncionalidadesProjetoState extends AEscolhaFunci
         @Override
     public void confirmar(){
         try{
-            new SalvarProjetoDeEstimativaCommand(escolhaFuncionalidadeProjetoPresenter,idPerfisSelecionados, projetoId).execute();
+            new SalvarProjetoDeEstimativaCommand(escolhaFuncionalidadesProjetoPresenter,idPerfisSelecionados, projetoId).execute();
+            
+            new MostrarMensagemCommand("PROJETO ATUALIZADO COM SUCESSO!").execute();
+            escolhaFuncionalidadesProjetoPresenter.getView().dispose();
         } catch (IllegalArgumentException e) {
             new MostrarMensagemCommand("Erro de validação: " + e.getMessage()).execute();
         } catch (DbException e) {
@@ -47,14 +50,14 @@ public class AtualizacaoEscolhaFuncionalidadesProjetoState extends AEscolhaFunci
 
     
     private void configuraTela() {
-        escolhaFuncionalidadeProjetoPresenter.getView().setVisible(false);
-        escolhaFuncionalidadeProjetoPresenter.getBtnConfirmar().addActionListener(new ActionListener(){
+        escolhaFuncionalidadesProjetoPresenter.getView().setVisible(false);
+        escolhaFuncionalidadesProjetoPresenter.getBtnConfirmar().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                confirmar();
             }
         });
    
-        escolhaFuncionalidadeProjetoPresenter.getView().setVisible(true);
+        escolhaFuncionalidadesProjetoPresenter.getView().setVisible(true);
     }
 }

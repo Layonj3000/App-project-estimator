@@ -11,7 +11,7 @@ import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
 import com.log.adaptador.LogConfig;
 import com.log.model.LogRegister;
 
-public class CriarProjetoCommand extends ProjetoCommand {
+public class AbrirCriacaoProjetoCommand extends ProjetoLogCommand {
     /*private final ProjetoRepositoryMock repository;*/
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 
@@ -19,21 +19,16 @@ public class CriarProjetoCommand extends ProjetoCommand {
     private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
     private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
 
-    /*private final JDesktopPane desktop;*/
     private final UsuarioModel usuarioModel;
-    //private final CriarProjetoMock criarProjetoMock;
 
-    public CriarProjetoCommand(/*ProjetoRepositoryMock repository,*/ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository,ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,/* JDesktopPane desktop,*/PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel, LogNotifier logNotifier) {
+    public AbrirCriacaoProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository,ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,/* JDesktopPane desktop,*/PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel, LogNotifier logNotifier) {
         super(logNotifier, usuarioModel.getFormatoLOG());
-        /*this.repository = repository;*/
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.perfilProjetoDeEstimativaRepository =perfilProjetoDeEstimativaRepository;
         this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;
         this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;
         this.perfilProjetoIntermediariaRepository = perfilProjetoIntermediariaRepository;
-        /*this.desktop = desktop;*/
         this.usuarioModel = usuarioModel;
-        //this.criarProjetoMock = new CriarProjetoMock(repository);//LEMBRAR DE EXCLUIR CLASSE
     }
 
     

@@ -9,7 +9,6 @@ import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
-import br.projeto.repository.ProjetoRepositoryMock;
 import br.projeto.repository.UsuarioRepository;
 import br.projeto.repository_factory.RepositoryFactory;
 
@@ -64,9 +63,5 @@ public class InstanciaRepositoryService {
         RepositoryFactory factory = RepositoryFactory.escolherClasseFabricada(PerfilProjetoIntermediariaRepository.class);
         PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository = factory.createRepository();
         return perfilProjetoIntermediariaRepository;
-    }
-    public ProjetoRepositoryMock getRepositoryMock(){
-        ProjetoRepositoryMock repositoryMock = new ProjetoRepositoryMock();
-        return repositoryMock;
     }
 }

@@ -13,14 +13,14 @@ import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
  *
  * @author David Potentini
  */
-public class AtualizarPerfilCommand implements Command{
+public class AbrirAtualizacaoPerfilCommand implements Command{
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 
     private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;//NOVO
     private final UsuarioModel usuarioModel;
     
     private Integer idPerfil;
 
-    public AtualizarPerfilCommand(PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository, UsuarioModel usuarioModel) {
+    public AbrirAtualizacaoPerfilCommand(PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository, UsuarioModel usuarioModel) {
         this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
         this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;
         this.usuarioModel = usuarioModel;

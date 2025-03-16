@@ -33,6 +33,9 @@ public class AtualizacaoEscolhaFuncionalidadesPerfilState extends AEscolhaFuncio
     public void salvar(){
         try{
             new SalvarPerfilProjetoDeEstimativaCommand(escolhaFuncionalidadesPerfilPresenter, idPerfil).execute();
+            new MostrarMensagemCommand("PERFIL ATUALIZADO COM SUCESSO!").execute();
+            
+            escolhaFuncionalidadesPerfilPresenter.getView().dispose();
         } catch (NumberFormatException e) {
             new MostrarMensagemCommand("Número inválido inserido: " + e.getMessage()).execute();
         } catch (IllegalArgumentException e) {

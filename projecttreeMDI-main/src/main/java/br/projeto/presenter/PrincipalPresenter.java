@@ -2,7 +2,6 @@ package br.projeto.presenter;
 
 import br.projeto.command.*;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
-import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.UsuarioModel;
 import br.projeto.observer.FileLogger;
@@ -14,7 +13,6 @@ import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
-import br.projeto.repository.ProjetoRepositoryMock;
 import br.projeto.service.ConstrutorDeArvoreNavegacaoService;
 import br.projeto.service.InstanciaRepositoryService;
 import br.projeto.service.NoArvoreComposite;
@@ -27,7 +25,6 @@ import java.util.*;
 
 public final class PrincipalPresenter extends Observer {
     private final PrincipalView view;
-    private final ProjetoRepositoryMock repository;
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO 
     private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;//NOVO
@@ -39,30 +36,22 @@ public final class PrincipalPresenter extends Observer {
     private final List<WindowCommand> windowCommands = new ArrayList<>();
     private InstanciaRepositoryService repositoryService = InstanciaRepositoryService.getInstancia();
     
-    /*ATUALIZAR*/
-    //private AtualizarProjetoCommand atualizarProjetoCommand;
-    /*ATUALIZAR*/
     
     public PrincipalPresenter(UsuarioModel usuarioModel) {
         this.view = new PrincipalView();
         this.projetoDeEstimativaRepository = repositoryService.getProjetoDeEstimativaRepository();
-        this.projetoDeEstimativaRepository.addObserver(this);//NOVO
+        this.projetoDeEstimativaRepository.addObserver(this);
         
         this.perfilProjetoDeEstimativaRepository = repositoryService.getPerfilProjetoDeEstimativaRepository();
-        this.perfilProjetoDeEstimativaRepository.addObserver(this);//NOVO
+        this.perfilProjetoDeEstimativaRepository.addObserver(this);
         
         this.projetoFuncionalidadesPersonalizadasRepository = repositoryService.getProjetoFuncionalidadesPersonalizadasRepository();
-        //this.projetoFuncionalidadesPersonalizadasRepository.addObserver(this);//NOVO
         
         this.perfilFuncionalidadesPersonalizadasRepository = repositoryService.getPerfilFuncionalidadesPersonalizadasRepository();
-        /*this.perfilFuncionalidadesPersonalizadasRepository.addObserver(this);//NOVO*/
         
         this.perfilProjetoIntermediariaRepository = repositoryService.getPerfilPerfilProjetoIntermediariaRepository();
         
         this.usuarioModel = usuarioModel;
-        
-        this.repository = repositoryService.getRepositoryMock();
-        this.repository.addObserver(this);
 
         this.construtorDeArvoreNavegacaoService = new ConstrutorDeArvoreNavegacaoService();
 
@@ -90,18 +79,18 @@ public final class PrincipalPresenter extends Observer {
         FileLogger fileLogger = new FileLogger();
         LogNotifier logNotifier = new LogNotifier();
         logNotifier.add(fileLogger);
-        comandos.put("Principal", new AbrirDashboardProjetoCommand(view.getDesktop(), repository));
+        comandos.put("Principal", new AbrirTelaInicialAplicacao(view.getDesktop()));
         comandos.put("Usuário", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Usuário"));
         comandos.put("Perfis", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Perfis"));
         comandos.put("Compartilhar projeto de estimativa",new IniciarTelaCompartilharCommand(perfilProjetoDeEstimativaRepository,projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
         comandos.put("Exportar projeto de estimativa", new MostrarMensagemCommand("Exportar ainda não implementado"));
-        comandos.put("Atualizar projeto",new AtualizarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
-        comandos.put("Novo projeto", new CriarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository/*,view.getDesktop()*/,perfilProjetoIntermediariaRepository, usuarioModel, logNotifier));
-        comandos.put("Novo perfil", new CriarPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel));
-        comandos.put("Atualizar perfil", new AtualizarPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel));
-        comandos.put("Excluir projeto", new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository,usuarioModel, logNotifier));
+        comandos.put("Atualizar projeto",new AbrirAtualizacaoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
+        comandos.put("Novo projeto", new AbrirCriacaoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository/*,view.getDesktop()*/,perfilProjetoIntermediariaRepository, usuarioModel, logNotifier));
+        comandos.put("Novo perfil", new AbrirCriacaoPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel));
+        comandos.put("Atualizar perfil", new AbrirAtualizacaoPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel));
+        comandos.put("Excluir projeto", new ExcluirProjetoCommand(projetoDeEstimativaRepository,usuarioModel, logNotifier));
         comandos.put("Excluir Perfil", new ExcluirPerfilCommand(perfilProjetoDeEstimativaRepository));
-        comandos.put("Abrir detalhes", new AbrirDetalhesProjetoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, view.getDesktop()));
+        comandos.put("Abrir detalhes", new AbrirDetalhesProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, view.getDesktop()));
         return comandos;
     }
     
@@ -149,11 +138,9 @@ public final class PrincipalPresenter extends Observer {
 
         
         /*PROJETO PARTE 2*/
-        //List<Projeto> listaProjetos = repository.getProjetos();//ANTIGO
         List<ProjetoDeEstimativaModel> listaProjetos = projetoDeEstimativaRepository.findByUser(usuarioModel);
-        //for (final Projeto projeto : listaProjetos) {//ANTIGO
         for (ProjetoDeEstimativaModel projeto : listaProjetos) {
-            AbrirDetalhesProjetoProjetoCommand cmdDetalhes = new AbrirDetalhesProjetoProjetoCommand(/*repository,*/projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository, perfilProjetoIntermediariaRepository, view.getDesktop()) {
+            AbrirDetalhesProjetoCommand cmdDetalhes = new AbrirDetalhesProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository, projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository, perfilProjetoIntermediariaRepository, view.getDesktop()) {
                 @Override
                 public void execute() {
                     String tituloJanela = "Detalhes do Projeto: " + projeto.getNomeProjetoDeEstimativa();
@@ -173,7 +160,7 @@ public final class PrincipalPresenter extends Observer {
 
             adicionarMenuContextual(projeto, noProjeto);
             
-            AtualizarProjetoCommand atualizarProjetoCommand = new AtualizarProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel);
+            AbrirAtualizacaoProjetoCommand atualizarProjetoCommand = new AbrirAtualizacaoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel);
             atualizarProjetoCommand.setProjetoId(projeto.getId());
             
             IniciarTelaCompartilharCommand compartilharCommand = new IniciarTelaCompartilharCommand(perfilProjetoDeEstimativaRepository,projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel);
@@ -212,12 +199,8 @@ public final class PrincipalPresenter extends Observer {
 
             adicionarMenuContextual(perfil, noPerfil);
             
-            
-            AtualizarPerfilCommand atualizarPerfilCommand = new AtualizarPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel);
+            AbrirAtualizacaoPerfilCommand atualizarPerfilCommand = new AbrirAtualizacaoPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel);
             atualizarPerfilCommand.setIdPerfil(perfil.getId());
-//            noPerfil.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Elaborar estimativa", "action", comandos.get("Elaborar estimativa")));
-//            noPerfil.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Visualizar estimativa", "action", comandos.get("Visualizar estimativa")));
-//            noPerfil.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Compartilhar projeto de estimativa", "action", comandos.get("Compartilhar projeto de estimativa")));
             noPerfil.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Atualizar perfil", "action", atualizarPerfilCommand));
                 
             noPerfis.adicionarFilho(noPerfil);
@@ -238,7 +221,7 @@ public final class PrincipalPresenter extends Observer {
             JPopupMenu menu = new JPopupMenu();
             JMenuItem excluirProjetoItem = new JMenuItem("Excluir Projeto");
             excluirProjetoItem.addActionListener(e -> {
-                Command cmdExcluir = new ExcluirProjetoProjetoCommand(projetoDeEstimativaRepository, projeto.getId(), usuarioModel, logNotifier);
+                Command cmdExcluir = new ExcluirProjetoCommand(projetoDeEstimativaRepository, projeto.getId(), usuarioModel, logNotifier);
                 try{
                 cmdExcluir.execute();
                 }catch(IllegalArgumentException ex){
@@ -269,15 +252,6 @@ public final class PrincipalPresenter extends Observer {
       }
 
 
-/*    @Override
-    public void update(final List<Projeto> listaProjetos) {
-        SwingUtilities.invokeLater(() -> {
-            WindowCommand fecharJanelasCommand = new FecharJanelasRelacionadasCommand(view.getDesktop(), listaProjetos);
-            fecharJanelasCommand.execute();
-            configurarArvore();
-        });
-    }*/
-
     private void bloquearMinimizacao(String titulo) {
         JInternalFrame[] frames = view.getDesktop().getAllFrames();
         for (JInternalFrame frame : frames) {
@@ -303,9 +277,6 @@ public final class PrincipalPresenter extends Observer {
         return comandos;
     }
 
-    public ProjetoRepositoryMock getRepository() {
-        return repository;
-    }
 
     public PrincipalView getView() {
         return view;
@@ -328,13 +299,5 @@ public final class PrincipalPresenter extends Observer {
             configurarArvore();
         });
     }
-
-    @Override
-    public void update(List<Projeto> projetos) {
-        SwingUtilities.invokeLater(() -> {
-            /*WindowCommand fecharJanelasCommand = new FecharJanelasRelacionadasCommand(view.getDesktop(), listaProjetoDeEstimativaModel);
-            fecharJanelasCommand.execute();*/
-            configurarArvore();
-        });    }
 
 }

@@ -8,8 +8,8 @@ import java.text.DecimalFormat;
 
 public class DetalheProjetoView extends JInternalFrame {
     private JLabel lblNome, lblCriador, lblData, lblTipoProjeto, lblValorTotal, lblCompartilhadoPor;//PADRAO
-    private JLabel lblPercentualLucro, lblPercentualImposto, lblGastoDevDiario;//ADICIONADOS
-    private JLabel lblImposto, lblLucroCalculado, lblDias, lblMeses, lblMediaMes, lblValorBase;//TOTALIZADORES ADICIONADOS
+    private JLabel lblPercentualLucro, lblPercentualImposto, lblGastoDevDiario;//ADICIONAIS
+    private JLabel lblImposto, lblLucroCalculado, lblDias, lblMeses, lblMediaMes, lblValorBase;//TOTALIZADORES
     private JTable tabelaDetalhes;
     private DefaultTableModel modeloTabela;
 

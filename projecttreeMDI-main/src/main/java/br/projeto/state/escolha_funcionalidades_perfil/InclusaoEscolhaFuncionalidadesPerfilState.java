@@ -30,6 +30,9 @@ public class InclusaoEscolhaFuncionalidadesPerfilState extends AEscolhaFuncional
     public void salvar(){
         try{
             new SalvarPerfilProjetoDeEstimativaCommand(escolhaFuncionalidadesPerfilPresenter, null).execute();
+            new MostrarMensagemCommand("PERFIL CRIADO COM SUCESSO!").execute();
+            
+            escolhaFuncionalidadesPerfilPresenter.getView().dispose();
         } catch (NumberFormatException e) {
             new MostrarMensagemCommand("Número inválido inserido: " + e.getMessage()).execute();
         } catch (IllegalArgumentException e) {

@@ -74,13 +74,6 @@ public class SalvarPerfilProjetoDeEstimativaCommand implements Command{
             
             inserirFuncionalidadesPersonalizadas(retornaPerfilModelService);
 
-            
-            if(idPerfil == null){
-                JOptionPane.showMessageDialog(null, "PERFIL CRIADO COM SUCESSO!!");
-            }else{
-                JOptionPane.showMessageDialog(null, "PERFIL ATUALIZADO COM SUCESSO!!");
-            }
-            escolhaFuncionalidadesPerfilPresenter.getView().dispose();
         }
 
         //TUDO QUE NÃO É FUNCIONALIDADE

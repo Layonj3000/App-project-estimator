@@ -4,7 +4,6 @@ import br.projeto.repository.abstr.IPerfilProjetoDeEstimativaRepository;
 import br.projeto.db.DB;
 import br.projeto.db.DbException;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
-import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.Subject;
 import br.projeto.model.UsuarioModel;
@@ -24,7 +23,6 @@ import java.util.Map;
 
 public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProjetoDeEstimativaRepository{
     private Connection conn;
-    private List<Projeto> projetos;
     private List<Observer> observers;
     private List<PerfilProjetoDeEstimativaModel> perfisProjetoDeEstimativaModel;
     
@@ -33,7 +31,6 @@ public class PerfilProjetoDeEstimativaRepository implements Subject, IPerfilProj
     public PerfilProjetoDeEstimativaRepository(Connection conn) {
         this.conn = conn;
         observers = new ArrayList<>();
-        projetos = new ArrayList<>();
         perfisProjetoDeEstimativaModel = new ArrayList<>();
         
         servicePerfil = new RetornaPerfilModelService();

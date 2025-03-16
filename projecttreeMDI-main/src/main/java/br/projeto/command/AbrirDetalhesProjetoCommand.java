@@ -11,7 +11,7 @@ import br.projeto.view.DetalheProjetoView;
 
 import javax.swing.*;
 
-public class AbrirDetalhesProjetoProjetoCommand implements Command {
+public class AbrirDetalhesProjetoCommand implements Command {
    // private final ProjetoRepositoryMock repository;//ANTIGO
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;//NOVO
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;//NOVO
@@ -22,7 +22,7 @@ public class AbrirDetalhesProjetoProjetoCommand implements Command {
     private Integer projetoId;
     private String projetoNome;
 
-    public AbrirDetalhesProjetoProjetoCommand(/*ProjetoRepositoryMock repository,*/ProjetoDeEstimativaRepository projetoDeEstimativaRepository,PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, JDesktopPane desktop) {
+    public AbrirDetalhesProjetoCommand(/*ProjetoRepositoryMock repository,*/ProjetoDeEstimativaRepository projetoDeEstimativaRepository,PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, JDesktopPane desktop) {
         //this.repository = repository;
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
@@ -58,7 +58,7 @@ public class AbrirDetalhesProjetoProjetoCommand implements Command {
         } else {
             DetalheProjetoView detalheView = new DetalheProjetoView();
             detalheView.setTitle(tituloJanela);
-            new DetalheProjetoPresenter(detalheView/*, repository*/, projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, projetoId, projetoNome);
+            new DetalheProjetoPresenter(detalheView, projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, projetoId, projetoNome);
             desktop.add(detalheView);
             detalheView.setVisible(true);
             try {

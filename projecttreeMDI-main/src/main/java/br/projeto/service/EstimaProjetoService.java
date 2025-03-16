@@ -2,7 +2,6 @@ package br.projeto.service;
 
 import br.projeto.enums.SimNao;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
-import br.projeto.model.Projeto;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import java.util.List;
 
@@ -11,30 +10,6 @@ import java.util.Optional;
 
 public class EstimaProjetoService {
 
-    private static final double VALOR_DIARIA_DESENVOLVIMENTO = 450.0;
-    private static final double VALOR_DIARIA_GERENCIA = 300.0;
-    private static final double VALOR_DIARIA_UI_UX = 550.0;
-
-    public int calcularDiasTotais(Projeto projeto) {//ANTIGO
-        return calcularDiasFuncionalidades(projeto.getFuncionalidadesEscolhidas());
-    }
-
-   public double calcularCusto(Projeto projeto) {//ANTIGO
-        int diasTotais = calcularDiasTotais(projeto);
-        return diasTotais * VALOR_DIARIA_DESENVOLVIMENTO;
-    }
-
-    /*public double calcularValorUnitario(String tipoProjeto, int dias) {
-        switch (tipoProjeto) {
-            case "Web/Back-end":
-            case "Android":
-                return dias * VALOR_DIARIA_DESENVOLVIMENTO;
-            case "iOS":
-                return dias * VALOR_DIARIA_UI_UX;
-            default:
-                throw new IllegalArgumentException("Tipo de projeto desconhecido: " + tipoProjeto);
-        }
-    }*/
 
     public double calcularValorUnitario(ProjetoDeEstimativaModel projeto, List<PerfilProjetoDeEstimativaModel> perfilProjetoDeEstimativaModelList, String nomeFuncionalidade, int dias, int diasTamanhoProjeto) {//LEMBRAR DE ADICIONAR A LOGICA PARA O TAMANHO DO PROJETO(MVP, Básico, Profissional)
         double ValorUnitarioDesenvolvimento = retornaValorTotalDia(projeto,perfilProjetoDeEstimativaModelList);

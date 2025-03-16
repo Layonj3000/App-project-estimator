@@ -12,10 +12,10 @@ import javax.swing.JOptionPane;
  * @author David Potentini
  */
 public class AEscolhaFuncionalidadeProjetoState {
-    protected EscolhaFuncionalidadesProjetoPresenter escolhaFuncionalidadeProjetoPresenter;
+    protected EscolhaFuncionalidadesProjetoPresenter escolhaFuncionalidadesProjetoPresenter;
 
     public AEscolhaFuncionalidadeProjetoState(EscolhaFuncionalidadesProjetoPresenter escolhaFuncionalidadeProjetoPresenter) {
-        this.escolhaFuncionalidadeProjetoPresenter = escolhaFuncionalidadeProjetoPresenter;
+        this.escolhaFuncionalidadesProjetoPresenter = escolhaFuncionalidadeProjetoPresenter;
     }
     
     public void confirmar(){
