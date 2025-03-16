@@ -23,8 +23,4 @@ public class AEscolhaPerfilState {
         throw new RuntimeException();
     }
     
-    public void voltar(){
-        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR A OPERAÇÃO NESSE ESTADO");
-        throw new RuntimeException();
-    }
 }

@@ -36,11 +36,6 @@ public class InclusaoEscolhaPerfilState extends AEscolhaPerfilState{
         projetoPresenter.setPerfisSelecionados(perfisSelecionados.getIdPerfisSelecionados());
         projetoPresenter.setEstadoInicial();
     }
-    
-    @Override
-    public void voltar(){
-        escolhaPerfilPresenter.getView().dispose();
-    }
 
     //VERIFICAR DEMETER
     private void configuraTela() {
@@ -53,12 +48,6 @@ public class InclusaoEscolhaPerfilState extends AEscolhaPerfilState{
             }
         });
         
-        escolhaPerfilPresenter.getBtnVoltar().addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                voltar();
-            }
-        });
         
         escolhaPerfilPresenter.getView().setVisible(true);
     }

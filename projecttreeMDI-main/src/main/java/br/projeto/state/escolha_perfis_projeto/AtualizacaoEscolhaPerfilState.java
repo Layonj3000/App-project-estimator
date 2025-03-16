@@ -43,10 +43,6 @@ public class AtualizacaoEscolhaPerfilState extends AEscolhaPerfilState{
  
     }
     
-    @Override
-    public void voltar(){
-        escolhaPerfilPresenter.getView().dispose();
-    }
 
     //VERIFICAR DEMETER
     private void configuraTela() {
@@ -56,13 +52,6 @@ public class AtualizacaoEscolhaPerfilState extends AEscolhaPerfilState{
             @Override
             public void actionPerformed(ActionEvent e){
                 confirmar();
-            }
-        });
-        
-        escolhaPerfilPresenter.getBtnVoltar().addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                voltar();
             }
         });
         

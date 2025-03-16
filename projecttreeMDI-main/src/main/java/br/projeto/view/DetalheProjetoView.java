@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
 public class DetalheProjetoView extends JInternalFrame {
     private JLabel lblNome, lblCriador, lblData, lblTipoProjeto, lblValorTotal, lblCompartilhadoPor;//PADRAO
     private JLabel lblPercentualLucro, lblPercentualImposto, lblGastoDevDiario;//ADICIONADOS
-    private JLabel lblImposto, lblLucroCalculado, lblDias, lblMeses, lblMediaMes;//TOTALIZADORES ADICIONADOS
+    private JLabel lblImposto, lblLucroCalculado, lblDias, lblMeses, lblMediaMes, lblValorBase;//TOTALIZADORES ADICIONADOS
     private JTable tabelaDetalhes;
     private DefaultTableModel modeloTabela;
 
@@ -110,7 +110,13 @@ public class DetalheProjetoView extends JInternalFrame {
         painelMesesTotais.add(lblMeses); 
         /*meses totais rodapé*/
         
+        JPanel painalTotalBase = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        lblValorBase = new JLabel("Funcionalidades + Custos: ");
+        lblValorBase.setFont(new Font("Arial", Font.BOLD, 12));
+        painalTotalBase.add(lblValorBase);
+        
         /*Adicionando os paineis de rodapé ao painelValores*/
+        painelValores.add(painalTotalBase);
         painelValores.add(painelImposto);
         painelValores.add(painelLucroCalculado);
         painelValores.add(painelDiasTotais);
@@ -143,7 +149,7 @@ public class DetalheProjetoView extends JInternalFrame {
 
     }
     
-    public void atualizarRodape(  int totalDias, double totalMeses, double totalImpostos, double LucroCalculado, double mediaMes, double valorTotal){
+    public void atualizarRodape(  int totalDias, double totalMeses, double totalImpostos, double LucroCalculado, double mediaMes, double valorTotal, double totalBase){
         DecimalFormat df = new DecimalFormat("R$ #,##0.00");
         DecimalFormat df2 = new DecimalFormat("#.00");
         
@@ -158,6 +164,8 @@ public class DetalheProjetoView extends JInternalFrame {
         lblLucroCalculado.setText("Lucro calculado: " + df.format(LucroCalculado));
         
         lblMediaMes.setText("Média p/ mês: " + df.format(mediaMes));
+        
+        lblValorBase.setText("Funcionalidades + Custos: " + df.format(totalBase));
     }
     
     public DefaultTableModel getModeloTabela() {

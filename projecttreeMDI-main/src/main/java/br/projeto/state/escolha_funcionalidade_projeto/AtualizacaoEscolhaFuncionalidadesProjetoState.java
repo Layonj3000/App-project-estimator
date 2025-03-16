@@ -42,16 +42,10 @@ public class AtualizacaoEscolhaFuncionalidadesProjetoState extends AEscolhaFunci
         }catch (Exception e) { 
             new MostrarMensagemCommand("Ocorreu um erro inesperado: " + e.getMessage()).execute();
         } 
-        //CODIGO PARA APARECER MENSAGEM DE SALVO COM SUCESSO
-        //projetoDeEstimativaPresenter.getView().getFrame().dispose();
     }
     
-    @Override
-    public void voltar(){
-        escolhaFuncionalidadeProjetoPresenter.getView().dispose();
-    }
 
-    //VERIFICAR DEMETER
+    
     private void configuraTela() {
         escolhaFuncionalidadeProjetoPresenter.getView().setVisible(false);
         escolhaFuncionalidadeProjetoPresenter.getBtnConfirmar().addActionListener(new ActionListener(){
@@ -60,13 +54,7 @@ public class AtualizacaoEscolhaFuncionalidadesProjetoState extends AEscolhaFunci
                confirmar();
             }
         });
-        
-        escolhaFuncionalidadeProjetoPresenter.getBtnVoltar().addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                voltar();
-            }
-        });    
+   
         escolhaFuncionalidadeProjetoPresenter.getView().setVisible(true);
     }
 }

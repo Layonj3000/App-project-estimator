@@ -69,9 +69,6 @@ public class EscolhaFuncionalidadesProjetoPresenter {
         estado.confirmar();
     }
     
-    public void voltar(){
-        estado.voltar();
-    }
 
     public ProjetoDeEstimativaRepository getProjetoDeEstimativaRepository() {
         return projetoDeEstimativaRepository;
@@ -145,7 +142,4 @@ public class EscolhaFuncionalidadesProjetoPresenter {
         return view.getBtnConfirmar();
     }
     
-    public JButton getBtnVoltar(){
-        return view.getBtnVoltar();
-    }
 }

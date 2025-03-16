@@ -13,37 +13,36 @@ import javax.swing.JOptionPane;
 
 public abstract class Observer {
     public void update(List<Projeto> projetos){
-        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR O UPDATE");//IDENTIFICAR O NOME DO ESTADO
-        throw new RuntimeException();
-    };
-    
+        showErrorMessage();
+    }
+
     public void updatePerfilModel(List<PerfilProjetoDeEstimativaModel> listaPerfilProjetoDeEstimativaModel){
-        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR O UPDATE");//IDENTIFICAR O NOME DO ESTADO
-        throw new RuntimeException();
-    };
-    
+        showErrorMessage();
+    }
+
     public void updateProjetoModel(List<ProjetoDeEstimativaModel> listaProjetoDeEstimativaModel){
-        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR O UPDATE");//IDENTIFICAR O NOME DO ESTADO
-        throw new RuntimeException();
-    };
-    
+        showErrorMessage();
+    }
+
     public void updateProjetoFuncionalidadesPersonalizadasModel(List<ProjetosFuncionalidadesPersonalizadasModel> listaProjetosFuncionalidadesPersonalizadasModel){
-        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR O UPDATE");//IDENTIFICAR O NOME DO ESTADO
-        throw new RuntimeException();
-    };
-    
+        showErrorMessage();
+    }
+
     public void updatePerfilFuncionalidadesPersonalizadasModel(List<PerfilFuncionalidadesPersonalizadasModel> listaPerfilFuncionalidadesPersonalizadasModel){
-        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR O UPDATE");//IDENTIFICAR O NOME DO ESTADO
-        throw new RuntimeException();
-    };
-    
+        showErrorMessage();
+    }
+
     public void updatePerfilProjetoIntermediariaModel(List<PerfilProjetoIntermediariaModel> listaPerfilProjetoIntermediariaModel){
-        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR O UPDATE");//IDENTIFICAR O NOME DO ESTADO
-        throw new RuntimeException();
-    };
-    
+        showErrorMessage();
+    }
+
     public void updateUsuarioModel(UsuarioModel usuarioModel){
-        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR O UPDATE");//IDENTIFICAR O NOME DO ESTADO
-        throw new RuntimeException();
+        showErrorMessage();
+    }
+
+    private void showErrorMessage() {
+        String className = this.getClass().getSimpleName();
+        JOptionPane.showMessageDialog(null, "NÃO É POSSÍVEL REALIZAR O UPDATE - Estado atual: " + className);
+        throw new RuntimeException("Método update não implementado em " + className);
     }
 }

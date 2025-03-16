@@ -46,10 +46,6 @@ public class AtualizacaoEscolhaFuncionalidadesPerfilState extends AEscolhaFuncio
         }        
     }
     
-    @Override
-    public void voltar(){
-        escolhaFuncionalidadesPerfilPresenter.getView().dispose();
-    }
     
     
         //VERIFICAR DEMETER
@@ -59,13 +55,6 @@ public class AtualizacaoEscolhaFuncionalidadesPerfilState extends AEscolhaFuncio
             @Override
             public void actionPerformed(ActionEvent e){
                salvar();
-            }
-        });
-        
-        escolhaFuncionalidadesPerfilPresenter.getBtnVoltar().addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                voltar();
             }
         });
         

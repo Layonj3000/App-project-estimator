@@ -63,9 +63,6 @@ public class EscolhaPerfilPresenter {
         estado.confirmar();
     }
     
-    public void voltar(){
-        estado.voltar();
-    }
 
     public EscolhaPlataformaView getView() {
         return view;
@@ -103,7 +100,4 @@ public class EscolhaPerfilPresenter {
         return view.getBtnConfirmar();
     }
     
-    public JButton getBtnVoltar(){
-        return view.getBtnVoltar();
-    }
 }

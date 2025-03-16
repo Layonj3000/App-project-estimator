@@ -27,9 +27,6 @@ public class ManterProjetoDeEstimativaView extends javax.swing.JFrame{
         return btnConfirmar;
     }
 
-    public JButton getBtnVoltar() {
-        return btnVoltar;
-    }
     
     public JTable getTable() {
         return tblFuncionalidades;
@@ -99,7 +96,6 @@ public class ManterProjetoDeEstimativaView extends javax.swing.JFrame{
         jLabel9 = new javax.swing.JLabel();
         txtPercentualComImpostos = new javax.swing.JTextField();
         txtPercentualLucroDesejado = new javax.swing.JTextField();
-        btnVoltar = new javax.swing.JButton();
         btnConfirmar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblNomeProjetoEstimativa = new javax.swing.JLabel();
@@ -213,15 +209,6 @@ public class ManterProjetoDeEstimativaView extends javax.swing.JFrame{
                 .addContainerGap())
         );
 
-        btnVoltar.setBackground(new java.awt.Color(255, 51, 51));
-        btnVoltar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnVoltar.setText("Voltar");
-        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVoltarActionPerformed(evt);
-            }
-        });
-
         btnConfirmar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnConfirmar.setText("Confirmar");
 
@@ -246,21 +233,20 @@ public class ManterProjetoDeEstimativaView extends javax.swing.JFrame{
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addComponent(lblNomeProjetoEstimativa)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNomeProjetoEstimativa, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblNomeProjetoEstimativa)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtNomeProjetoEstimativa, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(0, 18, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnVoltar)
-                                    .addGap(762, 762, 762)
+                                    .addGap(834, 834, 834)
                                     .addComponent(btnConfirmar))
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 56, Short.MAX_VALUE))
+                .addGap(0, 17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,18 +260,12 @@ public class ManterProjetoDeEstimativaView extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnConfirmar)
-                    .addComponent(btnVoltar))
+                .addComponent(btnConfirmar)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void txtNomeProjetoEstimativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeProjetoEstimativaActionPerformed
         // TODO add your handling code here:
@@ -328,7 +308,6 @@ public class ManterProjetoDeEstimativaView extends javax.swing.JFrame{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
-    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

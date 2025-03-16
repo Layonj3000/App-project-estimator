@@ -17,6 +17,7 @@ C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Sof
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\state\escolha_funcionalidades_perfil\AtualizacaoEscolhaFuncionalidadesPerfilState.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\RemoverOpcaoPerfilCommand.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\perfil_builder\BackEndBuilder.java
+C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\ManterPerfilProjetoDeEstimativaViewTeste.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\TelaRegistro.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\EscolhaFuncionalidadesPerfilPresenter.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\repository\abstr\IPerfilProjetoDeEstimativaRepository.java
@@ -78,7 +79,6 @@ C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Sof
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\model\PerfilProjetoDeEstimativaModel.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\PreencherTabelaFuncionalidadesPerfilParaUpdateCommand.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\service\CriarBarraBotaoService.java
-C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\view\ManterProjetoDeEstimativaViewBackup.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\command\SalvarProjetoDeEstimativaCommand.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\CompartilharPresenter.java
 C:\Users\USER\Desktop\TRABALHO-FINAL-VERSAO-CORRIGIDA\Projeto-de-Sistemas-de-Software\projecttreeMDI-main\src\main\java\br\projeto\presenter\DesktopMemento.java

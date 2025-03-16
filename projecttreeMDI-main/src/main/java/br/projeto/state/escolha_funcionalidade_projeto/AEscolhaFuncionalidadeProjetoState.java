@@ -23,8 +23,4 @@ public class AEscolhaFuncionalidadeProjetoState {
         throw new RuntimeException();
     }
     
-    public void voltar(){
-        JOptionPane.showMessageDialog(null, "NÃO É POSSIVEL REALIZAR A OPERAÇÃO NESSE ESTADO");//IDENTIFICAR O NOME DO ESTADO
-        throw new RuntimeException();
-    }
 }

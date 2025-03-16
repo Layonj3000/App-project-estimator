@@ -62,23 +62,6 @@ public class PreencherTabelaEscolhaDePlataformaParaUpdateCommand implements Comm
                     modelo.addRow(new Object[]{false, nomePlataforma, idPlataforma});
                 }
             }
-    
-//        List<PerfilProjetoDeEstimativaModel> perfilUsuarioList = projetoDeEstimativaPresenter.getPerfilProjetoDeEstimativaRepository().findByUser(projetoDeEstimativaPresenter.getUsuarioModel());
-//
-//        List<PerfilProjetoIntermediariaModel> perfilProjetoList = projetoDeEstimativaPresenter.getPerfilProjetoIntermediariaRepository().findByProjeto(projetoId);
-//
-//        // Criar um Set com os IDs que existem na tabela de relacionamento (para evitar duplicação)
-//        Set<Integer> idsRelacionados = perfilProjetoList.stream()
-//                .map(PerfilProjetoIntermediariaModel::getIdPerfilProjetoDeEstimativaModel)
-//                .collect(Collectors.toSet());
-//
-//        for (PerfilProjetoDeEstimativaModel perfil : perfilUsuarioList) {
-//            String nomePlataforma = perfil.getNomePerfil();
-//            Integer idPlataforma = perfil.getId();
-//
-//        // Se o IDPlataforma está no conjunto, adiciona com true; senão, com false
-//        boolean estaRelacionada = idsRelacionados.contains(idPlataforma);
-//        modelo.addRow(new Object[]{estaRelacionada, nomePlataforma, idPlataforma});
 
         tabela.setModel(modelo);
         

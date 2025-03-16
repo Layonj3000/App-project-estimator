@@ -44,10 +44,6 @@ public class InsercaoEscolhaFuncionalidadesProjetoState  extends AEscolhaFuncion
         //projetoDeEstimativaPresenter.getView().getFrame().dispose();
     }
     
-    @Override
-    public void voltar(){
-        escolhaFuncionalidadeProjetoPresenter.getView().dispose();
-    }
 
     //VERIFICAR DEMETER
     private void configuraTela() {
@@ -58,13 +54,7 @@ public class InsercaoEscolhaFuncionalidadesProjetoState  extends AEscolhaFuncion
                confirmar();
             }
         });
-        
-        escolhaFuncionalidadeProjetoPresenter.getBtnVoltar().addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                voltar();
-            }
-        });    
+           
         escolhaFuncionalidadeProjetoPresenter.getView().setVisible(true);
     }
     

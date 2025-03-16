@@ -154,7 +154,7 @@ public class DetalheProjetoPresenter extends Observer {
         double totalMes = totalizadoresService.getTotalMeses(projeto, view);
         int totalDias = totalizadoresService.getTotalDias(projeto, view);
     
-        view.atualizarRodape(totalDias, totalMes,imposto,lucroCalculado,mediaMes, valorTotal);
+        view.atualizarRodape(totalDias, totalMes,imposto,lucroCalculado,mediaMes, valorTotal, valorTotalBase);
     }
     
     private void addCustosAdicionais(List<Object[]> listaDados, ProjetoDeEstimativaModel projeto){

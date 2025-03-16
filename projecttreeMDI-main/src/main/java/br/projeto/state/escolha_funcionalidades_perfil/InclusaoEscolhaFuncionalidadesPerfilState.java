@@ -44,11 +44,6 @@ public class InclusaoEscolhaFuncionalidadesPerfilState extends AEscolhaFuncional
         //escolhaFuncionalidadesPerfilPresenter.getView().dispose();        
     }
     
-    @Override
-    public void voltar(){
-        escolhaFuncionalidadesPerfilPresenter.getView().dispose();
-    }
-    
     
         //VERIFICAR DEMETER
     private void configuraTela() {
@@ -60,12 +55,6 @@ public class InclusaoEscolhaFuncionalidadesPerfilState extends AEscolhaFuncional
             }
         });
         
-        escolhaFuncionalidadesPerfilPresenter.getBtnVoltar().addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                voltar();
-            }
-        });
         
        escolhaFuncionalidadesPerfilPresenter.configurarAdicaoFuncionalidades();
        escolhaFuncionalidadesPerfilPresenter.configurarRemocaoFuncionalidades();

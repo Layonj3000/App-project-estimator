@@ -65,10 +65,7 @@ public class EscolhaFuncionalidadesPerfilPresenter {
     public void salvar(){
         estado.salvar();
     }
-    
-    public void voltar(){
-        estado.voltar();
-    }
+
     
     public void configurarAdicaoFuncionalidades(){
         view.getBtnAdicionarFuncionalidade().addActionListener(new ActionListener(){
@@ -133,9 +130,6 @@ public class EscolhaFuncionalidadesPerfilPresenter {
         return view.getBtnConfirmar();
     }
     
-    public JButton getBtnVoltar(){
-        return view.getBtnVoltar();
-    }
     
     public JTable getTable(){
         return view.getTable();
