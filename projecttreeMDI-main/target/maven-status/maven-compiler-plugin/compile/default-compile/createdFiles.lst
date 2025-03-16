@@ -82,7 +82,6 @@ br\projeto\observer\FileLogger.class
 br\projeto\presenter\window_command\FecharJanelasPerfilRelacionadasCommand.class
 br\projeto\state\escolha_funcionalidades_perfil\InclusaoEscolhaFuncionalidadesPerfilState.class
 br\projeto\view\ManterPerfilProjetoDeEstimativaView.class
-br\projeto\view\ManterPerfilProjetoDeEstimativaViewTeste.class
 br\projeto\command\AdicionarOpcaoPerfilCommand.class
 br\projeto\command\PreencherTabelaFuncionalidadesPerfilParaUpdateCommand.class
 br\projeto\service\ConstrutorDeArvoreNavegacaoService$1.class
@@ -120,7 +119,6 @@ br\projeto\view\ManterPerfilProjetoDeEstimativaView$1.class
 br\projeto\model\PerfilFuncionalidadesPersonalizadasModel.class
 br\projeto\command\AbrirInternalFrameGenericoProjetoCommand.class
 br\projeto\state\escolha_perfis_projeto\InclusaoEscolhaPerfilState$1.class
-br\projeto\view\ManterPerfilProjetoDeEstimativaViewTeste$1.class
 br\projeto\model\PerfilProjetoIntermediariaModel.class
 br\projeto\presenter\DashBoardProjetoPresenter.class
 br\projeto\service\ProvedorMenuContextual.class

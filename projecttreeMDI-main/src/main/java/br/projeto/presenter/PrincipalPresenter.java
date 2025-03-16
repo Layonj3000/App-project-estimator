@@ -91,7 +91,7 @@ public final class PrincipalPresenter extends Observer {
         LogNotifier logNotifier = new LogNotifier();
         logNotifier.add(fileLogger);
         comandos.put("Principal", new AbrirDashboardProjetoCommand(view.getDesktop(), repository));
-        comandos.put("Usuário", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Usuário"));
+        comandos.put("Usuário", new AbrirDetalhesUsuarioCommand(view.getDesktop(), "Usuário", usuarioModel));
         comandos.put("Perfis", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Perfis"));
         comandos.put("Compartilhar projeto de estimativa",new IniciarTelaCompartilharCommand(perfilProjetoDeEstimativaRepository,projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
         comandos.put("Exportar projeto de estimativa", new MostrarMensagemCommand("Exportar ainda não implementado"));
