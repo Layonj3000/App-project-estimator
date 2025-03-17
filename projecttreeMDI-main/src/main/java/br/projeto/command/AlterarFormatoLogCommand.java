@@ -6,7 +6,8 @@ import br.projeto.repository_factory.RepositoryFactory;
 
 public class AlterarFormatoLogCommand implements Command{
     private final UsuarioModel usuarioModel;
-    private String formatoSelecionado;
+    private final String formatoSelecionado;
+    
     public AlterarFormatoLogCommand(UsuarioModel usuarioModel, String formatoSelecionado) {
         this.usuarioModel = usuarioModel;
         this.formatoSelecionado =  formatoSelecionado;
@@ -21,8 +22,6 @@ public class AlterarFormatoLogCommand implements Command{
         usuarioModel.setFormatoLOG(formatoSelecionado);
         
         usuarioRepository.update(usuarioModel);
-        
-        System.out.println(usuarioModel.getFormatoLOG());
     }
     
     
