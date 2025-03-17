@@ -1,13 +1,17 @@
 package br.projeto.presenter;
 
 import br.projeto.command.ExportarCommand;
+import br.projeto.model.UsuarioModel;
+import br.projeto.observer.LogNotifier;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
+import br.projeto.service.ProjetoLogService;
 import br.projeto.view.DetalheProjetoView;
 import br.projeto.view.TelaExportacaoView;
+import com.log.model.LogRegister;
 import javax.swing.JComboBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,8 +27,12 @@ public final class ExportarPresenter {
     private final PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository;
     private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
     private final DetalheProjetoPresenter detalhesProjetoPresenter;
+    private final UsuarioModel usuarioModel;
     
-    public ExportarPresenter(ProjetoDeEstimativaRepository projetoDeEstimativaRepository,PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, Integer idProjeto, String nomeProjeto) {
+    private final ProjetoLogService projetoLogService;
+    
+    public ExportarPresenter(ProjetoDeEstimativaRepository projetoDeEstimativaRepository,PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, Integer idProjeto, String nomeProjeto,UsuarioModel usuarioModel, LogNotifier logNotifier) {
+        this.projetoLogService = new ProjetoLogService(logNotifier, usuarioModel.getFormatoLOG());
         this.telaExportacaoView = new TelaExportacaoView();
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
@@ -33,6 +41,7 @@ public final class ExportarPresenter {
         this.perfilProjetoIntermediariaRepository = perfilProjetoIntermediariaRepository;
         this.idProjeto = idProjeto;
         this.nomeProjeto = nomeProjeto;
+        this.usuarioModel = usuarioModel;
         
         this.detalhesProjetoPresenter = new DetalheProjetoPresenter(new DetalheProjetoView(), projetoDeEstimativaRepository, perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository, perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, idProjeto, nomeProjeto);
 
@@ -48,8 +57,18 @@ public final class ExportarPresenter {
                 try {
                     new ExportarCommand(formatoSelecionado, detalhesProjetoPresenter).execute();
                     JOptionPane.showMessageDialog(telaExportacaoView, "Exportação realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    LogRegister logRegister = new LogRegister("Exportar Projeto", usuarioModel.getNome(),usuarioModel.getEmail(), true, "Sucesso");
+                    projetoLogService.setLogRegister(logRegister);
+                    projetoLogService.notificar();
+                    
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(telaExportacaoView, "Erro ao exportar: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                    
+                    LogRegister logRegister = new LogRegister("Exportar Projeto", usuarioModel.getNome(),usuarioModel.getEmail(), false, "Erro ao exportar: " + ex.getMessage());
+                    projetoLogService.setLogRegister(logRegister);
+                    projetoLogService.notificar();
+                    
                 }
                 telaExportacaoView.dispose();
             }

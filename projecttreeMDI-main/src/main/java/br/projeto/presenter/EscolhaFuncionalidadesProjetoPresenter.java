@@ -14,6 +14,7 @@ import br.projeto.state.escolha_funcionalidade_projeto.AEscolhaFuncionalidadePro
 import br.projeto.state.escolha_funcionalidade_projeto.AtualizacaoEscolhaFuncionalidadesProjetoState;
 import br.projeto.state.escolha_funcionalidade_projeto.InsercaoEscolhaFuncionalidadesProjetoState;
 import br.projeto.view.ManterProjetoDeEstimativaView;
+import com.log.model.LogRegister;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JTable;
