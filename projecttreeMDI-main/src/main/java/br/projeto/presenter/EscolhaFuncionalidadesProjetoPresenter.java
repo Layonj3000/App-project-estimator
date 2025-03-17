@@ -57,7 +57,7 @@ public class EscolhaFuncionalidadesProjetoPresenter {
             this.estado = new AtualizacaoEscolhaFuncionalidadesProjetoState(this, perfisSelecionados, projetoId);
         }
     }
-
+    
     public void setPerfisSelecionados(List<Integer> perfisSelecionados) {
         this.perfisSelecionados = perfisSelecionados;
     }

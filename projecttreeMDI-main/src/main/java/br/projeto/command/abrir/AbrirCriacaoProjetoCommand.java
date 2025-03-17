@@ -1,16 +1,14 @@
 package br.projeto.command.abrir;
 
 import br.projeto.command.Command;
-import br.projeto.service.ProjetoLogService;
 import br.projeto.model.UsuarioModel;
-import br.projeto.observer.LogNotifier;
 import br.projeto.presenter.EscolhaPerfilPresenter;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
-import com.log.model.LogRegister;
+import br.projeto.service.LogStrategyService;
 
 public class AbrirCriacaoProjetoCommand implements Command{
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
@@ -21,16 +19,19 @@ public class AbrirCriacaoProjetoCommand implements Command{
 
     private final UsuarioModel usuarioModel;
     
-    private final ProjetoLogService projetoLogService;
+    private final LogStrategyService logStrategyService;
 
-    public AbrirCriacaoProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository,ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,/* JDesktopPane desktop,*/PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel, LogNotifier logNotifier) {
-        this.projetoLogService = new ProjetoLogService(logNotifier, usuarioModel.getFormatoLOG());
+
+    public AbrirCriacaoProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository,ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel) {
+                
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.perfilProjetoDeEstimativaRepository =perfilProjetoDeEstimativaRepository;
         this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;
         this.perfilFuncionalidadesPersonalizadasRepository = perfilFuncionalidadesPersonalizadasRepository;
         this.perfilProjetoIntermediariaRepository = perfilProjetoIntermediariaRepository;
         this.usuarioModel = usuarioModel;
+        
+        logStrategyService = new LogStrategyService(usuarioModel); 
     }
 
     
@@ -46,11 +47,7 @@ public class AbrirCriacaoProjetoCommand implements Command{
     }
     
     private void logRegister(){
-        LogRegister logRegister = new LogRegister("Criação de Projeto", usuarioModel.getNome(),
-                usuarioModel.getEmail(), true, "Sucesso");
-
-        projetoLogService.setLogRegister(logRegister);
-        projetoLogService.notificar();
+        logStrategyService.gerarLOG("Criação");
     }
 
 }

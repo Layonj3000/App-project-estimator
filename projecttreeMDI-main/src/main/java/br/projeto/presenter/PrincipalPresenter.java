@@ -18,8 +18,6 @@ import br.projeto.command.abrir.AbrirTelaConfiguracaoCommand;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.UsuarioModel;
-import br.projeto.observer.FileLogger;
-import br.projeto.observer.LogNotifier;
 import br.projeto.presenter.helpers.WindowManager;
 import br.projeto.presenter.window_command.*;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
@@ -50,9 +48,6 @@ public final class PrincipalPresenter extends Observer {
     private final List<WindowCommand> windowCommands = new ArrayList<>();
     private InstanciaRepositoryService repositoryService = InstanciaRepositoryService.getInstancia();
     
-    private FileLogger fileLogger = new FileLogger();
-    private LogNotifier logNotifier = new LogNotifier();
-    
     
     public PrincipalPresenter(UsuarioModel usuarioModel) {
         this.view = new PrincipalView();
@@ -73,8 +68,6 @@ public final class PrincipalPresenter extends Observer {
         this.construtorDeArvoreNavegacaoService = new ConstrutorDeArvoreNavegacaoService();
 
         GlobalWindowManager.initialize(view);
-
-        logNotifier.add(fileLogger);
         
         this.comandos = inicializarComandos();
 
@@ -97,13 +90,13 @@ public final class PrincipalPresenter extends Observer {
         comandos.put("Usuário", new AbrirDetalhesUsuarioCommand(view.getDesktop(), "Usuário", usuarioModel));
         comandos.put("Perfis", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Perfis"));
         comandos.put("Configuração", new AbrirTelaConfiguracaoCommand(usuarioModel));
-        comandos.put("Compartilhar projeto de estimativa",new AbrirTelaCompartilharCommand(perfilProjetoDeEstimativaRepository,projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel, logNotifier));
-        comandos.put("Exportar projeto de estimativa", new AbrirTelaExportacaoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel, logNotifier));
+        comandos.put("Compartilhar projeto de estimativa",new AbrirTelaCompartilharCommand(perfilProjetoDeEstimativaRepository,projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
+        comandos.put("Exportar projeto de estimativa", new AbrirTelaExportacaoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
         comandos.put("Atualizar projeto",new AbrirAtualizacaoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
-        comandos.put("Novo projeto", new AbrirCriacaoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel, logNotifier));
+        comandos.put("Novo projeto", new AbrirCriacaoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
         comandos.put("Novo perfil", new AbrirCriacaoPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel));
         comandos.put("Atualizar perfil", new AbrirAtualizacaoPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel));
-        comandos.put("Excluir projeto", new ExcluirProjetoCommand(projetoDeEstimativaRepository,usuarioModel, logNotifier));
+        comandos.put("Excluir projeto", new ExcluirProjetoCommand(projetoDeEstimativaRepository,usuarioModel));
         comandos.put("Excluir Perfil", new ExcluirPerfilCommand(perfilProjetoDeEstimativaRepository));
         comandos.put("Abrir detalhes", new AbrirDetalhesProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, view.getDesktop()));
         return comandos;
@@ -180,10 +173,10 @@ public final class PrincipalPresenter extends Observer {
             AbrirAtualizacaoProjetoCommand atualizarProjetoCommand = new AbrirAtualizacaoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel);
             atualizarProjetoCommand.setProjetoId(projeto.getId());
             
-            AbrirTelaCompartilharCommand compartilharCommand = new AbrirTelaCompartilharCommand(perfilProjetoDeEstimativaRepository,projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel, logNotifier);
+            AbrirTelaCompartilharCommand compartilharCommand = new AbrirTelaCompartilharCommand(perfilProjetoDeEstimativaRepository,projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel);
             compartilharCommand.setProjetoId(projeto.getId());
             
-            AbrirTelaExportacaoCommand exportarCommand = new AbrirTelaExportacaoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository,usuarioModel, logNotifier);
+            AbrirTelaExportacaoCommand exportarCommand = new AbrirTelaExportacaoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository,usuarioModel);
             exportarCommand.setIdProjeto(projeto.getId());
             exportarCommand.setNomeProjeto(projeto.getNomeProjetoDeEstimativa());
             
@@ -239,7 +232,7 @@ public final class PrincipalPresenter extends Observer {
             JPopupMenu menu = new JPopupMenu();
             JMenuItem excluirProjetoItem = new JMenuItem("Excluir Projeto");
             excluirProjetoItem.addActionListener(e -> {
-                Command cmdExcluir = new ExcluirProjetoCommand(projetoDeEstimativaRepository, projeto.getId(), usuarioModel, logNotifier);
+                Command cmdExcluir = new ExcluirProjetoCommand(projetoDeEstimativaRepository, projeto.getId(), usuarioModel);
                 try{
                 cmdExcluir.execute();
                 }catch(IllegalArgumentException ex){

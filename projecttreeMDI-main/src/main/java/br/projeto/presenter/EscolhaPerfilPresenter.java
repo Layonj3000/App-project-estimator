@@ -54,6 +54,7 @@ public class EscolhaPerfilPresenter {
             this.estado = new InclusaoEscolhaPerfilState(this);
         }
     }
+   
     
     public void setIdProjeto(Integer idProjeto){
         this.idProjeto = idProjeto;

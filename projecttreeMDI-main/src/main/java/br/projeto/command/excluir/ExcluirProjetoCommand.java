@@ -2,11 +2,9 @@ package br.projeto.command.excluir;
 
 import br.projeto.command.Command;
 import br.projeto.command.MostrarMensagemCommand;
-import br.projeto.service.ProjetoLogService;
 import br.projeto.model.UsuarioModel;
-import br.projeto.observer.LogNotifier;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
-import com.log.model.LogRegister;
+import br.projeto.service.LogStrategyService;
 
 import javax.swing.*;
 
@@ -16,19 +14,21 @@ public class ExcluirProjetoCommand implements Command{
     private String projetoNome;
     private final UsuarioModel usuarioModel;
     
-    private final ProjetoLogService projetoLogService;
+    private final LogStrategyService logStrategyService;
     
-    public ExcluirProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, UsuarioModel usuarioModel, LogNotifier logNotifier){
-        this.projetoLogService = new ProjetoLogService(logNotifier, usuarioModel.getFormatoLOG());
+    public ExcluirProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, UsuarioModel usuarioModel){
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.usuarioModel = usuarioModel;
+        
+        logStrategyService = new LogStrategyService(usuarioModel); 
     }
     
-    public ExcluirProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, Integer projetoId,UsuarioModel usuarioModel, LogNotifier logNotifier){
-        projetoLogService = new ProjetoLogService(logNotifier, usuarioModel.getFormatoLOG());
+    public ExcluirProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, Integer projetoId,UsuarioModel usuarioModel){
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.projetoId = projetoId;
         this.usuarioModel = usuarioModel;
+        
+        logStrategyService = new LogStrategyService(usuarioModel); 
     }
 
     
@@ -69,10 +69,6 @@ public class ExcluirProjetoCommand implements Command{
     }
     
     private void logRegister(){
-        LogRegister logRegister = new LogRegister("Exclusão de Projeto", usuarioModel.getNome(),
-                usuarioModel.getEmail(), true, "Sucesso");
-
-        projetoLogService.setLogRegister(logRegister);
-        projetoLogService.notificar();
+        logStrategyService.gerarLOG("Exclusão");
     }
 }

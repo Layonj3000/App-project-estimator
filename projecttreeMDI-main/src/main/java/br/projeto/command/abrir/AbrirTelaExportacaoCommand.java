@@ -2,7 +2,6 @@ package br.projeto.command.abrir;
 
 import br.projeto.command.Command;
 import br.projeto.model.UsuarioModel;
-import br.projeto.observer.LogNotifier;
 import br.projeto.presenter.ExportarPresenter;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
@@ -20,10 +19,7 @@ public class AbrirTelaExportacaoCommand implements Command {
     private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
     private final UsuarioModel usuarioModel;
     
-    private LogNotifier logNotifier; 
-    
-    public AbrirTelaExportacaoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository,PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository,UsuarioModel usuarioModel, LogNotifier logNotifier) {
-        this.logNotifier = logNotifier;
+    public AbrirTelaExportacaoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository,PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository,PerfilFuncionalidadesPersonalizadasRepository perfilFuncionalidadesPersonalizadasRepository,PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository,UsuarioModel usuarioModel) {
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
         this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;
@@ -42,6 +38,6 @@ public class AbrirTelaExportacaoCommand implements Command {
     
     @Override
     public void execute() {
-        ExportarPresenter exportarPresenter = new ExportarPresenter(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository,idProjeto, nomeProjeto, usuarioModel, logNotifier);
+        ExportarPresenter exportarPresenter = new ExportarPresenter(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository,idProjeto, nomeProjeto, usuarioModel);
     }    
 }

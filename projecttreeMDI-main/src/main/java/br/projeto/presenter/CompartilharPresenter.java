@@ -5,13 +5,11 @@ import br.projeto.view.TelaCompartilharView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import br.projeto.model.UsuarioModel;
-import br.projeto.observer.LogNotifier;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;
 import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
-import br.projeto.service.ProjetoLogService;
-import com.log.model.LogRegister;
+import br.projeto.service.LogStrategyService;
 import javax.swing.JOptionPane;
 
 public final class CompartilharPresenter {
@@ -23,10 +21,9 @@ public final class CompartilharPresenter {
     private final PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository;
     private final UsuarioModel usuarioModel;
     
-    private final ProjetoLogService projetoLogService;
+    private final LogStrategyService logStrategyService;
     
-    public CompartilharPresenter(PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel, Integer projetoID, LogNotifier logNotifier) {
-        this.projetoLogService = new ProjetoLogService(logNotifier, usuarioModel.getFormatoLOG());
+    public CompartilharPresenter(PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository, ProjetoDeEstimativaRepository projetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel, Integer projetoID) {
         this.telaCompartilhar = new TelaCompartilharView();
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;
@@ -34,6 +31,8 @@ public final class CompartilharPresenter {
         this.perfilProjetoDeEstimativaRepository = perfilProjetoDeEstimativaRepository;
         this.usuarioModel = usuarioModel;
         this.projetoID = projetoID;
+        
+        logStrategyService = new LogStrategyService(usuarioModel);
         configurarTela();
     }
 
@@ -46,10 +45,9 @@ public final class CompartilharPresenter {
                     CompartilharCommand compartilharCommand = new CompartilharCommand(CompartilharPresenter.this,perfilProjetoDeEstimativaRepository, projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository, perfilProjetoIntermediariaRepository, usuarioModel, projetoID);
                     compartilharCommand.execute();   
                     JOptionPane.showMessageDialog(null, "Projeto compartilhado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    telaCompartilhar.dispose();
                     
-                    LogRegister logRegister = new LogRegister("Compartilhar Projeto", usuarioModel.getNome(),usuarioModel.getEmail(), true, "Sucesso");
-                    projetoLogService.setLogRegister(logRegister);
-                    projetoLogService.notificar();
+                    logStrategyService.gerarLOG("Compartilhamento");
                     
                 }catch (IllegalArgumentException ex) {
                     JOptionPane.showMessageDialog(null, 
@@ -57,10 +55,7 @@ public final class CompartilharPresenter {
                         "Erro", 
                         JOptionPane.ERROR_MESSAGE
                     );
-                    
-                    LogRegister logRegister = new LogRegister("Compartilhar Projeto", usuarioModel.getNome(),usuarioModel.getEmail(), false, ex.getMessage());
-                    projetoLogService.setLogRegister(logRegister);
-                    projetoLogService.notificar();
+                    logStrategyService.gerarLOG("Erro Compartilhamento");
                     
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, 
@@ -68,10 +63,7 @@ public final class CompartilharPresenter {
                         "Erro", 
                         JOptionPane.ERROR_MESSAGE
                     );
-                    
-                    LogRegister logRegister = new LogRegister("Compartilhar Projeto", usuarioModel.getNome(),usuarioModel.getEmail(), false, "Ocorreu um erro inesperado. Tente novamente.");
-                    projetoLogService.setLogRegister(logRegister);
-                    projetoLogService.notificar();  
+                    logStrategyService.gerarLOG("Erro Compartilhamento");
                     
                 }
             }      
