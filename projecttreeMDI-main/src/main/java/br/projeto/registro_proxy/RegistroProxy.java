@@ -1,7 +1,7 @@
 package br.projeto.registro_proxy;
 
-import br.projeto.adapter.IValidadorSenha;
-import br.projeto.adapter.ValidadorSenhaAdapter;
+import br.projeto.adapter.validadorsenha.IValidadorSenha;
+import br.projeto.adapter.validadorsenha.ValidadorSenhaAdapter;
 import br.projeto.presenter.RegistroUsuarioPresenter;
 import br.projeto.repository.UsuarioRepository;
 import br.projeto.service.InstanciaRepositoryService;

@@ -165,8 +165,49 @@ public class DetalheProjetoView extends JInternalFrame {
         
         lblValorBase.setText("Funcionalidades + Custos: " + df.format(totalBase));
     }
+
+    public JLabel getLblNome() {
+        return lblNome;
+    }
     
     public DefaultTableModel getModeloTabela() {
-    return modeloTabela;
+        return modeloTabela;
     }
+
+    public JLabel getLblTipoProjeto() {
+        return lblTipoProjeto;
+    }
+
+    public JLabel getLblValorTotal() {
+        return lblValorTotal;
+    }
+
+    public JLabel getLblPercentualLucro() {
+        return lblPercentualLucro;
+    }
+
+    public JLabel getLblPercentualImposto() {
+        return lblPercentualImposto;
+    }
+
+    public JLabel getLblDias() {
+        return lblDias;
+    }
+
+    public JLabel getLblValorBase() {
+        return lblValorBase;
+    }
+
+    public JLabel getLblMediaMes() {
+        return lblMediaMes;
+    }
+
+    public JLabel getLblImposto() {
+        return lblImposto;
+    }
+
+    public JLabel getLblLucroCalculado() {
+        return lblLucroCalculado;
+    }
+    
 }

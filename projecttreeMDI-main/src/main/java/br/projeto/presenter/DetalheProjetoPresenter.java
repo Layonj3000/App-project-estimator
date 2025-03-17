@@ -278,6 +278,10 @@ public class DetalheProjetoPresenter extends Observer {
         return funcionalidadesEscolhidasPerfil;
     }
 
+    
+    public DetalheProjetoView getView() {
+        return view;
+    }
 
     @Override
     public void updatePerfilModel(List<PerfilProjetoDeEstimativaModel> listaPerfilProjetoDeEstimativaModel) {

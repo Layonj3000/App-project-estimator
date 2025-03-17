@@ -7,7 +7,7 @@ import br.projeto.repository.PerfilProjetoIntermediariaRepository;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
 import br.projeto.repository.ProjetoFuncionalidadesPersonalizadasRepository;
 
-public class IniciarTelaCompartilharCommand implements Command{
+public class AbrirTelaCompartilharCommand implements Command{
     private final ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
     private final ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository;
     private final PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository;
@@ -15,7 +15,7 @@ public class IniciarTelaCompartilharCommand implements Command{
     private final UsuarioModel usuarioModel;
     private Integer projetoId;
     
-    public IniciarTelaCompartilharCommand(PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository,ProjetoDeEstimativaRepository projetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel) {
+    public AbrirTelaCompartilharCommand(PerfilProjetoDeEstimativaRepository perfilProjetoDeEstimativaRepository,ProjetoDeEstimativaRepository projetoDeEstimativaRepository, ProjetoFuncionalidadesPersonalizadasRepository projetoFuncionalidadesPersonalizadasRepository, PerfilProjetoIntermediariaRepository perfilProjetoIntermediariaRepository, UsuarioModel usuarioModel) {
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.projetoFuncionalidadesPersonalizadasRepository = projetoFuncionalidadesPersonalizadasRepository;
         this.perfilProjetoIntermediariaRepository = perfilProjetoIntermediariaRepository;

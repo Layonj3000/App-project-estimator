@@ -82,8 +82,8 @@ public final class PrincipalPresenter extends Observer {
         comandos.put("Principal", new AbrirTelaInicialAplicacao(view.getDesktop()));
         comandos.put("Usuário", new AbrirDetalhesUsuarioCommand(view.getDesktop(), "Usuário", usuarioModel));
         comandos.put("Perfis", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Perfis"));
-        comandos.put("Compartilhar projeto de estimativa",new IniciarTelaCompartilharCommand(perfilProjetoDeEstimativaRepository,projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
-        comandos.put("Exportar projeto de estimativa", new IniciarTelaExportarCommand());
+        comandos.put("Compartilhar projeto de estimativa",new AbrirTelaCompartilharCommand(perfilProjetoDeEstimativaRepository,projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
+        comandos.put("Exportar projeto de estimativa", new AbrirTelaExportacaoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository));
         comandos.put("Atualizar projeto",new AbrirAtualizacaoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
         comandos.put("Novo projeto", new AbrirCriacaoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel, logNotifier));
         comandos.put("Novo perfil", new AbrirCriacaoPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel));
@@ -163,13 +163,17 @@ public final class PrincipalPresenter extends Observer {
             AbrirAtualizacaoProjetoCommand atualizarProjetoCommand = new AbrirAtualizacaoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel);
             atualizarProjetoCommand.setProjetoId(projeto.getId());
             
-            IniciarTelaCompartilharCommand compartilharCommand = new IniciarTelaCompartilharCommand(perfilProjetoDeEstimativaRepository,projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel);
+            AbrirTelaCompartilharCommand compartilharCommand = new AbrirTelaCompartilharCommand(perfilProjetoDeEstimativaRepository,projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel);
             compartilharCommand.setProjetoId(projeto.getId());
+            
+            AbrirTelaExportacaoCommand exportarCommand = new AbrirTelaExportacaoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository);
+            exportarCommand.setIdProjeto(projeto.getId());
+            exportarCommand.setNomeProjeto(projeto.getNomeProjetoDeEstimativa());
             
             if(projeto.getCompartilhadoValor() == 0){
                 noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Atualizar projeto de estimativa", "action", atualizarProjetoCommand));
                 noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Compartilhar projeto de estimativa", "action", compartilharCommand));
-                noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Exportar projeto de estimativa", "action", comandos.get("Exportar projeto de estimativa")));
+                noProjeto.adicionarFilho(construtorDeArvoreNavegacaoService.criarNo("Exportar projeto de estimativa", "action", exportarCommand));
             }
 
             noProjetos.adicionarFilho(noProjeto);
