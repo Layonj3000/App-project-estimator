@@ -14,6 +14,7 @@ public class IconService {
         icons.put("perfil", loadIcon("perfil-icon.png"));
         icons.put("projeto", loadIcon("projeto-icon-tree.png"));
         icons.put("action", loadIcon("action-icon.png"));
+        icons.put("configuracao", loadIcon("configuracao-icon.png"));
     }
 
     private static ImageIcon loadIcon(String path) {

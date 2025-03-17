@@ -22,7 +22,7 @@ public class RegistroCommand implements Command {
 
         UsuarioModel novoUsuario = new UsuarioModel(null, registroUsuarioPresenter.getNomeUsuario(), registroUsuarioPresenter.getSenha(), registroUsuarioPresenter.getEmail(), "CSV");
         
-        new BuilderObserver(usuarioRepository);//prepara para inserir os perfis padrao
+        new BuilderObserver(usuarioRepository);
         usuarioRepository.insert(novoUsuario);
         
     }

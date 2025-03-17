@@ -53,6 +53,10 @@ public class UsuarioModel {
         return formatoLOG;
     }
 
+    public void setFormatoLOG(String formatoLOG) {
+        this.formatoLOG = formatoLOG;
+    }
+
     @Override
     public String toString() {
         return "UsuarioModel{" + "id=" + id + 

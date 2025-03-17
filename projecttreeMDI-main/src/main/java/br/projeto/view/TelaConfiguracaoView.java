@@ -12,15 +12,20 @@ import javax.swing.JComboBox;
  *
  * @author layon
  */
-public class TelaExportacaoView extends javax.swing.JFrame {
+public class TelaConfiguracaoView extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaExportacao
      */
-    public TelaExportacaoView() {
+    public TelaConfiguracaoView() {
         initComponents();
+        preencherComboBox();
     }
-
+    private void preencherComboBox() {
+        cmEscolherFormato.removeAllItems();
+        cmEscolherFormato.addItem("JSON");
+        cmEscolherFormato.addItem("CSV");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,7 +59,7 @@ public class TelaExportacaoView extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 204));
         jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel1.setText("Exportar para:");
+        jLabel1.setText("Configurações");
 
         cmEscolherFormato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmEscolherFormato.addActionListener(new java.awt.event.ActionListener() {
@@ -68,7 +73,7 @@ public class TelaExportacaoView extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 129, Short.MAX_VALUE)
+                .addGap(0, 126, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(cmEscolherFormato, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -122,7 +127,6 @@ public class TelaExportacaoView extends javax.swing.JFrame {
             cmEscolherFormato.addItem(formato);
         }
     }
-    
     public JButton getBtnConfirmar() {
         return btnConfirmar;
     }
@@ -152,21 +156,23 @@ public class TelaExportacaoView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaExportacaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaConfiguracaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaExportacaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaConfiguracaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaExportacaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaConfiguracaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaExportacaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaConfiguracaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaExportacaoView().setVisible(true);
+                new TelaConfiguracaoView().setVisible(true);
             }
         });
     }

@@ -50,6 +50,7 @@ public final class ExportarPresenter {
 
     public void configurarTela() {
         telaExportacaoView.setVisible(false);
+        carregarFormatos();
         telaExportacaoView.getBtnConfirmar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -81,7 +82,14 @@ public final class ExportarPresenter {
         });
         telaExportacaoView.setVisible(true);
     }
-
+    
+    public void carregarFormatos() {
+        JComboBox<String> combo = telaExportacaoView.getCmEscolherFormato();
+        combo.removeAllItems();
+        combo.addItem("PDF");
+        combo.addItem("CSV");
+    }
+    
     public JComboBox<String> getFormato() {
         return telaExportacaoView.getCmEscolherFormato();
     }

@@ -16,10 +16,11 @@ public class CriarBarraBotaoService {
         JToolBar toolBar = new JToolBar();
         toolBar.setFloatable(false);
 
-        adicionarBotao(toolBar, "Dashboard", "principal", "Principal");
+        adicionarBotao(toolBar, "Principal", "principal", "Principal");
         adicionarBotao(toolBar, "Novo Projeto", "projeto", "Novo projeto");
         adicionarBotao(toolBar, "Novo Perfil", "perfil", "Novo perfil");
         adicionarBotao(toolBar, "Usuário", "usuario", "Usuário");
+        adicionarBotao(toolBar, "Configuração", "configuracao", "Configuração");
 
         return toolBar;
     }

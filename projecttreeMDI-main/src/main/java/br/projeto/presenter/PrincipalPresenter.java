@@ -14,6 +14,7 @@ import br.projeto.command.abrir.AbrirAtualizacaoProjetoCommand;
 import br.projeto.command.abrir.AbrirDetalhesProjetoCommand;
 import br.projeto.command.abrir.AbrirDetalhesPerfilCommand;
 import br.projeto.command.*;
+import br.projeto.command.abrir.AbrirTelaConfiguracaoCommand;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.UsuarioModel;
@@ -95,6 +96,7 @@ public final class PrincipalPresenter extends Observer {
         comandos.put("Principal", new AbrirTelaInicialAplicacao(view.getDesktop()));
         comandos.put("Usuário", new AbrirDetalhesUsuarioCommand(view.getDesktop(), "Usuário", usuarioModel));
         comandos.put("Perfis", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Perfis"));
+        comandos.put("Configuração", new AbrirTelaConfiguracaoCommand(usuarioModel));
         comandos.put("Compartilhar projeto de estimativa",new AbrirTelaCompartilharCommand(perfilProjetoDeEstimativaRepository,projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel, logNotifier));
         comandos.put("Exportar projeto de estimativa", new AbrirTelaExportacaoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel, logNotifier));
         comandos.put("Atualizar projeto",new AbrirAtualizacaoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
@@ -112,7 +114,8 @@ public final class PrincipalPresenter extends Observer {
         NoArvoreComposite noUsuario = construtorDeArvoreNavegacaoService.criarNo("Usuário", "usuario", comandos.get("Usuário"));
         NoArvoreComposite noPerfis = construtorDeArvoreNavegacaoService.criarNo("Perfis", "perfil", null);
         NoArvoreComposite noProjetos = construtorDeArvoreNavegacaoService.criarNo("Projetos", "projeto", null);
-        
+        NoArvoreComposite noConfiguracao = construtorDeArvoreNavegacaoService.criarNo("Configuração", "configuracao", comandos.get("Configuração"));
+
         //PROJETO PARTE 1(ADICIONANDO MENU "Novo Projeto" ao clicar com botao direto)
         noProjetos.setMenuContextual(() -> {
             JPopupMenu menu = new JPopupMenu();
@@ -147,6 +150,7 @@ public final class PrincipalPresenter extends Observer {
         raiz.adicionarFilho(noUsuario);
         raiz.adicionarFilho(noPerfis);
         raiz.adicionarFilho(noProjetos);
+        raiz.adicionarFilho(noConfiguracao);
         /*CONSTRUINDO ARVORE HIERARQUICA*/
 
         
@@ -231,9 +235,6 @@ public final class PrincipalPresenter extends Observer {
         
         //PROJETO DE ESTIMATIVA
         private void adicionarMenuContextual(ProjetoDeEstimativaModel projeto, NoArvoreComposite noProjeto) {
-            FileLogger fileLogger = new FileLogger();
-            LogNotifier logNotifier = new LogNotifier();
-            logNotifier.add(fileLogger);
         noProjeto.setMenuContextual(() -> {
             JPopupMenu menu = new JPopupMenu();
             JMenuItem excluirProjetoItem = new JMenuItem("Excluir Projeto");
