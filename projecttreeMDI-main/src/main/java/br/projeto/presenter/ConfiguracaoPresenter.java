@@ -31,10 +31,10 @@ public class ConfiguracaoPresenter {
                 try {
                     
                     new AlterarFormatoLogCommand(usuarioModel, formatoSelecionado).execute();
-                    JOptionPane.showMessageDialog(telaConfiguracaoView, "Exportação realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    
+                    JOptionPane.showMessageDialog(telaConfiguracaoView, "Formato de LOG alterado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    telaConfiguracaoView.dispose();
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(telaConfiguracaoView, "Erro ao exportar: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(telaConfiguracaoView, "Erro ao alterar LOG: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
