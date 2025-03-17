@@ -37,7 +37,11 @@ public class AbrirCriacaoProjetoCommand extends ProjetoLogCommand {
                 perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository,usuarioModel);
         escolhaPerfilPresenter.setIdProjeto(null);
         escolhaPerfilPresenter.setEstadoInicial();
-
+        
+        logRegister();
+    }
+    
+    private void logRegister(){
         LogRegister logRegister = new LogRegister("Criação de Projeto", usuarioModel.getNome(),
                 usuarioModel.getEmail(), true, "Sucesso");
 

@@ -36,6 +36,9 @@ public final class PrincipalPresenter extends Observer {
     private final List<WindowCommand> windowCommands = new ArrayList<>();
     private InstanciaRepositoryService repositoryService = InstanciaRepositoryService.getInstancia();
     
+    private FileLogger fileLogger = new FileLogger();
+    private LogNotifier logNotifier = new LogNotifier();
+    
     
     public PrincipalPresenter(UsuarioModel usuarioModel) {
         this.view = new PrincipalView();
@@ -57,7 +60,7 @@ public final class PrincipalPresenter extends Observer {
 
         GlobalWindowManager.initialize(view);
 
-        
+        logNotifier.add(fileLogger);
         
         this.comandos = inicializarComandos();
 
@@ -76,16 +79,13 @@ public final class PrincipalPresenter extends Observer {
 
     private Map<String, Command> inicializarComandos() {
         Map<String, Command> comandos = new HashMap<>();
-        FileLogger fileLogger = new FileLogger();
-        LogNotifier logNotifier = new LogNotifier();
-        logNotifier.add(fileLogger);
         comandos.put("Principal", new AbrirTelaInicialAplicacao(view.getDesktop()));
         comandos.put("Usuário", new AbrirDetalhesUsuarioCommand(view.getDesktop(), "Usuário", usuarioModel));
         comandos.put("Perfis", new AbrirInternalFrameGenericoProjetoCommand(view.getDesktop(), "Perfis"));
         comandos.put("Compartilhar projeto de estimativa",new IniciarTelaCompartilharCommand(perfilProjetoDeEstimativaRepository,projetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
         comandos.put("Exportar projeto de estimativa", new IniciarTelaExportarCommand());
         comandos.put("Atualizar projeto",new AbrirAtualizacaoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel));
-        comandos.put("Novo projeto", new AbrirCriacaoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository/*,view.getDesktop()*/,perfilProjetoIntermediariaRepository, usuarioModel, logNotifier));
+        comandos.put("Novo projeto", new AbrirCriacaoProjetoCommand(projetoDeEstimativaRepository,perfilProjetoDeEstimativaRepository,projetoFuncionalidadesPersonalizadasRepository,perfilFuncionalidadesPersonalizadasRepository,perfilProjetoIntermediariaRepository, usuarioModel, logNotifier));
         comandos.put("Novo perfil", new AbrirCriacaoPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel));
         comandos.put("Atualizar perfil", new AbrirAtualizacaoPerfilCommand(perfilProjetoDeEstimativaRepository, perfilFuncionalidadesPersonalizadasRepository, usuarioModel));
         comandos.put("Excluir projeto", new ExcluirProjetoCommand(projetoDeEstimativaRepository,usuarioModel, logNotifier));

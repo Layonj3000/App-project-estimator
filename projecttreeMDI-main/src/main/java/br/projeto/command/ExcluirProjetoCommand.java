@@ -59,7 +59,11 @@ public class ExcluirProjetoCommand extends ProjetoLogCommand {
                 new MostrarMensagemCommand("Erro ao remover o projeto \"" + projetoDeEstimativaRepository.findById(projetoId).getNomeProjetoDeEstimativa() + "\".").execute();
             }
         }
-
+            
+        logRegister();
+    }
+    
+    private void logRegister(){
         LogRegister logRegister = new LogRegister("Exclusão de Projeto", usuarioModel.getNome(),
                 usuarioModel.getEmail(), true, "Sucesso");
 
