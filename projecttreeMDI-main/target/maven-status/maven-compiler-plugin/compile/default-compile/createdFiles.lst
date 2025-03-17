@@ -25,6 +25,7 @@ br\projeto\presenter\PrincipalPresenter.class
 br\projeto\repository\PerfilProjetoIntermediariaRepository.class
 br\projeto\service\AuxiliarTelaPerfilService.class
 br\projeto\command\Command.class
+br\projeto\adapter\exportacao\IExportador.class
 br\projeto\command\abrir\AbrirTelaCompartilharCommand.class
 br\projeto\view\EscolhaPlataformaView$1.class
 br\projeto\view\ManterProjetoDeEstimativaView$1.class
@@ -58,6 +59,7 @@ br\projeto\observer\LogObserver.class
 br\projeto\presenter\ExportarPresenter.class
 br\projeto\state\escolha_perfis_projeto\AtualizacaoEscolhaPerfilState$1.class
 br\projeto\state\escolha_perfis_projeto\InclusaoEscolhaPerfilState.class
+br\projeto\adapter\validadorsenha\ValidadorSenhaAdapter.class
 br\projeto\command\ExportarCommand.class
 br\projeto\model\PerfilProjetoIntermediariaModel.class
 br\projeto\service\ProvedorMenuContextual.class
@@ -73,6 +75,7 @@ br\projeto\service\retornar\RetornaUsuarioModelService.class
 br\projeto\view\PrincipalView.class
 br\projeto\command\abrir\AbrirDetalhesProjetoCommand.class
 br\projeto\view\ManterProjetoDeEstimativaView.class
+br\projeto\adapter\exportacao\ExportadorCSVAdapter.class
 br\projeto\repository\PerfilProjetoDeEstimativaRepository.class
 br\projeto\command\ObterPerfisSelecionadosCommand.class
 br\projeto\service\NoArvoreComposite.class
@@ -102,6 +105,7 @@ br\projeto\view\TelaExportacaoView$1.class
 br\projeto\command\CompartilharCommand.class
 br\projeto\presenter\EscolhaFuncionalidadesPerfilPresenter.class
 br\projeto\presenter\window_command\ConfigurarViewCommand.class
+br\projeto\adapter\exportacao\ExportadorPDFAdapter.class
 br\projeto\registro_proxy\RegistroProxy.class
 br\projeto\command\abrir\AbrirDetalhesPerfilCommand.class
 br\projeto\service\EstimaProjetoService.class
@@ -110,9 +114,11 @@ br\projeto\repository\abstr\IProjetoDeEstimativaRepository.class
 br\projeto\state\escolha_perfis_projeto\AtualizacaoEscolhaPerfilState.class
 br\projeto\presenter\EscolhaFuncionalidadesPerfilPresenter$2.class
 br\projeto\command\RegistroCommand.class
+br\projeto\adapter\validadorsenha\IValidadorSenha.class
 br\projeto\view\TelaCompartilharView$3.class
 br\projeto\presenter\PrincipalPresenter$1.class
 br\projeto\repository_factory\PerfilFuncionalidadesPersonalizadasRepositoryFactory.class
+br\projeto\service\ProjetoLogService.class
 br\projeto\perfil_builder\Diretor.class
 br\projeto\presenter\DetalhePerfilPresenter.class
 br\projeto\view\ManterProjetoDeEstimativaView$2.class
@@ -123,7 +129,6 @@ br\projeto\presenter\window_command\FecharJanelasProjetoRelacionadasCommand.clas
 br\projeto\command\excluir\ExcluirPerfilCommand.class
 br\projeto\presenter\window_command\FecharJanelasPerfilRelacionadasCommand.class
 br\projeto\state\escolha_funcionalidades_perfil\InclusaoEscolhaFuncionalidadesPerfilState.class
-br\projeto\command\ProjetoLogCommand.class
 br\projeto\command\abrir\AbrirTelaExportacaoCommand.class
 br\projeto\command\abrir\AbrirInternalFrameGenericoProjetoCommand.class
 br\projeto\command\AdicionarOpcaoPerfilCommand.class

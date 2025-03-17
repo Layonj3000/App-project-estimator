@@ -1,7 +1,8 @@
 package br.projeto.command.excluir;
 
+import br.projeto.command.Command;
 import br.projeto.command.MostrarMensagemCommand;
-import br.projeto.command.ProjetoLogCommand;
+import br.projeto.service.ProjetoLogService;
 import br.projeto.model.UsuarioModel;
 import br.projeto.observer.LogNotifier;
 import br.projeto.repository.ProjetoDeEstimativaRepository;
@@ -9,20 +10,22 @@ import com.log.model.LogRegister;
 
 import javax.swing.*;
 
-public class ExcluirProjetoCommand extends ProjetoLogCommand {
+public class ExcluirProjetoCommand implements Command{
     private ProjetoDeEstimativaRepository projetoDeEstimativaRepository;
     private Integer projetoId;
     private String projetoNome;
     private final UsuarioModel usuarioModel;
     
+    private final ProjetoLogService projetoLogService;
+    
     public ExcluirProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, UsuarioModel usuarioModel, LogNotifier logNotifier){
-        super(logNotifier, usuarioModel.getFormatoLOG());
+        this.projetoLogService = new ProjetoLogService(logNotifier, usuarioModel.getFormatoLOG());
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.usuarioModel = usuarioModel;
     }
     
     public ExcluirProjetoCommand(ProjetoDeEstimativaRepository projetoDeEstimativaRepository, Integer projetoId,UsuarioModel usuarioModel, LogNotifier logNotifier){
-        super(logNotifier, usuarioModel.getFormatoLOG());
+        projetoLogService = new ProjetoLogService(logNotifier, usuarioModel.getFormatoLOG());
         this.projetoDeEstimativaRepository = projetoDeEstimativaRepository;
         this.projetoId = projetoId;
         this.usuarioModel = usuarioModel;
@@ -69,7 +72,7 @@ public class ExcluirProjetoCommand extends ProjetoLogCommand {
         LogRegister logRegister = new LogRegister("Exclusão de Projeto", usuarioModel.getNome(),
                 usuarioModel.getEmail(), true, "Sucesso");
 
-        super.setLogRegister(logRegister);
-        super.execute();
+        projetoLogService.setLogRegister(logRegister);
+        projetoLogService.notificar();
     }
 }

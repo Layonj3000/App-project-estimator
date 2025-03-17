@@ -1,20 +1,19 @@
-package br.projeto.command;
+package br.projeto.service;
 
 import br.projeto.observer.LogNotifier;
 import com.log.model.LogRegister;
 
-public abstract class ProjetoLogCommand implements Command {
+public class ProjetoLogService{
     private LogNotifier logNotifier;
     private LogRegister logRegister;
     private String formatoLog;
 
-    public ProjetoLogCommand(LogNotifier logNotifier, String formatoLog) {
+    public ProjetoLogService(LogNotifier logNotifier, String formatoLog) {
         this.logNotifier = logNotifier;
         this.formatoLog = formatoLog;
     }
 
-    @Override
-    public void execute() {
+    public void notificar() {
         logNotifier.notificar(logRegister, formatoLog);
     }
 
