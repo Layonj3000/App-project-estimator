@@ -1,5 +1,6 @@
-package br.projeto.command;
+package br.projeto.command.abrir;
 
+import br.projeto.command.Command;
 import br.projeto.presenter.ExportarPresenter;
 import br.projeto.repository.PerfilFuncionalidadesPersonalizadasRepository;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;

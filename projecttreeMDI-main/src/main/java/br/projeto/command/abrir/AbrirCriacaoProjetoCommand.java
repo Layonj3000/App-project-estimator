@@ -1,5 +1,6 @@
-package br.projeto.command;
+package br.projeto.command.abrir;
 
+import br.projeto.command.ProjetoLogCommand;
 import br.projeto.model.UsuarioModel;
 import br.projeto.observer.LogNotifier;
 import br.projeto.presenter.EscolhaPerfilPresenter;

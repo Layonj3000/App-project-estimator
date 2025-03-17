@@ -1,5 +1,6 @@
-package br.projeto.command;
+package br.projeto.command.abrir;
 
+import br.projeto.command.Command;
 import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.CompartilharPresenter;
 import br.projeto.repository.PerfilProjetoDeEstimativaRepository;

@@ -5,7 +5,7 @@
 package br.projeto.state.escolha_perfis_projeto;
 
 import br.projeto.command.ObterPerfisSelecionadosCommand;
-import br.projeto.command.PreencherTabelaEscolhaDePlataformaParaInsercaoCommand;
+import br.projeto.command.preencher.PreencherTabelaEscolhaDePlataformaParaInsercaoCommand;
 import br.projeto.presenter.EscolhaFuncionalidadesProjetoPresenter;
 import br.projeto.presenter.EscolhaPerfilPresenter;
 import java.awt.event.ActionEvent;

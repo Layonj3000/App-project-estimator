@@ -5,8 +5,8 @@
 package br.projeto.state.escolha_funcionalidade_projeto;
 
 import br.projeto.command.MostrarMensagemCommand;
-import br.projeto.command.PreencherTabelaFuncionalidadesProjetoCommand;
-import br.projeto.command.SalvarProjetoDeEstimativaCommand;
+import br.projeto.command.preencher.PreencherTabelaFuncionalidadesProjetoCommand;
+import br.projeto.command.salvar.SalvarProjetoDeEstimativaCommand;
 import br.projeto.db.DbException;
 import br.projeto.presenter.EscolhaFuncionalidadesProjetoPresenter;
 import java.awt.event.ActionEvent;

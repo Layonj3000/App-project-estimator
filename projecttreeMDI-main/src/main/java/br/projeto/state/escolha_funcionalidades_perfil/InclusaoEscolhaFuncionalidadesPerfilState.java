@@ -5,8 +5,8 @@
 package br.projeto.state.escolha_funcionalidades_perfil;
 
 import br.projeto.command.MostrarMensagemCommand;
-import br.projeto.command.PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand;
-import br.projeto.command.SalvarPerfilProjetoDeEstimativaCommand;
+import br.projeto.command.preencher.PreencherTabelaFuncionalidadesPerfilParaInsercaoCommand;
+import br.projeto.command.salvar.SalvarPerfilProjetoDeEstimativaCommand;
 import br.projeto.db.DbException;
 import br.projeto.presenter.EscolhaFuncionalidadesPerfilPresenter;
 import java.awt.event.ActionEvent;

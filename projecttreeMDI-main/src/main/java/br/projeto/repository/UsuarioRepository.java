@@ -6,7 +6,7 @@ import br.projeto.db.DbException;
 import br.projeto.model.Subject;
 import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.Observer;
-import br.projeto.service.RetornaUsuarioModelService;
+import br.projeto.service.retornar.RetornaUsuarioModelService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

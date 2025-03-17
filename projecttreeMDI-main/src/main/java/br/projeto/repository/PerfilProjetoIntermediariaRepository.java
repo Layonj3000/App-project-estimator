@@ -8,7 +8,7 @@ import br.projeto.model.PerfilProjetoIntermediariaModel;
 import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.Subject;
 import br.projeto.presenter.Observer;
-import br.projeto.service.RetonaIntermediariaModelService;
+import br.projeto.service.retornar.RetonaIntermediariaModelService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -7,8 +7,8 @@ import br.projeto.model.ProjetoDeEstimativaModel;
 import br.projeto.model.Subject;
 import br.projeto.model.UsuarioModel;
 import br.projeto.presenter.Observer;
-import br.projeto.service.RetornaProjetoModelService;
-import br.projeto.service.RetornaUsuarioModelService;
+import br.projeto.service.retornar.RetornaProjetoModelService;
+import br.projeto.service.retornar.RetornaUsuarioModelService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

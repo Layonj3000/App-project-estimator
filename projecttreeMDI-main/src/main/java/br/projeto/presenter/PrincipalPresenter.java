@@ -1,5 +1,18 @@
 package br.projeto.presenter;
 
+import br.projeto.command.excluir.ExcluirProjetoCommand;
+import br.projeto.command.excluir.ExcluirPerfilCommand;
+import br.projeto.command.abrir.AbrirInternalFrameGenericoProjetoCommand;
+import br.projeto.command.abrir.AbrirDetalhesUsuarioCommand;
+import br.projeto.command.abrir.AbrirTelaCompartilharCommand;
+import br.projeto.command.abrir.AbrirTelaInicialAplicacao;
+import br.projeto.command.abrir.AbrirCriacaoPerfilCommand;
+import br.projeto.command.abrir.AbrirTelaExportacaoCommand;
+import br.projeto.command.abrir.AbrirAtualizacaoPerfilCommand;
+import br.projeto.command.abrir.AbrirCriacaoProjetoCommand;
+import br.projeto.command.abrir.AbrirAtualizacaoProjetoCommand;
+import br.projeto.command.abrir.AbrirDetalhesProjetoCommand;
+import br.projeto.command.abrir.AbrirDetalhesPerfilCommand;
 import br.projeto.command.*;
 import br.projeto.model.PerfilProjetoDeEstimativaModel;
 import br.projeto.model.ProjetoDeEstimativaModel;
