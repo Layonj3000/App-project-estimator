@@ -29,13 +29,11 @@ Este projeto tem como objetivo o desenvolvimento de um software para auxiliar de
 1.  Clone este repositório:
 
     ```bash
-    git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
+    git clone https://github.com/Layonj3000/Projeto-de-Sistemas-de-Software.git
     ```
 
 2.  Abra o projeto no NetBeans.
-3.  Certifique-se de que o Maven está configurado corretamente.
-4.  Compile e execute o projeto diretamente pelo NetBeans.
-5.  O sistema estará disponível conforme a configuração da interface gráfica.
+3.  Compile e execute o projeto diretamente pelo NetBeans.
 
 ##  📝Log do Sistema
 
