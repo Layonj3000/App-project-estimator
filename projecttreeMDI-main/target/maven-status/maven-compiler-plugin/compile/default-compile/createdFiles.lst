@@ -63,7 +63,6 @@ br\projeto\observer\LogObserver.class
 br\projeto\presenter\ExportarPresenter.class
 br\projeto\state\escolha_perfis_projeto\AtualizacaoEscolhaPerfilState$1.class
 br\projeto\state\escolha_perfis_projeto\InclusaoEscolhaPerfilState.class
-br\projeto\adapter\exportacao\ExportadorCSV.class
 br\projeto\adapter\validadorsenha\ValidadorSenhaAdapter.class
 br\projeto\command\ExportarCommand.class
 br\projeto\model\PerfilProjetoIntermediariaModel.class
@@ -124,7 +123,6 @@ br\projeto\service\EstimaProjetoService.class
 br\projeto\view\TelaRegistroView.class
 br\projeto\log_strategy\ALogStrategy.class
 br\projeto\repository\abstr\IProjetoDeEstimativaRepository.class
-br\projeto\adapter\exportacao\ExportadorPDF.class
 br\projeto\state\escolha_perfis_projeto\AtualizacaoEscolhaPerfilState.class
 br\projeto\service\LogService.class
 br\projeto\presenter\EscolhaFuncionalidadesPerfilPresenter$2.class
