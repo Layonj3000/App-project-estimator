@@ -1,47 +1,51 @@
-#  📌Estimador de Custos e Tempo para Aplicativos
+# 📊 Cost and Time Estimator for Applications
 
-##  📝Introdução
+A software tool to assist developers in estimating the cost and time for creating applications.
 
-Este projeto tem como objetivo o desenvolvimento de um software para auxiliar desenvolvedores na estimativa de custos e tempo para a criação de aplicativos. Inspirado no EstimateMyApp, o sistema permite que os usuários elaborem projetos personalizados, selecionando funcionalidades e plataformas (Web/Back-end, iOS e Android). A partir dessas escolhas, são geradas estimativas detalhadas, que podem ser visualizadas e exportadas para referência futura.
+## 🚀 About the Project
 
-##  🎯Funcionalidades
+This project aims to develop a software tool to assist developers in estimating the cost and time required for building applications. Inspired by the **EstimateMyApp** project, the system allows users to create customized projects by selecting desired functionalities and platforms (Web/Back-end, iOS, and Android).
 
-* Seleção de funcionalidades personalizadas
-* Escolha da plataforma (Web, iOS, Android ou múltiplas)
-* Geração automática de estimativas de custo e tempo
-* Exportar Projeto
-* Compartilhar Projeto
-* Criação, Atualização, Exclusão de projetos e perfis
-* Interface intuitiva para facilitar o uso
-* Registro e Login de usuários
+Based on these choices, the software generates detailed cost and time estimates, which can be viewed and exported for future reference.
 
-##  🔧Tecnologias Utilizadas
+## ✨ Features
 
-* Linguagem: Java 17
-* IDE: NetBeans
-* Framework: Maven
-* Banco de Dados: SQLite
-* Interface Gráfica: Swing (Criada no NetBeans)
-* Gerenciador de Dependências: JitPack para bibliotecas externas
+* Customizable feature selection
+* Platform choice (Web, iOS, Android, or multiple platforms)
+* Automatic generation of cost and time estimates
+* Project export functionality
+* Project sharing functionality
+* Create, Read, Update, Delete (CRUD) operations for projects and user profiles
+* Intuitive user interface for ease of use
+* User registration and login
 
-## 🚀Como Executar o Projeto
+## 💻 Technologies Used
 
-1.  Clone este repositório:
+* **Language:** Java 17
+* **IDE:** NetBeans
+* **Framework:** Maven
+* **Database:** SQLite
+* **GUI Framework:** Swing (Built in NetBeans)
+* **Dependency Manager:** JitPack for external libraries
+
+## 🚀 Getting Started
+
+1.  Clone this repository:
 
     ```bash
-    git clone https://github.com/Layonj3000/Projeto-de-Sistemas-de-Software.git
+    git clone [https://github.com/Layonj3000/Projeto-de-Sistemas-de-Software.git](https://github.com/Layonj3000/Projeto-de-Sistemas-de-Software.git)
     ```
 
-2.  Abra o projeto no NetBeans.
-3.  Compile e execute o projeto diretamente pelo NetBeans.
+2.  Open the project in NetBeans.
+3.  Compile and run the project directly from NetBeans.
 
-##  📝Log do Sistema
+## 📝 Logging System
 
-O sistema possui um módulo de log disponível no seguinte repositório:
+The system includes a logging module, which is available in a separate repository:
 
-* [Log do Sistema](https://github.com/laratidesco/log)
+* [System Log](https://github.com/laratidesco/log)
 
-##  👥Autores
+## 👥 Authors
 
 * [David Potentini](https://github.com/DavidPotentini)
 * [Lara Tidesco](https://github.com/laratidesco)
